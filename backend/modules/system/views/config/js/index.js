@@ -4,9 +4,7 @@ layui.config({
 	var form = layui.form,
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		$ = layui.jquery;
-    
-	//添加文章
-	//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+
 	$(window).one("resize",function(){
 		$(".layui-default-add").click(function(){
 			var index = layui.layer.open({
@@ -63,7 +61,6 @@ layui.config({
 		form.render('checkbox');
 	});
 
-	//通过判断文章是否全部选中来确定全选按钮是否选中
 	form.on("checkbox(choose)",function(data){
 		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
 		var childChecked = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"]):checked')
@@ -127,4 +124,29 @@ layui.config({
 		});
         return false;
 	});
+
+    $(".addLanguage").click(function(){
+        str = "<tr>";
+        str += "<td><input class=\"layui-input lang_name\" type=\"text\" /></td>";
+        str += "<td><input class=\"layui-input lang_code\" type=\"text\" /></td>";
+        str += "<td><i class='fa fa-trash-o'></i></td>";
+        str += "</tr>";
+        $(".langs table tbody").append(str);
+    });
+    $(".systemConfig").off("click").on("click",".langs table tbody tr td .fa-trash-o",function(){
+        $(this).parent().parent().remove();
+    });
+
+    $(".addCurrency").click(function(){
+        str = "<tr>";
+        str += "<td><input class=\"layui-input currency_code\" type=\"text\" /></td>";
+        str += "<td><input class=\"layui-input currency_symbol\" type=\"text\" /></td>";
+        str += "<td><input class=\"layui-input currency_rate\" type=\"text\" /></td>";
+        str += "<td><i class='fa fa-trash-o'></i></td>";
+        str += "</tr>";
+        $(".currs table tbody").append(str);
+    });
+    $(".systemConfig").off("click").on("click",".currs table tbody tr td .fa-trash-o",function(){
+        $(this).parent().parent().remove();
+    });
 });

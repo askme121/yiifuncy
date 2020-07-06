@@ -23,7 +23,8 @@ class ConfigSearch extends Config
 
     public function search($params)
     {
-        $query = Config::find();
+        $query = Config::find()
+                 ->where(['group'=>1]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

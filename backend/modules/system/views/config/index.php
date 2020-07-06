@@ -45,7 +45,7 @@ $this->registerJs($this->render('js/index.js'));
             [
 				'attribute' => 'value',
 				'value'=>function($model){
-					return mb_substr($model->value,0,100);
+					return mb_substr($model->value,0,60);
 				},
 				'headerOptions' => [
 					'width' => '20%',
