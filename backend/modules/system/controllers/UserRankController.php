@@ -9,14 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * UserRankController implements the CRUD actions for UserRank model.
- */
 class UserRankController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -29,10 +23,6 @@ class UserRankController extends Controller
         ];
     }
 
-    /**
-     * Lists all UserRank models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new UserRankSearch();
@@ -44,11 +34,6 @@ class UserRankController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single UserRank model.
-     * @param string $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -56,11 +41,6 @@ class UserRankController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new UserRank model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new UserRank();
@@ -74,12 +54,6 @@ class UserRankController extends Controller
         }
     }
 
-    /**
-     * Updates an existing UserRank model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -93,12 +67,6 @@ class UserRankController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing UserRank model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
 		$model = $this->findModel($id);
@@ -110,7 +78,8 @@ class UserRankController extends Controller
 		}
     }
 
-    public function actionDeleteAll(){
+    public function actionDeleteAll()
+    {
         $data = Yii::$app->request->post();
         if($data){
             $model = new UserRank;
@@ -125,13 +94,7 @@ class UserRankController extends Controller
             return json_encode(['code'=>400,"msg"=>"请选择数据"]);
         }
     }
-    /**
-     * Finds the UserRank model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return UserRank the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = UserRank::findOne($id)) !== null) {

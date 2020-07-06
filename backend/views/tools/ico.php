@@ -5,6 +5,9 @@
 	.bs-glyphicons .glyphicon-class { display: block; text-align: center; white-space: nowrap; overflow: hidden;}
 	.bs-glyphicons li:hover { color: #fff; background-color: #563d7c}
 	.mainf{margin-top:10px;}
+    .layui-tab-item{
+        overflow: scroll;
+    }
 </style>
 <div class="layui-tab">
   <ul class="layui-tab-title">

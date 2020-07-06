@@ -9,14 +9,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-/**
- * ConfigController implements the CRUD actions for Config model.
- */
+
 class ConfigController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -29,26 +24,16 @@ class ConfigController extends Controller
         ];
     }
 
-    /**
-     * Lists all Config models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new ConfigSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    /**
-     * Displays a single Config model.
-     * @param string $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -56,15 +41,9 @@ class ConfigController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Config model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Config();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -74,16 +53,9 @@ class ConfigController extends Controller
         }
     }
 
-    /**
-     * Updates an existing Config model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post())) {
 			$model->updated_at = time();
 			if($model->save()){
@@ -96,12 +68,6 @@ class ConfigController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Config model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -117,7 +83,8 @@ class ConfigController extends Controller
 		}
     }
 
-    public function actionDeleteAll(){
+    public function actionDeleteAll()
+    {
         $data = Yii::$app->request->post();
         if($data){
             $model = new Config;
@@ -139,13 +106,7 @@ class ConfigController extends Controller
             return json_encode(['code'=>400,"msg"=>"请选择数据"]);
         }
     }
-    /**
-     * Finds the Config model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Config the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = Config::findOne($id)) !== null) {

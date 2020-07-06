@@ -7,15 +7,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-/**
- * Class Menu
- * Theme menu widget.
- */
 class Menu extends \yii\widgets\Menu
 {
-    /**
-     * @inheritdoc
-     */
     public $linkTemplate = '<a href="{url}">{icon} {label}</a>';
     /**
      * @inheritdoc
@@ -195,7 +188,7 @@ class Menu extends \yii\widgets\Menu
     {
         if (isset($item['url']) && is_array($item['url']) && isset($item['url'][0])) {
             $route = $item['url'][0];
-            if ($route[0] !== '/' && Yii::$app->controller) {
+            if ($route !== '/' && Yii::$app->controller) {
                 $route = ltrim(Yii::$app->controller->module->getUniqueId() . '/' . $route, '/');
             }
             $route = ltrim($route, '/');

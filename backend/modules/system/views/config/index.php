@@ -6,9 +6,6 @@ use backend\assets\LayuiAsset;
 use yii\grid\GridView;
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\searchs\ConfigSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
 		    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -45,14 +42,13 @@ $this->registerJs($this->render('js/index.js'));
 					'width' => '10%'
 				]
 			],
-
             [
 				'attribute' => 'value',
 				'value'=>function($model){
-					return mb_substr($model->value,0,20);
+					return mb_substr($model->value,0,100);
 				},
 				'headerOptions' => [
-					'width' => '15%',
+					'width' => '20%',
 				]
 			],
             'remark',
@@ -65,13 +61,6 @@ $this->registerJs($this->render('js/index.js'));
 					'width' => '10%',
 				]
 			],
-            // 'update_time',
-			[
-				'attribute' => 'sort',
-				'headerOptions' => [
-					'width' => '8%'
-				]
-			],
 			[
 				'attribute' => 'status',
 				'format' => 'html',
@@ -79,7 +68,6 @@ $this->registerJs($this->render('js/index.js'));
 				   return $model->status==0?'<font color="red">系统内置参数</font>':'用户定义参数';
 				},
 			],
-
             [
 				'header' => '操作',
 				'class' => 'yii\grid\ActionColumn',

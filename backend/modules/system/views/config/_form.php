@@ -20,7 +20,7 @@ use common\models\Config;
 
     <?= $form->field($model, 'remark')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
 
-    <?= $form->field($model, 'sort')->textInput(['class'=>'layui-input']) ?>
+    <?= $form->field($model, 'sort')->textInput(['class'=>'layui-input', 'value'=>50]) ?>
 
     <div align='right'>
         <?= Html::submitButton($model->isNewRecord ? '添加' : '修改', ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal']) ?>

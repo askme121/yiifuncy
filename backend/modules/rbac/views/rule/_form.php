@@ -23,7 +23,7 @@ $rule_parent = $rule_root + $rule_parent;
     </div>
     <?php echo \yii\helpers\Html::button('打开图标',['class'=>'layui-btn open-icon','style'=>'margin-top: 25px;']);?>
     <div class="clearfix"></div>
-    <?= $form->field($model, 'order')->input('number',['class'=>'layui-input']) ?>
+    <?= $form->field($model, 'order')->input('number',['value'=>100,'class'=>'layui-input']) ?>
     <div class="form-group" align='right'>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('rbac-admin', 'Create') : Yii::t('rbac-admin', 'Update'), ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal'])?>
     </div>

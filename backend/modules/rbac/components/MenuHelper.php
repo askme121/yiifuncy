@@ -5,13 +5,14 @@ namespace rbac\components;
 use Yii;
 use yii\caching\TagDependency;
 use rbac\models\Menu;
+use rbac\models\Rule;
 
 class MenuHelper
 {
-    public static function getAuthMenu($userId, $root = null, $callback = null, $refresh = false)
+    public static function getAuthMenu($userId, $root = 0, $callback = null, $refresh = false)
     {
-        $menus = Menu::find()->asArray()->indexBy('id')->all();
-        $query = Menu::find()->select(['id'])->asArray();
+        $menus = Rule::find()->asArray()->indexBy('id')->all();
+        $query = Rule::find()->select(['id'])->asArray();
         $assigned = $query->column();
         $assigned = static::requiredParent($assigned, $menus);
         $result = static::normalizeMenu($assigned, $menus, $callback, $root);
@@ -30,7 +31,7 @@ class MenuHelper
         for ($i = 0; $i < $l; $i++) {
             $id = $assigned[$i];
             $parent_id = $menus[$id]['parent'];
-            if ($parent_id !== null && !in_array($parent_id, $assigned)) {
+            if ($parent_id>0 && !in_array($parent_id, $assigned)) {
                 $assigned[$l++] = $parent_id;
             }
         }
@@ -66,7 +67,7 @@ class MenuHelper
      * @param  integer $parent
      * @return array
      */
-    private static function normalizeMenu(&$assigned, &$menus, $callback, $parent = null)
+    private static function normalizeMenu(&$assigned, &$menus, $callback, $parent = 0)
     {
         $result = [];
         $order = [];
