@@ -24,11 +24,15 @@ return [
         "backup" => [
             'class' => 'backup\Module',
         ],
+        "product" => [
+            'class' => 'product\Module',
+        ],
     ],
     "aliases" => [
         '@rbac' => '@backend/modules/rbac',
         '@system' => '@backend/modules/system',
         '@backup' => '@backend/modules/backup',
+        '@product' => '@backend/modules/product',
     ],
     'components' => [
         'request' => [

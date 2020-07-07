@@ -7,9 +7,6 @@ use yii\grid\GridView;
 use common\models\UserRank;
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\searchs\User */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
 	<?php  echo $this->render('_search', ['model' => $searchModel]); ?>

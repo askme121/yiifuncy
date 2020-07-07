@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use rbac\models\Rule;
 
 $this->registerJs($this->render('js/_script.js'));
-$rule_root['0'] = '根';
+$rule_root['0'] = Yii::t('app', 'root');
 $rule_parent = Rule::formatTree(true);
 $rule_parent = $rule_root + $rule_parent;
 ?>

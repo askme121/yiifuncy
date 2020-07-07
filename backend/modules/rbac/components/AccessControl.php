@@ -47,9 +47,6 @@ class AccessControl extends \yii\base\ActionFilter
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function isActive($action)
     {
         $uniqueId = $action->getUniqueId();

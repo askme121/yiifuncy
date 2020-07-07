@@ -9,8 +9,8 @@ class MenuHelper
 {
     public static function getAuthMenu($userId, $root = 0, $callback = null, $refresh = false)
     {
-        $menus = Rule::find()->asArray()->indexBy('id')->all();
-        $query = Rule::find()->select(['id'])->asArray();
+        $menus = Rule::find()->andWhere(['<>','type', 3])->asArray()->indexBy('id')->all();
+        $query = Rule::find()->andWhere(['<>','type', 3])->select(['id'])->asArray();
         $assigned = $query->column();
         $assigned = static::requiredParent($assigned, $menus);
         $result = static::normalizeMenu($assigned, $menus, $callback, $root);
