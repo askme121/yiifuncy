@@ -3,8 +3,6 @@
 namespace rbac\components;
 
 use Yii;
-use yii\caching\TagDependency;
-use rbac\models\Menu;
 use rbac\models\Rule;
 
 class MenuHelper
@@ -19,12 +17,6 @@ class MenuHelper
         return $result;
     }
 
-    /**
-     * Ensure all item menu has parent.
-     * @param  array $assigned
-     * @param  array $menus
-     * @return array
-     */
     private static function requiredParent($assigned, &$menus)
     {
         $l = count($assigned);
@@ -38,11 +30,6 @@ class MenuHelper
         return $assigned;
     }
 
-    /**
-     * Parse route
-     * @param  string $route
-     * @return mixed
-     */
     public static function parseRoute($route)
     {
         if (!empty($route)) {
@@ -59,14 +46,6 @@ class MenuHelper
         return '#';
     }
 
-    /**
-     * Normalize menu
-     * @param  array $assigned
-     * @param  array $menus
-     * @param  Closure $callback
-     * @param  integer $parent
-     * @return array
-     */
     private static function normalizeMenu(&$assigned, &$menus, $callback, $parent = 0)
     {
         $result = [];

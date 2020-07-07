@@ -3,9 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Config;
-/* @var $this yii\web\View */
-/* @var $model common\models\Config */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="config-form create_box">

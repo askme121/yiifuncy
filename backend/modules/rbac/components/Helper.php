@@ -29,10 +29,6 @@ class Helper
         return self::$_routes;
     }
 
-    /**
-     * Get assigned routes by default roles
-     * @return array
-     */
     protected static function getDefaultRoutes()
     {
         if (self::$_defaultRoutes === null) {
@@ -61,11 +57,6 @@ class Helper
         return self::$_defaultRoutes;
     }
 
-    /**
-     * Get assigned routes of user.
-     * @param integer $userId
-     * @return array
-     */
     public static function getRoutesByUser($userId)
     {
         if (!isset(self::$_userRoutes[$userId])) {
@@ -91,12 +82,6 @@ class Helper
         return self::$_userRoutes[$userId];
     }
 
-    /**
-     * Check access route for user.
-     * @param string|array $route
-     * @param integer|User $user
-     * @return boolean
-     */
     public static function checkRoute($route, $params = [], $user = null)
     {
         $config = Configs::instance();
@@ -136,12 +121,6 @@ class Helper
         }
     }
 
-    /**
-     * Normalize route
-     * @param  string  $route    Plain route string
-     * @param  boolean|array $advanced Array containing the advanced configuration. Defaults to false.
-     * @return string            Normalized route string
-     */
     protected static function normalizeRoute($route, $advanced = false)
     {
         if ($route === '') {
@@ -162,11 +141,6 @@ class Helper
         return $normalized;
     }
 
-    /**
-     * Filter menu items
-     * @param array $items
-     * @param integer|User $user
-     */
     public static function filter($items, $user = null)
     {
         if ($user === null) {
@@ -175,12 +149,6 @@ class Helper
         return static::filterRecursive($items, $user);
     }
 
-    /**
-     * Filter menu recursive
-     * @param array $items
-     * @param integer|User $user
-     * @return array
-     */
     protected static function filterRecursive($items, $user)
     {
         $result = [];
@@ -202,21 +170,6 @@ class Helper
         return $result;
     }
 
-    /**
-     * Filter action column button. Use with [[yii\grid\GridView]]
-     * ```php
-     * 'columns' => [
-     *     ...
-     *     [
-     *         'class' => 'yii\grid\ActionColumn',
-     *         'template' => Helper::filterActionColumn(['view','update','activate'])
-     *     ]
-     * ],
-     * ```
-     * @param array|string $buttons
-     * @param integer|User $user
-     * @return string
-     */
     public static function filterActionColumn($buttons = [], $user = null)
     {
         if (is_array($buttons)) {
@@ -233,9 +186,6 @@ class Helper
         }, $buttons);
     }
 
-    /**
-     * Use to invalidate cache.
-     */
     public static function invalidate()
     {
         if (Configs::cache() !== null) {

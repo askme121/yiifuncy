@@ -12,4 +12,7 @@ return [
     'currency_rate' => '汇率',
     'add_currency' => '添加货币',
     'save_currency' => '保存货币',
+    'email_config' => '邮件配置',
+    'email_store_name' => '商城名称',
+    'save_config' => '保存配置',
 ];

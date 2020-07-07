@@ -151,6 +151,40 @@ class ConfigController extends Controller
         }
     }
 
+    public function actionEmail()
+    {
+        $res = Config::find()->where(['group'=>4, 'name'=>'email'])->asArray()->one();
+        if ($res)
+        {
+            if (isset($res['value']))
+            {
+                $res['value'] = unserialize($res['value']);
+            }
+        }
+        return $this->render('email', ['data'=>$res, 'list'=>$res['value']]);
+    }
+
+    public function actionSaveemail()
+    {
+        $param = Yii::$app->request->post();
+        $id = isset($param['id'])? $param['id']: null;
+        if (empty($id))
+        {
+            return json_encode(['code'=>500, "msg"=>"参数缺失"]);
+        }
+        $data['default_smtp_host'] = isset($param['default_smtp_host'])? $param['default_smtp_host']: '';
+        $data['default_smtp_username'] = isset($param['default_smtp_username'])? $param['default_smtp_username']: '';
+        $data['default_smtp_password'] = isset($param['default_smtp_password'])? $param['default_smtp_password']: '';
+        $data['default_smtp_port'] = isset($param['default_smtp_port'])? $param['default_smtp_port']: '';
+        $data['default_smtp_encryption'] = isset($param['default_smtp_encryption'])? $param['default_smtp_encryption']: '';
+        $model = $this->findModel($id);
+        $model->value = serialize($data);
+        $model->updated_at = time();
+        if($model->save()){
+            return $this->redirect(['email']);
+        }
+    }
+
     public function actionView($id)
     {
         return $this->render('view', [
