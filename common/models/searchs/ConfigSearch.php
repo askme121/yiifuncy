@@ -24,7 +24,7 @@ class ConfigSearch extends Config
     public function search($params)
     {
         $query = Config::find()
-                 ->where(['group'=>1]);
+                 ->where(['group'=>1, 'site_id'=>0]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -35,9 +35,31 @@ class ConfigSearch extends Config
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'order' => $this->order,
+            'status' => $this->status,
+        ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'remark', $this->remark]);
+
+        return $dataProvider;
+    }
+
+    public function basic_search($params)
+    {
+        $query = Config::find()
+            ->where(['group'=>1, 'site_id'=>1]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        $this->load($params);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
             'status' => $this->status,
         ]);
 

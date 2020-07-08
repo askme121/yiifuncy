@@ -34,67 +34,46 @@ class ConfigController extends Controller
         ]);
     }
 
-    public function actionLang()
+    public function actionBasic()
     {
-        $res = Config::find()->where(['group'=>2, 'name'=>'mutil_lang'])->asArray()->one();
-        if ($res)
-        {
-            if (isset($res['value']))
-            {
-                $res['value'] = unserialize($res['value']);
-            }
-        }
-        return $this->render('lang', ['data'=>$res, 'langs'=>$res['value']]);
+        $searchModel = new ConfigSearch();
+        $dataProvider = $searchModel->basic_search(Yii::$app->request->queryParams);
+        return $this->render('basic', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
-    public function actionSavelang()
+    public function actionCreatebasic()
     {
-        $param = Yii::$app->request->post();
-        $id = isset($param['id'])? $param['id']: null;
-        $lang = isset($param['langs'])? $param['langs']: null;
-        if (empty($id) || empty($lang))
-        {
-            return json_encode(['code'=>500, "msg"=>"参数缺失"]);
+        $model = new Config();
+        $model->site_id = 1;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-        if (!empty($lang))
-        {
-            $arr = [];
-            $langArr = explode('||', $lang);
-            foreach ($langArr as $one)
-            {
-                if ($one)
-                {
-                    list($lang_name, $lang_code) = explode('##', $one);
-                    if ($lang_name && $lang_code)
-                    {
-                        $arr[] = [
-                            'lang_name' => $lang_name,
-                            'lang_code' => $lang_code,
-                        ];
-                    }
-                }
-            }
-            $default_lang = Config::getConfig("basic_lang");
-            if ($default_lang && $arr)
-            {
-                $lang_arr = ArrayHelper::getColumn($arr,'lang_code');
-                if (!in_array($default_lang, $lang_arr))
-                {
-                    return json_encode(['code'=>403, "msg"=>'you can not delete default lang code:'.$default_lang]);
-                }
-            }
-            $model = $this->findModel($id);
-            $model->value = serialize($arr);
-            $model->updated_at = time();
+    }
+
+    public function actionUpdatebasic($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
-                return $this->redirect(['lang']);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
+        } else {
+            return $this->render('basic', [
+                'model' => $model,
+            ]);
         }
     }
 
     public function actionCurrency()
     {
-        $res = Config::find()->where(['group'=>3, 'name'=>'currency'])->asArray()->one();
+        $res = Config::find()->where(['group'=>3, 'site_id'=>0,'name'=>'currency'])->asArray()->one();
         if ($res)
         {
             if (isset($res['value']))
@@ -153,7 +132,7 @@ class ConfigController extends Controller
 
     public function actionEmail()
     {
-        $res = Config::find()->where(['group'=>4, 'name'=>'email'])->asArray()->one();
+        $res = Config::find()->where(['group'=>4, 'site_id'=>0, 'name'=>'email'])->asArray()->one();
         if ($res)
         {
             if (isset($res['value']))
