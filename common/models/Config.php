@@ -16,7 +16,7 @@ class Config extends \yii\db\ActiveRecord
     {
         return [
             [['value'], 'string'],
-            [['created_at', 'updated_at', 'sort', 'status', 'group'], 'integer'],
+            [['created_at', 'updated_at', 'order', 'status', 'group'], 'integer'],
             [['name'], 'string', 'max' => 30],
             [['title'], 'string', 'max' => 50],
             [['remark'], 'string', 'max' => 100],
@@ -42,7 +42,7 @@ class Config extends \yii\db\ActiveRecord
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
             'group' => '分组',
-            'sort' => '排序值',
+            'order' => '排序值',
             'status' => '状态',
         ];
     }

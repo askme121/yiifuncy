@@ -96,7 +96,7 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
-                'attribute' => 'sort_order',
+                'attribute' => 'order',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
             ],

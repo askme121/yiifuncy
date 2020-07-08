@@ -11,7 +11,7 @@ class ConfigSearch extends Config
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'sort', 'status', 'group'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'order', 'status', 'group'], 'integer'],
             [['name', 'title', 'value', 'remark'], 'safe'],
         ];
     }
@@ -37,7 +37,7 @@ class ConfigSearch extends Config
             'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'sort' => $this->sort,
+            'order' => $this->order,
             'status' => $this->status,
         ]);
 

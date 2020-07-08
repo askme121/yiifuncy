@@ -30,7 +30,7 @@ class Category extends ActiveRecord
     {
         return [
             [['name', 'url_key', 'description', 'title'], 'string'],
-            [['sort_order', 'status', 'parent_id', 'menu_show', 'deepth'], 'integer'],
+            [['order', 'status', 'parent_id', 'menu_show', 'deepth'], 'integer'],
             [['url_key'], 'unique'],
             [['title', 'meta_keywords', 'meta_description'], 'safe'],
         ];
@@ -48,7 +48,7 @@ class Category extends ActiveRecord
             'meta_description' => Yii::t('app', 'meta_description'),
             'parent_id' => Yii::t('app', 'parent'),
             'menu_show' => Yii::t('app', 'menu_show'),
-            'sort_order' => Yii::t('app', 'order'),
+            'order' => Yii::t('app', 'order'),
             'status' => Yii::t('app', 'status'),
         ];
     }

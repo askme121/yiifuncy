@@ -1,10 +1,10 @@
 <?php
 use yii\widgets\DetailView;
 use backend\assets\LayuiAsset;
+
 LayuiAsset::register($this);
 ?>
 <div class="config-view">
-
     <?= DetailView::widget([
         'model' => $model,
 		'options' => ['class' => 'layui-table'],
@@ -17,9 +17,8 @@ LayuiAsset::register($this);
             'remark',
             'created_at',
             'updated_at',
-            'sort',
+            'order',
             'status',
         ],
     ]) ?>
-
 </div>

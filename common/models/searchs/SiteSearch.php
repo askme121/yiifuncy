@@ -4,15 +4,15 @@ namespace common\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Category;
+use common\models\Site;
 
-class CategorySearch extends Category
+class SiteSearch extends Site
 {
     public function rules()
     {
         return [
-            [['id', 'order', 'status', 'parent_id', 'menu_show'], 'integer'],
-            [['name', 'url_key', 'title', 'meta_keywords', 'meta_description'], 'safe'],
+            [['id', 'order'], 'integer'],
+            [['name', 'code', 'lang', 'domain', 'icon'], 'safe'],
         ];
     }
 
@@ -23,7 +23,7 @@ class CategorySearch extends Category
 
     public function search($params)
     {
-        $query = Category::find();
+        $query = Site::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -34,11 +34,10 @@ class CategorySearch extends Category
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'menu_show' => $this->menu_show,
-            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'code', $this->code]);
 
         return $dataProvider;
     }

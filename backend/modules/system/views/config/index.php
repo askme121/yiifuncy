@@ -4,12 +4,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
 ?>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
 		    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
-	</blockquote>
+</blockquote>
 <div class="config-index layui-form news_list">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

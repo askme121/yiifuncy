@@ -26,7 +26,13 @@ return [
     'parent' => '父级',
     'order' => '排序',
     'create' => '新增',
+    'add' => '添加',
+    'edit' => '修改',
     'update' => '更新',
     'root' => '根',
     'unkown' => '未知',
+    'site_name' => '站点名称',
+    'country_code' => '国家简码',
+    'site_domain' => '站点域名',
+    'icon' => '图标',
 ];

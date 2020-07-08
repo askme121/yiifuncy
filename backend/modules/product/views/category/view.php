@@ -62,7 +62,7 @@ LayuiAsset::register($this);
                     }
                 },
             ],
-            'sort_order',
+            'order',
         ],
         'template' => '<tr><th width="100px">{label}</th><td>{value}</td></tr>',
     ]);
