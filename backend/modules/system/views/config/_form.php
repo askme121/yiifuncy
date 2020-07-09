@@ -10,7 +10,7 @@ use common\models\Config;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
     <?= $form->field($model, 'value')->textarea(['rows' => 6,'class'=>'layui-textarea']) ?>
     <?= $form->field($model, 'remark')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
-    <?= $form->field($model, 'order')->textInput(['class'=>'layui-input', 'value'=>50]) ?>
+    <?= $form->field($model, 'order')->textInput(['class'=>'layui-input', 'value'=>$model->order??50]) ?>
     <div align='right'>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'add') : Yii::t('app', 'edit'), ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal']) ?>
     </div>

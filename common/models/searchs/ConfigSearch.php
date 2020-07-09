@@ -49,7 +49,7 @@ class ConfigSearch extends Config
     public function basic_search($params)
     {
         $query = Config::find()
-            ->where(['group'=>1, 'site_id'=>1]);
+            ->where(['group'=>1, 'site_id'=>\Yii::$app->session['default_site_id']]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

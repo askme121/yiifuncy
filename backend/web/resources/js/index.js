@@ -151,6 +151,28 @@ layui.config({
         });
     });
 
+    $("#select-site").change(function (){
+        var href = '/site/change';
+        $.get(href, {site_id: $(this).val()},function(data){
+            if(data.code===200){
+                layer.msg(data.msg);
+                layer.close();
+                setTimeout(function(){
+                    location.reload();
+                },500);
+            }else{
+                layer.close();
+                layer.msg(data.msg);
+            }
+        },"json").fail(function(a,b,c){
+            if(a.status==403){
+                layer.msg('没有权限');
+            }else{
+                layer.msg('系统错误');
+            }
+        });
+    });
+
     //退出
     $(".signOut").click(function () {
         window.sessionStorage.removeItem("menu");

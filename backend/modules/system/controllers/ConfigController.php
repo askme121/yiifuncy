@@ -47,7 +47,7 @@ class ConfigController extends Controller
     public function actionCreatebasic()
     {
         $model = new Config();
-        $model->site_id = 1;
+        $model->site_id = \Yii::$app->session['default_site_id'];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

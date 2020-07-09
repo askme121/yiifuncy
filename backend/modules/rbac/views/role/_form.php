@@ -14,7 +14,7 @@ $rule_list = Rule::getTree();
     <?php $form = ActiveForm::begin(); ?>
 	<?= $form->field($model, 'name')->textInput(['maxlength' => 128, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'desc')->textarea(['maxlength' => 255, 'class'=>'layui-textarea']) ?>
-    <?= $form->field($model, 'order')->input('number',['class'=>'layui-input']) ?>
+    <?= $form->field($model, 'order')->input('number',['class'=>'layui-input', 'value'=>$model->order??50]) ?>
     <div class="form-group field-purview">
         <?= Html::label('权限：', 'purview', ['class'=>'control-label'])?>
         <input type="hidden" name="Role[purview]" value="">
@@ -24,7 +24,7 @@ $rule_list = Rule::getTree();
                     <?php foreach ($rule_list as $groupKey => $resources): ?>
                         <li>
                             <label style="font-weight: normal">
-                                <input type="checkbox" name="Role[purview][]"  value="<?= $resources['id'] ?>" <?= in_array($resources['id'], $model->purview) ? 'checked="checked"' : '' ?> />
+                                <input type="checkbox" name="Role[purview][]"  value="<?= $resources['id'] ?>" <?= $model->purview && in_array($resources['id'], $model->purview) ? 'checked="checked"' : '' ?> />
                                 <span><?= $resources['name'] ?></span>
                             </label>
                             <?php if (!empty($resources['child']) && is_array($resources['child'])):  ?>
@@ -32,7 +32,7 @@ $rule_list = Rule::getTree();
                                 <?php foreach ($resources['child'] as $firstKey => $first): ?>
                                     <li <?php if (empty($first['child'])){ echo 'class="pull-left"';}?>>
                                         <label style="font-weight: normal">
-                                            <input type="checkbox" name="Role[purview][]"  value="<?= $first['id'] ?>" <?= in_array($first['id'], $model->purview) ? 'checked="checked"' : '' ?> />
+                                            <input type="checkbox" name="Role[purview][]"  value="<?= $first['id'] ?>" <?= $model->purview && in_array($first['id'], $model->purview) ? 'checked="checked"' : '' ?> />
                                             <span><?= $first['name'] ?></span>
                                         </label>
                                         <?php if (!empty($first['child']) && is_array($first['child'])):  ?>
@@ -40,7 +40,7 @@ $rule_list = Rule::getTree();
                                             <?php foreach ($first['child'] as $secondKey => $second): ?>
                                                 <li <?php if (empty($second['child'])){ echo 'class="pull-left"';}?>>
                                                     <label style="font-weight: normal">
-                                                        <input type="checkbox" name="Role[purview][]"  value="<?= $second['id'] ?>" <?= in_array($second['id'], $model->purview) ? 'checked="checked"' : '' ?> />
+                                                        <input type="checkbox" name="Role[purview][]"  value="<?= $second['id'] ?>" <?= $model->purview && in_array($second['id'], $model->purview) ? 'checked="checked"' : '' ?> />
                                                         <span><?= $second['name'] ?></span>
                                                     </label>
                                                     <?php if (!empty($second['child']) && is_array($second['child'])):  ?>
@@ -48,7 +48,7 @@ $rule_list = Rule::getTree();
                                                         <?php foreach ($second['child'] as $thirdKey => $third): ?>
                                                             <li <?php if (empty($third['child'])){ echo 'class="pull-left"';}?>>
                                                                 <label style="font-weight: normal">
-                                                                    <input type="checkbox" name="Role[purview][]"  value="<?= $third['id'] ?>" <?= in_array($third['id'], $model->purview) ? 'checked="checked"' : '' ?> />
+                                                                    <input type="checkbox" name="Role[purview][]"  value="<?= $third['id'] ?>" <?= $model->purview && in_array($third['id'], $model->purview) ? 'checked="checked"' : '' ?> />
                                                                     <span><?= $third['name'] ?></span>
                                                                 </label>
                                                             </li>

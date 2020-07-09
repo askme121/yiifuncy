@@ -5,9 +5,11 @@ namespace rbac\controllers;
 use Yii;
 use rbac\models\Role;
 use rbac\models\searchs\Role as RoleSearch;
+use yii\base\ErrorException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\Admin;
 
 class RoleController extends Controller
 {
@@ -42,6 +44,10 @@ class RoleController extends Controller
 
     public function actionDelete($id)
     {
+        $admin = Admin::find()->where(['role_id'=>$id])->all();
+        if ($admin){
+            return json_encode(['code'=>500, "msg"=>"该角色下存在用户，不能删除"]);
+        }
         if($this->findModel($id)->delete()){
             return json_encode(['code'=>200, "msg"=>"删除成功"]);
         }else{

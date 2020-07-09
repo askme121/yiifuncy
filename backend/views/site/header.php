@@ -1,6 +1,10 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use common\models\Site;
+use yii\helpers\ArrayHelper;
+
+$site_list = Site::getSiteList();
 ?>
 <div class="layui-header blog-header header height-50">
     <div class="layui-main">
@@ -25,7 +29,7 @@ use yii\helpers\Html;
                     </a>
                 </li>
                 <li class="layui-nav-item line-h50 switch_site">
-                    <?= Html::dropDownList('select_site', null, ['1' => '栏目', '2' => '菜单', '3' => '按钮'], ['id' => 'rule-type', 'class' => 'dropdownlist', 'prompt' => '全部'])?>
+                    <?= Html::dropDownList('select_site', \Yii::$app->session['default_site_id'], ArrayHelper::map($site_list, 'id', 'code'), ['id' => 'select-site', 'class' => 'dropdownlist'])?>
                 </li>
                 <li class="layui-nav-item line-h50">
                     <a href="javascript:;">

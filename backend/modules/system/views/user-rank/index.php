@@ -4,11 +4,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\searchs\UserRankSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
 		    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>

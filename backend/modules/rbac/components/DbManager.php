@@ -7,6 +7,8 @@ use yii\rbac\Permission;
 use yii\rbac\Role;
 use yii\rbac\Item;
 use yii\db\Query;
+use common\models\Config;
+use common\models\Site;
 
 class DbManager
 {
@@ -131,6 +133,16 @@ class DbManager
 
     public function checkAccess($userId, $permissionName, $params = [])
     {
+        $session_default_site_id = \Yii::$app->session['default_site_id'];
+        if (empty($session_default_site_id)) {
+            $default_site =  Config::getConfig('default_site');
+            if ($default_site) {
+                $default_site_id = Site::findOne(['code' => $default_site])->id;
+                if ($default_site_id) {
+                    \Yii::$app->session['default_site_id'] = $default_site_id;
+                }
+            }
+        }
         if (isset($this->_checkAccessAssignments[(string) $userId])) {
             $assignments = $this->_checkAccessAssignments[(string) $userId];
         } else {

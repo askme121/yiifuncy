@@ -22,7 +22,7 @@ $this->registerJs($this->render('js/upload.js'));
     <div class="form-group">
         <?= Html::img(@$model->icon, ['width'=>'50','height'=>'50','class'=>'layui-circle site_icon'])?>
     </div>
-    <?= $form->field($model, 'order')->input('number',['class'=>'layui-input', 'value'=>50]) ?>
+    <?= $form->field($model, 'order')->input('number',['class'=>'layui-input', 'value'=>$model->order??50]) ?>
     <div align='right'>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'add') : Yii::t('app', 'edit'), ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal']) ?>
     </div>

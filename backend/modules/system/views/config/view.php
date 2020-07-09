@@ -15,10 +15,16 @@ LayuiAsset::register($this);
             'title',
             'value:ntext',
             'remark',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
             'order',
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->status==0?'<font color="red">系统内置参数</font>':'用户定义参数';
+                },
+            ],
         ],
     ]) ?>
 </div>

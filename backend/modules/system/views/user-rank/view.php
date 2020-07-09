@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\DetailView;
 use backend\assets\LayuiAsset;
+
 LayuiAsset::register($this);
 ?>
 <div class="user-rank-view">
@@ -16,5 +17,4 @@ LayuiAsset::register($this);
             'status',
         ],
     ]) ?>
-
 </div>

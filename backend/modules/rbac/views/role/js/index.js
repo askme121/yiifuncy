@@ -11,45 +11,12 @@ layui.config({
             title : "添加角色",
             type : 2,
             area: ['600px', '560px'],
-            content : ["<?= yii\helpers\Url::to(['create']); ?>",'no'],
+            content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
             end: function () {
                 location.reload();
             }
         });	
     });
-
-	//批量删除
-	$(".layui-default-delete-all").click(function(){
-		var keys = $("#grid").yiiGridView("getSelectedRows");
-        var url = "<?= yii\helpers\Url::to(['delete-all']); ?>";
-		if(keys.length!==0){
-			layer.confirm('确定删除选中的信息？',{icon:3, title:'提示信息'},function(index){
-				var index = layer.msg('删除中，请稍候',{icon: 16,time:false,shade:0.8});
-	            setTimeout(function(){
-                    $.post(url,{"keys":keys},function(data){
-                        if(data.code===200){
-                            layer.msg(data.msg);
-                            layer.close(index);
-                            setTimeout(function(){
-                               location.reload();
-                            },500);
-                        }else{
-                            layer.close(index);
-                            layer.msg(data.msg);
-                        }
-                    },"json").fail(function(a,b,c){
-						if(a.status==403){
-							layer.msg('没有权限');
-						}else{
-							layer.msg('系统错误');
-						}
-					});
-	            },800);
-	        });
-		}else{
-			layer.msg("请选择需要删除的角色");
-		}
-	});
 
 	//全选
 	form.on('checkbox(allChoose)', function(data){

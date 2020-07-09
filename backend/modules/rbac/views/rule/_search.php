@@ -24,14 +24,14 @@ AppAsset::register($this);
     <div class="layui-inline">
         <?= Html::label('权限类型：', 'rule-type', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Rule[type]', null, ['1' => '栏目', '2' => '菜单', '3' => '按钮'], ['id' => 'rule-type', 'class' => 'dropdownlist', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('Rule[type]', null, ['1' => '栏目', '2' => '菜单', '3' => '按钮'], ['id' => 'rule-type', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>
     <div class="layui-inline">
         <?= Html::label('父级：', 'rule-parent', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Rule[parent]', null, $rule_parent, ['id' => 'rule-parent', 'class' => 'dropdownlist', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('Rule[parent]', null, $rule_parent, ['id' => 'rule-parent', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

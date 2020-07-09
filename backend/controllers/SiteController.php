@@ -24,7 +24,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'test', 'clear'],
+                        'actions' => ['logout', 'index', 'test', 'clear', 'change'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -133,6 +133,17 @@ class SiteController extends Controller
             return json_encode(['code'=>200,"msg"=>"刷新成功"]);
         } else {
             return json_encode(['code'=>0,"msg"=>"刷新失败"]);
+        }
+    }
+
+    public function actionChange()
+    {
+        $site_id = \Yii::$app->request->get('site_id');
+        if ($site_id){
+            \Yii::$app->session['default_site_id'] = $site_id;
+            return json_encode(['code'=>200,"msg"=>"切换成功"]);
+        } else {
+            return json_encode(['code'=>0,"msg"=>"切换失败"]);
         }
     }
 

@@ -43,4 +43,12 @@ class Site extends ActiveRecord
             'order' => Yii::t('app', 'order'),
         ];
     }
+
+    public static function getSiteList()
+    {
+        $res = self::find()
+            ->asArray()
+            ->all();
+        return $res;
+    }
 }

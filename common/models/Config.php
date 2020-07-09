@@ -50,7 +50,12 @@ class Config extends \yii\db\ActiveRecord
 	public function beforeSave($insert)
     {
 		if(parent::beforeSave($insert)){
-			Yii::$app->redis->del($this->name);
+            $after_str = '';
+            if ($this->site_id > 0)
+            {
+                $after_str = '_'.$this->site_id;
+            }
+			Yii::$app->redis->del($this->name.$after_str);
 			return true;
 		}
 	}
@@ -64,12 +69,18 @@ class Config extends \yii\db\ActiveRecord
 		}
 	}
 	
-	public static function getConfig($name)
+	public static function getConfig($name, $site_id=0)
     {
-		$config = Yii::$app->redis->get($name);
-		if(!$config){
-			$config = self::findOne(['name'=>$name])->value;
-			Yii::$app->redis->set($name,$config);
+        $after_str = '';
+        if ($site_id > 0)
+        {
+            $after_str = '_'.$site_id;
+        }
+		$config = Yii::$app->redis->get($name.$after_str);
+		if (!$config)
+		{
+			$config = self::findOne(['name'=>$name, 'site_id'=>$site_id])->value;
+			Yii::$app->redis->set($name.$after_str, $config);
 		}
 		return $config;
 	}
