@@ -406,7 +406,7 @@ layui.config({
             title: "修改信息",
             type: 2,
             area: ['430px', '520px'], //宽高
-            content: [href, "no"]
+            content: [href, "yes"]
         });
         //直接阻止A连接跳转
         return false;

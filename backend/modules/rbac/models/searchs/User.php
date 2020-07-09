@@ -12,7 +12,7 @@ class User extends UserModel
     public function rules()
     {
         return [
-            [['id', 'status', 'role_id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status', 'role_id', 'team_id', 'created_at', 'updated_at'], 'integer'],
             [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'role_id'], 'safe'],
         ];
     }
@@ -37,6 +37,7 @@ class User extends UserModel
 
         $query->andFilterWhere([
             'role_id' => $this->role_id,
+            'team_id' => $this->team_id,
             'status' => $this->status,
             ])
             ->andFilterWhere(['like', 'username', $this->username])

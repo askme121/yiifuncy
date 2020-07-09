@@ -11,7 +11,7 @@ layui.config({
             title : "添加系统用户",
             type : 2,
             area: ['400px', '600px'],
-            content : ["<?= yii\helpers\Url::to(['signup']); ?>",'no'],
+            content : ["<?= yii\helpers\Url::to(['signup']); ?>",'yes'],
             end: function () {
                 location.reload();
             }
@@ -107,7 +107,7 @@ layui.config({
             title : "修改用户",
             type : 2,
             area:['400px', '600px'],
-            content :[href,"no"],
+            content :[href,"yes"],
             end: function () {
                 location.reload();
             }

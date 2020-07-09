@@ -4,13 +4,16 @@ namespace rbac\components;
 
 use Yii;
 use rbac\models\Rule;
+use rbac\models\Role;
 
 class MenuHelper
 {
     public static function getAuthMenu($userId, $root = 0, $callback = null, $refresh = false)
     {
-        $menus = Rule::find()->andWhere(['<>','type', 3])->asArray()->indexBy('id')->all();
-        $query = Rule::find()->andWhere(['<>','type', 3])->select(['id'])->asArray();
+        $role_id = Yii::$app->user->identity->role_id;
+        $purview = Role::find()->where(['id'=>$role_id])->one()->purview;
+        $menus = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->asArray()->indexBy('id')->all();
+        $query = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->select(['id'])->asArray();
         $assigned = $query->column();
         $assigned = static::requiredParent($assigned, $menus);
         $result = static::normalizeMenu($assigned, $menus, $callback, $root);

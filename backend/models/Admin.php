@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\models;
 
 use Yii;
@@ -19,6 +20,7 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property integer $status
  * @property integer $role_id
+ * @property integer $team_id
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -47,7 +49,7 @@ class Admin extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['nickname', 'string', 'max' => 32],
-            ['role_id', 'integer'],
+            [['role_id', 'team_id'], 'integer'],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['head_pic', 'email'], 'string', 'max' => 255],
         ];
@@ -64,6 +66,7 @@ class Admin extends ActiveRecord implements IdentityInterface
             'mobile' => '手机号码',
             'status' => '状态',
             'role_id' => '角色',
+            'team_id' => '团队',
             'created_at'=>'创建时间',
             'updated_at'=>'修改时间',
             'auth_key'=>'授权码',

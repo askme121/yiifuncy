@@ -2,6 +2,7 @@
 use yii\widgets\DetailView;
 use backend\assets\LayuiAsset;
 use rbac\models\Role;
+use backend\models\Team;
 
 LayuiAsset::register($this);
 ?>
@@ -26,6 +27,19 @@ LayuiAsset::register($this);
                 },
             ],
             [
+                "attribute"=>"team_id",
+                'format' => 'html',
+                'value' => function($model) {
+                    $team_list = Team::getList();
+                    foreach ($team_list as $v){
+                        if ($model->team_id == $v['id']){
+                            return $v['name'];
+                        }
+                    }
+                    return '未知';
+                },
+            ],
+            [
                 "attribute"=>"head_pic",
                 "format"=>[
                     "image",
@@ -37,7 +51,7 @@ LayuiAsset::register($this);
                 ],
             ],
             'email:email',
-            'created_at:date',
+            'created_at:datetime',
             [
                 'attribute' => 'status',
                 'format' => 'html',

@@ -1,17 +1,16 @@
 <?php
 
-namespace rbac\controllers;
+namespace system\controllers;
 
 use Yii;
-use rbac\models\Role;
-use rbac\models\searchs\Role as RoleSearch;
-use yii\base\ErrorException;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use backend\models\Admin;
+use backend\models\Team;
+use backend\models\searchs\TeamSearch;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+use yii\web\Controller;
 
-class RoleController extends Controller
+class TeamController extends Controller
 {
     public function behaviors()
     {
@@ -19,7 +18,7 @@ class RoleController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -27,7 +26,7 @@ class RoleController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new RoleSearch();
+        $searchModel = new TeamSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -42,22 +41,9 @@ class RoleController extends Controller
         ]);
     }
 
-    public function actionDelete($id)
-    {
-        $admin = Admin::find()->where(['role_id'=>$id])->all();
-        if ($admin){
-            return json_encode(['code'=>500, "msg"=>"该角色下存在用户，不能删除"]);
-        }
-        if ($this->findModel($id)->delete()){
-            return json_encode(['code'=>200, "msg"=>"删除成功"]);
-        }else{
-            return json_encode(['code'=>400, "msg"=>"删除失败"]);
-        }
-    }
-
     public function actionCreate()
     {
-        $model = new Role;
+        $model = new Team();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -71,12 +57,8 @@ class RoleController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()){
-                $model->save();
+            if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
-            } else{
-                $error = $model->firstErrors;
-                return json_encode(['code'=>500, "msg"=>"更新失败", "data"=>$error]);
             }
         } else {
             return $this->render('update', [
@@ -85,9 +67,22 @@ class RoleController extends Controller
         }
     }
 
+    public function actionDelete($id)
+    {
+        $admin = Admin::find()->where(['team_id'=>$id])->all();
+        if ($admin){
+            return json_encode(['code'=>500, "msg"=>"该团队下存在用户，不能删除"]);
+        }
+        if ($this->findModel($id)->delete()){
+            return json_encode(['code'=>200, "msg"=>"删除成功"]);
+        }else{
+            return json_encode(['code'=>400, "msg"=>"删除失败"]);
+        }
+    }
+
     protected function findModel($id)
     {
-        if (($model = Role::findOne($id)) !== null) {
+        if (($model = Team::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

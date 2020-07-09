@@ -66,6 +66,15 @@ class SiteController extends Controller
         }
     }
 
+    public function actionDelete($id)
+    {
+        if ($this->findModel($id)->delete()){
+            return json_encode(['code'=>200, "msg"=>"删除成功"]);
+        }else{
+            return json_encode(['code'=>400, "msg"=>"删除失败"]);
+        }
+    }
+
     protected function findModel($id)
     {
         if (($model = Site::findOne($id)) !== null) {

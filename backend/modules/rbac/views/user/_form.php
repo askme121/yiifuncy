@@ -2,10 +2,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use rbac\models\Role;
+use backend\models\Team;
 use yii\helpers\ArrayHelper;
 
 $this->registerJs($this->render('js/upload.js'));
 $role_list = Role::getList();
+$team_list = Team::getList();
 ?>
 
 <div class="user-form create_box">
@@ -13,6 +15,7 @@ $role_list = Role::getList();
     <?= $form->field($model, 'username')->textInput(['maxlength' => true,'class'=>'layui-input','readonly'=>true]) ?>
 	<?= $form->field($model, 'nickname')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
     <?= $form->field($model, 'role_id')->dropDownList(ArrayHelper::map($role_list,'id','name'))?>
+    <?= $form->field($model, 'team_id')->dropDownList(ArrayHelper::map($team_list,'id','name'))?>
 	<?= $form->field($model, 'head_pic',['template' => '{label} <div class="row"><div class="col-sm-12">{input}<button type="button" class="layui-btn upload_button" id="test3"><i class="layui-icon"></i>上传文件</button>{error}{hint}</div></div>'])->textInput(['maxlength' => true,'class'=>'layui-input upload_input']) ?>
     <div class="form-group">
         <?= Html::img(@$model->head_pic, ['width'=>'50','height'=>'50','class'=>'layui-circle userinfo_head_pic'])?>

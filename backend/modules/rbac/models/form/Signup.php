@@ -14,6 +14,7 @@ class Signup extends Model
     public $email;
     public $password;
     public $role_id;
+    public $team_id;
 
     public function rules()
     {
@@ -33,6 +34,7 @@ class Signup extends Model
             ['password', 'string', 'min' => 6],
 
             ['role_id', 'required'],
+            ['team_id', 'required'],
         ];
     }
 
@@ -44,6 +46,7 @@ class Signup extends Model
 			$user->nickname = $this->nickname;
 			$user->head_pic = $this->head_pic;
             $user->role_id = $this->role_id;
+            $user->team_id = $this->team_id;
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
@@ -62,7 +65,8 @@ class Signup extends Model
 			'head_pic' => '用户头像',
             'email' => '电子邮箱',
 			'password' => '用户密码',
-            'role_id' => '角色'
+            'role_id' => '角色',
+            'team_id' => '团队'
         ];
     }
 }
