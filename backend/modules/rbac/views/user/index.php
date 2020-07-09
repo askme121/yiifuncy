@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 use backend\assets\LayuiAsset;
 use rbac\models\Role;
+use backend\models\Team;
 
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
@@ -59,6 +60,24 @@ $this->registerJs($this->render('js/index.js'));
 					'style'=> 'text-align: center;'
 				],
 			],
+            [
+                'attribute' => 'team_id',
+                'format' => 'html',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => [
+                    'width' => '10%',
+                    'style'=> 'text-align: center;'
+                ],
+                'value' => function($model) {
+                    $team_list = Team::getList();
+                    foreach ($team_list as $v){
+                        if ($model->team_id == $v['id']){
+                            return $v['name'];
+                        }
+                    }
+                    return '未知';
+                },
+            ],
             [
                 'attribute' => 'role_id',
                 'format' => 'html',

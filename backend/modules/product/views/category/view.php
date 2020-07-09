@@ -12,6 +12,7 @@ LayuiAsset::register($this);
         'attributes' => [
             'name',
             'url_key',
+            'description',
             [
                 "attribute" => "parent_id",
                 "value" => function($model) {

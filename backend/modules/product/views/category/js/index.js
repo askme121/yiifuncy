@@ -10,7 +10,7 @@ layui.config({
         var index = layui.layer.open({
             title : "添加分类",
             type : 2,
-            area: ['800px', '500px'],
+            area: ['800px', '670px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
             end: function () {
                 location.reload();
@@ -42,7 +42,7 @@ layui.config({
     $("body").on("click",".layui-default-view",function(){
         var href = $(this).attr("href");
         var index = layui.layer.open({
-            title : "查看用户",
+            title : "查看分类",
             type: 2,
             area: ['400px', '450px'],
             content : [href, 'no']
@@ -106,8 +106,8 @@ layui.config({
         var index = layui.layer.open({
             title : "修改分类",
             type : 2,
-            area:['400px', '600px'],
-            content :[href,"no"],
+            area:['800px', '670px'],
+            content :[href,"yes"],
             end: function () {
                 location.reload();
             }

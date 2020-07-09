@@ -23,7 +23,7 @@ class CategorySearch extends Category
 
     public function search($params)
     {
-        $query = Category::find();
+        $query = Category::find()->where(['site_id'=>\Yii::$app->session['default_site_id']]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

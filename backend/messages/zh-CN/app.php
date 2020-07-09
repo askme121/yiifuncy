@@ -32,7 +32,12 @@ return [
     'root' => '根',
     'unkown' => '未知',
     'site_name' => '站点名称',
+    'site' => '站点',
     'country_code' => '国家简码',
     'site_domain' => '站点域名',
     'icon' => '图标',
+    'team' => '团队',
+    'publish' => '发布者',
+    'image' => '图片',
+    'thumb_image' => '缩略图',
 ];

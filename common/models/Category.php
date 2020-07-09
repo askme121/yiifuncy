@@ -30,9 +30,9 @@ class Category extends ActiveRecord
     {
         return [
             [['name', 'url_key', 'description', 'title'], 'string'],
-            [['order', 'status', 'parent_id', 'menu_show', 'deepth'], 'integer'],
+            [['order', 'status', 'parent_id', 'menu_show', 'deepth', 'role_id', 'team_id', 'user_id', 'site_id'], 'integer'],
             [['url_key'], 'unique'],
-            [['title', 'meta_keywords', 'meta_description'], 'safe'],
+            [['title', 'meta_keywords', 'meta_description', 'image', 'thumb_image'], 'safe'],
         ];
     }
 
@@ -50,6 +50,11 @@ class Category extends ActiveRecord
             'menu_show' => Yii::t('app', 'menu_show'),
             'order' => Yii::t('app', 'order'),
             'status' => Yii::t('app', 'status'),
+            'team_id' => Yii::t('app', 'team'),
+            'user_id' => Yii::t('app', 'publish'),
+            'site_id' => Yii::t('app', 'site'),
+            'image' => Yii::t('app', 'image'),
+            'thumb_image' => Yii::t('app', 'thumb_image'),
         ];
     }
 
@@ -95,8 +100,9 @@ class Category extends ActiveRecord
 
     public static function getTree()
     {
+        $site_id = \Yii::$app->session['default_site_id'];
         $res = self::find()
-            ->where(['parent_id'=>0, 'status'=>1])
+            ->where(['parent_id'=>0, 'status'=>1, 'site_id'=>$site_id])
             ->orderBy('id')
             ->asArray()
             ->all();
@@ -112,8 +118,9 @@ class Category extends ActiveRecord
 
     protected static function getChild($id)
     {
+        $site_id = \Yii::$app->session['default_site_id'];
         $res = self::find()
-            ->where(['parent_id'=>$id, 'status'=>1])
+            ->where(['parent_id'=>$id, 'status'=>1, 'site_id'=>$site_id])
             ->orderBy('id')
             ->asArray()
             ->all();
