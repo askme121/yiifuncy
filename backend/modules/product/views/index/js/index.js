@@ -8,7 +8,7 @@ layui.config({
     // 添加分类
     $(".layui-default-add").click(function(){
         var index = layui.layer.open({
-            title : "添加分类",
+            title : "添加产品",
             type : 2,
             area: ['800px', '630px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
@@ -42,7 +42,7 @@ layui.config({
     $("body").on("click",".layui-default-view",function(){
         var href = $(this).attr("href");
         var index = layui.layer.open({
-            title : "查看分类",
+            title : "查看产品",
             type: 2,
             area: ['400px', '450px'],
             content : [href, 'no']
@@ -52,7 +52,7 @@ layui.config({
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定启用此分类吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定激活此产品吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -77,7 +77,7 @@ layui.config({
     //  禁用操作
     $("body").on("click",".layui-default-inactive",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定禁用此分类吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定关闭此产品吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -104,7 +104,7 @@ layui.config({
         var href = $(this).attr("href");
         console.log(href);
         var index = layui.layer.open({
-            title : "修改分类",
+            title : "修改产品",
             type : 2,
             area:['800px', '630px'],
             content :[href,"yes"],
@@ -117,7 +117,7 @@ layui.config({
     //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定删除此分类吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定删除此产品吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

@@ -43,7 +43,7 @@ $category_parent = $category_root + $category_parent;
                     <?= Html::activeHiddenInput($model,'thumb_image') ?>
                     <?= Html::img(@$model->thumb_image, ['width'=>'50','height'=>'50','class'=>'category_image'])?>
                 </div>
-                <?= $form->field($model, 'order')->input('number',['value'=>100,'class'=>'layui-input']) ?>
+                <?= $form->field($model, 'order')->input('number',['value'=>$model->order??100,'class'=>'layui-input']) ?>
             </div>
             <div class="layui-tab-item">
                 <?= $form->field($model, 'menu_show')->dropDownList(['1'=>'显示', '2'=>'不显示'])?>

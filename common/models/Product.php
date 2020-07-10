@@ -46,7 +46,7 @@ class Product extends ActiveRecord
             'name' => Yii::t('app', 'product_name'),
             'sku' => Yii::t('app', 'sku'),
             'url_key'=> Yii::t('app', 'url_key'),
-            'shot_description' => Yii::t('app', 'shot_description'),
+            'short_description' => Yii::t('app', 'short_description'),
             'description' => Yii::t('app', 'description'),
             'meta_title' => Yii::t('app', 'meta_title'),
             'meta_keywords' => Yii::t('app', 'meta_keywords'),
