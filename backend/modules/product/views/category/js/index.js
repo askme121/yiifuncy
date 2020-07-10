@@ -10,7 +10,7 @@ layui.config({
         var index = layui.layer.open({
             title : "添加分类",
             type : 2,
-            area: ['800px', '670px'],
+            area: ['800px', '630px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
             end: function () {
                 location.reload();
@@ -106,7 +106,7 @@ layui.config({
         var index = layui.layer.open({
             title : "修改分类",
             type : 2,
-            area:['800px', '670px'],
+            area:['800px', '630px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();

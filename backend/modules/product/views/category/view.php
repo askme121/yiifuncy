@@ -35,10 +35,10 @@ LayuiAsset::register($this);
                     switch ($model->status)
                     {
                         case 1:
-                            return '激活';
+                            return '启用';
                             break;
                         case 2:
-                            return '关闭';
+                            return '禁用';
                             break;
                         default:
                             return Yii::t('app', 'unkown');
