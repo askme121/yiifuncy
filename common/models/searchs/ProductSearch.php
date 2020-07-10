@@ -4,15 +4,15 @@ namespace common\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Category;
+use common\models\Product;
 
-class CategorySearch extends Category
+class ProductSearch extends Product
 {
     public function rules()
     {
         return [
-            [['id', 'order', 'status', 'parent_id', 'menu_show'], 'integer'],
-            [['name', 'url_key'], 'safe'],
+            [['id', 'order', 'status', 'category_id', 'brand_id'], 'integer'],
+            [['name', 'sku', 'url_key'], 'safe'],
         ];
     }
 
@@ -23,7 +23,7 @@ class CategorySearch extends Category
 
     public function search($params)
     {
-        $query = Category::find()->where(['site_id'=>\Yii::$app->session['default_site_id']]);
+        $query = Product::find()->where(['site_id'=>\Yii::$app->session['default_site_id']]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -34,11 +34,13 @@ class CategorySearch extends Category
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'menu_show' => $this->menu_show,
+            'category_id' => $this->category_id,
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+              ->andFilterWhere(['like', 'sku', $this->sku])
+              ->andFilterWhere(['like', 'url_key', $this->url_key]);
 
         return $dataProvider;
     }

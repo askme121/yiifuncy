@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
 ?>
