@@ -97,6 +97,47 @@ class CategoryController extends Controller
         return $this->render('update', ['model' => $model,]);
     }
 
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == 1){
+            return json_encode(['code'=>400,"msg"=>"该分类已经是启用状态"]);
+        }
+        $model->status = 1;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"启用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionInactive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == 2){
+            return json_encode(['code'=>400,"msg"=>"该分类已经是禁用状态"]);
+        }
+        $model->status = 2;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"禁用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        if($model->delete()){
+            return json_encode(['code'=>200,"msg"=>"删除成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
     protected function findModel($id)
     {
         if (($model = Category::findOne($id)) !== null) {

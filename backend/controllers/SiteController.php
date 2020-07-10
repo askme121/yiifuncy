@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use rbac\models\form\Login;
 use rbac\models\Role;
+use common\models\SmallImage;
 
 class SiteController extends Controller
 {
@@ -149,8 +150,9 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        $q = Role::getList();
-        var_dump($q);
+        //var_dump($mname);
+        //$q = Role::getList();
+        //var_dump($q);
         /*foreach ($q as $k=>$v){
             var_dump($k);
             var_dump($v);

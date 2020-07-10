@@ -15,7 +15,7 @@ $category_parent = $category_root + $category_parent;
         left: 30px;
         padding-right: 20px;
     }
-    .category_icon{
+    .category_image{
         position: absolute;
         right: 20px;
         top: 343px;
@@ -40,7 +40,8 @@ $category_parent = $category_root + $category_parent;
                 <?= $form->field($model, 'parent_id')->dropDownList($category_parent) ?>
                 <?= $form->field($model, 'image',['template' => '{label} <div class="row"><div class="col-sm-12">{input}<button type="button" class="layui-btn upload_button" id="test3"><i class="layui-icon"></i>上传图片</button>{error}{hint}</div></div>'])->textInput(['maxlength' => true,'class'=>'layui-input upload_input']) ?>
                 <div class="form-group">
-                    <?= Html::img(@$model->thumb_image, ['width'=>'50','height'=>'50','class'=>'category_icon'])?>
+                    <?= Html::activeHiddenInput($model,'thumb_image') ?>
+                    <?= Html::img(@$model->thumb_image, ['width'=>'50','height'=>'50','class'=>'category_image'])?>
                 </div>
                 <?= $form->field($model, 'order')->input('number',['value'=>100,'class'=>'layui-input']) ?>
             </div>

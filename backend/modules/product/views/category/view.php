@@ -64,6 +64,15 @@ LayuiAsset::register($this);
                 },
             ],
             'order',
+            [
+                "attribute" => "thumb_image",
+                "format"=>[
+                    "image",
+                    [
+                        "width"=>"50px",
+                    ],
+                ],
+            ],
         ],
         'template' => '<tr><th width="100px">{label}</th><td>{value}</td></tr>',
     ]);

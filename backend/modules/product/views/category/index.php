@@ -40,6 +40,17 @@ $this->registerJs($this->render('js/index.js'));
                 'headerOptions' => ['width'=>'15%','style'=> 'text-align: center;'],
             ],
             [
+                'attribute' => 'thumb_image',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                "format"=>[
+                    "image",
+                    [
+                        "width"=>"50px",
+                    ],
+                ],
+            ],
+            [
                 'attribute' => 'parent_id',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
@@ -117,7 +128,7 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('修改', Url::to(['update','id'=>$model->id]), ['class' => "layui-btn layui-btn-normal layui-btn-xs layui-default-update"]);
                     },
                     'activate' => function ($url, $model, $key) {
-                        if($model->status==0){
+                        if($model->status == 2){
                             return Html::a('启用', Url::to(['active','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-normal layui-default-active"]);
                         }else{
                             return Html::a('禁用', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-warm layui-default-inactive"]);

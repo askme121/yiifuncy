@@ -49,10 +49,10 @@ layui.config({
         });
         return false;
     });
-    //  启用用户操作
+    //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定启用此用户吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定启用此分类吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -74,10 +74,10 @@ layui.config({
         });
         return false;
     });
-    //  禁用用户操作
+    //  禁用操作
     $("body").on("click",".layui-default-inactive",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定禁用此用户吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定禁用此分类吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -117,7 +117,7 @@ layui.config({
     //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定删除此用户吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定删除此分类吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
