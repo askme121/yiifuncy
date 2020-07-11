@@ -40,6 +40,7 @@ return [
     'publish' => '发布者',
     'image' => '图片',
     'thumb_image' => '缩略图',
+    'mutil_image' => '多图',
     'short_description' => '简短描述',
     'description' => '详细描述',
     'remark' => '备注',

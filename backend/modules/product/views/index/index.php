@@ -32,6 +32,17 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;']
             ],
             [
+                'attribute' => 'thumb_image',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                "format"=>[
+                    "image",
+                    [
+                        "width"=>"50px",
+                    ],
+                ],
+            ],
+            [
                 'attribute' => 'name',
                 'headerOptions' => ['width'=>'10%','style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;']

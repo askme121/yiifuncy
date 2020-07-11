@@ -10,7 +10,7 @@ layui.config({
         var index = layui.layer.open({
             title : "添加产品",
             type : 2,
-            area: ['800px', '630px'],
+            area: ['800px', '655px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
             end: function () {
                 location.reload();
@@ -106,7 +106,7 @@ layui.config({
         var index = layui.layer.open({
             title : "修改产品",
             type : 2,
-            area:['800px', '630px'],
+            area:['800px', '655px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();

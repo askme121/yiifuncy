@@ -12,14 +12,14 @@ $category_parent = Category::formatTree(true);
 ?>
 <style type="text/css">
     .layui-tab-item{
-        top: 90px;
+        top: 80px;
         left: 30px;
         padding-right: 20px;
     }
-    .category_image{
+    .product_image{
         position: absolute;
         right: 20px;
-        top: 343px;
+        top: 327px;
         z-index: 0;
     }
     .upload_input{
@@ -34,16 +34,19 @@ $category_parent = Category::formatTree(true);
             <li>Meta部分</li>
             <li>其他部分</li>
             <li>描述部分</li>
-            <li>图片信息</li>
+            <li>多图信息</li>
         </ul>
-        <div class="layui-tab-content" style="min-height: 520px;">
+        <div class="layui-tab-content" style="min-height: 550px;">
             <div class="layui-tab-item layui-show">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 64,'class'=>'layui-input']) ?>
                 <?= $form->field($model, 'sku')->textInput(['class'=>'layui-input']) ?>
                 <?= $form->field($model, 'url_key')->textInput(['class'=>'layui-input']) ?>
                 <?= $form->field($model, 'category_id')->dropDownList($category_parent) ?>
-                <?= $form->field($model, 'status')->dropDownList(['1'=>'激活', '2'=>'关闭'])?>
-                <?= $form->field($model, 'order')->input('number',['value'=>$model->order??100,'class'=>'layui-input']) ?>
+                <?= $form->field($model, 'image',['template' => '{label} <div class="row"><div class="col-sm-12">{input}<button type="button" class="layui-btn upload_button" id="test3"><i class="layui-icon"></i>上传图片</button>{error}{hint}</div></div>'])->textInput(['maxlength' => true,'class'=>'layui-input upload_input']) ?>
+                <div class="form-group">
+                    <?= Html::activeHiddenInput($model,'thumb_image') ?>
+                    <?= Html::img(@$model->thumb_image, ['width'=>'50','height'=>'50','class'=>'product_image'])?>
+                </div>
             </div>
             <div class="layui-tab-item">
                 <?= $form->field($model, 'meta_title')->textInput(['maxlength' => 255,'class'=>'layui-input']) ?>
@@ -51,6 +54,8 @@ $category_parent = Category::formatTree(true);
                 <?= $form->field($model, 'meta_description')->textarea(['maxlength' => 255,'class'=>'layui-textarea']) ?>
             </div>
             <div class="layui-tab-item">
+                <?= $form->field($model, 'status')->dropDownList(['1'=>'激活', '2'=>'关闭'])?>
+                <?= $form->field($model, 'order')->input('number',['value'=>$model->order??100,'class'=>'layui-input']) ?>
                 <?= $form->field($model, 'long')->input('number',['value'=>$model->long??0,'class'=>'layui-input']) ?>
                 <?= $form->field($model, 'width')->input('number',['value'=>$model->width??0,'class'=>'layui-input']) ?>
                 <?= $form->field($model, 'high')->input('number',['value' =>$model->high??0,'class'=>'layui-input']) ?>
@@ -62,7 +67,39 @@ $category_parent = Category::formatTree(true);
                 <?= $form->field($model, 'description')->textarea(['class'=>'layui-textarea', 'style'=>'width:100%;height:230px;']) ?>
             </div>
             <div class="layui-tab-item">
-
+                <div class="layui-tab currs">
+                    <table class="layui-table">
+                        <thead class="layui-table-header">
+                        <tr>
+                            <th style="text-align: center">图片</th>
+                            <th style="text-align: center">排序</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-table-body">
+                        <?php if(!empty($model->mutil_image) && is_array($model->mutil_image)){  ?>
+                            <?php foreach($model->mutil_image as $key=>$one){ ?>
+                                <tr align="center">
+                                    <td>
+                                        <input name="Product[mutil_image][<?= $key?>][image]" class="layui-input" type="hidden" value="<?= $one['image'] ?>">
+                                        <input name="Product[mutil_image][<?= $key?>][thumb_image]" class="layui-input" type="hidden" value="<?= $one['thumb_image'] ?>">
+                                        <img src="<?= $one['thumb_image'] ?>" width="50">
+                                    </td>
+                                    <td>
+                                        <input name="Product[mutil_image][<?= $key?>][order]" class="layui-input" type="number" value="<?= $one['order'] ?>">
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-trash-o"></i>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-upload" style="margin-top: 20px">
+                    <button type="button" class="layui-btn" id="test1">上传图片</button>
+                </div>
             </div>
         </div>
     </div>

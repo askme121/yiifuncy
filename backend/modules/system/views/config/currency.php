@@ -22,7 +22,7 @@ $this->registerJs($this->render('js/index.js'));
                 </tr>
                 </thead>
                 <tbody class="layui-table-body">
-                <?php if(is_array($list) && !empty($list)){  ?>
+                <?php if(!empty($list) && is_array($list)){  ?>
                     <?php foreach($list as $one){ ?>
                         <tr>
                             <td>

@@ -35,7 +35,7 @@ class Product extends ActiveRecord
             [['order', 'score', 'status', 'long', 'width', 'high', 'brand_id', 'category_id', 'review_count', 'role_id', 'team_id', 'user_id', 'site_id'], 'integer'],
             [['url_key', 'sku'], 'unique'],
             [['weight', 'volume_weight'], 'number'],
-            [['meta_title', 'meta_keywords', 'meta_description'], 'safe'],
+            [['meta_title', 'meta_keywords', 'meta_description', 'thumb_image', 'image', 'mutil_image'], 'safe'],
         ];
     }
 
@@ -68,17 +68,23 @@ class Product extends ActiveRecord
             'volume_weight' => Yii::t('app', 'volume_weight'),
             'image' => Yii::t('app', 'image'),
             'thumb_image' => Yii::t('app', 'thumb_image'),
+            'mutil_image' => Yii::t('app', 'mutil_image'),
         ];
     }
 
     public function beforeSave($insert)
     {
-        foreach ($this->attributes() as $attr) {
-            if (is_array($this->{$attr})) {
-                throw new InvalidValueException('product model save fail,  attribute ['.$attr. '] is array, you must serialize it before save ');
-            }
+        if($this->mutil_image && is_array($this->mutil_image)) {
+            $this->mutil_image = array_values($this->mutil_image);
+            $this->mutil_image = serialize($this->mutil_image);
         }
         return parent::beforeSave($insert);
+    }
+
+    public function afterFind()
+    {
+        $this->mutil_image = unserialize($this->mutil_image);
+        parent::afterFind();
     }
 
     public function addCustomProductAttrs($attrs)
