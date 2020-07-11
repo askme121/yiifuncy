@@ -84,11 +84,6 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
-                'attribute' => 'order',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
-            ],
-            [
                 'header' => '操作',
                 'class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['class'=>'text-center'],
