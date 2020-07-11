@@ -86,7 +86,8 @@ $category_parent = Category::formatTree(true);
             'anchor', 'link', 'unlink', 'fullscreen'
         ],
         uploadJson : "<?=yii\helpers\Url::to(['/tools/uploadeditor'])?>",
-        fileManagerJson : "<?=yii\helpers\Url::to(['/tools/uploadmanage'])?>"
+        fileManagerJson : "<?=yii\helpers\Url::to(['/tools/uploadmanage'])?>",
+        allowFileManager : true,
     };
     KindEditor.ready(function(K) {
         window.editor = K.create('#product-short_description', option);
