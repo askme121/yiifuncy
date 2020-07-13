@@ -74,6 +74,36 @@ class AttributeController extends Controller
         return $this->render('update', ['model' => $model,]);
     }
 
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == Attribute::STATUS_ENABLE){
+            return json_encode(['code'=>400,"msg"=>"该属性已经是启用状态"]);
+        }
+        $model->status = Attribute::STATUS_ENABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"启用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionInactive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == Attribute::STATUS_DISABLE){
+            return json_encode(['code'=>400,"msg"=>"该属性已经是禁用状态"]);
+        }
+        $model->status = Attribute::STATUS_DISABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"禁用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
     public function actionDelete($id)
     {
         $model = $this->findModel($id);

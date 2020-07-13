@@ -61,8 +61,10 @@ return [
     'attr_type' => '属性类型',
     'data_type' => '数据类型',
     'display_type' => '展示类型',
+    'display_data' => '展示项',
     'default' => '默认值',
     'is_require' => '必填',
     'show_as_img' => '图片显示',
     'role' => '角色',
+    'items' => '项',
 ];

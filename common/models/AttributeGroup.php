@@ -8,6 +8,9 @@ use yii\db\ActiveRecord;
 
 class AttributeGroup extends ActiveRecord
 {
+    const STATUS_ENABLE  = 1;
+    const STATUS_DISABLE = 2;
+
     public static function tableName()
     {
         return '{{%product_attribute_group}}';
@@ -23,8 +26,9 @@ class AttributeGroup extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'attr_ids'], 'string'],
+            [['name'], 'string'],
             [['status', 'role_id', 'team_id', 'user_id', 'site_id'], 'integer'],
+            [['attr_ids'], 'safe'],
         ];
     }
 
@@ -40,5 +44,19 @@ class AttributeGroup extends ActiveRecord
             'user_id' => Yii::t('app', 'publish'),
             'site_id' => Yii::t('app', 'site'),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if($this->attr_ids && is_array($this->attr_ids)) {
+            $this->attr_ids = serialize($this->attr_ids);
+        }
+        return parent::beforeSave($insert);
+    }
+
+    public function afterFind()
+    {
+        $this->attr_ids = unserialize($this->attr_ids);
+        parent::afterFind();
     }
 }
