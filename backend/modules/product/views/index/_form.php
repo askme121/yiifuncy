@@ -66,7 +66,7 @@ $category_parent = Category::formatTree(true);
                 <?= $form->field($model, 'short_description')->textarea(['class'=>'layui-textarea', 'style'=>'width:100%;height:200px;']) ?>
                 <?= $form->field($model, 'description')->textarea(['class'=>'layui-textarea', 'style'=>'width:100%;height:230px;']) ?>
             </div>
-            <div class="layui-tab-item">
+            <div class="layui-tab-item mutil_image">
                 <div class="layui-tab currs">
                     <table class="layui-table">
                         <thead class="layui-table-header">

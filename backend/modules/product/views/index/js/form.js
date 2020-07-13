@@ -39,9 +39,6 @@ layui.config({
                 str += "</tr>";
                 $(".currs table tbody").append(str);
                 total_image++;
-                $("#product-image").val(res.data);
-                $("#product-thumb_image").val(res.thumb_data);
-                $(".product_image").attr('src',res.thumb_data);
                 layer.msg("上传成功");
             }else{
                 layer.msg("上传失败");
@@ -51,8 +48,7 @@ layui.config({
             layer.msg("请求异常");
         }
     });
-
-    $("#test1").click(function () {
-
+    $(".mutil_image").off("click").on("click",".currs table tbody tr td .fa-trash-o",function(){
+        $(this).parent().parent().remove();
     });
 });

@@ -50,6 +50,7 @@ class Category extends ActiveRecord
             'menu_show' => Yii::t('app', 'menu_show'),
             'order' => Yii::t('app', 'order'),
             'status' => Yii::t('app', 'status'),
+            'role_id' => Yii::t('app', 'role'),
             'team_id' => Yii::t('app', 'team'),
             'user_id' => Yii::t('app', 'publish'),
             'site_id' => Yii::t('app', 'site'),

@@ -100,10 +100,10 @@ class CategoryController extends Controller
     public function actionActive($id)
     {
         $model = $this->findModel($id);
-        if($model->status == 1){
+        if($model->status == Category::STATUS_ENABLE){
             return json_encode(['code'=>400,"msg"=>"该分类已经是启用状态"]);
         }
-        $model->status = 1;
+        $model->status = Category::STATUS_ENABLE;
         if($model->save()){
             return json_encode(['code'=>200,"msg"=>"启用成功"]);
         }else{
@@ -115,10 +115,10 @@ class CategoryController extends Controller
     public function actionInactive($id)
     {
         $model = $this->findModel($id);
-        if($model->status == 2){
+        if($model->status == Category::STATUS_DISABLE){
             return json_encode(['code'=>400,"msg"=>"该分类已经是禁用状态"]);
         }
-        $model->status = 2;
+        $model->status = Category::STATUS_DISABLE;
         if($model->save()){
             return json_encode(['code'=>200,"msg"=>"禁用成功"]);
         }else{
