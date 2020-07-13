@@ -12,8 +12,8 @@ class MenuHelper
     {
         $role_id = Yii::$app->user->identity->role_id;
         $purview = Role::find()->where(['id'=>$role_id])->one()->purview;
-        $menus = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->asArray()->indexBy('id')->all();
-        $query = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->select(['id'])->asArray();
+        $menus = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->orderBy('order')->asArray()->indexBy('id')->all();
+        $query = Rule::find()->andWhere(['<>','type', 3])->andWhere(['in', 'id', $purview])->select(['id'])->orderBy('order')->asArray();
         $assigned = $query->column();
         $assigned = static::requiredParent($assigned, $menus);
         $result = static::normalizeMenu($assigned, $menus, $callback, $root);
