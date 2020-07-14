@@ -31,11 +31,11 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'sku', 'url_key', 'short_description', 'description', 'remark', 'amazon_url'], 'string'],
-            [['order', 'score', 'status', 'long', 'width', 'high', 'brand_id', 'category_id', 'review_count', 'role_id', 'team_id', 'user_id', 'site_id'], 'integer'],
+            [['name', 'sku', 'url_key', 'short_description', 'description', 'remark'], 'string'],
+            [['order', 'score', 'status', 'long', 'width', 'high', 'brand_id', 'category_id', 'review_count', 'role_id', 'team_id', 'user_id', 'site_id', 'attr_group'], 'integer'],
             [['url_key', 'sku'], 'unique'],
             [['weight', 'volume_weight'], 'number'],
-            [['meta_title', 'meta_keywords', 'meta_description', 'thumb_image', 'image', 'mutil_image'], 'safe'],
+            [['meta_title', 'meta_keywords', 'meta_description', 'thumb_image', 'image', 'mutil_image', 'attr_group_info'], 'safe'],
         ];
     }
 
@@ -52,7 +52,6 @@ class Product extends ActiveRecord
             'meta_keywords' => Yii::t('app', 'meta_keywords'),
             'meta_description' => Yii::t('app', 'meta_description'),
             'remark' => Yii::t('app', 'remark'),
-            'amazon_url' => Yii::t('app', 'amazon_url'),
             'brand_id' => Yii::t('app', 'brand'),
             'category_id' => Yii::t('app', 'cate'),
             'score' => Yii::t('app', 'score'),
@@ -69,6 +68,8 @@ class Product extends ActiveRecord
             'image' => Yii::t('app', 'image'),
             'thumb_image' => Yii::t('app', 'thumb_image'),
             'mutil_image' => Yii::t('app', 'mutil_image'),
+            'attr_group' => Yii::t('app', 'attr_group'),
+            'attr_group_info' => Yii::t('app', 'attr_group_info'),
         ];
     }
 
@@ -78,17 +79,16 @@ class Product extends ActiveRecord
             $this->mutil_image = array_values($this->mutil_image);
             $this->mutil_image = serialize($this->mutil_image);
         }
+        if($this->attr_group_info && is_array($this->attr_group_info)) {
+            $this->attr_group_info = serialize($this->attr_group_info);
+        }
         return parent::beforeSave($insert);
     }
 
     public function afterFind()
     {
         $this->mutil_image = unserialize($this->mutil_image);
+        $this->attr_group_info = unserialize($this->attr_group_info);
         parent::afterFind();
-    }
-
-    public function addCustomProductAttrs($attrs)
-    {
-        self::$_customProductAttrs = $attrs;
     }
 }

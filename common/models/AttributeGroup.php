@@ -59,4 +59,28 @@ class AttributeGroup extends ActiveRecord
         $this->attr_ids = unserialize($this->attr_ids);
         parent::afterFind();
     }
+
+    public static function getList()
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $res = self::find()
+            ->where(['status'=>1, 'site_id'=>$site_id])
+            ->asArray()
+            ->all();
+        return $res;
+    }
+
+    public static function formatList()
+    {
+        $options = [];
+        $res = self::getList();
+        if ($res)
+        {
+            foreach ($res as $v)
+            {
+                $options[$v['id']] = $v['name'];
+            }
+        }
+        return $options;
+    }
 }

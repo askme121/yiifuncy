@@ -53,12 +53,7 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: left;'],
             ],
             [
-                'attribute' => 'sku',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;'],
-            ],
-            [
-                'attribute' => 'category_id',
+                'attribute' => 'type',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 "value" => function($model) {

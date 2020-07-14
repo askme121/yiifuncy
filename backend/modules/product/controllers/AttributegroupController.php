@@ -6,8 +6,10 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use common\models\AttributeGroup;
+use common\models\Attribute;
 use common\models\searchs\AttributeGroupSearch;
 use yii\web\NotFoundHttpException;
+use yii\helpers\Html;
 
 class AttributegroupController extends Controller
 {
@@ -74,6 +76,36 @@ class AttributegroupController extends Controller
         return $this->render('update', ['model' => $model,]);
     }
 
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == AttributeGroup::STATUS_ENABLE){
+            return json_encode(['code'=>400,"msg"=>"该属性组已经是启用状态"]);
+        }
+        $model->status = AttributeGroup::STATUS_ENABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"启用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionInactive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == AttributeGroup::STATUS_DISABLE){
+            return json_encode(['code'=>400,"msg"=>"该属性组已经是禁用状态"]);
+        }
+        $model->status = AttributeGroup::STATUS_DISABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"禁用成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -82,6 +114,51 @@ class AttributegroupController extends Controller
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionChild($id)
+    {
+        $attr_info = Yii::$app->request->post("attr_info");
+        if ($attr_info){
+            $attr_info = unserialize($attr_info);
+        }
+        $model = $this->findModel($id);
+        if ($model){
+            $attr_ids = $model->attr_ids;
+            $str = '';
+            if ($attr_ids){
+                foreach ($attr_ids as $vv){
+                    $item = Attribute::findOne(['id'=>$vv]);
+                    if ($item->display_type == 'select' || $item->display_type == 'editSelect'){
+                        $str .= '<div class="form-group" style="margin-left: 15px">';
+                        $str .= Html::label($item->name, null, ['style'=>'margin-right:5px; width:20%; text-align:right']);
+                        $str .= '<select name="Product[attr_group_info]['.$item->name.']" class="layui-input-inline layui-form-select">';
+                        if ($item->is_require != 1){
+                            $str .= '<option value="">please select</option>';
+                        }
+                        if ($item->display_data){
+                            foreach ($item->display_data as $vo){
+                                $str .= '<option value="'.$vo.'" ';
+                                if (isset($attr_info[$item->name]) && $vo == $attr_info[$item->name]){
+                                    $str .= 'selected';
+                                }
+                                $str .= '>'.$vo.'</option>';
+                            }
+                        }
+                        $str .= '</select>';
+                        $str .= '</div>';
+                    } else {
+                        $str .= '<div class="form-group" style="margin-left: 15px">';
+                        $str .= Html::label($item->name, null, ['style'=>'margin-right:5px; width:20%; text-align:right']);
+                        $str .= '<input name="Product[attr_group_info]['.$item->name.']" type="text" value="'.($attr_info[$item->name]??'').'" class="layui-input" style="display: inline-block; width:auto">';
+                        $str .= '</div>';
+                    }
+                }
+            }
+            return json_encode(['code'=>200,'msg'=>'获取成功','data'=>$str]);
+        } else {
+            return json_encode(['code'=>400,'msg'=>'不存在的属性组']);
         }
     }
 
