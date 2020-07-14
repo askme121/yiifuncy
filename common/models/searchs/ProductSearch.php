@@ -23,7 +23,14 @@ class ProductSearch extends Product
 
     public function search($params)
     {
-        $query = Product::find()->where(['site_id'=>\Yii::$app->session['default_site_id']]);
+        $site_id = \Yii::$app->session['default_site_id'];
+        $team_id = \Yii::$app->user->identity->team_id;
+        $role_id = \Yii::$app->user->identity->role_id;
+        $query = Product::find()
+                 ->where(['site_id'=>$site_id]);
+        if ($role_id != 1){
+            $query->andWhere(['team_id'=>$team_id]);
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

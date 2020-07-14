@@ -47,7 +47,7 @@ class IndexController extends Controller
                 $model->role_id = Yii::$app->user->identity->role_id;
                 $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;
-                $model->site_id = \Yii::$app->session['default_site_id'];
+                $model->site_id = Yii::$app->session['default_site_id'];
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
