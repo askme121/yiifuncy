@@ -8,6 +8,10 @@ use yii\db\ActiveRecord;
 
 class Activity extends ActiveRecord
 {
+    const STATUS_INIT  = 0;
+    const STATUS_ENABLE  = 1;
+    const STATUS_DISABLE = 2;
+
     public static function tableName()
     {
         return '{{%activity}}';

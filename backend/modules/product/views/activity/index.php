@@ -143,10 +143,10 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('修改', Url::to(['update','id'=>$model->id]), ['class' => "layui-btn layui-btn-normal layui-btn-xs layui-default-update"]);
                     },
                     'activate' => function ($url, $model, $key) {
-                        if($model->status == 2){
-                            return Html::a('激活', Url::to(['active','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-normal layui-default-active"]);
+                        if($model->status == 0 || $model->status == 2){
+                            return Html::a('上架', Url::to(['active','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-normal layui-default-active"]);
                         }else{
-                            return Html::a('关闭', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-warm layui-default-inactive"]);
+                            return Html::a('下架', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-warm layui-default-inactive"]);
                         }
                     },
                     'delete' => function ($url, $model, $key) {

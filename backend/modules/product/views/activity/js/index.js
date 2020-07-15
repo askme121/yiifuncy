@@ -49,6 +49,56 @@ layui.config({
         });
         return false;
     });
+    //  启用操作
+    $("body").on("click",".layui-default-active",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定上架此活动吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
+    //  禁用操作
+    $("body").on("click",".layui-default-inactive",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定下架此活动吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
     //  修改分类
     $("body").on("click",".layui-default-update",function(){
         var href = $(this).attr("href");

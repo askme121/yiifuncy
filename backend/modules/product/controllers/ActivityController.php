@@ -74,6 +74,36 @@ class ActivityController extends Controller
         return $this->render('update', ['model' => $model,]);
     }
 
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == Activity::STATUS_ENABLE){
+            return json_encode(['code'=>400,"msg"=>"该活动已经是上架状态"]);
+        }
+        $model->status = Activity::STATUS_ENABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"上架成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionInactive($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status == Activity::STATUS_DISABLE){
+            return json_encode(['code'=>400,"msg"=>"该活动已经是下架状态"]);
+        }
+        $model->status = Activity::STATUS_DISABLE;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"下架成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
