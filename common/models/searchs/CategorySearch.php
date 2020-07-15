@@ -34,6 +34,7 @@ class CategorySearch extends Category
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'parent_id' => $this->parent_id,
             'menu_show' => $this->menu_show,
             'status' => $this->status,
         ]);

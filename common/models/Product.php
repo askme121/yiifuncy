@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\base\InvalidValueException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -90,5 +89,21 @@ class Product extends ActiveRecord
         $this->mutil_image = unserialize($this->mutil_image);
         $this->attr_group_info = unserialize($this->attr_group_info);
         parent::afterFind();
+    }
+
+    public static function getList()
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $team_id = \Yii::$app->user->identity->team_id;
+        $role_id = \Yii::$app->user->identity->role_id;
+        $filter['site_id'] = $site_id;
+        if ($role_id != 1){
+            $filter['team_id'] = $team_id;
+        }
+        $res = self::find()
+               ->where($filter)
+               ->asArray()
+               ->all();
+        return $res;
     }
 }

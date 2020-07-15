@@ -24,7 +24,7 @@ AppAsset::register($this);
     <div class="layui-inline">
         <?= Html::label('父级：', 'category-parent_id', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Category[parent_id]', null, $category_parent, ['id' => 'category-parent_id', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('CategorySearch[parent_id]', Yii::$app->request->get('CategorySearch')['parent_id']??null, $category_parent, ['id' => 'category-parent_id', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

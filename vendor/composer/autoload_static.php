@@ -21,6 +21,7 @@ class ComposerStaticInit93f305345f235f03d2320169022ca480
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
+        '225d3fddc16fb62150bde0e84314bc01' => __DIR__ . '/../..' . '/common/helpers/function.php',
     );
 
     public static $prefixLengthsPsr4 = array (

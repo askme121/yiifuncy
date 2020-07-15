@@ -20,7 +20,7 @@ AppAsset::register($this);
     <div class="layui-inline">
         <?= Html::label('状态：', 'attribute-status', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Attribute[status]', null, ['1'=>'启用', '2'=>'禁用'], ['id' => 'attribute-status', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('AttributeGroupSearch[status]', Yii::$app->request->get('AttributeGroupSearch')['status']??null, ['1'=>'启用', '2'=>'禁用'], ['id' => 'attribute-status', 'prompt' => '全部'])?>
         </div>
     </div>
     <div class="form-group">

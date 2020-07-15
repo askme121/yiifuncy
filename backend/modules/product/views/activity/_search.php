@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\assets\AppAsset;
-use common\models\Category;
+use common\models\ActivityType;
 
 AppAsset::register($this);
 ?>
@@ -16,15 +16,22 @@ AppAsset::register($this);
             'template' => '<div class="layui-inline">{label}：<div class="layui-input-inline">{input}</div></div><span class="help-block" style="display: inline-block;">{hint}</span>',
         ],
     ]);
-    $category_parent = Category::formatTree(true);
+    $activity_type = ActivityType::formatList();
     ?>
-    <?= $form->field($model, 'name')->textInput(['class'=>'layui-input search_input']) ?>
-    <?= $form->field($model, 'sku')->textInput(['class'=>'layui-input search_input']) ?>
+    <?= $form->field($model, 'productName')->textInput(['class'=>'layui-input search_input']) ?>
+    <?= $form->field($model, 'productSku')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'url_key')->textInput(['class'=>'layui-input search_input']) ?>
     <div class="layui-inline">
-        <?= Html::label('类型：', 'product-category_id', ['class'=>'control-label'])?>
+        <?= Html::label('类型：', 'activity-type', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Product[category_id]', null, $category_parent, ['id' => 'product-category_id', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('ActivitySearch[type]', Yii::$app->request->get('ActivitySearch')['type']??null, $activity_type, ['id' => 'activity-type', 'prompt' => '全部'])?>
+        </div>
+    </div>
+    <span class="help-block" style="display: inline-block;"></span>
+    <div class="layui-inline">
+        <?= Html::label('状态：', 'activity-status', ['class'=>'control-label'])?>
+        <div class="layui-input-inline">
+            <?= Html::dropDownList('ActivitySearch[status]', Yii::$app->request->get('ActivitySearch')['status']??null, ['0'=>'待上架', '1'=>'已上架', '2'=>'已下架'], ['id' => 'activity-status', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

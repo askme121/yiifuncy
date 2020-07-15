@@ -3,11 +3,16 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
-use common\models\Category;
+use common\models\ActivityType;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
 ?>
+<style type="text/css">
+    .layui-input-inline{
+        max-width: 150px;
+    }
+</style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 </blockquote>
@@ -32,7 +37,7 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;']
             ],
             [
-                'attribute' => 'thumb_image',
+                'attribute' => 'product.thumb_image',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 "format"=>[
@@ -43,9 +48,14 @@ $this->registerJs($this->render('js/index.js'));
                 ],
             ],
             [
-                'attribute' => 'name',
-                'headerOptions' => ['width'=>'10%','style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;']
+                'attribute' => 'product.name',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: left;'],
+            ],
+            [
+                'attribute' => 'product.sku',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: left;'],
             ],
             [
                 'attribute' => 'url_key',
@@ -57,17 +67,41 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 "value" => function($model) {
-                    if ($model->category_id == 0)
+                    if ($model->type == 0)
                     {
                         return Yii::t('app', 'undefined');
                     }
-                    $category_parent = Category::formatTree();
-                    foreach ($category_parent as $k=>$v){
-                        if ($model->category_id == $k){
+                    $activity_type = ActivityType::formatList();
+                    foreach ($activity_type as $k=>$v){
+                        if ($model->type == $k){
                             return $v;
                         }
                     }
                     return Yii::t('app', 'unkown');
+                },
+            ],
+            [
+                'attribute' => 'price',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model) {
+                    return getSymbol().' '.$model->price;
+                },
+            ],
+            [
+                'attribute' => 'cashback',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model) {
+                    return getSymbol().' '.$model->cashback;
+                },
+            ],
+            [
+                'attribute' => 'coupon',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model) {
+                    return getSymbol().' '.$model->coupon;
                 },
             ],
             [
@@ -77,11 +111,14 @@ $this->registerJs($this->render('js/index.js'));
                 "value" => function($model) {
                     switch ($model->status)
                     {
+                        case 0:
+                            return '待上架';
+                            break;
                         case 1:
-                            return '激活';
+                            return '已上架';
                             break;
                         case 2:
-                            return '关闭';
+                            return '已下架';
                             break;
                         default:
                             return Yii::t('app', 'unkown');

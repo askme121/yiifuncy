@@ -20,13 +20,13 @@ AppAsset::register($this);
     <div class="layui-inline">
         <?= Html::label('状态：', 'attribute-status', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Attribute[status]', null, ['1'=>'启用', '2'=>'禁用'], ['id' => 'attribute-status', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('AttributeSearch[status]', Yii::$app->request->get('AttributeSearch')['status']??null, ['1'=>'启用', '2'=>'禁用'], ['id' => 'attribute-status', 'prompt' => '全部'])?>
         </div>
     </div>
     <div class="layui-inline">
         <?= Html::label('类型：', 'attribute-attr-type', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('Attribute[attr_type]', null, ['general_attr'=>'普通属性', 'sku_attr'=>'sku属性'], ['id' => 'attribute-attr-type', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('AttributeSearch[attr_type]', Yii::$app->request->get('AttributeSearch')['attr_type']??null, ['general_attr'=>'普通属性', 'sku_attr'=>'sku属性'], ['id' => 'attribute-attr-type', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

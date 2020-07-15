@@ -51,4 +51,9 @@ class Activity extends ActiveRecord
             'product_id' => Yii::t('app', 'activity_product'),
         ];
     }
+
+    public function getProduct()
+    {
+        return $this->hasOne(Product::className(),['id'=>'product_id']);
+    }
 }
