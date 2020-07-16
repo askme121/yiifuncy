@@ -35,7 +35,7 @@ class ActivityController extends Controller
 
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+        $model = Activity::find()->with('product')->where(['id'=>$id])->one();
         return $this->render('view', ['model' => $model]);
     }
 
