@@ -34,8 +34,7 @@ class AccessControl extends \yii\base\ActionFilter
         if (Helper::checkRoute('/' . $actionId, Yii::$app->getRequest()->get(), $user)) {
             return true;
         }
-        return true;
-        //$this->denyAccess($user);
+        $this->denyAccess($user);
     }
 
     protected function denyAccess($user)

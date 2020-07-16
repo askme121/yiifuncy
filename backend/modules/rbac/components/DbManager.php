@@ -3,9 +3,6 @@
 namespace rbac\components;
 
 use Yii;
-use yii\rbac\Permission;
-use yii\rbac\Role;
-use yii\rbac\Item;
 use yii\db\Query;
 use common\models\Config;
 use common\models\Site;
@@ -17,7 +14,7 @@ class DbManager
     protected $items;
     public $defaultRoles = ['guest'];
     public $db;
-    public $itemTable = '{{%auth_item}}';
+    public $itemTable = '{{%auth_rule}}';
 
     public function init()
     {
@@ -40,7 +37,7 @@ class DbManager
 
         $query = (new Query())
             ->from($this->itemTable)
-            ->where(['type' => (string) Item::TYPE_PERMISSION]);
+            ->where(['type' => 2]);
 
         $assignments = [];
         foreach ($query->all($this->db) as $row) {
@@ -49,86 +46,9 @@ class DbManager
         return $assignments;
     }
 
-    public function getPermissions()
-    {
-        return $this->getItems(Item::TYPE_PERMISSION);
-    }
-
-    protected function getItems($type)
-    {
-        $query = (new Query())
-            ->from($this->itemTable)
-            ->where(['type' => $type]);
-        $items = [];
-        foreach ($query->all($this->db) as $row) {
-            $items[$row['name']] = $this->populateItem($row);
-        }
-        return $items;
-    }
-
-    public function getRole($name)
-    {
-        $item = $this->getItem($name);
-        return $item instanceof Item && $item->type == Item::TYPE_ROLE ? $item : null;
-    }
-
-    public function getPermission($name)
-    {
-        $item = $this->getItem($name);
-        return $item instanceof Item && $item->type == Item::TYPE_PERMISSION ? $item : null;
-    }
-
-    protected function getItem($name)
-    {
-        if (empty($name)) {
-            return null;
-        }
-        if (!empty($this->items[$name])) {
-            return $this->items[$name];
-        }
-        $row = (new Query())->from($this->itemTable)
-            ->where(['name' => $name])
-            ->one($this->db);
-        if ($row === false) {
-            return null;
-        }
-        return $this->populateItem($row);
-    }
-
-    protected function populateItem($row)
-    {
-        $class = $row['type'] == Item::TYPE_PERMISSION ? Permission::className() : Role::className();
-        if (!isset($row['data']) || ($data = @unserialize(is_resource($row['data']) ? stream_get_contents($row['data']) : $row['data'])) === false) {
-            $data = null;
-        }
-        return new $class([
-            'name' => $row['name'],
-            'type' => $row['type'],
-            'description' => $row['description'],
-            'ruleName' => $row['rule_name'] ?: null,
-            'data' => $data,
-            'createdAt' => $row['created_at'],
-            'updatedAt' => $row['updated_at'],
-        ]);
-    }
-
     protected function isEmptyUserId($userId)
     {
         return !isset($userId) || $userId === '';
-    }
-
-    public function createRole($name)
-    {
-        $role = new Role();
-        $role->name = $name;
-        return $role;
-    }
-
-    public function createPermission($name)
-    {
-        $permission = new Permission();
-        $permission->name = $name;
-        return $permission;
     }
 
     public function checkAccess($userId, $permissionName, $params = [])

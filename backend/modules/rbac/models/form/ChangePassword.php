@@ -3,7 +3,6 @@
 namespace rbac\models\form;
 
 use Yii;
-use backend\models\Admin;
 use yii\base\Model;
 
 class ChangePassword extends Model
@@ -12,9 +11,6 @@ class ChangePassword extends Model
     public $newPassword;
     public $retypePassword;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -25,10 +21,6 @@ class ChangePassword extends Model
         ];
     }
 
-    /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
-     */
     public function validatePassword()
     {
         $user = Yii::$app->user->identity;
@@ -37,11 +29,6 @@ class ChangePassword extends Model
         }
     }
 
-    /**
-     * Change password.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
     public function change()
     {
         if ($this->validate()) {

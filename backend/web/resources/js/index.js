@@ -405,7 +405,7 @@ layui.config({
         layui.layer.open({
             title: "修改信息",
             type: 2,
-            area: ['430px', '520px'], //宽高
+            area: ['400px', '520px'], //宽高
             content: [href, "yes"]
         });
         //直接阻止A连接跳转

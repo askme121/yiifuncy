@@ -5,7 +5,6 @@ namespace rbac\models;
 use Yii;
 use rbac\components\Configs;
 use yii\behaviors\TimestampBehavior;
-use yii\db\Query;
 
 class Rule extends \yii\db\ActiveRecord
 {

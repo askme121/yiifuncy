@@ -51,7 +51,9 @@ class Admin extends ActiveRecord implements IdentityInterface
             ['nickname', 'string', 'max' => 32],
             [['role_id', 'team_id'], 'integer'],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
-            [['head_pic', 'email'], 'string', 'max' => 255],
+            [['username', 'nickname'], 'required'],
+            [['username', 'sign'], 'unique'],
+            [['head_pic', 'email', 'sign'], 'string', 'max' => 255],
         ];
     }
 
@@ -72,6 +74,7 @@ class Admin extends ActiveRecord implements IdentityInterface
             'auth_key'=>'授权码',
             'password_hash'=>'密码',
             'password_reset_token'=>'重置码',
+            'sign' => '推广标识',
         ];
     }
 

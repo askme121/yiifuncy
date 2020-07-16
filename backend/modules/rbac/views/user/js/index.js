@@ -44,8 +44,8 @@ layui.config({
         var index = layui.layer.open({
             title : "查看用户",
             type: 2,
-            area: ['400px', '450px'],
-            content : [href, 'no']
+            area: ['400px', '500px'],
+            content : [href, 'yes']
         });	
         return false;
 	});

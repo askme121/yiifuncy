@@ -14,7 +14,8 @@ class Log extends ActiveRecord
     public function init()
     {
         parent::init();
-        if ($this->userClassName === null) {
+        if ($this->userClassName === null)
+        {
             $this->userClassName = Yii::$app->getUser()->identityClass;
             $this->userClassName = $this->userClassName ? : 'backend\models\Admin';
         }
@@ -44,7 +45,6 @@ class Log extends ActiveRecord
     public static function addLog($action)
     {
         $model = new Log();
-
         $model->route = $action->uniqueId;
         $model->url = Yii::$app->request->absoluteUrl;
 
@@ -59,9 +59,7 @@ class Log extends ActiveRecord
         $model->admin_id = Yii::$app->user->identity['id'];
         $model->admin_email = Yii::$app->user->identity['email'];
         $model->ip = Yii::$app->request->userIP;
-
         $model->save();
-
     }
 
     public function attributeLabels()

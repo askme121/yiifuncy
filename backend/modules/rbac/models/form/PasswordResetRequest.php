@@ -6,16 +6,10 @@ use Yii;
 use backend\models\Admin;
 use yii\base\Model;
 
-/**
- * Password reset request form
- */
 class PasswordResetRequest extends Model
 {
     public $email;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -23,18 +17,13 @@ class PasswordResetRequest extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => 'rbac\models\User',
+                'targetClass' => 'backend\models\Admin',
                 'filter' => ['status' => Admin::STATUS_ACTIVE],
                 'message' => 'There is no user with such email.'
             ],
         ];
     }
 
-    /**
-     * Sends an email with a link, for resetting the password.
-     *
-     * @return boolean whether the email was send
-     */
     public function sendEmail()
     {
         $user = Admin::findOne([

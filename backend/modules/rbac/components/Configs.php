@@ -3,83 +3,24 @@
 namespace rbac\components;
 
 use Yii;
-use yii\caching\Cache;
-use yii\db\Connection;
 use yii\di\Instance;
 use yii\helpers\ArrayHelper;
-use yii\rbac\ManagerInterface;
 
 class Configs extends \yii\base\BaseObject
 {
     const CACHE_TAG = 'mdm.admin';
 
-    /**
-     * @var ManagerInterface .
-     */
     public $authManager = 'authManager';
-
-    /**
-     * @var Connection Database connection.
-     */
     public $db = 'db';
-
-    /**
-     * @var Connection Database connection.
-     */
     public $userDb = 'db';
-
-    /**
-     * @var Cache Cache component.
-     */
     public $cache = 'cache';
-
-    /**
-     * @var integer Cache duration. Default to a hour.
-     */
-    public $cacheDuration = 3600;
-
-    /**
-     * @var string Menu table name.
-     */
-    public $menuTable = '{{%menu}}';
-	 /**
-     * @var string Menu table name.
-     */
     public $adminLogTable = '{{%admin_log}}';
-
-    /**
-     * @var string Menu table name.
-     */
-    public $userTable = '{{%admin}}';
-
-    /**
-     * @var integer Default status user signup. 10 mean active.
-     */
+    public $cacheDuration = 3600;
     public $defaultUserStatus = 10;
-
-    /**
-     * @var boolean If true then AccessControl only check if route are registered.
-     */
     public $onlyRegisteredRoute = false;
-
-    /**
-     * @var boolean If false then AccessControl will check without Rule.
-     */
     public $strict = true;
-
-    /**
-     * @var array
-     */
     public $options;
 
-    /**
-     * @var array|false
-     */
-    public $advanced;
-
-    /**
-     * @var self Instance of self
-     */
     private static $_instance;
     private static $_classes = [
         'db' => 'yii\db\Connection',
@@ -88,9 +29,6 @@ class Configs extends \yii\base\BaseObject
         'authManager' => 'yii\rbac\ManagerInterface',
     ];
 
-    /**
-     * @inheritdoc
-     */
     public function init()
     {
         foreach (self::$_classes as $key => $class) {
@@ -103,10 +41,6 @@ class Configs extends \yii\base\BaseObject
         }
     }
 
-    /**
-     * Create instance of self
-     * @return static
-     */
     public static function instance()
     {
         if (self::$_instance === null) {
@@ -117,7 +51,6 @@ class Configs extends \yii\base\BaseObject
 
             return self::$_instance = Yii::createObject($type);
         }
-
         return self::$_instance;
     }
 
@@ -135,80 +68,26 @@ class Configs extends \yii\base\BaseObject
         }
     }
 
-    /**
-     * @return Connection
-     */
     public static function db()
     {
         return static::instance()->db;
     }
 
-    /**
-     * @return Connection
-     */
     public static function userDb()
     {
         return static::instance()->userDb;
     }
 
-    /**
-     * @return Cache
-     */
     public static function cache()
     {
         return static::instance()->cache;
     }
 
-    /**
-     * @return ManagerInterface
-     */
     public static function authManager()
     {
         return static::instance()->authManager;
     }
-    /**
-     * @return integer
-     */
-    public static function cacheDuration()
-    {
-        return static::instance()->cacheDuration;
-    }
 
-    /**
-     * @return string
-     */
-    public static function menuTable()
-    {
-        return static::instance()->menuTable;
-    }
-
-    /**
-     * @return string
-     */
-    public static function userTable()
-    {
-        return static::instance()->userTable;
-    }
-
-    /**
-     * @return string
-     */
-    public static function defaultUserStatus()
-    {
-        return static::instance()->defaultUserStatus;
-    }
-
-    /**
-     * @return boolean
-     */
-    public static function onlyRegisteredRoute()
-    {
-        return static::instance()->onlyRegisteredRoute;
-    }
-
-    /**
-     * @return boolean
-     */
     public static function strict()
     {
         return static::instance()->strict;

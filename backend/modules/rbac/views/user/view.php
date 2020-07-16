@@ -39,6 +39,7 @@ LayuiAsset::register($this);
                     return '未知';
                 },
             ],
+            'sign',
             [
                 "attribute"=>"head_pic",
                 "format"=>[
