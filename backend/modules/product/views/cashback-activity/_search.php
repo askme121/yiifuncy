@@ -16,17 +16,10 @@ AppAsset::register($this);
             'template' => '<div class="layui-inline">{label}：<div class="layui-input-inline">{input}</div></div><span class="help-block" style="display: inline-block;">{hint}</span>',
         ],
     ]);
-    $activity_type = ActivityType::formatList();
     ?>
     <?= $form->field($model, 'productName')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'productSku')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'url_key')->textInput(['class'=>'layui-input search_input']) ?>
-    <div class="layui-inline">
-        <?= Html::label('类型：', 'activity-type', ['class'=>'control-label'])?>
-        <div class="layui-input-inline">
-            <?= Html::dropDownList('ActivitySearch[type]', Yii::$app->request->get('ActivitySearch')['type']??null, $activity_type, ['id' => 'activity-type', 'prompt' => '全部'])?>
-        </div>
-    </div>
     <span class="help-block" style="display: inline-block;"></span>
     <div class="layui-inline">
         <?= Html::label('状态：', 'activity-status', ['class'=>'control-label'])?>

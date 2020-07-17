@@ -1,9 +1,10 @@
 layui.config({
     base : "js/"
-}).use(['form','layer','jquery'],function(){
+}).use(['form','layer','jquery','element'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery;
+    var element = layui.element;
 
     // 添加分类
     $(".layui-default-add").click(function(){

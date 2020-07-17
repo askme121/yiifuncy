@@ -18,7 +18,6 @@ $product_list = Product::getList();
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'url_key')->textInput(['maxlength' => 128, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'product_id')->dropDownList(ArrayHelper::map($product_list,'id','name'))?>
-    <?= $form->field($model, 'type')->dropDownList($activity_type)?>
     <?= $form->field($model, 'price')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'cashback')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'coupon')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
@@ -35,7 +34,7 @@ $product_list = Product::getList();
             ]
         ])?>
     <?= $form->field($model, 'end')->widget(DateTimePicker::classname(), [
-        'options' => ['placeholder' => ''],
+        'options' => ['placeholder' => '', 'format' => 'yyyy-mm-dd HH:ii:ss'],
         'pluginOptions' => [
             'autoclose' => true,
             'format' => 'yyyy-mm-dd HH:ii:ss',

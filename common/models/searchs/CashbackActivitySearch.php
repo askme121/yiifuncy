@@ -37,18 +37,22 @@ class CashbackActivitySearch extends Activity
     {
         $team_id = \Yii::$app->user->identity->team_id;
         $role_id = \Yii::$app->user->identity->role_id;
-        $query = Activity::find()->with('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'site_id'=>\Yii::$app->session['default_site_id']]);
+        $query = Activity::find()->with(['product'=>function($query){
+            $query->andFilterWhere(['like', 'name', $this->productName])
+                ->andFilterWhere(['like', 'sku', $this->productSku]);
+        }])->where(['type'=>Activity::CASHBACK_ACTIVITY,'site_id'=>\Yii::$app->session['default_site_id']]);
         if ($role_id == 3)
         {
             $query->andWhere(['team_id'=>$team_id]);
         }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
         ]);
-        $dataProvider->sort->attributes['productName'] = [
-            'asc' => ['product.name' => SORT_ASC],
-            'desc' => ['product.name' => SORT_DESC],
-        ];
         $this->load($params);
         if (!$this->validate()) {
             return $dataProvider;
@@ -59,9 +63,7 @@ class CashbackActivitySearch extends Activity
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'url_key', $this->url_key])
-            ->andFilterWhere(['like', 'product.name', $this->productName])
-            ->andFilterWhere(['like', 'product.sku', $this->productSku]);
+        $query->andFilterWhere(['like', 'url_key', $this->url_key]);
 
         return $dataProvider;
     }
