@@ -1,10 +1,10 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
 use common\models\UserRank;
+
 LayuiAsset::register($this); 
 $this->registerJs($this->render('js/index.js'));
 ?>
@@ -32,10 +32,15 @@ $this->registerJs($this->render('js/index.js'));
 				'contentOptions' => ['style'=> 'text-align: center;']
 			],
 			[
-				'attribute' => 'nickname',
+				'attribute' => 'firstname',
 				'headerOptions' => ['width'=>'100','style'=> 'text-align: center;'],
 				'contentOptions' => ['style'=> 'text-align: center;']
 			],
+            [
+                'attribute' => 'lastname',
+                'headerOptions' => ['width'=>'100','style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;']
+            ],
 			[
 				'attribute' => 'head_pic',
 				'contentOptions' => ['style'=> 'text-align: center;'],
@@ -49,10 +54,6 @@ $this->registerJs($this->render('js/index.js'));
                 ],
 			],
             'username',
-            'email:email',
-			[
-				'attribute' => 'mobile',
-			],
 			[
 				'attribute' => 'r_id',
 				'value' => function($model){
@@ -70,17 +71,17 @@ $this->registerJs($this->render('js/index.js'));
             ],
 			'created_ip',
 			'created_address',
-//            [
-//                'attribute' => 'last_login_date',
-//                'value' => function($model){
-//                    return date("Y-m-d H:i:s",$model->last_login_date);
-//                },
-//				'headerOptions' => [
-//					'width' => '8%'
-//				]
-//            ],
-//			'last_login_ip',
-//			'last_login_address',
+            [
+                'attribute' => 'last_login_date',
+                'value' => function($model){
+                    return date("Y-m-d H:i:s",$model->last_login_date);
+                },
+				'headerOptions' => [
+					'width' => '8%'
+				]
+            ],
+			'last_login_ip',
+			'last_login_address',
             [
                 'attribute' => 'status',
 				'format' => 'html',
@@ -93,16 +94,6 @@ $this->registerJs($this->render('js/index.js'));
 					'style'=> 'text-align: center;'
 				]
             ],
-//            [
-//                'attribute' => 'updated_at',
-//                'value' => function($model){
-//                    return date("Y-m-d H:i:s",$model->updated_at);
-//                },
-//				'headerOptions' => [
-//					'width' => '10%'
-//				]
-//            ],
-
             [
 				'header' => '操作',
 				'class' => 'yii\grid\ActionColumn',

@@ -10,7 +10,10 @@ class Activity extends ActiveRecord
 {
     const STATUS_INIT  = 0;
     const STATUS_ENABLE  = 1;
-    const STATUS_DISABLE = 2;
+    const STATUS_CANCEL = 2;
+    const COUPON_ACTIVITY = 1;
+    const CASHBACK_ACTIVITY = 2;
+    const CASHBACK_COUPON_ACTIVITY = 3;
 
     public static function tableName()
     {

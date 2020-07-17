@@ -31,7 +31,6 @@ class UserSearch extends User
         $this->load($params);
 
         if (!$this->validate()) {
-            // $query->where('0=1');
             return $dataProvider;
         }
 

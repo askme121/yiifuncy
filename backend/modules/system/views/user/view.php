@@ -2,6 +2,7 @@
 use yii\widgets\DetailView;
 use backend\assets\LayuiAsset;
 use common\models\UserRank;
+
 LayuiAsset::register($this);
 ?>
 <div class="user-view">
@@ -12,7 +13,8 @@ LayuiAsset::register($this);
         'attributes' => [
             'id',
             'username',
-			'nickname',
+			'firstname',
+            'lastname',
             [
                 "attribute"=>"head_pic",
                 "format"=>[
@@ -25,7 +27,6 @@ LayuiAsset::register($this);
                 ],
             ],
             'email:email',
-			'mobile',
             [
 				'attribute' => 'status',
 				'value' => function($model){
@@ -45,9 +46,9 @@ LayuiAsset::register($this);
                 }
             ],
             [
-                "attribute"=>"updated_at",
+                "attribute"=>"last_login_date",
                 "value"=>function($data){
-                    return isset($data->updated_at)?date("Y-m-d H:i:s",$data->updated_at):"";
+                    return isset($data->last_login_date)?date("Y-m-d H:i:s",$data->last_login_date):"";
                 }
             ],
         ],

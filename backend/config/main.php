@@ -27,12 +27,16 @@ return [
         "product" => [
             'class' => 'product\Module',
         ],
+        "order" => [
+            'class' => 'order\Module',
+        ],
     ],
     "aliases" => [
         '@rbac' => '@backend/modules/rbac',
         '@system' => '@backend/modules/system',
         '@backup' => '@backend/modules/backup',
         '@product' => '@backend/modules/product',
+        '@order' => '@backend/modules/order',
     ],
     'components' => [
         'request' => [

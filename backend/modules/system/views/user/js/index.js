@@ -12,8 +12,8 @@ layui.config({
 			var index = layui.layer.open({
 				title : "添加用户",
 				type : 2,
-                area: ['600px', '680px'], //宽高
-				content : ["<?= yii\helpers\Url::to(['create']); ?>","no"],
+                area: ['600px', '650px'], //宽高
+				content : ["<?= yii\helpers\Url::to(['create']); ?>","yes"],
                 end: function () {
                     location.reload();
                 }
@@ -137,7 +137,7 @@ layui.config({
             title : "查看用户",
             type : 2,
             area: ['450px', '540px'], //宽高
-            content : [href,'no'],
+            content : [href,'yes'],
             success : function(layero, index){
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
@@ -155,8 +155,8 @@ layui.config({
         var index = layui.layer.open({
             title : "修改用户",
             type : 2,
-            area:['460px', '680px'], //宽高
-            content :[href,"no"],
+            area:['460px', '650px'], //宽高
+            content :[href,"yes"],
             end: function () {
                 location.reload();
             }

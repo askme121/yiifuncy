@@ -7,7 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Activity;
 
-class ActivitySearch extends Activity
+class CashbackActivitySearch extends Activity
 {
     public $productName;
     public $productSku;
@@ -37,7 +37,7 @@ class ActivitySearch extends Activity
     {
         $team_id = \Yii::$app->user->identity->team_id;
         $role_id = \Yii::$app->user->identity->role_id;
-        $query = Activity::find()->with('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'site_id'=>\Yii::$app->session['default_site_id']]);
+        $query = Activity::find()->with('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'site_id'=>\Yii::$app->session['default_site_id']]);
         if ($role_id == 3)
         {
             $query->andWhere(['team_id'=>$team_id]);
@@ -60,8 +60,8 @@ class ActivitySearch extends Activity
         ]);
 
         $query->andFilterWhere(['like', 'url_key', $this->url_key])
-              ->andFilterWhere(['like', 'product.name', $this->productName])
-              ->andFilterWhere(['like', 'product.sku', $this->productSku]);
+            ->andFilterWhere(['like', 'product.name', $this->productName])
+            ->andFilterWhere(['like', 'product.sku', $this->productSku]);
 
         return $dataProvider;
     }
