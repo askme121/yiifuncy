@@ -112,8 +112,9 @@ class CashbackActivityController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if($model->delete()){
-            return json_encode(['code'=>200,"msg"=>"删除成功"]);
+        $model->status = Activity::STATUS_CANCEL;
+        if($model->save()){
+            return json_encode(['code'=>200,"msg"=>"取消成功"]);
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);
