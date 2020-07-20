@@ -44,18 +44,35 @@ class CouponController extends Controller
         $model = new Coupon();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
-                $model->role_id = Yii::$app->user->identity->role_id;
-                $model->team_id = Yii::$app->user->identity->team_id;
-                $model->user_id = Yii::$app->user->identity->id;
-                $model->site_id = \Yii::$app->session['default_site_id'];
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                if ($model->expired_at){
+                    $expired_at = strtotime($model->expired_at);
+                }
+                $coupon = trim($model->coupon_code);
+                if (empty($coupon)){
+                    return json_encode(['code'=>402, "msg"=>"请填写优惠券"]);
+                }
+                $coupon_arr = explode("\r\n", $coupon);
+                $coupon_arr = array_unique($coupon_arr);
+                if ($coupon_arr){
+                    foreach ($coupon_arr as $vv){
+                        $model = new Coupon();
+                        $model->coupon_code = $vv;
+                        $model->role_id = Yii::$app->user->identity->role_id;
+                        $model->team_id = Yii::$app->user->identity->team_id;
+                        $model->user_id = Yii::$app->user->identity->id;
+                        $model->site_id = \Yii::$app->session['default_site_id'];
+                        $model->expired_at = $expired_at;
+                        $model->save();
+                    }
+                }
+                return json_encode(['code'=>200, "msg"=>"添加成功"]);
             } else {
                 $error = $model->firstErrors;
                 return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
             }
         } else {
-            return $this->render('create', ['model' => $model,]);
+            $model->product_id = $id;
+            return $this->render('create', ['model' => $model]);
         }
     }
 

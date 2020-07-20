@@ -120,7 +120,7 @@ layui.config({
         var index = layui.layer.open({
             title : "添加优惠券",
             type : 2,
-            area:['500px', '655px'],
+            area:['500px', '640px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();

@@ -25,9 +25,11 @@ class MenuHelper
         $l = count($assigned);
         for ($i = 0; $i < $l; $i++) {
             $id = $assigned[$i];
-            $parent_id = $menus[$id]['parent'];
-            if ($parent_id>0 && !in_array($parent_id, $assigned)) {
-                $assigned[$l++] = $parent_id;
+            if (isset($menus[$id])){
+                $parent_id = $menus[$id]['parent'];
+                if ($parent_id>0 && !in_array($parent_id, $assigned)) {
+                    $assigned[$l++] = $parent_id;
+                }
             }
         }
         return $assigned;
@@ -54,22 +56,24 @@ class MenuHelper
         $result = [];
         $order = [];
         foreach ($assigned as $id) {
-            $menu = $menus[$id];
-            if ($menu['parent'] == $parent) {
-                $menu['children'] = static::normalizeMenu($assigned, $menus, $callback, $id);
-                if ($callback !== null) {
-                    $item = call_user_func($callback, $menu);
-                } else {
-                    $item = [
-                        'label' => Yii::t('rbac-admin',$menu['name']),
-                        'url' => static::parseRoute($menu['route']),
-                    ];
-                    if ($menu['children'] != []) {
-                        $item['items'] = $menu['children'];
+            if (isset($menus[$id])){
+                $menu = $menus[$id];
+                if ($menu['parent'] == $parent) {
+                    $menu['children'] = static::normalizeMenu($assigned, $menus, $callback, $id);
+                    if ($callback !== null) {
+                        $item = call_user_func($callback, $menu);
+                    } else {
+                        $item = [
+                            'label' => Yii::t('rbac-admin',$menu['name']),
+                            'url' => static::parseRoute($menu['route']),
+                        ];
+                        if ($menu['children'] != []) {
+                            $item['items'] = $menu['children'];
+                        }
                     }
+                    $result[] = $item;
+                    $order[] = $menu['order'];
                 }
-                $result[] = $item;
-                $order[] = $menu['order'];
             }
         }
         if ($result != []) {
