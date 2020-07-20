@@ -8,6 +8,7 @@ use yii\web\Controller;
 use common\models\Activity;
 use common\models\searchs\ActivitySearch;
 use yii\web\NotFoundHttpException;
+use Faker\Provider\Uuid;
 
 class ActivityController extends Controller
 {
@@ -44,6 +45,9 @@ class ActivityController extends Controller
         $model = new Activity();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
+                if (empty($model->url_key)){
+                    $model->url_key = Uuid::uuid();
+                }
                 $model->role_id = Yii::$app->user->identity->role_id;
                 $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;

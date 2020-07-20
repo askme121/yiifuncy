@@ -31,7 +31,32 @@ LayuiAsset::register($this);
                 'amazon_url',
                 'price',
                 'cashback',
-                'coupon',
+                [
+                    "attribute" => "coupon_type",
+                    "value" => function($model) {
+                        switch ($model->coupon_type)
+                        {
+                            case 1:
+                                return '按比例折扣';
+                                break;
+                            case 2:
+                                return '按金额折扣';
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                ],
+                [
+                    "attribute" => "coupon",
+                    "value" => function($model) {
+                        if ($model->coupon_type == 1){
+                            return $model->coupon.' %';
+                        } else if ($model->coupon_type == 2){
+                            return $model->coupon.'('.getSymbol().')';
+                        }
+                    }
+                ],
                 'start',
                 'end'
         ],

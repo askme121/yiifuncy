@@ -91,4 +91,5 @@ return [
     'last_login_address' => '最近登录地址',
     'last_login_date' => '最近登录时间',
     'updated_at' => '最近更新时间',
+    'coupon_type' => '折扣方式',
 ];

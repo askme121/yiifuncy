@@ -19,21 +19,20 @@ $product_list = Product::getList();
     <?= $form->field($model, 'url_key')->textInput(['maxlength' => 128, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'product_id')->dropDownList(ArrayHelper::map($product_list,'id','name'))?>
     <?= $form->field($model, 'price')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
-    <?= $form->field($model, 'cashback')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'coupon_type')->dropDownList([1=>'按比例折扣', 2=>'按金额折扣'])?>
     <?= $form->field($model, 'coupon')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'amazon_url')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'qty')->input('number', ['class'=>'layui-input'])?>
     <?= $form->field($model, 'start')->widget(DateTimePicker::classname(), [
-            'options' => ['placeholder' => ''],
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'yyyy-mm-dd HH:ii:ss',
-                'todayHighlight' => true,
-                'startDate' => date('Y-m-d'),
-                'readonly' => false,
-            ]
-        ])?>
+        'options' => ['placeholder' => ''],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd HH:ii:ss',
+            'todayHighlight' => true,
+            'startDate' => date('Y-m-d'),
+            'readonly' => false,
+        ]
+    ])?>
     <?= $form->field($model, 'end')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => '', 'format' => 'yyyy-mm-dd HH:ii:ss'],
         'pluginOptions' => [

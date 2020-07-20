@@ -31,7 +31,7 @@ class Activity extends ActiveRecord
     {
         return [
             [['url_key', 'amazon_url'], 'string'],
-            [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id'], 'integer'],
+            [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id', 'coupon_type'], 'integer'],
             [['start', 'end'], 'datetime'],
             [['price', 'cashback', 'coupon'], 'number'],
         ];
@@ -52,10 +52,11 @@ class Activity extends ActiveRecord
             'site_id' => Yii::t('app', 'site'),
             'price' => Yii::t('app', 'price').'('.getSymbol().')',
             'cashback' => Yii::t('app', 'cashback').'('.getSymbol().')',
-            'coupon' => Yii::t('app', 'coupon').'('.getSymbol().')',
+            'coupon' => Yii::t('app', 'coupon'),
             'start' => Yii::t('app', 'start_time'),
             'end' => Yii::t('app', 'end_time'),
             'product_id' => Yii::t('app', 'activity_product'),
+            'coupon_type' => Yii::t('app', 'coupon_type'),
         ];
     }
 
