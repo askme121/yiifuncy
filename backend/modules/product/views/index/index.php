@@ -8,13 +8,52 @@ use common\models\Category;
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
 ?>
+<style type="text/css">
+    .layui-input-inline{
+        max-width: 150px;
+    }
+    .nav-myself-ul{
+        width: 130px;
+        color: #666;
+        list-style: none;
+    }
+    .nav-myself-li{
+        float: left;
+        padding: 5px 8px;
+        position: relative;
+    }
+    .nav-myself-dl{
+        display: none;
+        position: absolute;
+        top:30px;
+        border: 1px solid #d2d2d2;
+        border-radius: 2px;
+        padding: 5px 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.12);
+        z-index: 9999;
+        background: #d2d2d2;
+    }
+    .nav-myself-li:hover .nav-myself-dl{
+        display: block;
+    }
+    .nav-myself-li a{
+        color: #666;
+        text-decoration: none;
+    }
+    .nav-myself-dl dd{
+        margin: 5px auto;
+    }
+    .nav-myself-dl dd a{
+        color: #333;
+    }
+</style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 </blockquote>
 <div class="user-index layui-form news_list">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'options' => ['class' => 'grid-view','style'=>'overflow:auto', 'id' => 'grid'],
+        'options' => ['class' => 'grid-view','style'=>'overflow:auto; padding-bottom:90px', 'id' => 'grid'],
         'tableOptions'=> ['class'=>'layui-table'],
         'pager' => [
             'options'=>['class'=>'layuipage pull-right'],
@@ -102,23 +141,45 @@ $this->registerJs($this->render('js/index.js'));
                     'width' => '10%',
                     'style'=> 'text-align: center;'
                 ],
-                'template' =>'{view} {update} {activate} {delete}',
+                'template' =>'<ul class="nav-myself-ul">
+                             <li class="nav-myself-li">
+                                 <a href="javascript:;">管理<span class="layui-nav-mored"></span></a>
+                                 <dl class="nav-myself-dl">
+                                     <dd>{view}</dd>
+                                     {update}
+                                     {activate}
+                                     {delete}
+                                 </dl>
+                             </li>
+                             {add_coupon}
+                          </ul>',
                 'buttons' => [
                     'view' => function ($url, $model, $key){
-                        return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-default-view"]);
+                        return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
                     'update' => function ($url, $model, $key) {
-                        return Html::a('修改', Url::to(['update','id'=>$model->id]), ['class' => "layui-btn layui-btn-normal layui-btn-xs layui-default-update"]);
+                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
+                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
+                        } else {
+                            return '';
+                        }
                     },
                     'activate' => function ($url, $model, $key) {
                         if($model->status == 2){
-                            return Html::a('激活', Url::to(['active','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-normal layui-default-active"]);
+                            return '<dd>'.Html::a('激活', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</dd>';
                         }else{
-                            return Html::a('关闭', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-warm layui-default-inactive"]);
+                            return '<dd>'.Html::a('关闭', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-default-inactive"]).'</dd>';
                         }
                     },
                     'delete' => function ($url, $model, $key) {
-                        return Html::a('删除', Url::to(['delete','id'=>$model->id]), ['class' => "layui-btn layui-btn-danger layui-btn-xs layui-default-delete"]);
+                        return '<dd>'.Html::a('删除', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]).'</dd>';
+                    },
+                    'add_coupon' => function ($url, $model, $key) {
+                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
+                            return '<li class="nav-myself-li">'.Html::a('添加优惠券', Url::to(['/product/coupon/create','id'=>$model->id]), ['class' => "layui-default-add-coupon"]).'</li>';
+                        } else {
+                            return '';
+                        }
                     }
                 ]
             ],

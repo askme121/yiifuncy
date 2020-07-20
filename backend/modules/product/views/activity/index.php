@@ -31,6 +31,7 @@ $this->registerJs($this->render('js/index.js'));
         padding: 5px 15px;
         box-shadow: 0 2px 4px rgba(0,0,0,.12);
         z-index: 9999;
+        background: #d2d2d2;
     }
     .nav-myself-li:hover .nav-myself-dl{
         display: block;

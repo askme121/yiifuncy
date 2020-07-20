@@ -27,17 +27,17 @@ $product_list = Product::getList();
         'options' => ['placeholder' => ''],
         'pluginOptions' => [
             'autoclose' => true,
-            'format' => 'yyyy-mm-dd HH:ii:ss',
+            'format' => 'yyyy-mm-dd hh:ii:ss',
             'todayHighlight' => true,
             'startDate' => date('Y-m-d'),
             'readonly' => false,
         ]
     ])?>
     <?= $form->field($model, 'end')->widget(DateTimePicker::classname(), [
-        'options' => ['placeholder' => '', 'format' => 'yyyy-mm-dd HH:ii:ss'],
+        'options' => ['placeholder' => ''],
         'pluginOptions' => [
             'autoclose' => true,
-            'format' => 'yyyy-mm-dd HH:ii:ss',
+            'format' => 'yyyy-mm-dd hh:ii:ss',
             'todayHighlight' => true,
             'startDate' => date('Y-m-d'),
             'readonly' => false,

@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
-use common\models\ActivityType;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
@@ -11,39 +10,6 @@ $this->registerJs($this->render('js/index.js'));
 <style type="text/css">
     .layui-input-inline{
         max-width: 150px;
-    }
-    .nav-myself-ul{
-        width: 100px;
-        color: #666;
-        list-style: none;
-    }
-    .nav-myself-li{
-        float: left;
-        padding: 5px 8px;
-        position: relative;
-    }
-    .nav-myself-dl{
-        display: none;
-        position: absolute;
-        top:30px;
-        border: 1px solid #d2d2d2;
-        border-radius: 2px;
-        padding: 5px 15px;
-        box-shadow: 0 2px 4px rgba(0,0,0,.12);
-        z-index: 9999;
-    }
-    .nav-myself-li:hover .nav-myself-dl{
-        display: block;
-    }
-    .nav-myself-li a{
-        color: #666;
-        text-decoration: none;
-    }
-    .nav-myself-dl dd{
-        margin: 5px auto;
-    }
-    .nav-myself-dl dd a{
-        color: #333;
     }
 </style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
@@ -89,13 +55,16 @@ $this->registerJs($this->render('js/index.js'));
                     switch ($model->status)
                     {
                         case 0:
-                            return 'init';
+                            return '未领取';
                             break;
                         case 1:
-                            return 'fetched';
+                            return '已领取';
                             break;
                         case 2:
-                            return 'used';
+                            return '已使用';
+                            break;
+                        case 3:
+                            return '已过期';
                             break;
                         default:
                             return Yii::t('app', 'unkown');
@@ -103,7 +72,17 @@ $this->registerJs($this->render('js/index.js'));
                     }
                 },
             ],
-            'customer_id',
+            [
+                'attribute' => 'customer_id',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+            ],
+            [
+                'attribute' => 'expired_at',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'datetime',
+            ],
             [
                 'header' => '操作',
                 'class' => 'yii\grid\ActionColumn',
@@ -112,37 +91,10 @@ $this->registerJs($this->render('js/index.js'));
                     'width' => '10%',
                     'style'=> 'text-align: center;'
                 ],
-                'template' => '<ul class="nav-myself-ul">
-                             <li class="nav-myself-li">
-                                 <a href="javascript:;">管理<span class="layui-nav-mored"></span></a>
-                                 <dl class="nav-myself-dl">
-                                     <dd>{view}</dd>
-                                     {update}
-                                     <dd>{delete}</dd>
-                                 </dl>
-                             </li>
-                             {activate}
-                          </ul>',
+                'template' => '{view}',
                 'buttons' => [
                     'view' => function ($url, $model, $key){
-                        return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
-                    },
-                    'update' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        } else {
-                            return '';
-                        }
-                    },
-                    'activate' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<li class="nav-myself-li">'.Html::a('启用', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</li>';
-                        }else{
-                            return '';
-                        }
-                    },
-                    'delete' => function ($url, $model, $key) {
-                        return Html::a('取消', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);
+                        return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-btn layui-btn-xs layui-default-view"]);
                     }
                 ]
             ],

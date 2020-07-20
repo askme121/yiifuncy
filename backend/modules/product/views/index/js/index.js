@@ -114,6 +114,21 @@ layui.config({
         });
         return false;
     });
+
+    $("body").on("click",".layui-default-add-coupon",function(){
+        var href = $(this).attr("href");
+        var index = layui.layer.open({
+            title : "添加优惠券",
+            type : 2,
+            area:['500px', '655px'],
+            content :[href,"yes"],
+            end: function () {
+                location.reload();
+            }
+        });
+        return false;
+    });
+
     //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
