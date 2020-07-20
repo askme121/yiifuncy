@@ -92,4 +92,10 @@ return [
     'last_login_date' => '最近登录时间',
     'updated_at' => '最近更新时间',
     'coupon_type' => '折扣方式',
+    'coupon_code' => '优惠码',
+    'customer' => '用户',
+    'product' => '产品',
+    'order_id' => '订单号',
+    'expired_at' => '过期时间',
+    'sku' => 'sku',
 ];
