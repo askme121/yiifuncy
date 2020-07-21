@@ -13,7 +13,7 @@ LayuiAsset::register($this);
     .dd-myself dt, .dd-myself dd{
         font-weight: normal;
         float: left;
-        width: 25%;
+        width: 50%;
         text-align: center;
         line-height: 30px;
     }
@@ -106,7 +106,7 @@ LayuiAsset::register($this);
                 "value" => function($model) {
                     if ($model->coupon_code){
                         $str = '<dl class="dd-myself">';
-                        $str .= '<dt>优惠码</dt><dt>状态</dt><dt>用户</dt><dt>订单</dt>';
+                        $str .= '<dt>优惠码</dt><dt>状态</dt>';
                         $str .= '</dl>';
                         foreach ($model->coupon_code as $vv){
                             $str .= '<dl class="dd-myself">';
@@ -129,12 +129,6 @@ LayuiAsset::register($this);
                                     break;
                             }
                             $str .= '<dd>'.$status.'</dd>';
-                            if ($vv['customer_id'] > 0){
-                                $str .= '<dd>'.$vv['customer_id'].'</dd>';
-                            } else {
-                                $str .= '<dd></dd>';
-                            }
-                            $str .= '<dd>'.$vv['order_id'].'</dd>';
                             $str .= '</dl>';
                         }
                         return $str;

@@ -38,11 +38,6 @@ $this->registerJs($this->render('js/index.js'));
                 ],
             ],
             [
-                'attribute' => 'product_sku',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: center;'],
-            ],
-            [
                 'attribute' => 'coupon_code',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
@@ -76,12 +71,19 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'customer_id',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'html',
+                'value' => function($model) {
+                     if ($model->customer_id > 0){
+                         return $model->customer_id;
+                     } else {
+                         return '<span class="not-set">(未设置)</span>';
+                     }
+                }
             ],
             [
-                'attribute' => 'expired_at',
+                'attribute' => 'order_id',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
-                'format' => 'datetime',
             ],
             [
                 'header' => '操作',

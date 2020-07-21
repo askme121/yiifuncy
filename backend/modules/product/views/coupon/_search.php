@@ -16,7 +16,7 @@ AppAsset::register($this);
         ],
     ]);
     ?>
-    <?= $form->field($model, 'product_sku')->textInput(['class'=>'layui-input search_input']) ?>
+    <?= $form->field($model, 'coupon_code')->textInput(['class'=>'layui-input search_input']) ?>
     <div class="layui-inline">
         <?= Html::label('状态：', 'coupon-status', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
@@ -26,7 +26,6 @@ AppAsset::register($this);
     <span class="help-block" style="display: inline-block;"></span>
     <div class="form-group">
         <?= Html::submitButton('查找', ['class' => 'layui-btn layui-btn-normal']) ?>
-        <?= Html::button('添加', ['class' => 'layui-btn layui-default-add']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
