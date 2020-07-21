@@ -45,7 +45,7 @@ layui.config({
         var index = layui.layer.open({
             title : "查看活动",
             type: 2,
-            area: ['500px', '450px'],
+            area: ['600px', '450px'],
             content : [href, 'yes']
         });
         return false;
@@ -53,7 +53,7 @@ layui.config({
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定上架此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定启用此活动吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -76,9 +76,9 @@ layui.config({
         return false;
     });
     //  禁用操作
-    $("body").on("click",".layui-default-inactive",function(){
+    $("body").on("click",".layui-default-copy",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定下架此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定复制此活动吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -118,7 +118,7 @@ layui.config({
     //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定删除此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定取消此活动吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

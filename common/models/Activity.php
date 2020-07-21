@@ -15,6 +15,9 @@ class Activity extends ActiveRecord
     const CASHBACK_ACTIVITY = 2;
     const CASHBACK_COUPON_ACTIVITY = 3;
 
+    public $coupon_code;
+    public $form_coupon_code;
+
     public static function tableName()
     {
         return '{{%activity}}';
@@ -34,6 +37,7 @@ class Activity extends ActiveRecord
             [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id', 'coupon_type'], 'integer'],
             [['start', 'end'], 'datetime'],
             [['price', 'cashback', 'coupon'], 'number'],
+            [['form_coupon_code'], 'safe']
         ];
     }
 
@@ -57,11 +61,24 @@ class Activity extends ActiveRecord
             'end' => Yii::t('app', 'end_time'),
             'product_id' => Yii::t('app', 'activity_product'),
             'coupon_type' => Yii::t('app', 'coupon_type'),
+            'coupon_code' => Yii::t('app', 'coupon_code'),
+            'form_coupon_code' => Yii::t('app', 'coupon_code'),
         ];
+    }
+
+    public function afterFind()
+    {
+        $this->coupon_code = $this->getCoupon($this->id);
+        parent::afterFind();
     }
 
     public function getProduct()
     {
         return $this->hasOne(Product::className(),['id'=>'product_id']);
+    }
+
+    public function getCoupon($activity_id)
+    {
+        return Coupon::find()->where(['activity_id'=>$activity_id])->asArray()->all();
     }
 }

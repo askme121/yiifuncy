@@ -170,9 +170,8 @@ $this->registerJs($this->render('js/index.js'));
                 ],
                 'template' =>'<ul class="nav-myself-ul">
                              <li class="nav-myself-li">
-                                 <a href="javascript:;">管理<span class="layui-nav-mored"></span></a>
+                                 {view}
                                  <dl class="nav-myself-dl">
-                                     <dd>{view}</dd>
                                      {update}
                                      <dd>{delete}</dd>
                                  </dl>

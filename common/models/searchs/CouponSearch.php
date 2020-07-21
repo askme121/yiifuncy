@@ -11,8 +11,8 @@ class CouponSearch extends Coupon
     public function rules()
     {
         return [
-            [['id', 'product_id', 'status'], 'integer'],
-            [['coupon_code', 'product_sku'], 'safe'],
+            [['id', 'activity_id', 'status'], 'integer'],
+            [['coupon_code'], 'safe'],
         ];
     }
 
@@ -23,8 +23,7 @@ class CouponSearch extends Coupon
 
     public function search($params)
     {
-        $query = Coupon::find()
-            ->where(['site_id'=>\Yii::$app->session['default_site_id']]);
+        $query = Coupon::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -38,8 +37,7 @@ class CouponSearch extends Coupon
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'product_sku', $this->product_sku])
-            ->andFilterWhere(['like', 'coupon_code', $this->coupon_code]);
+        $query->andFilterWhere(['like', 'coupon_code', $this->coupon_code]);
 
         return $dataProvider;
     }

@@ -109,6 +109,34 @@ class CashbackActivityController extends Controller
         }
     }
 
+    public function actionCopy($id)
+    {
+        $model = $this->findModel($id);
+        $m = new Activity();
+        $m->product_id = $model->product_id;
+        $m->type = $model->type;
+        $m->price = $model->price;
+        $m->cashback = $model->cashback;
+        $m->coupon_type = $model->coupon_type;
+        $m->coupon = $model->coupon;
+        $m->amazon_url = $model->amazon_url;
+        $m->start = null;
+        $m->end = null;
+        $m->qty = 0;
+        $m->role_id = $model->role_id;
+        $m->team_id = $model->team_id;
+        $m->user_id = $model->user_id;
+        $m->site_id = $model->site_id;
+        $m->status = Activity::STATUS_INIT;
+        $m->url_key = Uuid::uuid();
+        if($m->save()){
+            return json_encode(['code'=>200,"msg"=>"复制成功"]);
+        }else{
+            $errors = $model->firstErrors;
+            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
