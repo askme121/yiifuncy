@@ -17,6 +17,17 @@ layui.config({
             }
         });
     });
+
+    $(".thumb").mouseover(function () {
+        $(this).animate({
+            opacity: '0.8'
+        });
+    }).mouseout(function () {
+        $(this).animate({
+            opacity: '1'
+        });
+    })
+
     //  全选
     form.on('checkbox(allChoose)', function(data){
         var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');

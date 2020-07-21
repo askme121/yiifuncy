@@ -72,12 +72,13 @@ $this->registerJs($this->render('js/index.js'));
             ],
             [
                 'attribute' => 'product.thumb_image',
-                'contentOptions' => ['style'=> 'text-align: center;width: 60px'],
-                'headerOptions' => ['style'=> 'text-align: center;width: 60px'],
+                'contentOptions' => ['style'=> 'text-align: center;width: 80px'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 80px'],
                 "format"=>[
                     "image",
                     [
-                        "width"=>"50px",
+                        "width" => "80px",
+                        "class" => 'thumb',
                     ],
                 ],
             ],
