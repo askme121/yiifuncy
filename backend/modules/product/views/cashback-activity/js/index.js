@@ -52,7 +52,7 @@ layui.config({
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定上架此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定启用此活动吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

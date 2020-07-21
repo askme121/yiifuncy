@@ -72,8 +72,8 @@ $this->registerJs($this->render('js/index.js'));
             ],
             [
                 'attribute' => 'product.thumb_image',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;width: 60px'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 60px'],
                 "format"=>[
                     "image",
                     [
@@ -83,16 +83,11 @@ $this->registerJs($this->render('js/index.js'));
             ],
             [
                 'attribute' => 'product.name',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 200px;'],
+                'contentOptions' => ['style'=> 'text-align: left;width: 200px;white-space: inherit;overflow: hidden;text-overflow: ellipsis;'],
             ],
             [
                 'attribute' => 'product.sku',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;'],
-            ],
-            [
-                'attribute' => 'url_key',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: left;'],
             ],
@@ -115,27 +110,36 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
+                'attribute' => 'qty',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+            ],
+            [
+                'attribute' => 'start',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+            ],
+            [
+                'attribute' => 'end',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+            ],
+            [
                 'attribute' => 'price',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'html',
                 'value' => function($model) {
-                    return getSymbol().' '.$model->price;
-                },
-            ],
-            [
-                'attribute' => 'cashback',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'value' => function($model) {
-                    return getSymbol().' '.$model->cashback;
-                },
-            ],
-            [
-                'attribute' => 'coupon',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'value' => function($model) {
-                    return getSymbol().' '.$model->coupon;
+                    $str = getSymbol().' '.floatval($model->price);
+                    if ($model->cashback){
+                        $str .= "<br>返现金额：".getSymbol().' '.floatval($model->cashback);
+                    }
+                    if ($model->coupon_type == 1){
+                        $str .= "<br>折扣：".floatval($model->coupon).'%';
+                    } else if ($model->coupon_type == 2){
+                        $str .= "<br>折扣：".getSymbol().' '.floatval($model->coupon);
+                    }
+                    return $str;
                 },
             ],
             [
@@ -149,7 +153,14 @@ $this->registerJs($this->render('js/index.js'));
                             return '未启用';
                             break;
                         case 1:
-                            return '已上架';
+                            $time = time();
+                            if (strtotime($model->start) <= $time && strtotime($model->end) >= $time){
+                                return '生效中';
+                            } else if (strtotime($model->start) > $time){
+                                return '待生效';
+                            } else {
+                                return '已过期';
+                            }
                             break;
                         case 2:
                             return '已取消';
@@ -173,6 +184,7 @@ $this->registerJs($this->render('js/index.js'));
                                  {view}
                                  <dl class="nav-myself-dl">
                                      {update}
+                                     {copy}
                                      <dd>{delete}</dd>
                                  </dl>
                              </li>
@@ -189,8 +201,15 @@ $this->registerJs($this->render('js/index.js'));
                             return '';
                         }
                     },
+                    'copy' => function ($url, $model, $key){
+                        if ($model->status != 1 || ($model->status == 1 && strtotime($model->end) < time())) {
+                            return '<dd>'.Html::a('复制', Url::to(['copy','id'=>$model->id]), ['class' => "layui-default-copy"]).'</dd>';
+                        } else {
+                            return '';
+                        }
+                    },
                     'activate' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
+                        if (Yii::$app->user->identity->role_id == 1 && $model->status == 0) {
                             return '<li class="nav-myself-li">'.Html::a('启用', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</li>';
                         }else{
                             return '';

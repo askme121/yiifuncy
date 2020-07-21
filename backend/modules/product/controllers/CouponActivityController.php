@@ -2,6 +2,7 @@
 
 namespace product\controllers;
 
+use common\models\Coupon;
 use Faker\Provider\Uuid;
 use Yii;
 use yii\filters\VerbFilter;
@@ -48,12 +49,28 @@ class CouponActivityController extends Controller
                 if (empty($model->url_key)){
                     $model->url_key = Uuid::uuid();
                 }
+                if (trim($model->form_coupon_code)){
+                    $coupon = trim($model->form_coupon_code);
+                    $coupon_arr = explode("\r\n", $coupon);
+                    $coupon_arr = array_unique($coupon_arr);
+                    if ($coupon_arr){
+                        $model->qty = count($coupon_arr);
+                    }
+                }
                 $model->role_id = Yii::$app->user->identity->role_id;
                 $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->site_id = \Yii::$app->session['default_site_id'];
                 $model->type = Activity::COUPON_ACTIVITY;
                 $model->save();
+                if (isset($coupon_arr) && $coupon_arr){
+                    foreach ($coupon_arr as $vv){
+                        $m = new Coupon();
+                        $m->coupon_code = $vv;
+                        $m->activity_id = $model->id;
+                        $m->save();
+                    }
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;
@@ -69,7 +86,23 @@ class CouponActivityController extends Controller
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
+                if (trim($model->form_coupon_code)){
+                    $coupon = trim($model->form_coupon_code);
+                    $coupon_arr = explode("\r\n", $coupon);
+                    $coupon_arr = array_unique($coupon_arr);
+                    if ($coupon_arr){
+                        $model->qty = count($coupon_arr);
+                    }
+                }
                 $model->save();
+                if (isset($coupon_arr) && $coupon_arr){
+                    foreach ($coupon_arr as $vv){
+                        $m = new Coupon();
+                        $m->coupon_code = $vv;
+                        $m->activity_id = $model->id;
+                        $m->save();
+                    }
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;
@@ -83,11 +116,11 @@ class CouponActivityController extends Controller
     {
         $model = $this->findModel($id);
         if($model->status == Activity::STATUS_ENABLE){
-            return json_encode(['code'=>400,"msg"=>"该活动已经是上架状态"]);
+            return json_encode(['code'=>400,"msg"=>"该活动已经是启用状态"]);
         }
         $model->status = Activity::STATUS_ENABLE;
         if($model->save()){
-            return json_encode(['code'=>200,"msg"=>"上架成功"]);
+            return json_encode(['code'=>200,"msg"=>"启用成功"]);
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);

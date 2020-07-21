@@ -31,6 +31,7 @@ LayuiAsset::register($this);
             'amazon_url',
             'price',
             'cashback',
+            'qty',
             'start',
             'end'
         ],

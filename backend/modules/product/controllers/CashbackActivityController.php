@@ -83,11 +83,11 @@ class CashbackActivityController extends Controller
     {
         $model = $this->findModel($id);
         if($model->status == Activity::STATUS_ENABLE){
-            return json_encode(['code'=>400,"msg"=>"该活动已经是上架状态"]);
+            return json_encode(['code'=>400,"msg"=>"该活动已经是启用状态"]);
         }
         $model->status = Activity::STATUS_ENABLE;
         if($model->save()){
-            return json_encode(['code'=>200,"msg"=>"上架成功"]);
+            return json_encode(['code'=>200,"msg"=>"启用成功"]);
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);

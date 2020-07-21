@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\assets\AppAsset;
-use common\models\ActivityType;
 
 AppAsset::register($this);
 ?>

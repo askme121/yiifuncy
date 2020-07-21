@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\assets\AppAsset;
-use common\models\ActivityType;
 
 AppAsset::register($this);
 ?>
@@ -19,12 +18,11 @@ AppAsset::register($this);
     ?>
     <?= $form->field($model, 'productName')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'productSku')->textInput(['class'=>'layui-input search_input']) ?>
-    <?= $form->field($model, 'url_key')->textInput(['class'=>'layui-input search_input']) ?>
     <span class="help-block" style="display: inline-block;"></span>
     <div class="layui-inline">
         <?= Html::label('状态：', 'activity-status', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('ActivitySearch[status]', Yii::$app->request->get('ActivitySearch')['status']??null, ['0'=>'待上架', '1'=>'已上架', '2'=>'已下架'], ['id' => 'activity-status', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('ActivitySearch[status]', Yii::$app->request->get('ActivitySearch')['status']??null, ['0'=>'未启用', '1'=>'待生效', '4'=>'生效中', '5'=>'已过期', '2'=>'已取消'], ['id' => 'activity-status', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

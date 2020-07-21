@@ -131,7 +131,7 @@ $this->registerJs($this->render('js/index.js'));
                 'format' => 'html',
                 'value' => function($model) {
                     $str = getSymbol().' '.floatval($model->price);
-                    if ($model->cashback){
+                    if (floatval($model->cashback)>0){
                         $str .= "<br>返现金额：".getSymbol().' '.floatval($model->cashback);
                     }
                     if ($model->coupon_type == 1){

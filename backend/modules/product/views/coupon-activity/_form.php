@@ -21,9 +21,10 @@ $product_list = Product::getList();
     <?= $form->field($model, 'price')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'coupon_type')->dropDownList([1=>'按比例折扣', 2=>'按金额折扣'])?>
     <?= $form->field($model, 'coupon')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
-    <?= $form->field($model, 'coupon_code')->textarea(['class'=>'layui-textarea', 'style'=>'min-height:300px']) ?>
+    <?php if (!$model->coupon_code){?>
+        <?= $form->field($model, 'form_coupon_code')->textarea(['class'=>'layui-textarea', 'style'=>'min-height:300px']) ?>
+    <?php }?>
     <?= $form->field($model, 'amazon_url')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
-    <?= $form->field($model, 'qty')->input('number', ['class'=>'layui-input'])?>
     <?= $form->field($model, 'start')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => ''],
         'pluginOptions' => [

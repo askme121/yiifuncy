@@ -5,6 +5,20 @@ use common\models\ActivityType;
 
 LayuiAsset::register($this);
 ?>
+<style type="text/css">
+    .dd-myself{
+        width: 100%;
+        clear: both;
+    }
+    .dd-myself dt, .dd-myself dd{
+        font-weight: normal;
+        float: left;
+        width: 25%;
+        text-align: center;
+        line-height: 30px;
+    }
+
+</style>
 <div class="auth-item-view">
     <?php
     echo DetailView::widget([
@@ -56,8 +70,77 @@ LayuiAsset::register($this);
                     }
                 }
             ],
+            'qty',
             'start',
-            'end'
+            'end',
+            [
+                "attribute" => "status",
+                "value" => function($model) {
+                    switch ($model->status)
+                    {
+                        case 0:
+                            return '未启用';
+                            break;
+                        case 1:
+                            $time = time();
+                            if (strtotime($model->start) <= $time && strtotime($model->end) >= $time){
+                                return '生效中';
+                            } else if (strtotime($model->start) > $time){
+                                return '待生效';
+                            } else {
+                                return '已过期';
+                            }
+                            break;
+                        case 2:
+                            return '已取消';
+                            break;
+                        default:
+                            return Yii::t('app', 'unkown');
+                            break;
+                    }
+                }
+            ],
+            [
+                "attribute" => "coupon_code",
+                "format" => "html",
+                "value" => function($model) {
+                    if ($model->coupon_code){
+                        $str = '<dl class="dd-myself">';
+                        $str .= '<dt>优惠码</dt><dt>状态</dt><dt>用户</dt><dt>订单</dt>';
+                        $str .= '</dl>';
+                        foreach ($model->coupon_code as $vv){
+                            $str .= '<dl class="dd-myself">';
+                            $str .= '<dd>'.$vv['coupon_code'].'</dd>';
+                            switch ($vv['status']){
+                                case 0:
+                                    $status = '未领取';
+                                    break;
+                                case 1:
+                                    $status = '已领取';
+                                    break;
+                                case 2:
+                                    $status = '已使用';
+                                    break;
+                                case 3:
+                                    $status = '已过期';
+                                    break;
+                                default:
+                                    $status = '未知';
+                                    break;
+                            }
+                            $str .= '<dd>'.$status.'</dd>';
+                            if ($vv['customer_id'] > 0){
+                                $str .= '<dd>'.$vv['customer_id'].'</dd>';
+                            } else {
+                                $str .= '<dd></dd>';
+                            }
+                            $str .= '<dd>'.$vv['order_id'].'</dd>';
+                            $str .= '</dl>';
+                        }
+                        return $str;
+                    }
+                }
+            ],
         ],
         'template' => '<tr><th width="100px">{label}</th><td>{value}</td></tr>',
     ]);
