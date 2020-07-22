@@ -119,11 +119,13 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'start',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'datetime',
             ],
             [
                 'attribute' => 'end',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'datetime',
             ],
             [
                 'attribute' => 'price',
@@ -155,9 +157,9 @@ $this->registerJs($this->render('js/index.js'));
                             break;
                         case 1:
                             $time = time();
-                            if (strtotime($model->start) <= $time && strtotime($model->end) >= $time){
+                            if ($model->start <= $time && $model->end >= $time){
                                 return '生效中';
-                            } else if (strtotime($model->start) > $time){
+                            } else if ($model->start > $time){
                                 return '待生效';
                             } else {
                                 return '已过期';
@@ -203,7 +205,7 @@ $this->registerJs($this->render('js/index.js'));
                         }
                     },
                     'copy' => function ($url, $model, $key){
-                        if ($model->status != 1 || ($model->status == 1 && strtotime($model->end) < time())) {
+                        if ($model->status != 1 || ($model->status == 1 && $model->end < time())) {
                             return '<dd>'.Html::a('复制', Url::to(['copy','id'=>$model->id]), ['class' => "layui-default-copy"]).'</dd>';
                         } else {
                             return '';

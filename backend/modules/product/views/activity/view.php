@@ -72,8 +72,8 @@ LayuiAsset::register($this);
                     }
                 ],
                 'qty',
-                'start',
-                'end',
+                'start:datetime',
+                'end:datetime',
                 [
                     "attribute" => "status",
                     "value" => function($model) {
@@ -84,9 +84,9 @@ LayuiAsset::register($this);
                                 break;
                             case 1:
                                 $time = time();
-                                if (strtotime($model->start) <= $time && strtotime($model->end) >= $time){
+                                if ($model->start <= $time && $model->end >= $time){
                                     return '生效中';
-                                } else if (strtotime($model->start) > $time){
+                                } else if ($model->start > $time){
                                     return '待生效';
                                 } else {
                                     return '已过期';

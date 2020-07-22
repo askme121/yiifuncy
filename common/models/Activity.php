@@ -35,9 +35,8 @@ class Activity extends ActiveRecord
         return [
             [['url_key', 'amazon_url'], 'string'],
             [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id', 'coupon_type'], 'integer'],
-            [['start', 'end'], 'datetime'],
             [['price', 'cashback', 'coupon'], 'number'],
-            [['form_coupon_code'], 'safe']
+            [['form_coupon_code', 'start', 'end'], 'safe']
         ];
     }
 

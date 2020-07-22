@@ -49,6 +49,15 @@ class ActivityController extends Controller
                 if (empty($model->url_key)){
                     $model->url_key = Uuid::uuid();
                 }
+                if ($model->start){
+                    $model->start = strtotime($model->start);
+                }
+                if ($model->end){
+                    $model->end = strtotime($model->end);
+                }
+                if ($model->start && $model->end && $model->start >= $model->end){
+                    return json_encode(['code'=>500, "msg"=>"开始时间不能大于结束时间"]);
+                }
                 if (trim($model->form_coupon_code)){
                     $coupon = trim($model->form_coupon_code);
                     $coupon_arr = explode("\r\n", $coupon);
@@ -86,6 +95,15 @@ class ActivityController extends Controller
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
+                if ($model->start){
+                    $model->start = strtotime($model->start);
+                }
+                if ($model->end){
+                    $model->end = strtotime($model->end);
+                }
+                if ($model->start && $model->end && $model->start >= $model->end){
+                    return json_encode(['code'=>500, "msg"=>"开始时间不能大于结束时间"]);
+                }
                 if (trim($model->form_coupon_code)){
                     $coupon = trim($model->form_coupon_code);
                     $coupon_arr = explode("\r\n", $coupon);
@@ -94,7 +112,7 @@ class ActivityController extends Controller
                         $model->qty = count($coupon_arr);
                     }
                 }
-                $model->save();
+                $r = $model->save();
                 if (isset($coupon_arr) && $coupon_arr){
                     foreach ($coupon_arr as $vv){
                         $m = new Coupon();
@@ -103,7 +121,9 @@ class ActivityController extends Controller
                         $m->save();
                     }
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+                if ($r!==false){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             } else {
                 $error = $model->firstErrors;
                 return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
