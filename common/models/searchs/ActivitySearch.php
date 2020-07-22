@@ -83,6 +83,8 @@ class ActivitySearch extends Activity
                 ]);
                 $query->andFilterWhere(['<', 'end', time()]);
                 break;
+            default:
+                break;
         }
 
         $query->andFilterWhere(['like', 'url_key', $this->url_key]);
