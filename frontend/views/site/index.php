@@ -1,53 +1,113 @@
 <?php
-
-/* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+$this->title = 'Get the Latest Deals on Amazon丨Cashbackbase';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<?php $this->registerMetaTag(array("name"=>"description","content"=>"Cashbackbase Collects Latest Deals From All Amazon Product Categories, Helps Amazon Buyers Save Time And Money.")); ?>
+<?php $this->registerMetaTag(array("name"=>"keywords","content"=>"Cashbackbase Deals Deal 100%off Amazon")); ?>
+<div class="top-nav-container visible-xs-block visible-sm-block">
+    <div>
+        <nav class="mydeal-nav-brand">
+            <div class="deal-content-nav index-nav-ul">
+                <a href="" class="deal-nav-a">
+                    All Deals
+                </a>
+                <a href="" class="deal-nav-a">
+                    Cashback Deals
+                </a>
+                <a href="" class="deal-nav-a">
+                    Coupon Deals
+                </a>
+                <a href="" class="deal-nav-a">
+                    Coupon + Cashback
+                </a>
+            </div>
+        </nav>
     </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+</div>
+<div style="height: 10px;background: #f2f5f7;"></div>
+<div class="container visible-sm visible-xs" style="background: #fff">
+    <div class="index_tops">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
+            <a href="#">
+                <div class="deal-entry">
+                    <div class="product-img-container lazy shade-container" data-bg="url(<?= getImgUrl('20200711/thumb/202007111620365016.jpeg') ?>)">
+                    </div>
+                    <p class="deal-entity-title">Girls Pajamas Set 100% Cotton Little Big Pjs Toddler Kids Sleepwear</p>
+                    <ul class="deal-account-list">
+                        <li>
+                            <p class="prime-value">$ 1.30</p>
+                            <p class="prime-tile">Price</p>
+                        </li>
+                        <li class="deal-price-cotainer">
+                            <p class="prime-value">90%</p>
+                            <p class="prime-tile">Off</p>
+                        </li>
+                    </ul>
+                </div>
+            </a>
         </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
+            <a href="">
+                <div class="deal-entry">
+                    <div class="product-img-container lazy shade-container" data-bg="url(<?= getImgUrl('20200711/thumb/202007111620365016.jpeg') ?>)">
+                    </div>
+                    <p class="deal-entity-title">Premier Dead Sea Classic BIOX cream, Intensive Age Treatment Cream Anti-Age, anti wrinkle anti expression marks Complex, soft and gentle, light and non tacky 2.04 FL oz.</p>
 
+                    <ul class="deal-account-list">
+                        <li>
+                            <p class="prime-value">$ 10.00</p>
+                            <p class="prime-tile">Price</p>
+                        </li>
+                        <li class="deal-price-cotainer">
+                            <p class="prime-value">87%</p>
+                            <p class="prime-tile">Off</p>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
+            <a href="">
+                <div class="deal-entry">
+                    <div class="product-img-container lazy shade-container" data-bg="url(<?= getImgUrl('20200711/thumb/202007111620365016.jpeg') ?>)">
+                    </div>
+                    <p class="deal-entity-title">Kouik 4Pcs Soap Dish, Bar Soap Holder Case with Drain Holes, Silicone Soap Tray Saver Sponge Holder Scrubber Drainer for Shower Kitchen Sink Bathroom Bathtub</p>
+
+                    <ul class="deal-account-list">
+                        <li>
+                            <p class="prime-value">$ 0.00</p>
+                            <p class="prime-tile">Price</p>
+                        </li>
+                        <li class="deal-price-cotainer">
+                            <p class="prime-value">100%</p>
+                            <p class="prime-tile">Off</p>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
+            <a href="">
+                <div class="deal-entry">
+                    <div class="product-img-container lazy shade-container" data-bg="url(<?= getImgUrl('20200711/thumb/202007111620365016.jpeg') ?>)">
+                    </div>
+                    <p class="deal-entity-title">Reusable Multilayer Fabric Face Mask with Air Mesh - Black Pack of 3</p>
+
+                    <ul class="deal-account-list">
+                        <li>
+                            <p class="prime-value">$ 0.00</p>
+                            <p class="prime-tile">Price</p>
+                        </li>
+                        <li class="deal-price-cotainer">
+                            <p class="prime-value">100%</p>
+                            <p class="prime-tile">Off</p>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        </div>
     </div>
+</div>
+
+<div class="container visible-lg visible-md">
+
 </div>

@@ -18,3 +18,16 @@ function getSymbol()
     }
     return '';
 }
+
+function getImgUrl($url_path)
+{
+    $img_url = Config::getConfig('web_site_resources_url');
+    if ($img_url)
+    {
+        return $img_url.$url_path;
+    }
+    else
+    {
+        return $url_path;
+    }
+}

@@ -8,7 +8,10 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => 'default site',
     'basePath' => dirname(__DIR__),
+    'language' => 'en',
+    'timeZone' => 'Asia/Shanghai',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -21,7 +24,6 @@ return [
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
         'log' => [
