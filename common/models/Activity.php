@@ -73,7 +73,7 @@ class Activity extends ActiveRecord
 
     public function getProduct()
     {
-        return $this->hasOne(Product::className(),['id'=>'product_id']);
+        return $this->hasOne(Product::className(),['id'=>'product_id'])->select(['id','name','sku','url_key','thumb_image','image']);
     }
 
     public function getCoupon($activity_id)

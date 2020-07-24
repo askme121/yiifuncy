@@ -5,7 +5,12 @@ $.ajaxSetup({
 });
 $(function() {
     $(".lazy").each(function () {
-        $(this).css("background-image", $(this).data('bg')).animate({opacity: '1'},1000);
+        if ($(this).data('bg')){
+            $(this).css("background-image", $(this).data('bg')).animate({opacity: '1'},1000);
+        }
+        if ($(this).data('src')){
+            $(this).attr("src", $(this).data('src'));
+        }
     });
 });
 $(document).ready(function(){

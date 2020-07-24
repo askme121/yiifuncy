@@ -20,7 +20,7 @@ use yii\helpers\Url;
 </header>
 <header id="pc_header" class="hidden-sm hidden-xs">
     <nav class="navbar navbar-static-top main-navbar">
-        <div class="container" style="padding: 0;">
+        <div class="container" style="padding: 0; margin: 0 auto">
             <nav class="navbar-collapse collapse" id="bs-navbar" aria-expanded="false">
                 <div class="navbar-header">
                     <div id="logo" style="background: url(<?= getImgUrl('images/logo.png'); ?>) no-repeat center center; background-size: contain;">

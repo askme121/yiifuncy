@@ -15,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\Activity;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,12 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $time = time();
+        $select = "t_activity.url_key,product_id,price,cashback,coupon_type,coupon,price,qty";
+        $top_all = Activity::find()->select($select)->innerJoinWith('product')->where(['t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        $free = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        $cashback = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        return $this->render('index', ['top_all'=>$top_all, 'couponProducts'=>$free, 'cashbackProducts'=>$cashback]);
     }
 
     public function actionLogin()

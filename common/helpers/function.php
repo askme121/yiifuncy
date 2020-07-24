@@ -2,7 +2,7 @@
 
 use common\models\Config;
 
-function getSymbol()
+function getSymbol($site_id=null)
 {
     $currency = Config::getConfig('currency');
     if ($currency)
@@ -10,7 +10,14 @@ function getSymbol()
         $currency = unserialize($currency);
     }
     $currency_array = array_column($currency, null, 'currency_code');
-    $curr_site_id = \Yii::$app->session['default_site_id'];
+    if (empty($site_id))
+    {
+        $curr_site_id = \Yii::$app->session['default_site_id'];
+    }
+    else
+    {
+        $curr_site_id = $site_id;
+    }
     $default_currency = Config::getConfig('default_currency', $curr_site_id);
     if (isset($currency_array[$default_currency]))
     {
