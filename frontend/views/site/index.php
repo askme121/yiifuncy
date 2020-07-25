@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Url;
+
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
 $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
@@ -7,17 +9,17 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div>
         <nav class="mydeal-nav-brand">
             <div class="deal-content-nav index-nav-ul">
-                <a href="" class="deal-nav-a">
+                <a href="<?= Url::toRoute('/product');?>" class="deal-nav-a">
                     All Deals
                 </a>
-                <a href="" class="deal-nav-a">
+                <a href="<?= Url::toRoute('/product/coupon&cashback');?>" class="deal-nav-a">
+                    Coupon & Cashback
+                </a>
+                <a href="<?= Url::toRoute('/product/cashback');?>" class="deal-nav-a">
                     Cashback Deals
                 </a>
-                <a href="" class="deal-nav-a">
+                <a href="<?= Url::toRoute('/product/coupon');?>" class="deal-nav-a">
                     Coupon Deals
-                </a>
-                <a href="" class="deal-nav-a">
-                    Coupon + Cashback
                 </a>
             </div>
         </nav>
@@ -29,7 +31,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php if (is_array($top_all) && !empty($top_all)): ?>
         <?php foreach ($top_all as $product): ?>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
-            <a href="#">
+            <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                 <div class="deal-entry">
                     <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                     </div>
@@ -56,14 +58,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="index_tops">
         <?php if (is_array($top_all) && !empty($top_all)): ?>
         <?php foreach ($top_all as $product): ?>
-        <a class="freebies-entry" href="" style="display: block; overflow: hidden;">
+        <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
             <div style="position: relative;">
                 <div class="cashback-circle-tip">
                     <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
                         <p style="margin: 0;">Cashback</p><p style="margin: 0;">100%</p>
                     </div>
                 </div>
-                <div href="" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
+                <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
                 </div>
                 <p class="hot-entity-title"><span><?= $product['product']['name'] ?></span></p>
                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
@@ -125,16 +127,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
         <div class="deals-classify-section" style="margin-bottom: 20px;">
             <h3 class="deal-type-title">
-                <a href="#">Coupon Deals</a>
-                <a class="inline-view-all" href="#" style="float: none; font-size: 16px;">View All</a>
+                <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon & Cashback Deals</a>
+                <a class="inline-view-all" href="<?= Url::toRoute('/product/coupon&cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
             <div>
-                <?php if (is_array($couponProducts) && !empty($couponProducts)):  $i=0;?>
-                    <?php foreach ($couponProducts as $product):  $i++;?>
-                        <a href="" class="new-deal-entry">
+                <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)):  $i=0;?>
+                    <?php foreach ($cashbackCouponProducts as $product):  $i++;?>
+                        <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="new-deal-entry">
                             <div>
                                 <div class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)"></div>
-                                <p class="new-entity-title"><span href=""><?= $product['product']['name'] ?></span></p>
+                                <p class="new-entity-title">
+                                    <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
+                                </p>
                                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
                                     <li class="account-left">
                                         <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
@@ -167,23 +171,25 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
         <div class="deals-classify-section">
             <h3 class="deal-type-title" style="margin-bottom: 10px;">
-                <a href="/cashback">Cash Back</a>
-                <a class="inline-view-all" href="/cashback" style="float: none; font-size: 16px;">View All</a>
+                <a href="<?= Url::toRoute('/product/cashback');?>">Cashback Deals</a>
+                <a class="inline-view-all" href="<?= Url::toRoute('/product/cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
             <p style="margin-bottom: 20px;">Cashback to you paypal account.</p>
             <div>
                 <?php if (is_array($cashbackProducts) && !empty($cashbackProducts)):  $i=0;?>
                     <?php foreach ($cashbackProducts as $product):  $i++;?>
-                        <a class="freebies-entry" href="">
+                        <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                             <div style="position: relative;">
                                 <div class="cashback-circle-tip">
                                     <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
                                         <p style="margin: 0;">Cashback</p><p style="margin: 0;"><?= $product['cashback'] ?></p>
                                     </div>
                                 </div>
-                                <div href="" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
+                                <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                                 </div>
-                                <p class="hot-entity-title"><span href=""><?= $product['product']['name'] ?></span></p>
+                                <p class="hot-entity-title">
+                                    <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
+                                </p>
                                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
                                     <li class="account-left">
                                         <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
@@ -206,19 +212,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <?php endif; ?>
             </div>
         </div>
-        <?//= $this->render('../public/review.php') ?>
     </section>
 
 <section id="page" class="container visible-sm visible-xs">
     <div class="deals-classify-section row">
         <h3 class="deal-type-title" style="margin-top: 0;">
-            <a href="">Coupon Deals</a>
-            <a class="inline-view-all" href="">View All <i class="fa fa-angle-right view-all-icon" aria-hidden="true"></i></a>
+            <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon & Cashback Deals</a>
+            <a class="inline-view-all" href="<?= Url::toRoute('/product/coupon&cashback');?>">View All <i class="fa fa-angle-right view-all-icon" aria-hidden="true"></i></a>
         </h3>
-        <?php if (is_array($couponProducts) && !empty($couponProducts)): ?>
-            <?php foreach ($couponProducts as $product): ?>
+        <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)): ?>
+            <?php foreach ($cashbackCouponProducts as $product): ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 coupon-entry-container">
-                    <a href="#">
+                    <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                         <div class="deal-entry">
                             <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                             </div>
@@ -242,13 +247,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 
     <div class="deals-classify-section row">
         <h3 class="deal-type-title" style="margin-top: 0;">
-            <a href="">Cashback</a>
-            <a class="inline-view-all" href="">View All <i class="fa fa-angle-right view-all-icon" aria-hidden="true"></i></a>
+            <a href="<?= Url::toRoute('/product/cashback');?>">Cashback Deals</a>
+            <a class="inline-view-all" href="<?= Url::toRoute('/product/cashback');?>">View All <i class="fa fa-angle-right view-all-icon" aria-hidden="true"></i></a>
         </h3>
         <?php if (is_array($cashbackProducts) && !empty($cashbackProducts)): ?>
         <?php foreach ($cashbackProducts as $product): ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 coupon-entry-container">
-                    <a href="#">
+                    <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                         <div class="deal-entry">
                             <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                             </div>

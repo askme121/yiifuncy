@@ -32,8 +32,11 @@ ul {
 .btn{
     text-transform: none !important;
 }
-a, a:hover {
+a{
     color: #333;
+    text-decoration: none;
+}
+a:hover, a:active, a:visited {
     text-decoration: none;
 }
 #header {
@@ -561,7 +564,7 @@ a, a:hover {
     float: right;
     font-size: 14px;
     line-height: 18px;
-    color: #f93;
+    color: #f93 !important;
     font-weight: 400;
     position: relative;
     padding-right: 15px;
@@ -798,6 +801,9 @@ a, a:hover {
         font-weight: 700;
         margin: 20px 0;
         font-size: 16px;
+    }
+    #footer{
+        font-size: 12px;
     }
     #back-top {
         background-color: rgba(0,0,0,.4);

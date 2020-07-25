@@ -44,6 +44,17 @@ return [
             'enableStrictParsing' => false,
             'suffix' => '',
             'rules' => [
+                '<controller:(product)>' => '<controller>/index',
+                [
+                    'pattern' => 'product/<category>/<page:\d+>',
+                    'route' => 'product/index',
+                    'defaults' => ['category' => 'all', 'page' => 1],
+                ],
+                [
+                    'pattern' => 'offer/<url>/<id:\d+>',
+                    'route' => 'product/detail',
+                    'defaults' => ['url' => '', 'id' => 0],
+                ],
             ],
         ],
     ],

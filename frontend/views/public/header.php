@@ -31,16 +31,16 @@ use yii\helpers\Url;
                 </div>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="" target="_self">All Deals</a>
+                        <a href="<?= Url::toRoute('/product');?>" target="_self">All Deals</a>
                     </li>
                     <li>
-                        <a href="" target="_self">Cashback Deals</a>
+                        <a href="<?= Url::toRoute('/product/coupon&cashback');?>" target="_self">Coupon + Cashback</a>
                     </li>
                     <li>
-                        <a href="" target="_self">Coupon Deals</a>
+                        <a href="<?= Url::toRoute('/product/cashback');?>">Cashback Deals</a>
                     </li>
                     <li>
-                        <a href="" target="_self">Coupon + Cashback</a>
+                        <a href="<?= Url::toRoute('/product/coupon');?>" target="_self">Coupon Deals</a>
                     </li>
                     <li>
                         <a href="" target="_self">faq</a>
@@ -55,10 +55,10 @@ use yii\helpers\Url;
                 <?php if (!Yii::$app->user->isGuest) {?>
                     <ul class="nav navbar-nav navbar-right cbb-check-login" style="padding-right: 0;">
                         <li style="float: right; margin-left: 20px;">
-                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="">Join for free</a>
+                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::to('/site/register');?>">Join for free</a>
                         </li>
                         <li style="float: right;">
-                            <a class="register-login-a" href="" target="_self" style="padding: 0 !important;">Login</a>
+                            <a class="register-login-a" href="<?= Url::to('/site/login');?>" target="_self" style="padding: 0 !important;">Login</a>
                         </li>
                     </ul>
                 <?php } else {?>
