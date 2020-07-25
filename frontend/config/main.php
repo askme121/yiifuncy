@@ -44,7 +44,13 @@ return [
             'enableStrictParsing' => false,
             'suffix' => '',
             'rules' => [
+                'account/login' => '/site/login',
                 '<controller:(product)>' => '<controller>/index',
+                [
+                    'pattern' => 'product/<page:\d+>',
+                    'route' => 'product/index',
+                    'defaults' => ['page' => 1],
+                ],
                 [
                     'pattern' => 'product/<category>/<page:\d+>',
                     'route' => 'product/index',

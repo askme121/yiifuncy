@@ -1,27 +1,31 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
-
-use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = $name;
 ?>
-<div class="site-error">
+<style type="text/css">
+    @media (max-width:768px) {
+        .split{
+            height: 60px;
+        }
+    }
+</style>
+<div class="split"></div>
+<section id="page" class="container">
+    <div class="row" style="background-color: #fff;">
+        <div class="col-sm-12">
+            <div style="padding:20px 0 30px; min-height: 510px">
+                <div style="text-align: center;margin-bottom:20px;">
+                    <img style="width: 200px;" src="<?= getImgUrl('images/404.jpg') ?>">
+                </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+                <h4 class="text-center 450-tip" style="margin-bottom:20px;font-size: 14px;">Sorry, we can't find the page you were trying to reach.</h4>
+                <div class="text-center">
+                    <a class="btn upOrder-form-btn" style="height: 34px;line-height: 34px;padding: 0;" href="<?= Url::home()?>">Homepage</a>
+                    <a class="btn wite-btn" href="javascript:history.go(-1);" style="margin-left:30px;padding:0 14px;height:30px;line-height:28px;">Previous page</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+</section>

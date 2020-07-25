@@ -446,7 +446,6 @@ a:hover, a:active, a:visited {
     line-height: 22px;
     font-weight: 500;
     font-size: 18px;
-    margin-bottom: 34px;
     height: 44px;
     overflow: hidden;
     margin-top: 10px;
@@ -465,6 +464,9 @@ a:hover, a:active, a:visited {
 .prime-acount-list, .prime-entity-title {
     margin-bottom: 34px;
     overflow: hidden;
+}
+.normal-account-list {
+    margin: 16px 0 22px;
 }
 .prime-value {
     color: #f93;
@@ -632,7 +634,7 @@ a:hover, a:active, a:visited {
 #footer {
     background-color: #fff;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 0;
 }
 .footer-logo {
     max-width: 300px;
@@ -673,7 +675,7 @@ a:hover, a:active, a:visited {
 }
 .footer-nav-list li {
     float: left;
-    padding: 0 25px;
+    padding: 0 24px;
     height: 14px;
     line-height: 14px;
     border-left: 1px solid #ccc;
@@ -696,12 +698,54 @@ a:hover, a:active, a:visited {
     -webkit-transition: all .1s ease-in-out 0s;
     transition: all .1s ease-in-out 0s;
 }
+.bg-white {
+    background-color: #fff!important;
+}
+.pagination {
+    margin: 0 0 20px;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #f93!important;
+    border-color: #f93!important;
+}
+.pagination>li>a, .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span, .pagination>li>span:focus, .pagination>li>span:hover {
+    color: #f93;
+}
+.page_box{
+    text-align: center;
+}
+.upOrder-form-btn {
+    color: #fff!important;
+    background-color: #ff9936!important;
+    height: 30px!important;
+    padding: 0 15px!important;
+    font-size: 14px;
+    font-weight: 700!important;
+    border-radius: 3px!important;
+    text-transform: none!important;
+    line-height: 30px!important;
+    display: inline-block!important;
+    min-width: 120px!important;
+}
+.wite-btn {
+    border: 1px solid #ff9936;
+}
+.wite-btn, .wite-btn:hover {
+    color: #ff9936;
+}
+
 @media (min-width:1400px) {
     .container {
         width:1370px
     }
 }
 @media (min-width:769px) {
+    .container {
+        padding: 0!important;
+    }
     .navbar {
         border-radius:4px
     }
@@ -808,13 +852,12 @@ a:hover, a:active, a:visited {
     #back-top {
         background-color: rgba(0,0,0,.4);
         border-radius: 50%;
-        bottom: 50px;
+        bottom: 80px;
         color: #fff;
         display: none;
         height: 40px;
         position: fixed;
         right: 10px;
-        bottom: 140px;
         text-align: center;
         width: 40px;
         opacity: .9;
@@ -826,6 +869,14 @@ a:hover, a:active, a:visited {
     #back-top span {
         font-size: 22px;
         line-height: 40px;
+    }
+    .page_box{
+        background-color: #fff;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    .pagination {
+        margin-top: 20px;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

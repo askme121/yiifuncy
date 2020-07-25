@@ -8,7 +8,7 @@ use yii\helpers\Url;
             <span class="info-circel" style="display:none;"></span>
         </a>
     </div>
-    <a href="" class="nav-logo-container">
+    <a href="<?= Url::home()?>" class="nav-logo-container">
         <img class="nav-logo-icon" src="<?= getImgUrl('images/logo.png') ?>" style="width: 120px;">
     </a>
     <div>
@@ -25,7 +25,7 @@ use yii\helpers\Url;
                 <div class="navbar-header">
                     <div id="logo" style="background: url(<?= getImgUrl('images/logo.png'); ?>) no-repeat center center; background-size: contain;">
                         <h1 class="logo-keyword">
-                            <a href="#">Deals on Amazon</a>
+                            <a href="<?= Url::home()?>">Deals on Amazon</a>
                         </h1>
                     </div>
                 </div>
