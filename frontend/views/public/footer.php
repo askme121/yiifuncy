@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 ?>
-<div id="newsletter">
+<div id="newsletter" class="hidden-sm hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12 newsletter-tip-block">
@@ -27,7 +27,7 @@ use yii\helpers\Html;
     </div>
 </div>
 <footer id="footer">
-    <div class="container">
+    <div class="container hidden-sm hidden-xs">
         <div class="row">
             <div class="col-sm-4">
                 <div class="footer-logo">
@@ -38,7 +38,7 @@ use yii\helpers\Html;
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="footer-section" style="width: 55%;">
+                <div class="footer-section" style="width: 75%;">
                     <p class="footer-title">HELPFUL LINKS</p>
 
                     <div style="width: 50%; float: left;">
@@ -67,7 +67,21 @@ use yii\helpers\Html;
             © 2020 Thefuncy &nbsp;&nbsp;&nbsp;&nbsp;<a href="">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@thefuncy.com">support@thefuncy.com</a>
         </div>
     </div>
+    <div class="hidden-md hidden-lg">
+        <ul class="footer-nav-list col-xs-12">
+            <li>
+                <a href="">About Us</a>
+            </li>
+            <li>
+                <a href="">Contact Us</a>
+            </li>
+            <li>
+                <a href="">Terms&amp;Privacy</a>
+            </li>
+        </ul>
+        <p class="copyright-txt">© 2020 Thefuncy All Rights Reserved.</p>
+    </div>
 </footer>
 <a id="back-top" href="">
-    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+    <span class="fa fa-arrow-up" aria-hidden="true"></span>
 </a>

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
+use common\models\Config;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -62,12 +63,17 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $site_id = Yii::$app->params['site_id'];
         $time = time();
+        $meta = [];
+        $meta['title'] = Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $select = "t_activity.url_key,product_id,price,cashback,coupon_type,coupon,price,qty";
-        $top_all = Activity::find()->select($select)->innerJoinWith('product')->where(['t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
-        $free = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
-        $cashback = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>Yii::$app->params['site_id']])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
-        return $this->render('index', ['top_all'=>$top_all, 'couponProducts'=>$free, 'cashbackProducts'=>$cashback]);
+        $top_all = Activity::find()->select($select)->innerJoinWith('product')->where(['t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        $free = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        $cashback = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        return $this->render('index', ['meta'=>$meta,'top_all'=>$top_all, 'couponProducts'=>$free, 'cashbackProducts'=>$cashback]);
     }
 
     public function actionLogin()

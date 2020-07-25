@@ -51,7 +51,7 @@ class ConfigController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->render('createbasic', [
                 'model' => $model,
             ]);
         }
@@ -65,7 +65,7 @@ class ConfigController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
-            return $this->render('basic', [
+            return $this->render('updatebasic', [
                 'model' => $model,
             ]);
         }
