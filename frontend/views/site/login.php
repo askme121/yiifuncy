@@ -1,41 +1,54 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $meta['title'];
+$this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
+$this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                    <br>
-                    Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
+<section class="login_box">
+    <div class="container">
+        <div class="row" style="margin-bottom: 30px;">
+            <div class="signin-container col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="ibox" style="max-width: 400px; margin: 0 auto 50px;">
+                    <div class="ibox-title text-center" style="background-color: #f93; color: white; border: 1px solid #f2f2f2; padding: 15px 0; border-bottom: 0; font-size: 1.6em;">
+                        Login
+                    </div>
+                    <div class="ibox-content" style="border: 1px solid #f2f2f2;">
+                        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                        <div class="form-group email-container">
+                            <input type="text" name="email" class="form-control" id="email" autocomplete="false" value="" placeholder="Email">
+                            <div class="input-clear">
+                                <span>x</span>
+                            </div>
+                            <div id="mailBox" style="top:44px;left:0px;width:336px"></div>
+                        </div>
+                        <div class="form-group" style="position: relative;">
+                            <input type="password" name="password" class="form-control" id="password" value="" placeholder="Password">
+                            <div class="show-hide-icon" id="show-btn">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </div>
+                            <div class="show-hide-icon" id="hide-btn" style="display: none">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <p class="forget-tips" style="text-align: right; margin: 10px 0;">
+                            <a href="https://www.cashbackbase.com/account/forgotpassword" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
+                        </p>
+                        <?= Html::button('Sign In', ['class' => 'btn upOrder-form-btn ladda-button', 'id' => 'submit-sign-in', 'style' => 'width: 100%; height: 32px;']) ?>
+                        <hr>
+                        <button type="button" class="btn upOrder-form-btn" id="LoginWithAmazon" style="width: 100%; height: 32px; background-color: #f98;">Sign In With Amazon</button>
+                        <p style="margin: 10px 0 0 0;">
+                            <span style="font-size: 12px; margin-right: 10px;">Not a member?</span><a href="/account/register" style="color: #3399ff; font-size: 12px;">Join for free</a>
+                        </p>
+                        <?php ActiveForm::end(); ?>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm hidden-xs" style="border-left: 1px solid #EEEEEE">
+                <img src="<?= getImgUrl('images/sigin-icon.png'); ?>" style="margin: 0px auto 0;max-width: 100%;margin-bottom: 50px;display: block;">
+            </div>
         </div>
     </div>
-</div>
+</section>

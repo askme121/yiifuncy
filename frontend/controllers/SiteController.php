@@ -81,15 +81,18 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
+        $site_id = Yii::$app->params['site_id'];
+        $meta = [];
+        $meta['title'] = 'Log In | '.Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
             $model->password = '';
-
             return $this->render('login', [
-                'model' => $model,
+                'model' => $model, 'meta' => $meta
             ]);
         }
     }
@@ -125,6 +128,11 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
+        $site_id = Yii::$app->params['site_id'];
+        $meta = [];
+        $meta['title'] = 'Log In | '.Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
@@ -132,7 +140,7 @@ class SiteController extends Controller
         }
 
         return $this->render('signup', [
-            'model' => $model,
+            'model' => $model, 'meta' => $meta
         ]);
     }
 

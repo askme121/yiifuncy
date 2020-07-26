@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 ?>
 <header id="header" class="hidden-lg hidden-md">
     <div>
@@ -52,13 +53,13 @@ use yii\helpers\Url;
 
                     </li>
                 </ul>
-                <?php if (!Yii::$app->user->isGuest) {?>
+                <?php if (Yii::$app->user->isGuest) {?>
                     <ul class="nav navbar-nav navbar-right cbb-check-login" style="padding-right: 0;">
                         <li style="float: right; margin-left: 20px;">
-                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::to('/site/register');?>">Join for free</a>
+                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::toRoute('/site/register');?>">Join for free</a>
                         </li>
                         <li style="float: right;">
-                            <a class="register-login-a" href="<?= Url::to('/site/login');?>" target="_self" style="padding: 0 !important;">Login</a>
+                            <a class="register-login-a" href="<?= Url::toRoute('/site/login');?>" target="_self" style="padding: 0 !important;">Login</a>
                         </li>
                     </ul>
                 <?php } else {?>
@@ -94,9 +95,14 @@ use yii\helpers\Url;
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="<?= Url::to('/site/logout');?>" target="_self">
-                                        <img class="nav-dropdown-icon" src="<?= getImgUrl('images/sign-out.png'); ?>"> Sign Out
-                                    </a>
+                                    <?=
+                                    Html::beginForm(['/site/logout'], 'post').
+                                    Html::submitButton(
+                                        '<img class="nav-dropdown-icon" src="'.getImgUrl('images/sign-out.png').'"> Sign Out',
+                                        ['class' => 'btn btn-link logout']
+                                    ).
+                                    Html::endForm();
+                                    ?>
                                 </li>
                             </ul>
                         </li>

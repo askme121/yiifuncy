@@ -60,6 +60,7 @@ a:hover, a:active, a:visited {
     top:0;
     width:100%;
     z-index:1000;
+    height: 75px;
 }
 .split{
     height: 10px;
@@ -736,6 +737,12 @@ a:hover, a:active, a:visited {
 .wite-btn, .wite-btn:hover {
     color: #ff9936;
 }
+.login_box{
+    background: #fff;
+    width: 100%;
+    margin-top: 75px;
+    padding-top: 30px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -802,7 +809,7 @@ a:hover, a:active, a:visited {
     }
     .split{
         height: 20px;
-        margin-top: 85px;
+        margin-top: 75px;
     }
     .inline-view-all {
         font-size: 18px;

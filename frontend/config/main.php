@@ -45,6 +45,7 @@ return [
             'suffix' => '',
             'rules' => [
                 'account/login' => '/site/login',
+                'account/register' => '/site/signup',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',
