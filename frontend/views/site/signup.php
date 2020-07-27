@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\captcha\Captcha;
 
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
@@ -41,12 +42,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
 
                             <div class="form-group email-container">
-                                <input type="text" name="email" class="form-control" id="email" value="" placeholder="Email">
+                                <input type="text" name="username" class="form-control" id="username" value="" placeholder="Email">
                                 <div class="input-clear">
                                     <span>x</span>
                                 </div>
-
-                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
+                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div>
+                            </div>
                             <div class="form-group" style="position: relative;">
                                 <input type="password" name="password" class="form-control" id="register-pass" value="" placeholder="Password">
                                 <div class="show-hide-icon" id="show-btn">
@@ -58,12 +59,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                             <div class="form-group email-container">
                                 <input type="text" name="captcha" class="form-control verify-code" placeholder="*Enter code on the right" style="margin-top: 0 !important;">
-                                <img id="captcha" src="https://www.cashbackbase.com/captcha/flat?tzARVT10" onclick="this.src='/captcha/flat?'+Math.random()">
+                                <img id="captcha" src="<?= Url::toRoute('/site/captcha');?>" onclick="this.src='/captcha?'+Math.random()">
                                 <br>
                                 <span style="margin-top: 3px">
                                         Click on the picture to change one.
                                 </span>
-                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
+                            </div>
                             <div class="form-group">
                                 <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to cashbackbase's
                                     <a class="agreement" target="_blank" href="https://www.cashbackbase.com/terms" style="color:#2b95ff;">terms of service</a>
@@ -88,3 +89,83 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </section>
+<script>
+    <?php $this->beginBlock('js') ?>
+    $(document).ready(function(){
+        $("#submit-sign-up").click(function(){
+            var first_name = $('input[name="first_name"][id="first_name"]').val();
+            var last_name = $('input[name="last_name"][id="last_name"]').val();
+            var username = $('input[name="username"][id="username"]').val();
+            var password = $('input[name="password"][id="register-pass"]').val();
+            var captcha = $('input[name="captcha"]').val();
+            if (first_name == '')
+            {
+                $("#first_name").focus();
+                return false;
+            }
+            if (last_name == '')
+            {
+                $("#last_name").focus();
+                return false;
+            }
+            if (username == '')
+            {
+                $("#username").focus();
+                return false;
+            }
+            if (password == '')
+            {
+                $("#register-pass").focus();
+                return false;
+            }
+            if (captcha == '')
+            {
+                $('input[name="captcha"]').focus();
+                return false;
+            }
+            var btn = $(this);
+            if (btn.hasClass("onused")){
+                return false;
+            }
+            btn.addClass("onused");
+            $.ajax({
+                type: 'post',
+                url: $("#form-signup").attr("action"),
+                dataType: 'json',
+                data: {
+                    first_name: first_name,
+                    last_name: last_name,
+                    username: username,
+                    password: password,
+                    captcha: captcha
+                },
+                success: function(response){
+                    if (response.code == 1) {
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.href = response.href;
+                    } else {
+                        btn.removeClass("onused");
+                        swal({
+                            type: 'error',
+                            title: 'Oops',
+                            text: response.message,
+                            html: true
+                        });
+                    }
+                },
+                error: function(){
+                    btn.removeClass("onused");
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
+            });
+        });
+    });
+    <?php $this->endBlock(); ?>
+    <?php $this->registerJs($this->blocks['js'],\yii\web\View::POS_END); ?>
+</script>

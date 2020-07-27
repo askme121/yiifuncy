@@ -8,6 +8,12 @@ body {
 .btn, body{
     font-family: Arial,sans-serif;
 }
+.btn, button{
+    outline: none !important;
+}
+.btn:focus, button:focus, .btn:active, button:active{
+    outline: none !important;
+}
 body, html{
     letter-spacing: .3px;
 }

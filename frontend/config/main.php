@@ -46,6 +46,7 @@ return [
             'rules' => [
                 'account/login' => '/site/login',
                 'account/register' => '/site/signup',
+                'captcha' => '/site/captcha',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

@@ -29,7 +29,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['login','signup','captcha'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -58,6 +58,14 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'backColor'=>0x000000,//背景颜色
+                'maxLength' => 5, //最大显示个数
+                'minLength' => 4,//最少显示个数
+                'padding' => 5,//间距
+                'height'=>35, //高度
+                'width' => 130,  //宽度
+                'foreColor'=>0xffffff, //字体颜色
+                'offset'=>4, //设置字符偏移量 有效果
             ],
         ];
     }
@@ -95,7 +103,7 @@ class SiteController extends Controller
                     $error = $model->firstErrors;
                     return json_encode([
                         'code' => 401,
-                        'message' => $error,
+                        'message' => array_values($error),
                     ]);
                 } else {
                     if ($model->login()) {
@@ -163,9 +171,27 @@ class SiteController extends Controller
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if (!$model->validate()) {
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
+            } else {
+                if ($model->signup()) {
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'register successful',
+                        'href' => Url::home(),
+                    ]);
+                } else {
+                    return json_encode([
+                        'code' => 0,
+                        'message' => 'register failed',
+                    ]);
+                }
+            }
         }
 
         return $this->render('signup', [
