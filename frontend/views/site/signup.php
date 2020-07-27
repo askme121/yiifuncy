@@ -2,11 +2,19 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
 $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
+<style type="text/css">
+    @media (max-width:768px) {
+        #footer{
+            margin-bottom: 50px;
+        }
+    }
+</style>
 <section class="login_box">
     <div class="container">
         <div class="row" style="margin-bottom: 30px;">
@@ -52,9 +60,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <input type="text" name="captcha" class="form-control verify-code" placeholder="*Enter code on the right" style="margin-top: 0 !important;">
                                 <img id="captcha" src="https://www.cashbackbase.com/captcha/flat?tzARVT10" onclick="this.src='/captcha/flat?'+Math.random()">
                                 <br>
-                                <span>
+                                <span style="margin-top: 3px">
                                         Click on the picture to change one.
-                                    </span>
+                                </span>
                                 <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
                             <div class="form-group">
                                 <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to cashbackbase's
@@ -68,7 +76,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                             <hr>
                             <div class="text-center">
-                                <a class="btn upOrder-form-btn" href="/account/login" style="width: 100%;height: 43px; line-height: 40px;">Login</a>
+                                <a class="btn upOrder-form-btn" href="<?= Url::toRoute('/site/login');?>" style="width: 100%;height: 43px; line-height: 40px;">Login</a>
                             </div>
                         <?php ActiveForm::end(); ?>
                     </div>

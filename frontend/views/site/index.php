@@ -8,12 +8,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <?= $this->render('../public/topbar.php') ?>
 <style type="text/css">
     @media (max-width:768px) {
-        #footer {
-            margin-bottom: 50px;
-        }
-        #back-top {
-            bottom: 150px;
-        }
+
     }
 </style>
 <div class="split"></div>

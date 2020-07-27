@@ -4,10 +4,17 @@ use yii\helpers\Html;
 ?>
 <header id="header" class="hidden-lg hidden-md">
     <div>
-        <a href="" class="user-icon-container" style="margin-left:14px;">
-            <img src="<?= getImgUrl('images/user-icon-phone.png') ?>" style="height: 23px;margin-top: 16px;">
-            <span class="info-circel" style="display:none;"></span>
-        </a>
+        <?php if (Yii::$app->user->isGuest) {?>
+            <a href="<?= Url::toRoute('/site/login');?>" class="user-icon-container" style="margin-left:14px;">
+                <img src="<?= getImgUrl('images/user-icon-phone.png') ?>" style="height: 23px;margin-top: 16px;">
+                <span class="info-circel" style="display:none;"></span>
+            </a>
+        <?php } else {?>
+            <a href="<?= Url::toRoute('/user/index');?>" class="user-icon-container" style="margin-left:14px;">
+                <img src="<?= getImgUrl('images/user-icon-phone.png') ?>" style="height: 23px;margin-top: 16px;">
+                <span class="info-circel" style="display:none;"></span>
+            </a>
+        <?php }?>
     </div>
     <a href="<?= Url::home()?>" class="nav-logo-container">
         <img class="nav-logo-icon" src="<?= getImgUrl('images/logo.png') ?>" style="width: 120px;">
@@ -56,7 +63,7 @@ use yii\helpers\Html;
                 <?php if (Yii::$app->user->isGuest) {?>
                     <ul class="nav navbar-nav navbar-right cbb-check-login" style="padding-right: 0;">
                         <li style="float: right; margin-left: 20px;">
-                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::toRoute('/site/register');?>">Join for free</a>
+                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::toRoute('/site/signup');?>">Join for free</a>
                         </li>
                         <li style="float: right;">
                             <a class="register-login-a" href="<?= Url::toRoute('/site/login');?>" target="_self" style="padding: 0 !important;">Login</a>
@@ -81,11 +88,6 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="">
                                         <img class="nav-dropdown-icon" src="<?= getImgUrl('images/my-deal.png'); ?>"> Coupon Deals
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img class="nav-dropdown-icon" src="<?= getImgUrl('images/my-wishlist.png'); ?>"> My Wishlist
                                     </a>
                                 </li>
                                 <li>

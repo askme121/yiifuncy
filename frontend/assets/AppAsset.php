@@ -10,10 +10,11 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/font-awesome.min.css',
-        'css/site.css',
         'css/sweetalert.css',
+        'css/site.css',
     ];
     public $js = [
+        'js/sweetalert.min.js',
         'js/common.js',
         'js/site.js',
     ];

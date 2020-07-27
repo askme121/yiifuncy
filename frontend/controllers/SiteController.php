@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use yii\helpers\Url;
 use Yii;
 use common\models\Config;
 use yii\base\InvalidArgumentException;
@@ -87,8 +88,36 @@ class SiteController extends Controller
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if (Yii::$app->request->post()) {
+            $param = Yii::$app->request->post();
+            if ($model->load($param, '')){
+                if (!$model->validate()) {
+                    $error = $model->firstErrors;
+                    return json_encode([
+                        'code' => 401,
+                        'message' => $error,
+                    ]);
+                } else {
+                    if ($model->login()) {
+                        return json_encode([
+                            'code' => 1,
+                            'message' => 'login successful',
+                            'href' => Url::home(),
+                        ]);
+                    } else {
+                        return json_encode([
+                            'code' => 0,
+                            'message' => 'login failed',
+                        ]);
+                    }
+                }
+            } else {
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 400,
+                    'message' => $error,
+                ]);
+            }
         } else {
             $model->password = '';
             return $this->render('login', [
