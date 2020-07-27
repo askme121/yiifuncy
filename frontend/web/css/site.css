@@ -876,6 +876,42 @@ a:hover, a:active, a:visited {
     display: inline-block!important;
     height: 36px!important;
 }
+.banner-title-detail {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+}
+.carousel-acount-list {
+    margin-bottom: 10px;
+}
+.carousel li {
+    margin-right: 0!important;
+}
+.account-fullfill, .account-left, .account-off {
+    float: left;
+    text-align: center;
+}
+.prime-value {
+    color: #f93;
+    margin-bottom: 0;
+}
+.prime-tile {
+    color: #666;
+    margin-bottom: 0;
+}
+.space-vertical-lines {
+    width: 1px;
+    height: 32px;
+    background-color: #efefef;
+    float: left;
+    margin-top: 11px;
+}
+.fullfill-methed, .prime-tile {
+    color: #666;
+    margin-bottom: 0;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -1023,6 +1059,9 @@ a:hover, a:active, a:visited {
     }
     .signin-container{
         min-height: 508px;
+    }
+    #detail-banner{
+        background: #fff;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

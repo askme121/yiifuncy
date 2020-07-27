@@ -1,64 +1,57 @@
 <?php
-
+$this->title = $meta['title'];
+$this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
+$this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
 <div class="split"></div>
 <div id="detail-banner">
     <section class="container">
         <div class="row detail-contents">
-            <input type="hidden" class="product_view_id" value="<?= $_id ?>">
+            <input type="hidden" class="product_view_id" value="<?= $model['id']?>">
             <ul>
                 <li class="deal-detail-content col-xs-12 detail-contents-1" style="padding: 0;">
                     <div id="deal-detail-content" style="position: relative;top: -100px;"></div>
                     <div id="detail-arousel" class="carousel slide">
-                        <?php # 图片部分。
-                        $imageParam = [
-                            'media_size' => $media_size,
-                            'image' => $image_thumbnails,
-                            'productImgMagnifier' => $productImgMagnifier,
-                        ];
-                        ?>
-                        <?= Yii::$service->page->widget->render('product/image',$imageParam); ?>
-
                         <div style="position: relative;">
                             <div id="wish-btn-container">
                                 <div class="wish-icon-container">
                                     <?php if (Yii::$app->user->isGuest) {?>
-                                        <img class="wish-icon" src="<?= Yii::$service->image->getImgUrl('addons/fecamazon/wish-icon.png') ?>" data-toggle="modal" data-target=".is-logged-in-modal">
+                                        <img class="wish-icon" src="<?= getImgUrl('images/wish-icon.png') ?>" data-toggle="modal" data-target=".is-logged-in-modal">
                                     <?php } else {?>
-                                        <img class="wish-icon" id="collect" data-url="<?= Yii::$service->url->getUrl('catalog/favoriteproduct/favo') ?>"  src="<?= Yii::$service->image->getImgUrl('addons/fecamazon/wish-icon.png') ?>" style="display: block;">
-                                        <img class="wish-icon" id="uncollect" data-url="<?= Yii::$service->url->getUrl('catalog/favoriteproduct/favo') ?>"  src="<?= Yii::$service->image->getImgUrl('addons/fecamazon/wish-icon-active.png') ?>" style="display:none ;">
+                                        <img class="wish-icon" id="collect" data-url=""  src="<?= getImgUrl('images/wish-icon.png') ?>" style="display: block;">
+                                        <img class="wish-icon" id="uncollect" data-url=""  src="<?= getImgUrl('images/wish-icon-active.png') ?>" style="display:none ;">
                                     <?php }?>
                                 </div>
-                                <font id="total-collect"><?= $favorite_count ?></font>
+                                <font id="total-collect">0</font>
                             </div>
                         </div>
 
                         <h1 class="banner-title-detail">
-                            <?= $name; ?>
+                            <?= $model['product']['name']; ?>
                         </h1>
 
                         <div style="overflow: hidden;">
                             <ul class="prime-acount-list carousel-acount-list col-xs-8" style="font-size: 13px;">
                                 <li class="account-left" style="width: 26%;">
-                                    <p class="prime-value"><?= $qty ?></p>
+                                    <p class="prime-value"><?= $model['qty'] ?></p>
                                     <p class="prime-tile">Left</p>
                                 </li>
                                 <li class="space-vertical-lines"></li>
                                 <li class="account-off" style="width: 36%;">
-                                    <p class="prime-value"><?= $symbol ?><?= $cash_back ?></p>
+                                    <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
                                     <p class="prime-tile">Cashback</p>
                                 </li>
                                 <li class="space-vertical-lines"></li>
                                 <li class="account-fullfill" style="width: 36%;">
                                     <p class="fullfill-methed">Fullfilled by</p>
                                     <p class="prime-tile">
-                                        <img class="prime-amz-logo" src="<?= Yii::$service->image->getImgUrl('addons/fecamazon/v3-amz-logo.jpg') ?>" style="height: 18px;">
+                                        <img class="prime-amz-logo" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>" style="height: 18px;">
                                     </p>
                                 </li>
                             </ul>
                             <div class="prime-value-info col-xs-4" style="margin-top: 10px;padding: 0 10px 0 0;">
-                                <span class="origin-price"><?= $symbol ?><?= $price ?></span>
-                                <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= $symbol ?><?= $amazonCouponLastPrice ?></span>
+                                <span class="origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span>
+                                <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= ($model['price']-$model['cashback']) ?></span>
                             </div>
                         </div>
                     </div>
@@ -68,22 +61,22 @@
                         <h2 class="function-block-title">4 step to get cashback</h2>
 
                         <div class="col-xs-3 detail-step">
-                            <img class="step-item-icon lazy loaded" data-src="<?= Yii::$service->image->getImgUrl('images/step-add-icon.png'); ?>" data-was-processed="true">
+                            <img class="step-item-icon lazy loaded" data-src="<?= getImgUrl('images/step-add-icon.png'); ?>" data-was-processed="true">
                             Deal request
                         </div>
 
                         <div class="col-xs-3 detail-step">
-                            <img class="step-item-icon lazy loaded" data-src="<?= Yii::$service->image->getImgUrl('images/step-finish-icon.png'); ?>" data-was-processed="true">
+                            <img class="step-item-icon lazy loaded" data-src="<?= getImgUrl('images/step-finish-icon.png'); ?>" data-was-processed="true">
                             Purchase on amazon
                         </div>
 
                         <div class="col-xs-3 detail-step">
-                            <img class="step-item-icon lazy loaded" data-src="<?= Yii::$service->image->getImgUrl('images/step-fill-icon.png'); ?>" data-was-processed="true">
+                            <img class="step-item-icon lazy loaded" data-src="<?= getImgUrl('images/step-fill-icon.png'); ?>" data-was-processed="true">
                             Submit order info
                         </div>
 
                         <div class="col-xs-3 detail-step">
-                            <img class="step-item-icon lazy loaded" data-src="<?= Yii::$service->image->getImgUrl('images/step-back-icon.png'); ?>" data-was-processed="true">
+                            <img class="step-item-icon lazy loaded" data-src="<?= getImgUrl('images/step-back-icon.png'); ?>" data-was-processed="true">
                             Get cash back
                         </div>
 
@@ -96,7 +89,7 @@
                     <div id="describe-container" style="position: relative;top: -100px;"></div>
                     <h2 class="function-block-title" style="margin-top: 0;">Description</h2>
                     <div class="detail-deal-description">
-                        <?= $description; ?>
+                        <?//= $description; ?>
                     </div>
                 </li>
             </ul>
@@ -106,7 +99,7 @@
 
 <div class="detail-requestbtn-container">
     <div class="row">
-        <?php if ($qty>0){?>
+        <?php if ($model['qty']>0){?>
             <button type="button" class="btn btn-lg btn-right-content" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
                 <span class="v3-detail-btn-content">Deal Request</span>
             </button>

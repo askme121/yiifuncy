@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\ActivityType;
 use common\models\Activity;
 use common\models\Config;
+use common\models\Product;
 use yii\web\Controller;
 use Yii;
 use yii\data\Pagination;
@@ -79,12 +80,28 @@ class ProductController extends Controller
     {
         $param = Yii::$app->request->get();
         $site_id = Yii::$app->params['site_id'];
-        $time = time();
         $meta = [];
+        $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
         if (isset($param['url']) && !empty($param['url'])){
-            return $this->render('detail');
+            $url_key = trim($param['url']);
+            $activity_id = Activity::findOne(['url_key'=>$url_key])->id;
+            if (empty($activity_id)){
+                return $this->render('/site/error');
+            }
+            $select = "id,t_activity.url_key,product_id,price,cashback,coupon_type,coupon,price,qty";
+            $model = Activity::find()->select($select)->where(['id'=>$activity_id,'site_id'=>$site_id])->asArray()->one();
+            if ($model){
+                $model['product'] = Product::find()->select("id,name,sku,url_key,thumb_image,image,meta_title,meta_keywords,meta_description")->where(['id' => $model['product_id']])->asArray()->one();
+                $meta['title'] = $model['product']['meta_title'];
+                $meta['description'] = $model['product']['meta_description'];
+                $meta['keyword'] = $model['product']['meta_keywords'];
+                return $this->render('detail', ['model' => $model, 'meta' => $meta, 'currentUrl' => $currentUrl]);
+            } else {
+                return $this->render('/site/error');
+            }
+
         } else {
-            return $this->render('/site/error', ['name'=>'error', 'message'=>'Sorry, we can\'t find the page you were trying to reach.']);
+            return $this->render('/site/error');
         }
     }
 }
