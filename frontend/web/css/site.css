@@ -1424,6 +1424,12 @@ button.close {
         padding: 1px;
         position: inherit;
     }
+    .modal-dialog {
+        width: 600px;
+        position: relative;
+        margin: 80px auto !important;
+
+    }
 }
 @media (max-width:768px) {
     #bs-navbar .navbar-nav li {
@@ -1494,6 +1500,9 @@ button.close {
     #detail-banner{
         background: #fff;
         margin-top: 45px;
+    }
+    .zoomContainer{
+        display: none !important;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

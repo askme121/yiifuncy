@@ -7,7 +7,7 @@ if(is_array($gallerys) && !empty($gallerys)):
 		foreach($gallerys as $gallery):
 		?>
         <li>
-             <img class="img-responsive cursor" src="<?= $gallery['thumb_image'] ?>">
+             <img class="img-responsive cursor" src="<?= $gallery['thumb_image'] ?>" data-src="<?= $gallery['image'] ?>">
         </li>
         <?php endforeach; ?>
     </ul>
