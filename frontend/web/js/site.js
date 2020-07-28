@@ -12,7 +12,12 @@ $(function() {
             $(this).attr("src", $(this).data('src'));
         }
     });
+    $("#detail-img-list li img").each(function () {
+        var src = $(this).attr('src');
+
+    });
 });
+
 $(document).ready(function(){
     $("#back-top").hide();
     $(window).scroll(function(){

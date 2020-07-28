@@ -14,6 +14,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/bootstrap.min.js',
+        'js/jquery.elevatezoom.js',
         'js/sweetalert.min.js',
         'js/common.js',
         'js/site.js',

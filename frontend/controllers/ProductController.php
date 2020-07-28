@@ -91,10 +91,17 @@ class ProductController extends Controller
             $select = "id,t_activity.url_key,product_id,price,cashback,coupon_type,coupon,price,qty";
             $model = Activity::find()->select($select)->where(['id'=>$activity_id,'site_id'=>$site_id])->asArray()->one();
             if ($model){
-                $model['product'] = Product::find()->select("id,name,sku,url_key,thumb_image,image,meta_title,meta_keywords,meta_description")->where(['id' => $model['product_id']])->asArray()->one();
+                $model['product'] = Product::find()->select("id,name,sku,url_key,thumb_image,image,mutil_image,attr_group,attr_group_info,meta_title,meta_keywords,meta_description")->where(['id' => $model['product_id']])->asArray()->one();
                 $meta['title'] = $model['product']['meta_title'];
                 $meta['description'] = $model['product']['meta_description'];
                 $meta['keyword'] = $model['product']['meta_keywords'];
+                $mutil_image = unserialize($model['product']['mutil_image'])? unserialize($model['product']['mutil_image']): [];
+                if ($mutil_image){
+                    array_unshift($mutil_image, ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']]);
+                    $model['product']['mutil_image'] = $mutil_image;
+                } else {
+                    $model['product']['mutil_image'][] = ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']];
+                }
                 return $this->render('detail', ['model' => $model, 'meta' => $meta, 'currentUrl' => $currentUrl]);
             } else {
                 return $this->render('/site/error');
