@@ -1,11 +1,9 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use backend\assets\LayuiAsset;
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
+LayuiAsset::register($this);
 $this->title = '管理登录';
 
 $fieldOptions1 = [
@@ -15,10 +13,8 @@ $fieldOptions1 = [
 ?>
 
 <div class="login-box">
-    <!-- /.login-logo -->
     <div class="login-box-body">
         <h1>找回密码</h1>
-
         <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form','options'=>['class' => 'layui-form'], 'enableClientValidation' => false]); ?>
 
         <?= $form
@@ -29,9 +25,6 @@ $fieldOptions1 = [
         <div class="layui-form-item">
 			<?= Html::submitButton('发送邮件', ['class' => 'layui-btn login_btn', 'name' => 'login-button']) ?>
         </div>
-		
         <?php ActiveForm::end(); ?>
-
     </div>
-    <!-- /.login-box-body -->
-</div><!-- /.login-box -->
+</div>
