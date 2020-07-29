@@ -35,7 +35,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                         </div>
                         <p class="forget-tips" style="text-align: right; margin: 10px 0;">
-                            <a href="https://www.cashbackbase.com/account/forgotpassword" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
+                            <a href="<?= Url::toRoute('/site/request-password-reset')?>" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
                         </p>
                         <?= Html::button('Sign In', ['class' => 'btn upOrder-form-btn ladda-button', 'id' => 'submit-sign-in', 'style' => 'width: 100%; height: 32px;']) ?>
                         <!--<hr>
