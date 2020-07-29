@@ -6,7 +6,7 @@ $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
 $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
-<?= $this->render('../public/topbar.php') ?>
+<?= $this->render('../public/topbar.php', ['curr' => $curr]) ?>
 <div class="split"></div>
 <div class="container">
     <div class="row visible-sm visible-xs">
@@ -24,12 +24,15 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     </p>
                                     <ul class="deal-account-list">
                                         <li>
-                                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
+                                            <p class="prime-value">
+                                                <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['final_price'] ?>
+                                                <span class="origin-price new-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></span>
+                                            </p>
                                             <p class="prime-tile">Price</p>
                                         </li>
                                         <li class="deal-price-cotainer">
-                                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
-                                            <p class="prime-tile">Cashback</p>
+                                            <p class="prime-value"><?= $product['total_off'] ?> %</p>
+                                            <p class="prime-tile">Off</p>
                                         </li>
                                     </ul>
                                 </div>

@@ -26,30 +26,93 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <h1 class="banner-title-detail">
                                 <?= $model['product']['name']; ?>
                             </h1>
-
+                            <?php if ($model['type'] == 3){?>
+                                <div style="margin-top: 10px; margin-bottom: 10px; padding-left: 10px;">
+                                    <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['final_price'] ?></span>
+                                    <span class="origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span>
+                                </div>
+                            <?php }?>
                             <div style="overflow: hidden;">
                                 <ul class="prime-acount-list carousel-acount-list" style="font-size: 13px;">
-                                    <li class="account-left" style="width: 24%">
-                                        <span class="origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span><br>
-                                        <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= ($model['price']-$model['cashback']) ?></span>
-                                    </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="account-left" style="width: 26%;">
-                                        <p class="prime-value"><?= $model['qty'] ?></p>
-                                        <p class="prime-tile">Left</p>
-                                    </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="account-off" style="width: 25%;">
-                                        <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
-                                        <p class="prime-tile">Cashback</p>
-                                    </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="account-fullfill" style="width: 23%;">
-                                        <p class="fullfill-methed">Fullfilled by</p>
-                                        <p class="prime-tile">
-                                            <img class="prime-amz-logo" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>" style="height: 18px;">
-                                        </p>
-                                    </li>
+                                    <?php if ($model['type'] == 2){?>
+                                        <li class="account-left" style="width: 24%">
+                                            <span class="origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span><br>
+                                            <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['final_price'] ?></span>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-left" style="width: 20%;">
+                                            <p class="prime-value"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 26%;">
+                                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
+                                            <p class="prime-tile">Cashback</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill" style="width: 28%;">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                <img class="prime-amz-logo" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>" style="height: 18px;">
+                                            </p>
+                                        </li>
+                                    <?php }else if ($model['type'] == 1){?>
+                                        <li class="account-left" style="width: 24%">
+                                            <span class="origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span><br>
+                                            <span class="now-price" style="margin-left:5px;font-size: 16px;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= ($model['final_price']) ?></span>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-left" style="width: 20%;">
+                                            <p class="prime-value"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 26%;">
+                                            <p class="prime-value">
+                                                <?php if ($model['coupon_type'] == 1){?>
+                                                    <?= $model['coupon'] ?> %
+                                                <?php }else{?>
+                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                <?php }?>
+                                            </p>
+                                            <p class="prime-tile">Off</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill" style="width: 28%;">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                <img class="prime-amz-logo" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>" style="height: 18px;">
+                                            </p>
+                                        </li>
+                                    <?php }else if ($model['type'] == 3){?>
+                                        <li class="account-left" style="width: 20%;">
+                                            <p class="prime-value"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 25%;">
+                                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
+                                            <p class="prime-tile">Cashback</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 25%;">
+                                            <p class="prime-value">
+                                                <?php if ($model['coupon_type'] == 1){?>
+                                                    <?= $model['coupon'] ?> %
+                                                <?php }else{?>
+                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                <?php }?>
+                                            </p>
+                                            <p class="prime-tile">Off</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill" style="width: 28%;">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                <img class="prime-amz-logo" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>" style="height: 18px;">
+                                            </p>
+                                        </li>
+                                    <?php }?>
                                 </ul>
                             </div>
                         </div>
@@ -87,7 +150,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <div id="describe-container" style="position: relative;top: -100px;"></div>
                         <h2 class="function-block-title" style="margin-top: 0;">Description</h2>
                         <div class="detail-deal-description">
-                            <?//= $description; ?>
+                            <?= $model['product']['description']?>
                         </div>
                     </li>
                 </ul>
@@ -99,7 +162,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <h1 class="banner-title-detail"><?= $model['product']['name']; ?></h1>
                             <?= $this->render('pc_image', ['gallerys'=>$model['product']['mutil_image'], 'image'=>$model['product']['image'], 'name'=>$model['product']['name']]); ?>
                             <div class="col-xs-12 col-sm-12 col-md-12 describe-container" style="min-height: 100px;">
-
+                                <?= $model['product']['description']?>
                             </div>
                         </div>
                         <div style="height: 15px; background: rgba(242, 245, 247, 1);"></div>
@@ -117,9 +180,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <div class="v3-detail-price">
                                     <p class="v3-price-container">
                                         <span class="v3-relprice"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span>
-                                        <span class="v3-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></span>
+                                        <span class="v3-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['final_price'] ?></span>
                                     </p>
-                                    <div id="wish-btn-container">
+                                    <div id="wish-btn-container" class="hidden">
                                         <?php if (Yii::$app->user->isGuest) {?>
                                             <img class="wish-icon" src="<?= getImgUrl('images/wish-icon.png'); ?>" data-toggle="modal" data-target=".is-logged-in-modal">
                                         <?php } else {?>
@@ -130,24 +193,77 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     </div>
                                 </div>
                                 <ul class="prime-acount-list detail-acount-list" style="margin-bottom: 20px;">
-                                    <li class="account-left" style="width: 25% !important;">
-                                        <p class="prime-value" style="color: #666;"><?= $model['qty'] ?></p>
-                                        <p class="prime-tile">Left</p>
-                                    </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="account-off" style="width: 35% !important;">
-                                        <p class="prime-value" style="color: #666;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
-                                        <p class="prime-tile">Cashback</p>
-                                    </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="account-fullfill">
-                                        <p class="fullfill-methed">Fullfilled by</p>
-                                        <p class="prime-tile">
-                                            Amazon
-                                        </p>
-                                    </li>
+                                    <?php if ($model['type'] == 2){?>
+                                        <li class="account-left" style="width: 25% !important;">
+                                            <p class="prime-value" style="color: #666;"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 35% !important;">
+                                            <p class="prime-value" style="color: #666;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
+                                            <p class="prime-tile">Cashback</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                Amazon
+                                            </p>
+                                        </li>
+                                    <?php }else if ($model['type'] == 1){?>
+                                        <li class="account-left" style="width: 25% !important;">
+                                            <p class="prime-value" style="color: #666;"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 35% !important;">
+                                            <p class="prime-value" style="color: #666;">
+                                                <?php if ($model['coupon_type'] == 1){?>
+                                                    <?= $model['coupon'] ?> %
+                                                <?php }else{?>
+                                                    <?= round($model['coupon']/$model['price'], 2) ?> %
+                                                <?php }?>
+                                            </p>
+                                            <p class="prime-tile">Off</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                Amazon
+                                            </p>
+                                        </li>
+                                    <?php }else if ($model['type'] == 3){?>
+                                        <li class="account-left" style="width: 20% !important;">
+                                            <p class="prime-value" style="color: #666;"><?= $model['qty'] ?></p>
+                                            <p class="prime-tile">Left</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 27% !important;">
+                                            <p class="prime-value" style="color: #666;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['cashback'] ?></p>
+                                            <p class="prime-tile">Cashback</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-off" style="width: 25% !important;">
+                                            <p class="prime-value" style="color: #666;">
+                                                <?php if ($model['coupon_type'] == 1){?>
+                                                    <?= $model['coupon'] ?> %
+                                                <?php }else{?>
+                                                    <?= round($model['coupon']/$model['price'], 2) ?> %
+                                                <?php }?>
+                                            </p>
+                                            <p class="prime-tile">Off</p>
+                                        </li>
+                                        <li class="space-vertical-lines"></li>
+                                        <li class="account-fullfill" style="width: 27% !important;">
+                                            <p class="fullfill-methed">Fullfilled by</p>
+                                            <p class="prime-tile">
+                                                Amazon
+                                            </p>
+                                        </li>
+                                    <?php }?>
                                 </ul>
-                                <?php if ($model['qty'] > 0){?>
+                                <?php if ($model['qty'] > 0 && $model['end'] >= time()){?>
                                     <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
                                         <span class="v3-detail-btn-content">Deal Request</span>
                                     </button>

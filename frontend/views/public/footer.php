@@ -73,7 +73,7 @@ use yii\helpers\Html;
                 <a href="">About Us</a>
             </li>
             <li>
-                <a href="">Contact Us</a>
+                <a href="">FAQ</a>
             </li>
             <li>
                 <a href="">Terms&amp;Privacy</a>

@@ -24,11 +24,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     <p class="deal-entity-title"><?= $product['product']['name'] ?></p>
                     <ul class="deal-account-list">
                         <li>
-                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
+                            <p class="prime-value">
+                                <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['final_price'] ?>
+                                <span class="origin-price new-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></span>
+                            </p>
                             <p class="prime-tile">Price</p>
                         </li>
                         <li class="deal-price-cotainer">
-                            <p class="prime-value"><?= $product['coupon'] ?>%</p>
+                            <p class="prime-value"><?= $product['total_off'] ?>%</p>
                             <p class="prime-tile">Off</p>
                         </li>
                     </ul>
@@ -46,27 +49,36 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php foreach ($top_all as $product): ?>
         <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
             <div style="position: relative;">
-                <div class="cashback-circle-tip">
-                    <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
-                        <p style="margin: 0;">Cashback</p><p style="margin: 0;">100%</p>
-                    </div>
-                </div>
                 <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
                 </div>
                 <p class="hot-entity-title"><span><?= $product['product']['name'] ?></span></p>
                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                    <li class="account-left">
+                    <li class="account-left" style="width: 20%">
                         <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
                         <p class="prime-tile">Price</p>
                     </li>
-                    <li class="account-off">
-                        <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
-                        <p class="prime-tile">Cashback</p>
-                    </li>
-                    <li class="account-fullfill">
+                    <?php if (!is_null($product['cashback']) && $product['cashback']>0){ ?>
+                        <li class="account-off" style="width: 30%">
+                            <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
+                            <p class="prime-tile">Cashback</p>
+                        </li>
+                    <?php }?>
+                    <?php if (!is_null($product['coupon']) && $product['coupon']>0){ ?>
+                        <li class="account-off" style="width: 25%">
+                            <p class="prime-value">
+                                <?php if ($product['coupon_type'] == 1){?>
+                                    <?= $product['coupon'] ?> %
+                                <?php }else{?>
+                                    <?= number_format($product['coupon']/$product['price']*100, 2) ?> %
+                                <?php }?>
+                            </p>
+                            <p class="prime-tile">Off</p>
+                        </li>
+                    <?php }?>
+                    <li class="account-fullfill" style="width: 25%">
                         <p class="fullfill-methed">Fullfilled by</p>
                         <p class="prime-tile">
-                            <img class="prime-amz-logo img-responsive" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>">
+                            <img class="prime-amz-logo img-responsive center-block" src="<?= getImgUrl('images/v3-amz-logo.jpg') ?>">
                         </p>
                     </li>
                 </ul>
@@ -126,26 +138,32 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
                                 </p>
                                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                                    <li class="account-left">
+                                    <li class="account-left" style="width: 20%">
                                         <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
                                         <p class="prime-tile">Price</p>
                                     </li>
                                     <?php if (!is_null($product['cashback']) && $product['cashback']>0){ ?>
-                                        <li class="account-off">
+                                        <li class="account-off" style="width: 30%">
                                             <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
                                             <p class="prime-tile">Cashback</p>
                                         </li>
                                     <?php }?>
                                     <?php if (!is_null($product['coupon']) && $product['coupon']>0){ ?>
-                                        <li class="account-off">
-                                            <p class="prime-value"><?= $product['coupon'] ?>%</p>
+                                        <li class="account-off" style="width: 25%">
+                                            <p class="prime-value">
+                                                <?php if ($product['coupon_type'] == 1){?>
+                                                    <?= $product['coupon'] ?> %
+                                                <?php }else{?>
+                                                    <?= number_format($product['coupon']/$product['price']*100, 2) ?> %
+                                                <?php }?>
+                                            </p>
                                             <p class="prime-tile">Off</p>
                                         </li>
                                     <?php }?>
-                                    <li class="account-fullfill">
+                                    <li class="account-fullfill" style="width: 25%">
                                         <p class="fullfill-methed">Fullfilled by</p>
                                         <p class="prime-tile">
-                                            <img class="prime-amz-logo img-responsive" src="<?= getImgUrl('images/v3-amz-logo.jpg'); ?>">
+                                            <img class="prime-amz-logo img-responsive center-block" src="<?= getImgUrl('images/v3-amz-logo.jpg'); ?>">
                                         </p>
                                     </li>
                                 </ul>
@@ -168,7 +186,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <div style="position: relative;">
                                 <div class="cashback-circle-tip">
                                     <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
-                                        <p style="margin: 0;">Cashback</p><p style="margin: 0;"><?= $product['cashback'] ?></p>
+                                        <p style="margin: 0;">Cashback</p><p style="margin: 0;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
                                     </div>
                                 </div>
                                 <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
@@ -216,11 +234,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <p class="deal-entity-title"><?= $product['product']['name'] ?></p>
                             <ul class="deal-account-list">
                                 <li>
-                                    <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
+                                    <p class="prime-value">
+                                        <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['final_price'] ?>
+                                        <span class="origin-price new-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></span>
+                                    </p>
                                     <p class="prime-tile">Price</p>
                                 </li>
                                 <li class="deal-price-cotainer">
-                                    <p class="prime-value"><?= $product['coupon'] ?>%</p>
+                                    <p class="prime-value"><?= $product['total_off'] ?>%</p>
                                     <p class="prime-tile">Off</p>
                                 </li>
                             </ul>
@@ -246,11 +267,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <p class="deal-entity-title"><?= $product['product']['name'] ?></p>
                             <ul class="deal-account-list">
                                 <li>
-                                    <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
+                                    <p class="prime-value">
+                                        <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['final_price'] ?>
+                                        <span class="origin-price new-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></span>
+                                    </p>
                                     <p class="prime-tile">Price</p>
                                 </li>
                                 <li class="deal-price-cotainer">
-                                    <p class="prime-value"><?= $product['coupon'] ?>%</p>
+                                    <p class="prime-value"><?= $product['total_off'] ?>%</p>
                                     <p class="prime-tile">Off</p>
                                 </li>
                             </ul>
