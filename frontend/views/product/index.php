@@ -55,12 +55,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <?php foreach ($model as $product):  ?>
                     <a class="hot-deal-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                         <div style="position: relative;">
+                            <?php if ($product['type'] != 1){?>
                             <div class="cashback-circle-tip">
                                 <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
                                     <p style="margin: 0;">Cashback</p>
                                     <p style="margin: 0;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
                                 </div>
                             </div>
+                            <?php }?>
                             <div class="product-img-container lazy shade-container"  data-bg="url(<?= $product['product']['thumb_image'] ?>)">
 
                             </div>
@@ -69,18 +71,32 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
                             </p>
                             <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                                <li class="account-left">
+                                <li class="account-left" style="width: 20%">
                                     <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['price'] ?></p>
                                     <p class="prime-tile">Price</p>
                                 </li>
-                                <li class="account-off">
-                                    <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
-                                    <p class="prime-tile">Cashback</p>
-                                </li>
-                                <li class="account-fullfill">
+                                <?php if (!is_null($product['cashback']) && $product['cashback']>0){ ?>
+                                    <li class="account-off" style="width: 30%">
+                                        <p class="prime-value"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
+                                        <p class="prime-tile">Cashback</p>
+                                    </li>
+                                <?php }?>
+                                <?php if (!is_null($product['coupon']) && $product['coupon']>0){ ?>
+                                    <li class="account-off" style="width: 25%">
+                                        <p class="prime-value">
+                                            <?php if ($product['coupon_type'] == 1){?>
+                                                <?= $product['coupon'] ?> %
+                                            <?php }else{?>
+                                                <?= number_format($product['coupon']/$product['price']*100, 2) ?> %
+                                            <?php }?>
+                                        </p>
+                                        <p class="prime-tile">Off</p>
+                                    </li>
+                                <?php }?>
+                                <li class="account-fullfill" style="width: 25%">
                                     <p class="fullfill-methed">Fullfilled by</p>
                                     <p class="prime-tile">
-                                        <img class="prime-amz-logo img-responsive" src="<?= getImgUrl('images/v3-amz-logo.jpg'); ?>">
+                                        <img class="prime-amz-logo img-responsive center-block" src="<?= getImgUrl('images/v3-amz-logo.jpg'); ?>">
                                     </p>
                                 </li>
                             </ul>

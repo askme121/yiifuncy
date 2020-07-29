@@ -129,6 +129,9 @@ class ProductController extends Controller
             $select = "id,t_activity.url_key,product_id,type,price,cashback,coupon_type,coupon,price,qty,start,end";
             $model = Activity::find()->select($select)->where(['id'=>$activity_id,'site_id'=>$site_id])->asArray()->one();
             if ($model){
+                if ($model['start'] > time()){
+                    return $this->render('/site/error');
+                }
                 $model['product'] = Product::find()->select("id,name,sku,url_key,thumb_image,image,mutil_image,attr_group,attr_group_info,description,short_description,meta_title,meta_keywords,meta_description")->where(['id' => $model['product_id']])->asArray()->one();
                 $meta['title'] = $model['product']['meta_title'];
                 $meta['description'] = $model['product']['meta_description'];
@@ -148,6 +151,7 @@ class ProductController extends Controller
                         $model['final_price'] = number_format($model['price'] - $model['coupon'] - $model['cashback'], 2);
                     }
                 }
+                $model['save_price'] = number_format($model['price'] - $model['final_price'], 2);
                 $mutil_image = unserialize($model['product']['mutil_image'])? unserialize($model['product']['mutil_image']): [];
                 if ($mutil_image){
                     array_unshift($mutil_image, ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']]);

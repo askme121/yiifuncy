@@ -1328,6 +1328,18 @@ button.close {
     display: block;
     margin: 10px auto;
 }
+.sorry-tip-icon {
+    margin:42px auto 0;
+    display:block
+}
+.sorry-tip-content {
+    font-size:18px;
+    text-align:center;
+    line-height:1.5;
+    margin-top:35px;
+    margin-bottom:30px;
+    color:#666
+}
 
 @media (min-width:1400px) {
     .container {

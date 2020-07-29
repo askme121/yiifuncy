@@ -179,8 +179,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <div class="detail-banner-right" style="margin: 35px 20px 23px;">
                                 <div class="v3-detail-price">
                                     <p class="v3-price-container">
-                                        <span class="v3-relprice"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span>
-                                        <span class="v3-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['final_price'] ?></span>
+                                        <span class="v3-relprice"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['final_price'] ?></span>
+                                        <span class="v3-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['price'] ?></span>
                                     </p>
                                     <div id="wish-btn-container" class="hidden">
                                         <?php if (Yii::$app->user->isGuest) {?>
@@ -221,7 +221,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                                 <?php if ($model['coupon_type'] == 1){?>
                                                     <?= $model['coupon'] ?> %
                                                 <?php }else{?>
-                                                    <?= round($model['coupon']/$model['price'], 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
@@ -249,7 +249,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                                 <?php if ($model['coupon_type'] == 1){?>
                                                     <?= $model['coupon'] ?> %
                                                 <?php }else{?>
-                                                    <?= round($model['coupon']/$model['price'], 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
@@ -264,13 +264,29 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <?php }?>
                                 </ul>
                                 <?php if ($model['qty'] > 0 && $model['end'] >= time()){?>
-                                    <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
-                                        <span class="v3-detail-btn-content">Deal Request</span>
-                                    </button>
-                                    <div style="width: 0px; border-style: solid solid solid solid; border-width: 0px 8px 8px 8px; border-color: #fff #fff #1ab394 #fff; margin: 0 auto; margin-top: 2px; margin-bottom: -1px;"></div>
-                                    <p class="detail-points-left" style="color: #1ab394; margin: 0px 0 10px 0; padding: 5px 0; border: 1px dashed #1ab394; border-radius: 5px;">
-                                        <i class="fa fa-exclamation-circle"></i> Buy to amazon and earn cashback,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?//= $saveTotal?>
-                                    </p>
+                                    <?php if ($model['type'] == 2){ ?>
+                                        <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
+                                            <span class="v3-detail-btn-content">Deal Request</span>
+                                        </button>
+                                        <div style="width: 0px; border-style: solid solid solid solid; border-width: 0px 8px 8px 8px; border-color: #fff #fff #1ab394 #fff; margin: 0 auto; margin-top: 2px; margin-bottom: -1px;"></div>
+                                        <p class="detail-points-left" style="color: #1ab394; margin: 0px 0 10px 0; padding: 5px 0; border: 1px dashed #1ab394; border-radius: 5px;">
+                                            <i class="fa fa-exclamation-circle"></i> Buy to amazon and earn cashback,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
+                                        </p>
+                                    <?php }else{?>
+                                        <?php if (Yii::$app->user->isGuest) {?>
+                                            <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" data-toggle="modal" data-target=".is-logged-in-modal">
+                                                <span class="v3-detail-btn-content">Get Coupon</span>
+                                            </button>
+                                        <?php }else{?>
+                                            <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" id="get-coupon-code" data-url="<?= Url::toRoute('order/coupondeal') ?>">
+                                                <span class="v3-detail-btn-content">Get Coupon</span>
+                                            </button>
+                                        <?php }?>
+                                        <div style="width: 0px; border-style: solid solid solid solid; border-width: 0px 8px 8px 8px; border-color: #fff #fff #1ab394 #fff; margin: 0 auto; margin-top: 2px; margin-bottom: -1px;"></div>
+                                        <p class="detail-points-left" style="color: #1ab394; margin: 0px 0 10px 0; padding: 5px 0; border: 1px dashed #1ab394; border-radius: 5px;">
+                                            <i class="fa fa-exclamation-circle"></i> Use coupon to discount,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
+                                        </p>
+                                    <?php }?>
                                 <?php }else{?>
                                     <button type="button" class="btn btn-lg v3-detail-btn" disabled>
                                         <span class="v3-detail-btn-content">Sold Out</span>
@@ -330,10 +346,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 
 <div class="detail-requestbtn-container visible-sm visible-xs">
     <div class="row">
-        <?php if ($model['qty']>0){?>
-            <button type="button" class="btn btn-lg btn-right-content" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
-                <span class="v3-detail-btn-content">Deal Request</span>
-            </button>
+        <?php if ($model['qty'] > 0 && $model['end'] >= time()){?>
+            <?php if ($model['type'] == 2){ ?>
+                <button type="button" class="btn btn-lg btn-right-content" data-toggle="modal" <?php if (Yii::$app->user->isGuest) {?>data-target=".is-logged-in-modal"<?php }else{?>data-target=".check-deal-review"<?php }?>>
+                    <span class="v3-detail-btn-content">Deal Request</span>
+                </button>
+            <?php }else{?>
+                <?php if (Yii::$app->user->isGuest) {?>
+                    <button class="btn btn-lg btn-right-content" type="button" data-toggle="modal" data-target=".is-logged-in-modal">
+                        <span class="v3-detail-btn-content">Get Coupon</span>
+                    </button>
+                <?php }else{?>
+                    <button class="btn btn-lg btn-right-content" id="get-coupon-code" data-url="<?= Url::toRoute('order/coupondeal') ?>" type="button">
+                        <span class="v3-detail-btn-content">Get Coupon</span>
+                    </button>
+                <?php }?>
+            <?php }?>
         <?php }else{?>
             <button type="button" class="btn btn-lg btn-right-content" disabled>
                 <span class="v3-detail-btn-content">Sold Out</span>
@@ -376,8 +404,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     Reviews are very important for us, and they help other shoppers make informed decisions.</p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
                     <a href="/" class="btn upOrder-form-btn operation-btn" data-href="#" style="height: 60px !important;line-height: 60px !important;display: inline-block;float: unset;margin: 0;width: 160px; background-color: #ccc !important;">No thanks</a>
-                    <a id="detail-btn1" type="button" class="btn upOrder-form-btn" style="height: 60px !important;line-height: 60px !important;display: inline-block;font-size: 28px;width: 160px;margin-left: 20px;" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
+                    <a id="detail-btn" type="button" class="btn upOrder-form-btn" style="height: 60px !important;line-height: 60px !important;display: inline-block;font-size: 28px;width: 160px;margin-left: 20px;" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
                 </div>
+            </div>
+            <div class="check-my-dealss modal-body no-points jq-waiting-one-deal" style="padding: 0 0 30px;display: none;">
+                <p class="offer-ends-container">
+                    <span class="secured-title"></span>
+                </p>
+                <p class="sorry-tip-content">
+                    Congratulations! You have applied this deal successfully.<br>Upload your order info within one day after getting seller's confirmation.
+                </p>
+                <a class="btn upOrder-form-btn no-points-btn" href="<?= Url::toRoute('/order/cashback') ?>">Check My Deal</a>
+            </div>
+            <div class="modal-body jq-got-coupon-code-fail" style="padding: 50px 50px;text-align: center;display: none;">
+                <p class="sorry-tip-content" style="font-size: 25px;">Oops</p>
+                <p class="sorry-tip-content" id="coupon-response-message"></p>
+                <button class="btn upOrder-form-btn no-points-btn jq-dismiss-modal">ok</button>
             </div>
         </div>
     </div>
@@ -385,7 +427,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 
 <?php if (Yii::$app->user->isGuest) {
     $param = [
-        'cashback'=> $model['cashback']
+            'type' => $model['type'],
+            'cashback' => $model['cashback'],
+            'coupon_type' => $model['coupon_type'],
+            'coupon' => $model['coupon'],
+            'price' => $model['price']
     ];
     ?>
     <?= $this->render('../public/login', $param); ?>

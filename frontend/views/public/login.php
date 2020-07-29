@@ -8,7 +8,24 @@ use yii\helpers\Url;
                 <span aria-hidden="true">×</span>
             </button>
             <div class="dialog-title-container">
-                <h3 class="get-offf-title"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $cashback ?> CASH BACK!</h3>
+                <h3 class="get-offf-title">
+                    <?php if ($type == 1){?>
+                        <?php if ($coupon_type == 1){?>
+                            <?= $coupon ?> %
+                        <?php }else{?>
+                            <?= number_format($coupon/$price*100, 2) ?> % Off
+                        <?php }?>
+                    <?php } else if ($type == 2){?>
+                        <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $cashback ?> CASH BACK!
+                    <?php } else if ($type == 3){?>
+                        <?php if ($coupon_type == 1){?>
+                            <?= $coupon ?> %
+                        <?php }else{?>
+                            <?= number_format($coupon/$price*100, 2) ?> %
+                        <?php }?>
+                         Off + <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $cashback ?> CASH BACK!
+                    <?php }?>
+                </h3>
                 <p class="get-offf-tip">Login to enjoy your offer for this product!</p>
             </div>
             <div id="sign-up-block" style="width: 80%; margin: 20px auto; display: none;">

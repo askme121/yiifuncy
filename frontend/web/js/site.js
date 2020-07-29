@@ -13,9 +13,10 @@ $(function() {
         }
     });
     $("#detail-img-list li img").each(function () {
-        var src = $(this).data('src');
         $(this).on('mouseover', function () {
+            var src = $(this).data('src');
             $('#banner-img').attr('src', src);
+            $('#banner-img').data('zoom-image', src);
             $(this).parent().css({"border-color":"#e77600","box-shadow":"0 0 3px 2px rgba(228,121,17,.5)"}).siblings("li").css({"border-color":"#a2a6ac","box-shadow":"none"});
             var ez = $('#banner-img').data('elevateZoom');
             ez.swaptheimage(src, src);

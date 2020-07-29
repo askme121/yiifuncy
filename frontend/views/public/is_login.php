@@ -25,11 +25,9 @@ use yii\helpers\Url;
             </div>
 
             <div class="modal-body jq-got-coupon-code-fail" style="padding: 50px 50px; text-align: center; display: none;">
-
                 <p class="sorry-tip-content" style="font-size: 25px;">Oops</p>
                 <p class="sorry-tip-content" id="coupon-response-message"></p>
                 <button class="btn upOrder-form-btn no-points-btn jq-dismiss-modal">ok</button>
-
             </div>
 
             <div class="modal-body get-quota jq-get-quota" style="padding: 0 0 30px;display: none;">
@@ -46,11 +44,9 @@ use yii\helpers\Url;
                     <p class="upOrder-step-title">
                         <span>STEP 1:</span>
                         <a href="#" target="_blank" class="btn go-amazon-btn amazon_link">Go to Amazon to buy it now!</a>
-
-
                         <span style="font-size: 15px;display: inline-block;margin-left: 98px;margin-top: 5px;font-weight: 400;">
-                                                                                    Sold by <a href="https://www.amazon.com/sp?_encoding=UTF8&seller=AVL62AP02U78R" target="_blank" style="color: #337ab7;">DT-TECH</a>
-                                                    </span>
+                            Sold by <a href="https://www.amazon.com/sp?_encoding=UTF8&seller=AVL62AP02U78R" target="_blank" style="color: #337ab7;">DT-TECH</a>
+                        </span>
                     </p>
                     <div>
                         <p class="upOrder-step-title" style="margin-bottom: 10px;">STEP 2:<span style="margin-left: 20px;">Fill in your Amazon order info.</span></p>
@@ -83,7 +79,6 @@ use yii\helpers\Url;
                                     <img class="file-up-icon" src="<?= getImgUrl('images/file-up-icon.png'); ?>">
                                     <div class="error" id="maxsize-error"></div>
                                 </div>
-
                             </div>
                             <div class="form-group-error error" id="image-tips"></div>
 
@@ -91,7 +86,6 @@ use yii\helpers\Url;
                                 <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#">Cancel this deal</a>
                                 <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" >Submit</a>
                             </div>
-
                         </form>
                     </div>
                 </div>
