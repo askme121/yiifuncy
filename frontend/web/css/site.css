@@ -1158,6 +1158,7 @@ button.close {
     font-size: 17px;
     padding: 10px 0;
     text-align: center;
+    line-height: 16px;
 }
 .offer-ends-container>span {
     display: inline-block;
@@ -1339,6 +1340,136 @@ button.close {
     margin-top:35px;
     margin-bottom:30px;
     color:#666
+}
+.loading-img {
+    display: block;
+    margin: 20px auto 0;
+    width: 50px;
+}
+.btn-link {
+    font-weight:400;
+    color:#337ab7;
+    border-radius:0
+}
+.btn-link, .btn-link.active, .btn-link:active, .btn-link[disabled], fieldset[disabled] .btn-link {
+    background-color:transparent;
+    -webkit-box-shadow:none;
+    box-shadow:none
+}
+.btn-link, .btn-link:active, .btn-link:focus, .btn-link:hover {
+    border-color:transparent
+}
+.btn-link:focus, .btn-link:hover {
+    color:#23527c;
+    text-decoration:underline;
+    background-color:transparent
+}
+.btn-link[disabled]:focus, .btn-link[disabled]:hover, fieldset[disabled] .btn-link:focus, fieldset[disabled] .btn-link:hover {
+    color:#777;
+    text-decoration:none
+}
+.secured-tip {
+    font-size: 12px;
+    margin-top: 3px;
+}
+.secured-expires-tip {
+    font-size:14px;
+    text-align:center;
+    margin:10px 0
+}
+.secured-order-form {
+    width: 90%;
+    margin: 0 auto;
+}
+.upOrder-step-title {
+    font-size: 12px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    text-align: center;
+}
+.go-amazon-btn {
+    background-color: #ff9936;
+    font-size: 14px!important;
+    text-transform: none!important;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 700;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    padding: 0!important;
+    border: none;
+}
+#upOrder-form {
+    width: 90%;
+    margin: 0 auto 20px;
+}
+.upOrder-form-group {
+    position: relative;
+}
+.form-group-tip {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+.form-group-input {
+    padding-left: 95px;
+    background-color: #f6f6f6;
+    border: none;
+}
+.form-group-error {
+    width: 100%!important;
+    margin-top: 5px!important;
+}
+.upOrder-form-btnss {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.operation-btn {
+    width: 144px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    display: block;
+    margin: 0 0 15px;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #f93;
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    color: #f93;
+}
+#abandon-deal-btn {
+    width: 124px;
+    text-align: center;
+    background-color: #b7b7b7;
+    float: left;
+    font-weight: 400!important;
+    line-height: 30px;
+    padding: 0!important;
+}
+#user-submitted-post {
+    float: right;
+    line-height: 30px;
+}
+.sorry-tip-content {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #666;
+}
+.modal-tip-point {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    margin-bottom: 0;
 }
 
 @media (min-width:1400px) {

@@ -23,6 +23,7 @@ class Order extends ActiveRecord
     public function rules()
     {
         return [
+            [['activity_id', 'product_id'], 'required'],
             [['order_id', 'amazon_order_id', 'amazon_url', 'user_phone', 'user_email', 'coupon_code'], 'string'],
             [['order_id'], 'unique'],
             [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'flow_id'], 'integer'],

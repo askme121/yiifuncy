@@ -16,7 +16,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <div id="detail-banner">
     <section class="container">
         <div class="row detail-contents">
-            <input type="hidden" class="product_view_id" value="<?= $model['id']?>">
+            <input type="hidden" id="activity_view_id" value="<?= $model['id']?>">
+            <input type="hidden" id="product_view_id" value="<?= $model['product']['id']?>">
             <div class="visible-sm visible-xs">
                 <ul>
                     <li class="deal-detail-content col-xs-12 detail-contents-1" style="padding: 0;">
@@ -278,7 +279,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                                 <span class="v3-detail-btn-content">Get Coupon</span>
                                             </button>
                                         <?php }else{?>
-                                            <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" id="get-coupon-code" data-url="<?= Url::toRoute('order/coupondeal') ?>">
+                                            <button type="button" class="cashback_deal btn btn-lg v3-detail-btn" data-toggle="modal" data-target=".check-deal-review">
                                                 <span class="v3-detail-btn-content">Get Coupon</span>
                                             </button>
                                         <?php }?>
@@ -357,7 +358,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <span class="v3-detail-btn-content">Get Coupon</span>
                     </button>
                 <?php }else{?>
-                    <button class="btn btn-lg btn-right-content" id="get-coupon-code" data-url="<?= Url::toRoute('order/coupondeal') ?>" type="button">
+                    <button class="btn btn-lg btn-right-content" type="button" data-toggle="modal" data-target=".check-deal-review">
                         <span class="v3-detail-btn-content">Get Coupon</span>
                     </button>
                 <?php }?>
@@ -397,11 +398,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </button>
             <div class="modal-body jq-loading" style="padding: 0px;text-align: center;">
                 <p class="offer-ends-container" style="margin-bottom: 0;padding: 12px 0;">
-                    <span class="secured-title">Congratulations</span>
+                    <span class="secured-title">Try-me Invitation!</span>
                 </p>
-                <p style="padding: 20px 20px 20px 0; margin: 0;text-align: center;">We’d really appreciate it if you left us an honest review.
-                    <br />
-                    Reviews are very important for us, and they help other shoppers make informed decisions.</p>
+                <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
+                    We invite you to participate in our Cashback Deals to experience our products, and We'd really appreciate if if you left us an honest review.Reviews are very important for us,and they help other shoppers make informed decisions.
+                </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
                     <a href="/" class="btn upOrder-form-btn operation-btn" data-href="#" style="height: 60px !important;line-height: 60px !important;display: inline-block;float: unset;margin: 0;width: 160px; background-color: #ccc !important;">No thanks</a>
                     <a id="detail-btn" type="button" class="btn upOrder-form-btn" style="height: 60px !important;line-height: 60px !important;display: inline-block;font-size: 28px;width: 160px;margin-left: 20px;" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
@@ -584,7 +585,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         });
 
         $('#submit-sign-in').click(function(){
-            console.log('ok')
             var username = $('input[name="username"][id="login_username"]').val();
             var password = $('input[name="password"][id="password"]').val();
             if (username == '')
@@ -705,15 +705,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             });
         });
 
-        $('#detail-btn1').click(function (){
+        $('#detail-btn').click(function (){
+            var btn = $(this);
+            if (btn.hasClass("onused")){
+                return false;
+            }
+            btn.addClass("onused");
             $.ajax({
                 type: "post",
-                url: "<?= Url::to('catalog/product/coupondeal') ?>",
+                url: "<?= Url::toRoute('order/deal') ?>",
                 data: {
-                    "product_id": $('.product_view_id').val(),
+                    "activity_id": $('#activity_view_id').val(),
+                    "product_id": $('#product_view_id').val()
                 },
                 dataType: "json",
                 success: function(response){
+                    btn.removeClass("onused");
                     var status = response.status;
                     $('.model-close').css('color', '#ccc');
                     switch(status) {
@@ -721,7 +728,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('.modal-body').hide();
                             $('.jq-no-points').show();
                             break;
-                        case 3:
+                        case 0:
                             $('.modal-body').hide();
                             break;
                         case 1:
@@ -734,9 +741,24 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('#date-now').attr('data-now-time', response.datanow_at);
                             break;
                         case 2:
-                            time = setInterval(loadingcheck, 2000);
+                            $('.modal-body').hide();
+                            $('#show-coupon-code').text(response.coupon_code);
+                            $('#coupon-purchase-link').attr('href', response.link);
+                            $('.jq-got-coupon-code-success').show();
+                            var clipboard = new ClipboardJS('#show-coupon-code', {
+                                target: function() {
+                                    return document.querySelector('#show-coupon-code');
+                                }
+                            });
+                            clipboard.on('success', function(e) {
+                                swal({
+                                    type: 'success',
+                                    title: '',
+                                    text: 'Copied the code successfully. Buy it on Amazon now!'
+                                });
+                            });
                             break;
-                        case 0:
+                        case 3:
                             $('.modal-body').hide();
                             $('.jq-noquota').show();
                             break;
@@ -749,12 +771,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('.modal-body').hide();
                             $('.jq-waiting-one-deal').show();
                             break;
-                        case '7':
+                        case 7:
                             window.location.href = '/customer/profile?tabtarget=amazon-profile';
                             break;
                     }
                 },
                 error: function(){
+                    btn.removeClass("onused");
                     $('.modal-body').hide();
                     $('.jq-error').show();
                 }
@@ -769,9 +792,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             $('.modal-body').hide();
             $('.jq-loading').show();
         });
-        // COPY
         $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-        //var clipboard = new ClipboardJS('#show-coupon-code');
         <?php $this->endBlock(); ?>
     </script>
 <?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>

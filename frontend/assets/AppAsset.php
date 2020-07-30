@@ -17,6 +17,8 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/jquery.elevatezoom.js',
         'js/sweetalert.min.js',
+        'js/clipboard.min.js',
+        'js/jquery.cookie.js',
         'js/common.js',
         'js/site.js',
     ];
