@@ -52,3 +52,10 @@ function getClientIp()
     }
     return $ip;
 }
+
+function getOrderID()
+{
+    $prefix = Yii::$app->params['order_prefix'];
+    $order_id = $prefix.date('YmdHis').rand(1000, 9999);
+    return $order_id;
+}

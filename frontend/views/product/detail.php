@@ -337,8 +337,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12" style="margin-bottom:20px">
-                    &nbsp;
+                <div class="clearfix" style="margin-bottom:20px">
                 </div>
             </div>
         </div>
@@ -724,10 +723,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     var status = response.status;
                     $('.model-close').css('color', '#ccc');
                     switch(status) {
-                        case 5:
-                            $('.modal-body').hide();
-                            $('.jq-no-points').show();
-                            break;
                         case 0:
                             $('.modal-body').hide();
                             break;
@@ -746,8 +741,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('#coupon-purchase-link').attr('href', response.link);
                             $('.jq-got-coupon-code-success').show();
                             var clipboard = new ClipboardJS('#show-coupon-code', {
-                                target: function() {
-                                    return document.querySelector('#show-coupon-code');
+                                text: function() {
+                                    return response.coupon_code;
                                 }
                             });
                             clipboard.on('success', function(e) {
@@ -767,12 +762,17 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('.model-close').css('cssText', 'color:#fff !important;');
                             $('.jq-seller-deal').show();
                             break;
+                        case 5:
+                            $('.modal-body').hide();
+                            $('.jq-no-points').show();
+                            break;
                         case 6:
                             $('.modal-body').hide();
                             $('.jq-waiting-one-deal').show();
                             break;
                         case 7:
-                            window.location.href = '/customer/profile?tabtarget=amazon-profile';
+                            $('.modal-body').hide();
+                            $('.jq-hover-one-deal').show();
                             break;
                     }
                 },

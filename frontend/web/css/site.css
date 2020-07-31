@@ -11,9 +11,6 @@ body {
 .btn, button{
     outline: none !important;
 }
-.btn:focus, button:focus, .btn:active, button:active{
-    outline: none !important;
-}
 body, html{
     letter-spacing: .3px;
 }
@@ -46,9 +43,12 @@ a{
     color: #333;
     text-decoration: none;
 }
-a:hover, a:active, a:visited {
+a:link, a:visited, a:hover, a:active {
     text-decoration: none;
-    color: #333;
+    color: inherit;
+}
+.btn:hover, .btn:active, .btn:visited {
+    color: inherit;
 }
 #header {
     background-color:#f93;
@@ -1368,6 +1368,12 @@ button.close {
     color:#777;
     text-decoration:none
 }
+.amazon_link {
+    color: #fff !important;
+}
+.amazon_link:link, .amazon_link:visited, .amazon_link:hover, .amazon_link:active{
+    color: #fff !important;
+}
 .secured-tip {
     font-size: 12px;
     margin-top: 3px;
@@ -1391,6 +1397,7 @@ button.close {
     background-color: #ff9936;
     font-size: 14px!important;
     text-transform: none!important;
+    text-align: center;
     border-radius: 3px;
     color: #fff;
     font-weight: 700;
@@ -1402,7 +1409,7 @@ button.close {
     padding: 0!important;
     border: none;
 }
-#upOrder-form {
+.upOrder-form {
     width: 90%;
     margin: 0 auto 20px;
 }

@@ -28,22 +28,22 @@ use yii\helpers\Url;
                         <span>STEP 1:</span>
                     </p>
                     <small style="display:block;margin-top: -15px; text-align: center; color: #999">(click to copy the coupon code)</small>
-                    <button class="btn go-amazon-btn amazon_link"><span id="show-coupon-code"></span></button>
+                    <button class="go-amazon-btn" id="show-coupon-code"></button>
                     <p class="upOrder-step-title">
                         <span>STEP 2:</span>
                     </p>
-                    <a id="coupon-purchase-link" href="#" target="_blank" class="btn go-amazon-btn amazon_link">Buy it on Amazon now!</a>
+                    <a id="coupon-purchase-link" href="#" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title">STEP 3:</p>
-                        <form id="upOrder-form" enctype="multipart/form-data" method="post" action="#">
+                        <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
                                 <label class="form-group-tip" for="order_id"><span class="mandatory-identification">* </span>Order ID:</label>
-                                <input class="form-control form-group-input" id="user-submitted-title" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
-                                <div class="form-group-error error" id="order-id-tips"></div>
+                                <input class="form-control form-group-input" id="coupon-user-submitted-title" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
+                                <div class="form-group-error error" id="coupon-order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel this deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" >Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="coupon-user-submitted-post">Submit</a>
                             </div>
                         </form>
                     </div>
@@ -57,12 +57,12 @@ use yii\helpers\Url;
             </div>
 
             <div class="modal-body get-quota jq-get-quota" style="padding: 0;display:none;">
-                <p class="offer-ends-container" style="margin-bottom: 0; padding: 24px 0 10px;">
-                    <span>
-                        <span class="secured-title">A cashback deal has been secured for you.</span>
-                        <br>
-                        <span class="secured-tip" style="padding-top: 5px; display: block">Follow the steps below to get $ 102.99 cash back.</span>
-                    </span>
+                <p class="offer-ends-container" style="margin-bottom: 0; padding: 24px 10px 10px 10px;">
+                    <span class="secured-title" style="text-align: center; display: block">Congratulations!</span>
+                    <span class="secured-title" style="line-height: 15px; text-align: center; display: block; margin-top: 10px; margin-bottom: 10px">You deal application is successfully.</span>
+                    <span class="secured-tip">Follow the guidance below to get your cash back.</span>
+                    <br>
+                    <span class="secured-tip">Upload your order info within 24 hours!</span>
                 </p>
                 <p class="secured-expires-tip" style="display: block; line-height: 36px;">
                 </p>
@@ -70,17 +70,17 @@ use yii\helpers\Url;
                     <p class="upOrder-step-title">
                         <span>STEP 1:</span>
                     </p>
-                    <a id="purchase-link" href="#" target="_blank" class="btn go-amazon-btn amazon_link">Buy it on Amazon now!</a>
+                    <a id="purchase-link" href="#" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title" style="margin-bottom: 10px;">STEP 2:</p>
-                        <form id="upOrder-form" enctype="multipart/form-data" method="post" action="#">
+                        <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
                                 <label class="form-group-tip" for="order_id"><span class="mandatory-identification">* </span>Order ID:</label>
                                 <input class="form-control form-group-input" id="user-submitted-title" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
                                 <div class="form-group-error error" id="order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel this deal</a>
+                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
                                 <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" >Submit</a>
                             </div>
                         </form>
@@ -115,12 +115,25 @@ use yii\helpers\Url;
                     <span class="secured-title"></span>
                 </p>
                 <p class="sorry-tip-content">
-                    Congratulations! You have applied this deal successfully.<br />Upload your order info within one day after getting seller's confirmation.
+                    Congratulations! You have applied this deal successfully.<br />Upload your order info within 24 hours after getting seller's confirmation.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn no-points-btn" href="/customer/cashback">Check My Deal</a>
                 </p>
             </div>
+
+            <div class="modal-body jq-hover-one-deal" style="padding: 0 0 30px; display: none;">
+                <p class="offer-ends-container">
+                    <span class="secured-title"></span>
+                </p>
+                <p class="sorry-tip-content">
+                    Sorry! You have unfinished deals.<br />Upload your order info within 24 hours after getting seller's confirmation.
+                </p>
+                <p style="text-align: center">
+                    <a class="btn upOrder-form-btn no-points-btn" href="/customer/cashback">Check My Deal</a>
+                </p>
+            </div>
+
             <div class="modal-body no-points jq-seller-deal" style="padding: 0 0 30px; display: none;">
                 <p class="offer-ends-container" style="background-color: #ed5565;">
                     <span class="secured-title"></span>

@@ -6,4 +6,6 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'admin.passwordResetTokenExpire' => 3600,
+    'order.Expire' => 1,
+    'order_prefix' => 'TF',
 ];
