@@ -47,6 +47,8 @@ class Order extends ActiveRecord
             'user_email' => Yii::t('app', 'user_email'),
             'coupon_code' => Yii::t('app', 'coupon_code'),
             'user_id' => Yii::t('app', 'user_id'),
+            'product_name' => Yii::t('app', 'product_name'),
+            'product_sku' => Yii::t('app', 'sku'),
             'created_at' => Yii::t('app', 'order_created_at'),
             'updated_at' => Yii::t('app', 'updated_at'),
         ];

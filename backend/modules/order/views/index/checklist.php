@@ -47,7 +47,7 @@ $this->registerJs($this->render('js/index.js'));
     }
 </style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_check', ['model' => $searchModel]); ?>
 </blockquote>
 <div class="user-index layui-form news_list">
     <?= GridView::widget([
@@ -193,8 +193,7 @@ $this->registerJs($this->render('js/index.js'));
                              <li class="nav-myself-li">
                                  {view}
                                  <dl class="nav-myself-dl">
-                                     {update}
-                                     <dd>{delete}</dd>
+                                     {check}
                                  </dl>
                              </li>
                           </ul>',
@@ -202,16 +201,13 @@ $this->registerJs($this->render('js/index.js'));
                     'view' => function ($url, $model, $key){
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
-                    'update' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
+                    'check' => function ($url, $model, $key) {
+                        if (Yii::$app->user->identity->role_id == 1) {
+                            return '<dd>'.Html::a('审核', Url::to(['check','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
                         } else {
                             return '';
                         }
                     },
-                    'delete' => function ($url, $model, $key) {
-                        return Html::a('作废', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);
-                    }
                 ]
             ],
         ],

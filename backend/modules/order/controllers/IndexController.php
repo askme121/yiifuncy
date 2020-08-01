@@ -30,4 +30,24 @@ class IndexController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionChecklist()
+    {
+        $searchModel = new OrderSearch();
+        $dataProvider = $searchModel->check(Yii::$app->request->queryParams);
+        return $this->render('checklist', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionRepaylist()
+    {
+        $searchModel = new OrderSearch();
+        $dataProvider = $searchModel->cashback(Yii::$app->request->queryParams);
+        return $this->render('repaylist', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }
