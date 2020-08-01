@@ -104,6 +104,7 @@ class OrderController extends Controller
                 $model->product_sku = $product->sku;
                 $model->product_name = $product->name;
                 $model->deals_ip = Yii::$app->getRequest()->getUserIP();
+                $model->site_id = Yii::$app->params['site_id'];
                 if ($activity->type == 2){
                     $activity->qty = $activity->qty-1;
                     $activity->save();
@@ -113,7 +114,7 @@ class OrderController extends Controller
                             'code' => 1,
                             'status' => 1,
                             'message' => 'successful',
-                            'order_id' => $order_id
+                            'order_id' => $model->id
                         ]);
                     } else {
                         $error = $model->firstErrors;
@@ -142,7 +143,7 @@ class OrderController extends Controller
                     $activity->save();
                     $order_id = $model->save();
                     if ($order_id){
-                        $coupon->order_id = $order_id;
+                        $coupon->order_id = $model->id;
                         $coupon->save();
                         return json_encode([
                             'code' => 1,
@@ -150,7 +151,7 @@ class OrderController extends Controller
                             'message' => 'successful',
                             'coupon_code' => $coupon->coupon_code,
                             'link' => $activity->amazon_url,
-                            'order_id' => $order_id
+                            'order_id' => $model->id
                         ]);
                     } else{
                         $error = $model->firstErrors;

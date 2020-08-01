@@ -65,10 +65,12 @@ $this->registerJs($this->render('js/index.js'));
         ],
         'columns' => [
             [
-                'class' => 'backend\widgets\CheckboxColumn',
-                'checkboxOptions' => ['lay-skin'=>'primary','lay-filter'=>'choose'],
-                'headerOptions' => ['width'=>'50','style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: center;']
+                'attribute' => 'id',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => [
+                    'width' => '50px',
+                    'style'=> 'text-align: center;'
+                ],
             ],
             [
                 'attribute' => 'product.thumb_image',

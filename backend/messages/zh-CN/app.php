@@ -90,7 +90,7 @@ return [
     'last_login_ip' => '最近登录ip',
     'last_login_address' => '最近登录地址',
     'last_login_date' => '最近登录时间',
-    'updated_at' => '最近更新时间',
+    'updated_at' => '更新时间',
     'coupon_type' => '折扣方式',
     'coupon_code' => '优惠码',
     'customer' => '用户',
@@ -98,4 +98,9 @@ return [
     'order_id' => '订单号',
     'expired_at' => '过期时间',
     'sku' => 'sku',
+    'activity_id' => '活动ID',
+    'amazon_order_id' => '亚马逊订单号',
+    'order_type' => '订单类型',
+    'user_email' => '用户邮箱',
+    'order_created_at' => '下单时间',
 ];
