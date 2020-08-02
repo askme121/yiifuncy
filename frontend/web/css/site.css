@@ -1811,6 +1811,108 @@ button.close {
     font-size: 24px;
     color: #ccc;
 }
+.header-line {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #f1f1f1;
+}
+.header-line-back {
+    font-size: 34px;
+    float: left;
+    color: #666;
+    padding: 0 30px 0 5px;
+}
+.header-line-page {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    display: inline;
+    margin-left: -47px;
+}
+.deal-list-title {
+    height: 39px;
+    line-height: 39px;
+    background-color: #f5f5f5;
+    margin: 20px 0 10px;
+    color: #666;
+    font-size: 16px;
+}
+.clear-col {
+    text-align: center;
+    padding: 0;
+}
+.deal-list-item {
+    border: 1px solid #efefef;
+    margin: 10px 0 0;
+}
+.deal-id-time {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #efefef;
+    padding: 0 20px;
+    font-size: 14px;
+}
+.deal-id span {
+    color: #999;
+}
+.deal-time {
+    float: right;
+    color: #999;
+}
+.deal-content-container {
+    height: 140px;
+    padding: 20px;
+}
+.pd0 {
+    padding: 0;
+}
+.deals-item-img {
+    width: 16.5%;
+    height: 86px;
+    float: left;
+    border: 1px solid #e5e5e5;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.deals-item-img img {
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+}
+.deals-item-content {
+    float: left;
+    width: 83.5%;
+    padding-left: 20px;
+}
+.deals-item-title {
+    font-size: 16px;
+    height: 42px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.deals-item-info {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+    overflow: hidden;
+}
+.deals-item-info li {
+    float: left;
+}
+.deals-item-info .space-vertical-lines {
+    background-color: #d5d5d5;
+    margin-top: 6px;
+}
+.space-vertical-lines {
+    width: 1px;
+    height: 32px;
+    background-color: #efefef;
+    float: left;
+    margin-top: 11px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2030,14 +2132,37 @@ button.close {
         margin-left: -15px;
         margin-right: -15px;
         margin-top: 45px;
+        margin-bottom: 0px;
     }
     #deal-detal-tab li a {
-        font-size: 13px;
-        padding: 5px;
+        font-size: 12px;
+        padding: 10px 5px;
     }
     .account-content-container{
         width: auto;
         padding: 10px;
+        padding-top: 0px;
+    }
+    .public-profile {
+        width: 90%;
+        margin: 20px auto 0;
+    }
+    #changepassword-form .form-control, #paypal-account .form-control, .public-profile .form-control{
+        width: 100%;
+    }
+    .birth-select {
+        width: 84px !important;
+        margin-right: 0;
+    }
+    .flex-box{
+        display: flex;
+        justify-content: space-between;
+    }
+    #deal-detal-tab li.active a {
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid #ff9936;
+        background-color: #fff;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

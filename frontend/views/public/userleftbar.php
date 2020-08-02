@@ -22,10 +22,10 @@ use yii\helpers\Url;
     <div class="cross-line"></div>
     <ul class="account-menu-list">
         <li>
-            <a class="account-menu-a " href="/account/dealrequest">Refund Deals</a>
+            <a class="account-menu-a " href="<?= Url::toRoute('/order/index')?>">Refund Deals</a>
         </li>
         <li>
-            <a class="account-menu-a " href="/account/couponrequest">Coupon Deals</a>
+            <a class="account-menu-a " href="<?= Url::toRoute('/order/coupon')?>">Coupon Deals</a>
         </li>
         <li>
             <a class="account-menu-a " href="/account/sellermsg">Seller Msg</a>

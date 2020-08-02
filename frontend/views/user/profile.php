@@ -10,6 +10,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="container-bg">
         <?= $this->render('../public/userleftbar.php') ?>
         <div class="account-content-container">
+            <div class="header-line visible-sm visible-xs">
+                <a href="javascript:history.back()" class="header-line-back">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <h1 class="header-line-page">Account &amp; Profile</h1>
+            </div>
             <ul id="deal-detal-tab" class="nav nav-tabs">
                 <li role="presentation" id="tab-profile" class="in active">
                     <a href="#my-profile" data-toggle="tab" data-type="signin">My Profile</a>
@@ -66,7 +72,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </dl>
                             <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <dt>Date of Birth</dt>
-                                <dd>
+                                <dd class="flex-box">
                                     <select class="sel_month form-control birth-select " rel="" name="birth_month">
                                         <option value="">Month</option>                                                                                                                                     <option value="01">01</option>
                                         <option value="02">02</option>

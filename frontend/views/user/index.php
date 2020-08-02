@@ -43,7 +43,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="account-nav-container row">
         <ul>
             <li class="account-nav-li">
-                <a href="/account/dealrequest">
+                <a href="<?= Url::toRoute('/order/index')?>">
                     Refund Deals
                     <span class="account-nav-icon">
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -51,7 +51,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </a>
             </li>
             <li class="account-nav-li">
-                <a href="/account/couponrequest">
+                <a href="<?= Url::toRoute('/order/coupon')?>">
                     Coupon Deals
                     <span class="account-nav-icon">
                             <i class="fa fa-angle-right" aria-hidden="true"></i>

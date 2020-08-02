@@ -50,6 +50,8 @@ return [
                 'account' => '/user/index',
                 'account/forgotpassword' => '/site/request-password-reset',
                 'account/profile' => '/user/profile',
+                'account/coupon' => '/order/coupon',
+                'account/deal' => '/order/index',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

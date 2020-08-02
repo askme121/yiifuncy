@@ -50,6 +50,16 @@ class OrderController extends Controller
         return $this->render('index', ['meta'=>$meta]);
     }
 
+    public function actionCoupon()
+    {
+        $site_id = Yii::$app->params['site_id'];
+        $meta = [];
+        $meta['title'] = Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
+        return $this->render('coupon', ['meta'=>$meta]);
+    }
+
     public function actionDeal()
     {
         if (Yii::$app->user->isGuest){
