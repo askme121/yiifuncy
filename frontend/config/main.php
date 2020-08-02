@@ -47,7 +47,9 @@ return [
                 'account/login' => '/site/login',
                 'account/register' => '/site/signup',
                 'captcha' => '/site/captcha',
+                'account' => '/user/index',
                 'account/forgotpassword' => '/site/request-password-reset',
+                'account/profile' => '/user/profile',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

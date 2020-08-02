@@ -18,6 +18,9 @@ body, html{
     margin:0;
     padding:0
 }
+.col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    padding: 0 10px;
+}
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     padding:0;
     color:#333;
@@ -49,6 +52,12 @@ a:link, a:visited, a:hover, a:active {
 }
 .btn:hover, .btn:active, .btn:visited {
     color: inherit;
+}
+.btn-group-lg>.btn, .btn-lg {
+    min-width: 122px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3;
 }
 #header {
     background-color:#f93;
@@ -791,19 +800,6 @@ a:link, a:visited, a:hover, a:active {
 .page_box{
     text-align: center;
 }
-.upOrder-form-btn {
-    color: #fff!important;
-    background-color: #ff9936;
-    height: 30px;
-    padding: 0 15px!important;
-    font-size: 14px;
-    font-weight: 700!important;
-    border-radius: 3px!important;
-    text-transform: none!important;
-    line-height: 30px;
-    display: inline-block!important;
-    min-width: 120px!important;
-}
 .wite-btn {
     border: 1px solid #ff9936;
 }
@@ -1478,6 +1474,343 @@ button.close {
     font-size: 16px;
     margin-bottom: 0;
 }
+.container-bg {
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.account-menu-container {
+    float: left;
+    width: 16%;
+}
+.account-content-container {
+    width: 84%;
+    float: left;
+    padding: 20px;
+    border-left: 1px solid #efefef;
+    min-height: 600px;
+}
+.user-photo {
+    width: 58px;
+    display: block;
+    margin: 41px auto 0;
+    border-radius: 4px;
+}
+.user-email {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 12px;
+}
+.point-mess-container {
+    margin: 0 auto;
+}
+.point-container {
+    float: left;
+}
+.point-amount {
+    font-size: 14px;
+    color: #ccc;
+}
+.news-container {
+    float: right;
+    position: relative;
+}
+.news-amount {
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff5936;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    font-size: 12px;
+}
+.cross-line {
+    width: 180px;
+    height: 1px;
+    background-color: #f5f5f5;
+    margin: 57px auto 30px;
+}
+.account-menu-list li {
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+.account-menu-a {
+    padding-left: 30px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-left: 3px solid #fff;
+    color: #666;
+}
+.account-menu-a.active {
+    background-color: #f3f3f3;
+}
+.account-menu-a.active, .account-menu-a:hover {
+    border-left: 3px solid #f93;
+    color: #333!important;
+}
+#deal-detal-tab {
+    margin: 0;
+}
+#deal-detal-tab li a {
+    border-top: 2px solid #fff;
+    font-size: 18px;
+}
+#deal-detal-tab li.active a {
+    border-color: #efefef;
+    border-top: 2px solid #ff9936;
+    color: #ff9936;
+    border-radius: 0;
+    border-bottom-color: transparent;
+    border-bottom: 1px solid #fff;
+    font-weight: 700;
+}
+.upload-img {
+    display: block;
+    margin: 40px 0;
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    position: relative;
+    float: left;
+    border-radius: 6px;
+}
+#layer-upimg-container {
+    display: none;
+}
+.layer-contents, .layer-masks {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+.layer-masks {
+    height: 100%;
+    top: 0;
+    background: rgba(0,0,0,.3);
+}
+.layer-contents {
+    overflow: hidden;
+    top: 50%;
+    right: 0;
+    margin: auto;
+    color: #fff;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    font-size: 14px;
+}
+.uporder-succ-tip {
+    float: left;
+    background-color: #5cb85c;
+    width: 200px;
+    padding-left: 15px;
+    margin-left: 15px;
+    position: absolute;
+    bottom: 40px;
+    left: 120px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    display: none;
+}
+.public-profile {
+    margin-top: 28px;
+}
+.public-profile .form-group {
+    margin-bottom: 30px;
+}
+.form-group dt {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #24292e;
+    font-weight: 600;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+}
+.public-profile .form-group dt {
+    font-size: 14px;
+    color: #999;
+}
+#changepassword-form .form-control, #paypal-account .form-control, .public-profile .form-control {
+    width: 314px;
+    height: 43px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.birth-select {
+    width: 92px!important;
+    display: inline-block;
+    margin-right: 15px;
+}
+.method-dot {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 10px;
+}
+.profile-list {
+    font-size: 14px;
+    line-height: 1.3;
+}
+.profile-list li {
+    margin-top: 10px;
+}
+.question-icon {
+    width: 18px!important;
+    height: 18px!important;
+    border-radius: 50%!important;
+    padding: 0!important;
+    color: #f93!important;
+    border-color: #f93!important;
+    border: 1px solid;
+    line-height: 16px;
+    font-size: 14px;
+}
+#changepassword-form, #paypal-account {
+    margin-top: 40px;
+}
+#changepassword-form label {
+    width: 170px;
+}
+#changepassword-form .form-control, #paypal-account .form-control {
+    display: inline-block;
+}
+.model-close {
+    float: right;
+    width: 40px;
+    height: 40px;
+    font-size: 21px;
+    font-weight: 700;
+    text-shadow: none;
+    color: #333;
+    opacity: 1!important;
+    margin: 2px;
+    font-weight: 200;
+    font-size: 40px;
+}
+.upload-img-title {
+    margin: 0;
+    height: 54px;
+    line-height: 54px;
+    font-size: 18px;
+    padding-left: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.modal-content-upimg {
+    padding: 30px 24px 10px;
+    overflow: hidden;
+}
+.user-img-containers {
+    width: 300px;
+    float: left;
+}
+.user-img-containers>div {
+    width: 300px;
+    height: 300px;
+}
+.upOrder-form-btn {
+    color: #fff!important;
+    background-color: #ff9936;
+    height: 30px;
+    padding: 0 5px!important;
+    font-size: 14px;
+    font-weight: 700!important;
+    border-radius: 3px!important;
+    text-transform: none!important;
+    line-height: 30px;
+    display: inline-block!important;
+    min-width: 120px!important;
+}
+.upimg-tip {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.3;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#cropped_result {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    background-color: #efefef;
+}
+.upload {
+    height: 36px;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 36px;
+    background-color: #ff9936;
+    width: 116px;
+    text-align: center;
+    color: #fff !important;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.change {
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.error {
+    color: #ff6632;
+}
+#upimg-cancel {
+    background-color: #fff;
+    position: relative;
+    float: none;
+    border: 1px solid #ff9936;
+    color: #ff9936!important;
+    margin-left: 25px;
+    font-size: 14px;
+}
+.user-img-container {
+    height: 110px;
+    background-color: #fff;
+}
+.account-nav-container {
+    margin-top: 10px;
+}
+.account-nav-container>ul {
+    margin-bottom: 0;
+    color: #666;
+}
+.account-nav-container .account-nav-li {
+    height: 50px;
+    border-bottom: 1px solid #e4e4e4;
+    background-color: #fff;
+    line-height: 50px;
+}
+.account-nav-container>ul>li>a {
+    display: block;
+    padding: 0 15px;
+    font-size: 15px;
+}
+.account-nav-icon {
+    float: right;
+    line-height: 50px;
+    font-size: 24px;
+    color: #ccc;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -1585,6 +1918,9 @@ button.close {
         line-height: 1.2;
         font-weight: 500;
     }
+    .point-mess-container {
+        width: 70%;
+    }
 }
 @media (max-width:768px) {
     #bs-navbar .navbar-nav li {
@@ -1658,6 +1994,50 @@ button.close {
     }
     .zoomContainer{
         display: none !important;
+    }
+    .user-email {
+        margin: 10px 0 15px;
+        font-size: 16px;
+        color: #222;
+        text-align: left;
+    }
+    .mt55 {
+        margin-top: 45px;
+    }
+    .upload-img {
+        display: block;
+        width: 70px;
+        height: 70px;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        float: left;
+        background-size: contain!important;
+        background-position: 50%!important;
+        border: 1px solid #f1f1f1;
+        border-radius: 50%;
+    }
+    .point-container {
+        margin-right: 40px;
+    }
+    .news-container {
+        float: left;
+    }
+    .point-amount {
+        color: #666;
+    }
+    .container-bg {
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-top: 45px;
+    }
+    #deal-detal-tab li a {
+        font-size: 13px;
+        padding: 5px;
+    }
+    .account-content-container{
+        width: auto;
+        padding: 10px;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

@@ -20,10 +20,12 @@ use yii\helpers\Html;
         <img class="nav-logo-icon" src="<?= getImgUrl('images/logo.png') ?>" style="width: 120px;">
     </a>
     <div>
+        <?php if (!Yii::$app->user->isGuest) {?>
         <a href="#" class="nav-msg-container">
             <span class="nav-msg-icon glyphicon glyphicon-bell"></span>
             <span class="message-count">3</span>
         </a>
+        <?php }?>
     </div>
 </header>
 <header id="pc_header" class="hidden-sm hidden-xs">
