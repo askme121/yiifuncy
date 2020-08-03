@@ -130,6 +130,7 @@ class OrderController extends Controller
                             'code' => 1,
                             'status' => 1,
                             'message' => 'successful',
+                            'link' => $activity->amazon_url,
                             'order_id' => $model->id
                         ]);
                     } else {

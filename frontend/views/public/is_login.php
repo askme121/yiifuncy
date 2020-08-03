@@ -7,7 +7,7 @@ use yii\helpers\Url;
             <button type="button" class="close model-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
-
+            <input type="hidden" id="current_order_id" value="">
             <div class="modal-body jq-loading">
                 <img class="loading-img" src="<?= getImgUrl('images/loading.gif'); ?>">
                 <p style="margin: 20px 0 15px; text-align: center;">Getting quota, please wait ...</p>
@@ -37,13 +37,13 @@ use yii\helpers\Url;
                         <p class="upOrder-step-title">STEP 3:</p>
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
-                                <label class="form-group-tip" for="order_id"><span class="mandatory-identification">* </span>Order ID:</label>
-                                <input class="form-control form-group-input" id="coupon-user-submitted-title" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
+                                <label class="form-group-tip" for="coupon_order_id"><span class="mandatory-identification">* </span>Order ID:</label>
+                                <input class="form-control form-group-input" id="coupon_order_id" type="text" name="coupon_order_id" value="" placeholder="Enter your Amazon order info">
                                 <div class="form-group-error error" id="coupon-order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="coupon-user-submitted-post">Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="coupon-abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="coupon-order-post">Submit</a>
                             </div>
                         </form>
                     </div>
@@ -76,12 +76,12 @@ use yii\helpers\Url;
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
                                 <label class="form-group-tip" for="order_id"><span class="mandatory-identification">* </span>Order ID:</label>
-                                <input class="form-control form-group-input" id="user-submitted-title" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
+                                <input class="form-control form-group-input" id="order_id" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
                                 <div class="form-group-error error" id="order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
                                 <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" >Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="order-post" >Submit</a>
                             </div>
                         </form>
                     </div>

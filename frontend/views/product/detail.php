@@ -704,6 +704,46 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             });
         });
 
+        $('#order-post').click(function(){
+            $.ajax({
+                type: 'post',
+                url: '/order/submit',
+                dataType: 'json',
+                data: {
+                    "order_id": $('#current_order_id').val(),
+                    "amz_order_id": $('#order_id').val()
+                },
+                success: function(response){
+                    if (response.code == 1) {
+
+                    }
+                },
+                error: function(){
+
+                }
+            });
+        });
+
+        $('#coupon-order-post').click(function(){
+            $.ajax({
+                type: 'post',
+                url: '/order/submit',
+                dataType: 'json',
+                data: {
+                    "order_id": $('#current_order_id').val(),
+                    "amz_order_id": $('#coupon_order_id').val()
+                },
+                success: function(response){
+                    if (response.code == 1) {
+
+                    }
+                },
+                error: function(){
+
+                }
+            });
+        });
+
         $('#detail-btn').click(function (){
             var btn = $(this);
             if (btn.hasClass("onused")){
@@ -729,16 +769,15 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 1:
                             $('.modal-body').hide();
                             $('.jq-get-quota').show();
-                            $('.amazon_link').attr('href', response.amz_url);
+                            $('.amazon_link').attr('href', response.link);
                             $('.deal-expires-time').attr('data-expired-time', response.expired_at);
-                            $('#upOrder-form').attr('action', response.order_form_url);
-                            $('.jq-cancel-order').attr('data-href', response.order_cancel_url);
-                            $('#date-now').attr('data-now-time', response.datanow_at);
+                            $('#current_order_id').val(response.order_id);
                             break;
                         case 2:
                             $('.modal-body').hide();
                             $('#show-coupon-code').text(response.coupon_code);
                             $('#coupon-purchase-link').attr('href', response.link);
+                            $('#current_order_id').val(response.order_id);
                             $('.jq-got-coupon-code-success').show();
                             var clipboard = new ClipboardJS('#show-coupon-code', {
                                 text: function() {
