@@ -14,6 +14,10 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    public $birth_year;
+    public $birth_month;
+    public $birth_day;
+
     public static function tableName()
     {
         return '{{%user}}';
@@ -35,8 +39,9 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'email'], 'unique'],
             [['username', 'email'], 'email'],
             [['r_id'], 'integer'],
+            [['birth_date'], 'date'],
             [['firstname', 'lastname'], 'string'],
-            [['auth_key', 'verification_token'], 'safe'],
+            [['auth_key', 'verification_token', 'gender', 'country', 'marital'], 'safe'],
         ];
     }
 
@@ -59,6 +64,17 @@ class User extends ActiveRecord implements IdentityInterface
             'last_login_address' => Yii::t('app', 'last_login_address'),
             'last_login_date' => Yii::t('app', 'last_login_date'),
         ];
+    }
+
+    public function afterFind()
+    {
+        if ($this->birth_date){
+            $birth = explode('-', $this->birth_date);
+            $this->birth_year = $birth[0]??null;
+            $this->birth_month = $birth[1]??null;
+            $this->birth_day = $birth[2]??null;
+        }
+        parent::afterFind();
     }
 
     public static function findIdentity($id)

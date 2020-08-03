@@ -1445,7 +1445,13 @@ button.close {
     text-align: center;
     border-radius: 3px;
     float: right;
-    color: #f93;
+    color: #f93 !important;
+}
+.operation-btn:active, .operation-btn:focus, .operation-btn:hover {
+    background-color:#f93;
+    color:#fff !important;
+    border-color:#f93;
+    outline:0!important
 }
 #abandon-deal-btn {
     width: 124px;
@@ -1913,6 +1919,25 @@ button.close {
     float: left;
     margin-top: 11px;
 }
+.dealRequest-cashback {
+    padding: 0 15px;
+}
+.dealRequest-price{
+    padding-right: 20px;
+}
+.coupon-code{
+    font-weight: 800;
+    color: #000;
+    border: solid #f93 1px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f93;
+    cursor: pointer;
+    color: #fff;
+}
+.dealRequest-points{
+    padding-left: 20px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2164,6 +2189,60 @@ button.close {
         border-bottom: 2px solid #ff9936;
         background-color: #fff;
     }
+    .deal-list-item {
+        border: none;
+        margin: 0;
+    }
+    .deal-content-container {
+        height: auto;
+        padding: 10px 0;
+    }
+    .deals-item-img{
+        height: auto;
+        border: 1px solid #f1f1f1;
+        margin-top: 4px;
+    }
+    .deals-item-img img {
+        width: 50px;
+        height: 50px;
+    }
+    .deals-item-content {
+        padding-left: 10px;
+    }
+    .deals-item-title {
+        font-size: 13px;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 0px;
+    }
+    .deals-item-info {
+        display: flex;
+        color: #666;
+    }
+    .deals-item-info li {
+        font-size: 12px;
+        float: none;
+        display: inline-block;
+        text-align: center;
+    }
+    .dealRequest-cashback {
+        padding: 0 10px;
+        width: 60px;
+    }
+    .dealRequest-price{
+        padding-right: 0px;
+        width: 70px;
+    }
+    .coupon-code{
+        font-weight: normal;
+        padding: 0px;
+        border-radius: 3px;
+        padding: 1px 5px;
+        font-size: 10px;
+    }
+    .dealRequest-points{
+        padding-left: 10px;
+    }
 }
 @media (min-width: 992px) and (max-width: 1200px){
     #logo{
@@ -2185,5 +2264,10 @@ button.close {
 @media only screen and (max-width: 1400px) and (min-width: 1200px){
     .detail-step-item {
         font-size: 12px;
+    }
+}
+@media only screen and (min-width: 1200px){
+    .dealRequest-cashback {
+        padding: 0 20px;
     }
 }

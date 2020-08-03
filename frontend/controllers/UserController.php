@@ -24,7 +24,7 @@ class UserController extends Controller
                         'roles' => ['@'],
                     ],
                     ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
-                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password'], 'verbs' => ['POST']],
+                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile'], 'verbs' => ['POST']],
                 ],
             ],
             'verbs' => [
@@ -67,7 +67,26 @@ class UserController extends Controller
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
-        return $this->render('profile', ['meta'=>$meta, 'model'=>$model]);
+        if ($model->load(Yii::$app->request->post(), '')){
+            $param = Yii::$app->request->post();
+            if (isset($param['birth_year']) && isset($param['birth_month']) && isset($param['birth_day']) && !empty($param['birth_year']) && !empty($param['birth_month']) && !empty($param['birth_day'])){
+                $model->birth_date = $param['birth_year'].'-'.$param['birth_month'].'-'.$param['birth_day'];
+            }
+            if ($model->save()){
+                return json_encode([
+                    'code' => 1,
+                    'message' => 'successful',
+                ]);
+            } else {
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 402,
+                    'message' => array_values($error),
+                ]);
+            }
+        } else {
+            return $this->render('profile', ['meta'=>$meta, 'model'=>$model]);
+        }
     }
 
     public function actionAmazonProfileLink()
