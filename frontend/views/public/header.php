@@ -83,17 +83,17 @@ use yii\helpers\Html;
                                     <span></span>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="<?= Url::toRoute('/order/index')?>">
                                         <img class="nav-dropdown-icon" src="<?= getImgUrl('images/my-deal.png'); ?>"> Refund Deals
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="<?= Url::toRoute('/order/coupon')?>">
                                         <img class="nav-dropdown-icon" src="<?= getImgUrl('images/my-deal.png'); ?>"> Coupon Deals
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="<?= Url::toRoute('/user/profile')?>">
                                         <img class="nav-dropdown-icon" src="<?= getImgUrl('images/account-profile.png'); ?>"> Account & Profile
                                     </a>
                                 </li>

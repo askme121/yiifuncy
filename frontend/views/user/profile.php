@@ -39,20 +39,20 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </button>
                         <div class="uporder-succ-tip">Avatar Upload Success!</div>
                     </div>
-                    <form class="public-profile" action="/account/profile" method="post" id="public-profile-form">
+                    <form class="public-profile" action="<?= Url::toRoute('/user/profile')?>" method="post" id="public-profile-form">
                         <input name="avatar" type="hidden" value="">
                         <div class="row">
                             <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <dt>First Name(Display on the reviews page)</dt>
                                 <dd>
-                                    <input name="first_name" type="text" class="form-control" value="ask" oninput="checkField(this,this.value)" onporpertychange="checkField(this,this.value)">
+                                    <input name="first_name" type="text" class="form-control" value="<?= $model->firstname?>" oninput="checkField(this,this.value)" onporpertychange="checkField(this,this.value)">
                                 </dd>
                                 <div class="error" id="firstName-tip" style="display: none;">Please fill out this field</div>
                             </dl>
                             <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <dt>Last Name(Display on the reviews page)</dt>
                                 <dd>
-                                    <input name="last_name" type="text" class="form-control" value="me" oninput="checkField(this,this.value)" onporpertychange="checkField(this,this.value)">
+                                    <input name="last_name" type="text" class="form-control" value="<?= $model->lastname?>" oninput="checkField(this,this.value)" onporpertychange="checkField(this,this.value)">
                                 </dd>
                                 <div class="error" id="lastName-tip" style="display: none;">Please fill out this field</div>
                             </dl>
@@ -476,70 +476,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </dl>
                         </div>
                         <div class="row">
-                            <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <dt>Preferred Product Categories</dt>
-                                <dd>
-                                    <select name="like_product" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Electronics &amp; Computers &amp; Office">Electronics, Computers &amp; Office</option>
-                                        <option value="Home &amp; Garden &amp; Pets &amp; Tools">Home, Garden, Pets &amp; Tools</option>
-                                        <option value="Food &amp; Grocery">Food &amp; Grocery</option>
-                                        <option value="Beauty &amp; Health">Beauty &amp; Health</option>
-                                        <option value="Toys &amp; Kids &amp; Babies">Toys, Kids &amp; Baby</option>
-                                        <option value="Clothing &amp; Shoes &amp; Jewelry">Clothing, Shoes &amp; Jewelry</option>
-                                        <option value="Handmade">Handmade</option>
-                                        <option value="Sports &amp; Outdoors">Sports &amp; Outdoors</option>
-                                        <option value="Automotive &amp; Industrial">Automotive &amp; Industrial</option>
-                                    </select>
-                                </dd>
-                            </dl>
-                            <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <dt>Education(The Highest Level)</dt>
-                                <dd>
-                                    <select name="highest_education" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Less than High School">Less than High School</option>
-                                        <option value="Some High School">Some High School</option>
-                                        <option value="High School Diploma or Equivalent">High School Diploma or Equivalent</option>
-                                        <option value="Some College">Some College</option>
-                                        <option value="Associate Degree">Associate Degree</option>
-                                        <option value="Bachelor’s Degree">Bachelor’s Degree</option>
-                                        <option value="Master’s Degree">Master’s Degree</option>
-                                        <option value="Doctorate Degree">Doctorate Degree</option>
-                                        <option value="None of the Above">None of the Above</option>
-                                    </select>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="row">
-                            <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <dt>Annually Cost for Online Shopping</dt>
-                                <dd>
-                                    <select name="online_shopping_spend" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Under $250">Under $250</option>
-                                        <option value="$250 to $500">$250 to $500</option>
-                                        <option value="$500 to $1000">$500 to $1000</option>
-                                        <option value="$1,000 to $5,000">$1,000 to $5,000</option>
-                                        <option value="$5,000 or more">$5,000 or more</option>
-                                    </select>
-                                </dd>
-                            </dl>
-                            <dl class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <dt>Total Household Income Before Taxes</dt>
-                                <dd>
-                                    <select name="household" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Under $2,5000">Under $2,5000</option>
-                                        <option value="$25,000 to $50,000">$25,000 to $50,000</option>
-                                        <option value="$50,000 to $75,000">$50,000 to $75,000</option>
-                                        <option value="$75,000 to $100,000">$75,000 to $100,000</option>
-                                        <option value="$100,000 or more">$100,000 or more</option>
-                                    </select>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="row">
 
                         </div>
                         <p class="col-md-12 col-sm-12 col-xs-12" style="padding: 0 !important;margin: 0;">
@@ -549,31 +485,30 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </div>
 
                 <div class="tab-pane fade" id="change-pass">
-                    <form class="changepassword-form" id="changepassword-form" action="/account/password" method="post">
+                    <form class="changepassword-form" id="changepassword-form" action="<?= Url::toRoute('/user/change-password')?>" method="post">
                         <div class="form-group">
                             <label><font style="color: red;">*</font>Old Password: </label>
-                            <input id="old-password" name="old_password" type="password" class="form-control">
+                            <input id="old-password" name="oldPassword" type="password" class="form-control">
                             <span class="help-block m-b-none error" style="margin-left: 174px; color: #ed5565;"></span>
                         </div>
                         <div class="form-group">
                             <label><font style="color: red;">*</font>New Password: </label>
-                            <input id="new-pass" name="new_password" type="password" class="form-control">
+                            <input id="new-pass" name="newPassword" type="password" class="form-control">
                             <span class="help-block m-b-none error" style="margin-left: 174px; color: #ed5565;"></span>
                         </div>
                         <div class="form-group">
                             <label><font style="color: red;">*</font>Confirm Password: </label>
-                            <input id="new-password-confirmation" name="new_password_confirmation" type="password" class="form-control">
+                            <input id="new-password-confirmation" name="retypePassword" type="password" class="form-control">
                             <span class="help-block m-b-none error" style="margin-left: 174px; color: #ed5565;"></span>
                         </div>
                         <span class="help-block m-b-none error" style="margin-left: 174px; color: #ed5565;"></span>
                         <p class="form-group">
                             <label></label>
-                            <input type="submit" class="btn upOrder-form-btn" id="submit-password" value="Submit" style="margin-top: 10px; line-height: 10px;">
+                            <input type="button" class="btn upOrder-form-btn" id="submit-password" value="Submit" style="margin-top: 10px; line-height: 10px;">
                         </p>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="amazon-profile">
-
                     <form class="submit-amazon-profile-form" id="submit-amazon-profile-form" style="margin-left: 20px;" action="/account/amazon_profile_link?type=redirect&amp;url=" method="POST">
                         <ul class="profile-list" style="margin-top: 20px;">
                             <li>
@@ -591,17 +526,19 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </ul>
                         <div class="form-group" style="margin-bottom: 0;">
                             <label>Amazon Profile URL: </label>
-                            <input name="amazon_profile_link" type="text" class="form-control" value="">
+                            <input name="amazon_profile_link" required type="text" <?php if (!empty($model->amazon_profile_url)){?>disabled<?php }?> class="form-control" value="<?= $model->amazon_profile_url?>">
                             <span class="help-block m-b-none" style="margin-left: 0px; color: #ed5565;"></span>
                         </div>
                         <div class="form-group">
                             <label>Paypal Account:<button type="button" class="btn-default question-icon" data-toggle="tooltip" title="" data-original-title="Refund PayPal Account (can’t be changed), PayPal account must be an email">?</button></label>
-                            <input name="paypal" type="email" class="form-control jq-add-paypal" value="" placeholder="PayPal account must be an email">
+                            <input name="paypal" required type="email" class="form-control jq-add-paypal" <?php if (!empty($model->paypal_account)){?>disabled<?php }?> value="<?= $model->paypal_account?>" placeholder="PayPal account must be an email">
                             <span class="help-block m-b-none" style="margin-left: 0px; color: #ed5565;"></span>
                         </div>
                         <p class="form-group">
                             <label></label>
-                            <input type="submit" class="btn upOrder-form-btn" id="submit-amazon-link" value="Save" style="margin-top: 10px; line-height: 10px;">
+                            <?php if (empty($model->amazon_profile_url) || empty($model->paypal_account)){?>
+                            <input type="button" class="btn upOrder-form-btn" id="submit-amazon-link" value="Save" style="margin-top: 10px; line-height: 10px;">
+                            <?php }?>
                         </p>
                     </form>
                 </div>
@@ -671,3 +608,98 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+<?php $this->beginBlock('js_block') ?>
+$(function () {
+    $('#submit-amazon-link').click(function (){
+        var btn = $(this);
+        var url = $("#submit-amazon-profile-form").attr('action');
+        var amazon_url = $("input[name='amazon_profile_link']").val();
+        var paypal = $("input[name='paypal']").val();
+        if (amazon_url.trim() == ''){
+            $("input[name='amazon_profile_link']").focus();
+        }
+        if (paypal.trim() == ''){
+            $("input[name='paypal']").focus();
+        }
+        if (btn.hasClass("onused")){
+            return false;
+        }
+        btn.addClass("onused");
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                "amazon_profile_link": amazon_url,
+                "paypal": paypal
+            },
+            dataType: "json",
+            success: function(response){
+                if (response.code == 1) {
+                    swal({
+                        type: 'success',
+                        title: 'Oops',
+                        text: response.message,
+                        timer: 2000,
+                        html: true
+                    });
+                    window.location.href = location.href;
+                } else {
+                    btn.removeClass("onused");
+                    swal({
+                        type: 'error',
+                        title: 'Oops',
+                        text: response.message,
+                        html: true
+                    });
+                }
+            },
+            error: function(){
+                btn.removeClass("onused");
+                swal('Oops', 'Server error, please try again later.', 'error');
+            }
+        });
+    });
+
+    $('#submit-password').click(function (){
+        var btn = $(this);
+        var url = $("#changepassword-form").attr('action');
+        if (btn.hasClass("onused")){
+            return false;
+        }
+        btn.addClass("onused");
+        $.ajax({
+            type: "post",
+            url: url,
+            data: $("#changepassword-form").serialize(),
+            dataType: "json",
+            success: function(response){
+                if (response.code == 1) {
+                    swal({
+                        type: 'success',
+                        title: 'Oops',
+                        text: response.message,
+                        timer: 2000,
+                        html: true
+                    });
+                    window.location.href = location.href;
+                } else {
+                    btn.removeClass("onused");
+                    swal({
+                        type: 'error',
+                        title: 'Oops',
+                        text: response.message,
+                        html: true
+                    });
+                }
+            },
+            error: function(){
+                btn.removeClass("onused");
+                swal('Oops', 'Server error, please try again later.', 'error');
+            }
+        });
+    });
+});
+<?php $this->endBlock(); ?>
+    </script>
+<?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>

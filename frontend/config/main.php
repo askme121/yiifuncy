@@ -52,6 +52,8 @@ return [
                 'account/profile' => '/user/profile',
                 'account/coupon' => '/order/coupon',
                 'account/deal' => '/order/index',
+                'account/amazon_profile_link' => '/user/amazon-profile-link',
+                'account/password' => '/user/change-password',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

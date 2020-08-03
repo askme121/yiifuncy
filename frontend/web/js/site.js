@@ -25,6 +25,7 @@ $(function() {
 });
 
 $(document).ready(function(){
+    $("[data-toggle='tooltip']").tooltip();
     $("#back-top").hide();
     $(window).scroll(function(){
         if($(this).scrollTop() > 200){
