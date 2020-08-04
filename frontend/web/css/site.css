@@ -21,6 +21,9 @@ body, html{
 .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
     padding: 0 10px;
 }
+label {
+    font-weight: 400;
+}
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     padding:0;
     color:#333;
@@ -1869,7 +1872,7 @@ button.close {
 }
 .deal-content-container {
     height: 140px;
-    padding: 20px;
+    padding: 12px;
 }
 .pd0 {
     padding: 0;
@@ -1920,23 +1923,136 @@ button.close {
     margin-top: 11px;
 }
 .dealRequest-cashback {
-    padding: 0 15px;
+    padding: 0 10px;
 }
 .dealRequest-price{
-    padding-right: 20px;
+    padding-right: 10px;
 }
 .coupon-code{
-    font-weight: 800;
-    color: #000;
     border: solid #f93 1px;
     border-radius: 5px;
     padding: 5px;
     background-color: #f93;
     cursor: pointer;
     color: #fff;
+    font-size: 13px;
 }
 .dealRequest-points{
-    padding-left: 20px;
+    padding-left: 10px;
+}
+.list-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.processing {
+    background-color: #f93;
+}
+.btn-w-m{
+    background-color: #f93;
+    color: white !important;
+}
+.deal-nav-a {
+    display: inline-block;
+    border-right: 1px solid #f1f4f5;
+    padding: 9px 20px;
+}
+.deal-nav-a span {
+    padding: 0 0 13px;
+    border-bottom: 2px solid #fff;
+    font-size: 14px;
+}
+.deal-nav-active {
+    border-color: #f93!important;
+    color: #f93;
+    font-size: 14px;
+}
+.final-price{
+    padding-right: 5px;
+}
+.process-status{
+    margin-top: 30px;
+}
+.deal-info-title {
+    margin: 32px 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.deal-detail-container {
+    border: 1px solid #f2f2f2;
+    margin-top: 18px;
+    font-size: 14px;
+}
+.deal-detail-theader {
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    color: #999;
+    border-bottom: 1px solid #f2f2f2;
+    margin: 0;
+}
+.deal-detail-tbody {
+    padding: 15px;
+    margin: 0;
+}
+.deal-detail-img {
+    height: 86px;
+    width: 86px;
+    border: 1px solid #e5e5e5;
+    float: left;
+}
+.deal-detail-img img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 3px;
+}
+.deal-detail-title {
+    height: 52px;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: left;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    padding-left: 10px;
+}
+.deal-detail-dealid {
+    text-align: left;
+    font-size: 12px;
+    color: #aaa;
+    float: left;
+    padding-left: 10px;
+}
+.deal-info-td {
+    height: 86px;
+    line-height: 52px;
+}
+.detail-review-container {
+    padding: 20px 0;
+    margin: 19px 0 0;
+    border: 1px solid #efefef;
+}
+.share-view-left {
+    padding: 0 40px 0 30px;
+}
+.detail-review-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+.deal-detail-order {
+    margin: 30px 80px 0 30px!important;
+}
+.amz-info-input {
+    border: 1px solid #c7c7c7;
+    background-color: #fff;
+}
+.share-view-right {
+    padding: 0 54px 0 40px;
+    font-size: 16px;
+    border-left: 1px solid #e5e5e5;
 }
 
 @media (min-width:1400px) {
@@ -2265,9 +2381,22 @@ button.close {
     .detail-step-item {
         font-size: 12px;
     }
+    .deal-detail-img {
+        height: 70px;
+        width: 70px;
+    }
+    .deal-detail-title {
+        margin-bottom: 5px;
+        line-height: 1.2;
+        height: 48px;
+    }
+    .deal-info-td {
+        height: 70px;
+        line-height: 70px;
+    }
 }
 @media only screen and (min-width: 1200px){
     .dealRequest-cashback {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 }

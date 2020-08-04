@@ -60,7 +60,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </li>
             <li class="account-nav-li">
                 <a href="/account/sellermsg">
-                    Seller Msg
+                    Message Center
                     <i class="fa fa-angle-right account-nav-icon" aria-hidden="true"></i>
                 </a>
             </li>

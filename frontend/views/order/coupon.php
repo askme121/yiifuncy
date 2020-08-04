@@ -18,60 +18,182 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </div>
             <div>
                 <div class="row deal-list-title visible-lg visible-md">
-                    <div class="col-xs-9 col-sm-9 col-lg-8 col-md-8 clear-col">Coupon Information</div>
-                    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3 clear-col">Action</div>
+                    <div class="col-xs-8 col-sm-8 col-lg-7 col-md-7 clear-col">Coupon Information</div>
+                    <div class="col-xs-2 col-sm-2 col-lg-3 col-md-3">Deal Process</div>
+                    <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 clear-col">Action</div>
                 </div>
+                <?php if (is_array($model) && !empty($model)): ?>
+                <?php foreach ($model as $order):  ?>
                 <div class="row deal-list-item" style="padding-bottom: 10px;">
                     <div class="deal-id-time visible-lg visible-md">
                             <span class="deal-id">
-                                <span>Coupon ID: </span>94318
+                                <span>Coupon ID: </span><?= $order['order_id']?>
                             </span>
-                        <span class="deal-time">Coupon Time: Jul/30/2020 08:51</span>
+                        <span class="deal-time">Coupon Time: <?= date('M/d/Y H:i', $order['created_at'])?></span>
                     </div>
                     <div class="deal-content-container">
-                        <div class="col-xs-12 col-sm-12 col-lg-8 col-md-8 pd0">
+                        <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 pd0">
                             <div class="deals-item-img">
-                                <a href="">
-                                    <img src="/image/deals/0/b/0b309c0c0730bf32c4385ae66d95ceeb.jpg">
+                                <a href="<?= Url::to('/offer/'.$order['activity']['url_key'].'/'.$order['activity']['id']);?>" target="_blank">
+                                    <img src="<?= $order['product']['thumb_image'] ?>">
                                 </a>
                             </div>
                             <div class="deals-item-content">
                                 <p class="deals-item-title">
-                                    <a href="">Pampfort Posture Corrector for Men and Women, Unique Armpit Comfort and Wider Adjustable Range Design, Long Wearing Without a Tightly Feeling, Under Clothes Posture Brace for Pain Relief (Large)</a>
+                                    <a href="<?= Url::to('/offer/'.$order['activity']['url_key'].'/'.$order['activity']['id']);?>" target="_blank"><?= $order['product']['name'] ?></a>
                                 </p>
                                 <ul class="deals-item-info">
                                     <li class="dealRequest-price">
-                                        <div>Price</div>
-                                        <div>$ 14.98</div>
+                                        <div class="text-center">Price</div>
+                                        <div class="text-center">
+                                            <span class="final-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $order['origin_cost'] - $order['cashback_cost'] - $order['coupon_cost']?></span>
+                                            <span class="origin-price new-origin-price"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $order['origin_cost']?></span>
+                                        </div>
                                     </li>
                                     <li class="space-vertical-lines"></li>
                                     <li class="dealRequest-cashback">
-                                        <div>OFF</div>
-                                        <div>70%</div>
+                                        <div class="text-center">Cashback</div>
+                                        <div class="text-center"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $order['cashback_cost']?></div>
+                                    </li>
+                                    <li class="space-vertical-lines"></li>
+                                    <li class="dealRequest-cashback">
+                                        <div class="text-center">OFF</div>
+                                        <div class="text-center">
+                                            <?= number_format(($order['coupon_cost']/$order['origin_cost'])*100, 2)?> %
+                                        </div>
                                     </li>
                                     <li class="space-vertical-lines"></li>
                                     <li class="dealRequest-points">
-                                        <div>Code</div>
+                                        <div class="text-center">Code</div>
                                         <div class="coupon-code">
-                                            <font class="jq-select-code">NMSH-6AWN9E-ZXJHAN</font>
+                                            <font class="jq-select-code"><?= $order['coupon_code']?></font>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 pd0">
-                            <a class="operation-btn" href="" target="_blank">Buy it on Amazon</a>
-                            <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="">Submit Order info</button>
-                            <a class="operation-btn" href="https://www.cashbackbase.com/account/dealrequest/94318">More Details</a>
+                            <div class="process-status">
+                                <div>
+                                    <span class="list-dot processing"></span>
+                                    <?php
+                                    $order_status = Yii::$app->params['order_status'];
+                                    if (isset($order_status[$order['status']])){
+                                        echo $order_status[$order['status']];
+                                    } else {
+                                        echo 'unkown';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 pd0">
+                            <?php if ($order['status'] == 1){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
+                                <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
+                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
+                            <?php } else if ($order['status'] == 2){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
+                            <?php } else if ($order['status'] == 3){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
+                            <?php } else if ($order['status'] == 4){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                            <?php } else if ($order['status'] == 5){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                            <?php } else if ($order['status'] == 6){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                            <?php } else if ($order['status'] == 7){?>
+                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
+                    <?php endforeach; ?>
                 <div>
                     <br>
                     <nav aria-label="Page navigation" class="text-center">
                     </nav>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
+<?= $this->render('../public/uporder'); ?>
+<script type="text/javascript">
+    <?php $this->beginBlock('js_block') ?>
+    $(document).ready(function(){
+        $('.jq-add-refund').click(function (){
+            var url = $(this).attr('data-url');
+            $('#upOrder-form').attr('action', url);
+        });
+        $("#order-id-tips").html("");
+        $("#user-submitted-post").click(function(){
+            var orderid = $("#user-submitted-title").val().trim();
+            var reg_order = /^\d{3}-\d{7}-\d{7}\s*$/;
+            var url = $('#upOrder-form').attr('action');
+            if(orderid.indexOf('ORDER #') != -1){
+                orderid = orderid.split('#')[1].trim();
+            }
+            if(orderid.length == "0"){
+                $("#order-id-tips").html("Order ID can't be empty!");
+                return false;
+            }else if(!reg_order.test(orderid)){
+                $("#order-id-tips").html("Please enter the correct Order ID.<br>e.g. 123-1234567-1234567");
+                return false;
+            }
+            $.ajax({
+                type: 'post',
+                url: url,
+                dataType: 'json',
+                data: {
+                    "amz_order_id": orderid
+                },
+                success: function(response){
+                    if (response.code == 1) {
+                        $('.operation-uporder').modal('hide');
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.href = location.href;
+                    } else if (response.code == 205) {
+                        window.location.href = '/account/profile?tabtarget=amazon-profile&redirect=<?= $currentUrl ?>';
+                    } else {
+                        $("#order-id-tips").html(response.message);
+                    }
+                },
+                error: function(){
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
+            });
+        });
+        $('.jq-select-code').click(function() {
+            var coupon_code = $(this).text();
+            var clipboard = new ClipboardJS('.jq-select-code', {
+                text: function() {
+                    return coupon_code;
+                }
+            });
+            clipboard.on('success', function(e) {
+                swal({
+                    type: 'success',
+                    title: '',
+                    text: 'Copied the code successfully. Buy it on Amazon now!'
+                });
+            });
+        });
+    });
+    <?php $this->endBlock(); ?>
+</script>
+<?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>

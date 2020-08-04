@@ -425,6 +425,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     </div>
 </div>
 
+<div class="modal notice-review" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body jq-loading" style="padding: 0px;text-align: center;">
+                <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
+                    The order info you submitted is under review. Please wait for your order verification and refund patiently.<br>
+                    We'd really appreciate if if you left us an honest product review.Reviews are very important for us,and they help other shoppers make informed decisions.Thank you!
+                </p>
+                <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
+                    <a id="review-btn" type="button" class="btn upOrder-form-btn" style="height: 50px !important;line-height: 50px !important;display: inline-block;font-size: 24px;" data-dismiss="modal" aria-label="Close">I've read it</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php if (Yii::$app->user->isGuest) {
     $param = [
             'type' => $model['type'],
@@ -705,6 +721,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         });
 
         $('#order-post').click(function(){
+            if ($('#current_order_id').val() == ''){
+                return false;
+            }
+            if ($('#order_id').val().trim() == ''){
+                $('#order_id').focus();
+                return false;
+            }
             $.ajax({
                 type: 'post',
                 url: '/order/submit',
@@ -715,16 +738,28 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 },
                 success: function(response){
                     if (response.code == 1) {
-
+                        $('.is-logged-in-modal').modal('hide');
+                        $('.notice-review').modal('show');
+                    } else if (response.code == 205) {
+                        window.location.href = '/account/profile?tabtarget=amazon-profile&redirect=<?= $currentUrl ?>';
+                    } else {
+                        $("#order-id-tips").text(response.message);
                     }
                 },
                 error: function(){
-
+                    swal('Oops', 'Server error, please try again later.', 'error');
                 }
             });
         });
 
         $('#coupon-order-post').click(function(){
+            if ($('#current_order_id').val() == ''){
+                return false;
+            }
+            if ($('#coupon_order_id').val().trim() == ''){
+                $('#coupon_order_id').focus();
+                return false;
+            }
             $.ajax({
                 type: 'post',
                 url: '/order/submit',
@@ -735,13 +770,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 },
                 success: function(response){
                     if (response.code == 1) {
-
+                        $('.is-logged-in-modal').modal('hide');
+                        $('.notice-review').modal('show');
+                    } else if (response.code == 205) {
+                        window.location.href = '/account/profile?tabtarget=amazon-profile&redirect=<?= $currentUrl ?>';
+                    } else {
+                        $("#coupon-order-id-tips").text(response.message);
                     }
                 },
                 error: function(){
-
+                    swal('Oops', 'Server error, please try again later.', 'error');
                 }
             });
+        });
+
+        $("#review-btn").click(function () {
+            $('.notice-review').modal('hide');
         });
 
         $('#detail-btn').click(function (){
@@ -808,10 +852,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 6:
                             $('.modal-body').hide();
                             $('.jq-waiting-one-deal').show();
+                            $('#waiting_deal_url').attr('href', response.deals_url);
                             break;
                         case 7:
                             $('.modal-body').hide();
                             $('.jq-hover-one-deal').show();
+                            $('#hover_deal_url').attr('href', response.deals_url);
                             break;
                     }
                 },

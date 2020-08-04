@@ -294,6 +294,43 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 </div>
     <script type="text/javascript">
 <?php $this->beginBlock('js_block') ?>
+$(document).ready(function () {
+    var urlParam = GetRequest();
+    if(urlParam.tabtarget === "changepassword"){
+        $('#tab-profile').removeClass('active');
+        $('#my-profile').removeClass('active in');
+        $('#tab-profile a').attr('aria-expanded','false');
+
+        $('#tab-change-passs').addClass('active');
+        $('#change-pass').addClass('active in');
+        $('#tab-change-passs a').attr('aria-expanded','true');
+
+        $('#tab-paypal').removeClass('active');
+        $('#paypal-account').removeClass('active in');
+        $('#tab-paypal a').attr('aria-expanded','false');
+
+        $('#tab-profile-link').removeClass('active');
+        $('#amazon-profile').removeClass('active in');
+        $('#tab-profile-link a').attr('aria-expanded','false');
+    }
+    if(urlParam.tabtarget === "amazon-profile"){
+        $('#tab-profile').removeClass('active');
+        $('#my-profile').removeClass('active in');
+        $('#tab-profile a').attr('aria-expanded','false');
+
+        $('#tab-change-passs').removeClass('active');
+        $('#change-pass').removeClass('active in');
+        $('#tab-change-passs a').attr('aria-expanded','false');
+
+        $('#tab-paypal').removeClass('active');
+        $('#paypal-account').removeClass('active in');
+        $('#tab-paypal a').attr('aria-expanded','false');
+
+        $('#tab-profile-link').addClass('active');
+        $('#amazon-profile').addClass('active in');
+        $('#tab-profile-link a').attr('aria-expanded','true');
+    }
+})
 $(function () {
     $('#submit-amazon-link').click(function (){
         var btn = $(this);

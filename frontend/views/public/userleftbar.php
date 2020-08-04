@@ -28,7 +28,7 @@ use yii\helpers\Url;
             <a class="account-menu-a " href="<?= Url::toRoute('/order/coupon')?>">Coupon Deals</a>
         </li>
         <li>
-            <a class="account-menu-a " href="/account/sellermsg">Seller Msg</a>
+            <a class="account-menu-a " href="/account/sellermsg">Message Center</a>
         </li>
         <li>
             <a class="account-menu-a  active " href="<?= Url::toRoute('/user/profile')?>">Account &amp; Profile</a>

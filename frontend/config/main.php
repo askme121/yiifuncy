@@ -70,6 +70,16 @@ return [
                     'route' => 'product/detail',
                     'defaults' => ['url' => '', 'id' => 0],
                 ],
+                [
+                    'pattern' => 'order/upgrade/<id:\d+>',
+                    'route' => 'order/uporder',
+                    'defaults' => ['id' => 0],
+                ],
+                [
+                    'pattern' => 'order/deal/<id:\d+>',
+                    'route' => 'order/view',
+                    'defaults' => ['id' => 0],
+                ],
             ],
         ],
         'formatter' => [

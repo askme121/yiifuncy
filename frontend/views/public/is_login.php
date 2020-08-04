@@ -80,7 +80,7 @@ use yii\helpers\Url;
                                 <div class="form-group-error error" id="order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
+                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important; float: left">Cancel deal</a>
                                 <a type="button" class="btn upOrder-form-btn jq-submit-order" id="order-post" >Submit</a>
                             </div>
                         </form>
@@ -118,7 +118,7 @@ use yii\helpers\Url;
                     Congratulations! You have applied this deal successfully.<br />Upload your order info within 24 hours after getting seller's confirmation.
                 </p>
                 <p style="text-align: center">
-                    <a class="btn upOrder-form-btn no-points-btn" href="/customer/cashback">Check My Deal</a>
+                    <a class="btn upOrder-form-btn no-points-btn" id="waiting_deal_url" href="#">Check My Deal</a>
                 </p>
             </div>
 
@@ -130,7 +130,7 @@ use yii\helpers\Url;
                     Sorry! You have unfinished deals.<br />Upload your order info within 24 hours after getting seller's confirmation.
                 </p>
                 <p style="text-align: center">
-                    <a class="btn upOrder-form-btn no-points-btn" href="/customer/cashback">Check My Deal</a>
+                    <a class="btn upOrder-form-btn no-points-btn" id="hover_deal_url" href="#">Check My Deal</a>
                 </p>
             </div>
 

@@ -7,6 +7,7 @@ use common\models\Coupon;
 use common\models\Product;
 use common\models\User;
 use common\models\Config;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\Order;
@@ -26,6 +27,7 @@ class OrderController extends Controller
                         'roles' => ['@'],
                     ],
                     ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['deal', 'submit', 'uporder'], 'verbs' => ['POST']],
                 ],
             ],
         ];
@@ -43,21 +45,119 @@ class OrderController extends Controller
     public function actionIndex()
     {
         $site_id = Yii::$app->params['site_id'];
+        $user_id = Yii::$app->user->identity->getId();
+        $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
         $meta = [];
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
-        return $this->render('index', ['meta'=>$meta]);
+        $query = Order::find()
+            ->innerJoinWith('activity')
+            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.user_id'=>$user_id, 'order_type'=>2]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
+        $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        return $this->render('index', ['meta'=>$meta, 'model'=>$model, 'currentUrl'=>$currentUrl]);
+    }
+
+    public function actionView($id)
+    {
+        $site_id = Yii::$app->params['site_id'];
+        $user_id = Yii::$app->user->identity->getId();
+        $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
+        $meta = [];
+        $meta['title'] = Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
+        $model = Order::find()
+            ->innerJoinWith('activity')
+            ->innerJoinWith('product')->where(['t_order.id'=>$id, 't_order.site_id'=>$site_id, 't_order.user_id'=>$user_id])
+            ->asArray()->one();
+        return $this->render('view', ['meta'=>$meta, 'order'=>$model, 'currentUrl'=>$currentUrl]);
     }
 
     public function actionCoupon()
     {
         $site_id = Yii::$app->params['site_id'];
+        $user_id = Yii::$app->user->identity->getId();
+        $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
         $meta = [];
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
-        return $this->render('coupon', ['meta'=>$meta]);
+        $query = Order::find()
+            ->innerJoinWith('activity')
+            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.user_id'=>$user_id]);
+        $query->andWhere(['in', 'order_type', [1,3]]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
+        $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        return $this->render('coupon', ['meta'=>$meta, 'model'=>$model, 'currentUrl'=>$currentUrl]);
+    }
+
+    public function actionUporder($id)
+    {
+        if (empty($id)){
+            return json_encode([
+                'code' => 208,
+                'status' => 0,
+                'message' => 'The request is illegal',
+            ]);
+        }
+        if (Yii::$app->user->isGuest){
+            return json_encode([
+                'code' => 202,
+                'status' => 0,
+                'message' => 'please login in',
+            ]);
+        }
+        $user_id = Yii::$app->user->identity->getId();
+        $param = Yii::$app->request->post();
+        if (!isset($param['amz_order_id']) || !trim($param['amz_order_id'])){
+            return json_encode([
+                'code' => 201,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $amz_order_id = trim($param['amz_order_id']);
+        $model = Order::findOne($id);
+        if (!$model){
+            return json_encode([
+                'code' => 203,
+                'status' => 0,
+                'message' => 'The deals is not exist'
+            ]);
+        }
+        if ($model->user_id != $user_id){
+            return json_encode([
+                'code' => 204,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $user = User::findOne($user_id);
+        if (empty($user->amazon_profile_url) || empty($user->paypal_account)){
+            return json_encode([
+                'code' => 205,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $model->amazon_order_id = $amz_order_id;
+        $model->status = 2;
+        if ($model->save()){
+            return json_encode([
+                'code' => 1,
+                'status' => 2,
+                'message' => 'successful'
+            ]);
+        } else {
+            $error = $model->firstErrors;
+            return json_encode([
+                'code' => 207,
+                'status' => 0,
+                'message' => array_values($error)
+            ]);
+        }
     }
 
     public function actionDeal()
@@ -98,15 +198,22 @@ class OrderController extends Controller
                     return json_encode([
                         'code' => 1,
                         'status' => 7,
-                        'message' => 'you have unfinished deals'
+                        'message' => 'you have unfinished deals',
+                        'deals_url' => '/account/deal'
                     ]);
                 }
-                $curr_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 5])->all();
+                $curr_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 5])->one();
                 if ($curr_order){
+                    if ($curr_order->order_type == 2){
+                        $deal_url = '/account/deal';
+                    } else {
+                        $deal_url = '/account/coupon';
+                    }
                     return json_encode([
                         'code' => 1,
                         'status' => 6,
-                        'message' => 'you have unfinished deals'
+                        'message' => 'you have unfinished deals',
+                        'deals_url' => '/account/deal'
                     ]);
                 }
                 $model->order_id = getOrderID();
@@ -192,6 +299,67 @@ class OrderController extends Controller
                 'code' => 201,
                 'status' => 0,
                 'message' => 'The request is illegal'
+            ]);
+        }
+    }
+
+    public function actionSubmit()
+    {
+        if (Yii::$app->user->isGuest){
+            return json_encode([
+                'code' => 202,
+                'status' => 0,
+                'message' => 'please login in',
+            ]);
+        }
+        $user_id = Yii::$app->user->identity->getId();
+        $param = Yii::$app->request->post();
+        if (!isset($param['order_id']) || !isset($param['amz_order_id']) || !trim($param['order_id']) || !trim($param['amz_order_id'])){
+            return json_encode([
+                'code' => 201,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $order_id = $param['order_id'];
+        $amz_order_id = trim($param['amz_order_id']);
+        $model = Order::findOne($order_id);
+        if (!$model){
+            return json_encode([
+                'code' => 203,
+                'status' => 0,
+                'message' => 'The deals is not exist'
+            ]);
+        }
+        if ($model->user_id != $user_id){
+            return json_encode([
+                'code' => 204,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $user = User::findOne($user_id);
+        if (empty($user->amazon_profile_url) || empty($user->paypal_account)){
+            return json_encode([
+                'code' => 205,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $model->amazon_order_id = $amz_order_id;
+        $model->status = 2;
+        if ($model->save()){
+            return json_encode([
+                'code' => 1,
+                'status' => 2,
+                'message' => 'successful'
+            ]);
+        } else {
+            $error = $model->firstErrors;
+            return json_encode([
+                'code' => 207,
+                'status' => 0,
+                'message' => array_values($error)
             ]);
         }
     }
