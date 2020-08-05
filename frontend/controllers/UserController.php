@@ -99,6 +99,7 @@ class UserController extends Controller
         }
         $user_id = Yii::$app->user->identity->getId();
         $param = Yii::$app->request->post();
+        $redirect_url = isset($param['redirect_url'])?$param['redirect_url']:'';
         if (isset($param['amazon_profile_link']) && trim($param['amazon_profile_link']) && isset($param['paypal']) && trim($param['paypal'])){
             $model = User::findOne($user_id);
             $model->amazon_profile_url = trim($param['amazon_profile_link']);
@@ -107,6 +108,7 @@ class UserController extends Controller
                 return json_encode([
                     'code' => 1,
                     'message' => 'successful',
+                    'redirect_url' => $redirect_url
                 ]);
             } else {
                 $error = $model->firstErrors;

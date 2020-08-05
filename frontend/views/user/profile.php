@@ -210,6 +210,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </ul>
                         <div class="form-group" style="margin-bottom: 0;">
                             <label>Amazon Profile URL: </label>
+                            <input type="hidden" id="redirect_url" name="redirect_url" value="<?= Yii::$app->request->get("redirect")?>">
                             <input name="amazon_profile_link" required type="text" <?php if (!empty($model->amazon_profile_url)){?>disabled<?php }?> class="form-control" value="<?= $model->amazon_profile_url?>">
                             <span class="help-block m-b-none" style="margin-left: 0px; color: #ed5565;"></span>
                         </div>
@@ -352,7 +353,8 @@ $(function () {
             url: url,
             data: {
                 "amazon_profile_link": amazon_url,
-                "paypal": paypal
+                "paypal": paypal,
+                "redirect_url": $("#redirect_url").val()
             },
             dataType: "json",
             success: function(response){
@@ -364,7 +366,11 @@ $(function () {
                         timer: 2000,
                         html: true
                     });
-                    window.location.href = location.href;
+                    if (response.redirect_url){
+                        window.location.href = response.redirect_url;
+                    } else {
+                        window.location.href = location.href;
+                    }
                 } else {
                     btn.removeClass("onused");
                     swal({

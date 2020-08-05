@@ -19,12 +19,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <div>
                 <div class="row deal-list-title visible-lg visible-md">
                     <div class="col-xs-8 col-sm-8 col-lg-7 col-md-7 clear-col">Coupon Information</div>
-                    <div class="col-xs-2 col-sm-2 col-lg-3 col-md-3">Deal Process</div>
+                    <div class="col-xs-2 col-sm-2 col-lg-3 col-md-3" style="padding-left: 0px">Deal Process</div>
                     <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 clear-col">Action</div>
                 </div>
                 <?php if (is_array($model) && !empty($model)): ?>
                 <?php foreach ($model as $order):  ?>
-                <div class="row deal-list-item" style="padding-bottom: 10px;">
+                <div class="row deal-list-item">
                     <div class="deal-id-time visible-lg visible-md">
                             <span class="deal-id">
                                 <span>Coupon ID: </span><?= $order['order_id']?>
@@ -62,18 +62,20 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                             <?= number_format(($order['coupon_cost']/$order['origin_cost'])*100, 2)?> %
                                         </div>
                                     </li>
-                                    <li class="space-vertical-lines"></li>
-                                    <li class="dealRequest-points">
-                                        <div class="text-center">Code</div>
-                                        <div class="coupon-code">
-                                            <font class="jq-select-code"><?= $order['coupon_code']?></font>
-                                        </div>
-                                    </li>
                                 </ul>
+                                <div class="dealRequest-points" style="margin-top: 10px">
+                                    <div class="coupon-code-title" style="display: inline-block">Coupon Code</div>
+                                    <div class="coupon-code" style="display: inline-block">
+                                        <font class="jq-select-code"><?= $order['coupon_code']?></font>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 pd0">
                             <div class="process-status">
+                                <div class="visible-xs visible-sm">
+                                    <?= date('M/d/Y H:i', $order['created_at'])?>
+                                </div>
                                 <div>
                                     <span class="list-dot processing"></span>
                                     <?php
@@ -88,30 +90,32 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 pd0">
-                            <?php if ($order['status'] == 1){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 2){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 3){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 4){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                            <?php } else if ($order['status'] == 5){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                            <?php } else if ($order['status'] == 6){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                            <?php } else if ($order['status'] == 7){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                            <?php }?>
+                            <div class="option-list">
+                                <?php if ($order['status'] == 1){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 2){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 3){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 4){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <?php } else if ($order['status'] == 5){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <?php } else if ($order['status'] == 6){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <?php } else if ($order['status'] == 7){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <?php }?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,6 +195,34 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     title: '',
                     text: 'Copied the code successfully. Buy it on Amazon now!'
                 });
+            });
+        });
+        $('.jq-cancel-order').click(function () {
+            var url = $(this).attr('data-url');
+            $('#cancel-yes').attr('data-url', url);
+        });
+        $('#cancel-yes').click(function() {
+            var url = $(this).attr('data-url');
+            $.ajax({
+                type: 'post',
+                url: url,
+                dataType: 'json',
+                data: {},
+                success: function(response){
+                    if (response.code == 1) {
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.reload();
+                    }
+                },
+                error: function(){
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
             });
         });
     });

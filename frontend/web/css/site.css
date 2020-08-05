@@ -1898,7 +1898,7 @@ button.close {
 }
 .deals-item-title {
     font-size: 16px;
-    height: 42px;
+    max-height: 42px;
     overflow: hidden;
     margin-bottom: 15px;
 }
@@ -1923,10 +1923,10 @@ button.close {
     margin-top: 11px;
 }
 .dealRequest-cashback {
-    padding: 0 10px;
+    padding: 0 20px;
 }
 .dealRequest-price{
-    padding-right: 10px;
+    padding-right: 20px;
 }
 .coupon-code{
     border: solid #f93 1px;
@@ -2041,6 +2041,7 @@ button.close {
     font-size: 16px;
     font-weight: 700;
     margin: 10px 0;
+    margin-left: 30px
 }
 .deal-detail-order {
     margin: 30px 80px 0 30px!important;
@@ -2053,6 +2054,65 @@ button.close {
     padding: 0 54px 0 40px;
     font-size: 16px;
     border-left: 1px solid #e5e5e5;
+}
+.surebox-btn {
+    border: 1px solid #797979;
+    background-color: #fff;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #333;
+}
+.account-nav-mydeal {
+    padding: 10px 0;
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+.nav-mydeal-img {
+    height: 50px;
+    width: 50px;
+    background-size: contain!important;
+    background-position: 50%!important;
+    border: 1px solid #f1f1f1;
+    display: block;
+    margin-top: 4px;
+    background-repeat: no-repeat;
+}
+.nav-mydeal-title {
+    font-size: 13px;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.nav-mydeal-content {
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #666;
+}
+.nav-mydeal-content li {
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    display: inline-block;
+}
+.account-deal-time {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 10px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 @media (min-width:1400px) {
@@ -2308,6 +2368,9 @@ button.close {
     .deal-list-item {
         border: none;
         margin: 0;
+        padding-bottom: 5px;
+        padding-top: 3px;
+        border-bottom: 1px solid #e5e5e5;
     }
     .deal-content-container {
         height: auto;
@@ -2343,21 +2406,73 @@ button.close {
     }
     .dealRequest-cashback {
         padding: 0 10px;
-        width: 60px;
+        width: 30%;
     }
     .dealRequest-price{
         padding-right: 0px;
-        width: 70px;
+        width: 40%;
     }
     .coupon-code{
         font-weight: normal;
-        padding: 0px;
         border-radius: 3px;
         padding: 1px 5px;
         font-size: 10px;
     }
     .dealRequest-points{
         padding-left: 10px;
+    }
+    .coupon-code-title{
+        font-size: 13px;
+    }
+    .process-status {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        font-size: 10px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .option-list{
+        margin-top: 10px;
+    }
+    .operation-btn {
+        float: left;
+        width: 48.5%;
+        display: inline-block;
+        padding: 0 6px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #e5e5e5;
+        font-size: 12px;
+        border-radius: 3px;
+        margin-right: 4px;
+        margin-bottom: 5px;
+    }
+    .detail-review-container {
+        padding: 0;
+        border: none;
+    }
+    .share-view-left {
+        padding: 0 10px;
+    }
+    .detail-review-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin: 15px 0 10px;
+    }
+    .deal-detail-order {
+        margin: 0px 20px 20px 20px!important;
+    }
+    .share-view-right {
+        padding: 0 10px;
+        font-size: 14px;
+        border-left: none;
+        border-top: 1px solid #f1f1f1;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){
@@ -2397,6 +2512,6 @@ button.close {
 }
 @media only screen and (min-width: 1200px){
     .dealRequest-cashback {
-        padding: 0 10px;
+        padding: 0 20px;
     }
 }

@@ -27,7 +27,7 @@ class OrderController extends Controller
                         'roles' => ['@'],
                     ],
                     ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
-                    ['allow' => true, 'actions' => ['deal', 'submit', 'uporder'], 'verbs' => ['POST']],
+                    ['allow' => true, 'actions' => ['deal', 'submit', 'uporder', 'give-up'], 'verbs' => ['POST']],
                 ],
             ],
         ];
@@ -144,6 +144,62 @@ class OrderController extends Controller
         }
         $model->amazon_order_id = $amz_order_id;
         $model->status = 2;
+        if ($model->save()){
+            return json_encode([
+                'code' => 1,
+                'status' => 2,
+                'message' => 'successful'
+            ]);
+        } else {
+            $error = $model->firstErrors;
+            return json_encode([
+                'code' => 207,
+                'status' => 0,
+                'message' => array_values($error)
+            ]);
+        }
+    }
+
+    public function actionGiveUp($id)
+    {
+        if (empty($id)){
+            return json_encode([
+                'code' => 208,
+                'status' => 0,
+                'message' => 'The request is illegal',
+            ]);
+        }
+        if (Yii::$app->user->isGuest){
+            return json_encode([
+                'code' => 202,
+                'status' => 0,
+                'message' => 'please login in',
+            ]);
+        }
+        $user_id = Yii::$app->user->identity->getId();
+        $model = Order::findOne($id);
+        if (!$model){
+            return json_encode([
+                'code' => 203,
+                'status' => 0,
+                'message' => 'The deals is not exist'
+            ]);
+        }
+        if ($model->user_id != $user_id){
+            return json_encode([
+                'code' => 204,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        if ($model->status >= 4){
+            return json_encode([
+                'code' => 205,
+                'status' => 0,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $model->status = 6;
         if ($model->save()){
             return json_encode([
                 'code' => 1,

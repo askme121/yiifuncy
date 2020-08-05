@@ -52,6 +52,7 @@ return [
                 'account/profile' => '/user/profile',
                 'account/coupon' => '/order/coupon',
                 'account/deal' => '/order/index',
+                'order/deal' => '/order/deal',
                 'account/amazon_profile_link' => '/user/amazon-profile-link',
                 'account/password' => '/user/change-password',
                 '<controller:(product)>' => '<controller>/index',
@@ -73,6 +74,11 @@ return [
                 [
                     'pattern' => 'order/upgrade/<id:\d+>',
                     'route' => 'order/uporder',
+                    'defaults' => ['id' => 0],
+                ],
+                [
+                    'pattern' => 'order/giveup/<id:\d+>',
+                    'route' => 'order/give-up',
                     'defaults' => ['id' => 0],
                 ],
                 [

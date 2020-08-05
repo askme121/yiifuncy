@@ -10,39 +10,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="container-bg">
         <?= $this->render('../public/userleftbar.php') ?>
         <div class="account-content-container">
+            <div class="header-line visible-sm visible-xs">
+                <a href="javascript:history.back()" class="header-line-back">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <h1 class="header-line-page">Refund Deals</h1>
+            </div>
             <div>
-                <div class="deal-content-nav">
-                    <a href="<?= Url::toRoute('/order/index')?>" class="deal-nav-a">
-                        <span class="deal-nav-active">ALL</span>
-                    </a>
-                    <a href="?type=confirmed" class="deal-nav-a">
-                        <span class="">CONFIRMED</span>
-                    </a>
-                    <a class="deal-nav-a" href="?type=order_uploaded">
-                        <span class="">ORDER UPLOADED</span>
-                    </a>
-                    <a class="deal-nav-a" href="?type=receipted">
-                        <span class="">REVIEW SHARED</span>
-                    </a>
-                    <a class="deal-nav-a" href="?type=refunded">
-                        <span class="">REFUNDED</span>
-                    </a>
-                    <a class="deal-nav-a" href="?type=pause">
-                        <span class="">PAUSE</span>
-                    </a>
-                    <a class="deal-nav-a" href="?type=closed">
-                        <span class="">CLOSED</span>
-                    </a>
-                </div>
-                <div class="row deal-list-title">
+                <div class="row deal-list-title visible-lg visible-md">
                     <div class="col-xs-8 col-sm-8 col-lg-7 col-md-7 clear-col">Deal Information</div>
-                    <div class="col-xs-2 col-sm-2 col-lg-3 col-md-3">Deal Process</div>
+                    <div class="col-xs-2 col-sm-2 col-lg-3 col-md-3" style="padding-left: 0px">Deal Process</div>
                     <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 clear-col">Action</div>
                 </div>
                 <?php if (is_array($model) && !empty($model)): ?>
                 <?php foreach ($model as $order):  ?>
                 <div class="row deal-list-item">
-                    <div class="deal-id-time">
+                    <div class="deal-id-time visible-lg visible-md">
                         <span class="deal-id">
                             <span>Deal ID: </span><?= $order['order_id']?>
                         </span>
@@ -77,6 +60,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 pd0 process-status-container">
                             <div class="process-status">
+                                <div class="visible-xs visible-sm">
+                                    <?= date('M/d/Y H:i', $order['created_at'])?>
+                                </div>
                                 <div>
                                     <span class="list-dot processing"></span>
                                     <?php
@@ -91,30 +77,32 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 pd0">
-                            <?php if ($order['status'] == 1){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 2){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 3){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                                <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="">Give Up</button>
-                            <?php } else if ($order['status'] == 4){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                            <?php } else if ($order['status'] == 5){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                                <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
-                            <?php } else if ($order['status'] == 6){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                            <?php } else if ($order['status'] == 7){?>
-                                <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
-                            <?php }?>
+                            <div class="option-list">
+                                <?php if ($order['status'] == 1){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 2){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 3){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                    <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
+                                <?php } else if ($order['status'] == 4){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <?php } else if ($order['status'] == 5){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
+                                <?php } else if ($order['status'] == 6){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <?php } else if ($order['status'] == 7){?>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                <?php }?>
+                            </div>
                         </div>
                     </div>
                 </div>

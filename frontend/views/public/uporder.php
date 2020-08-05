@@ -27,7 +27,7 @@
             <button type="button" class="close model-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
-            <div class="modal-body" style="padding: 30px 68px;">
+            <div class="modal-body">
                 <p style="margin: 10px 0 30px;">
                     Your quota for purchasing this product will be canceled.
                 </p>

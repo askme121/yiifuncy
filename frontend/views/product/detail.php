@@ -429,6 +429,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body jq-loading" style="padding: 0px;text-align: center;">
+                <i class="fa fa-check col-xs-12 col-sm-12 col-lg-12" aria-hidden="true" style="font-size: 22px;text-align:center;color:#6c6;"></i>
                 <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
                     The order info you submitted is under review. Please wait for your order verification and refund patiently.<br>
                     We'd really appreciate if if you left us an honest product review.Reviews are very important for us,and they help other shoppers make informed decisions.Thank you!

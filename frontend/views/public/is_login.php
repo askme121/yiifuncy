@@ -42,7 +42,7 @@ use yii\helpers\Url;
                                 <div class="form-group-error error" id="coupon-order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="coupon-abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important;">Cancel deal</a>
+                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="coupon-abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important; float: left">Cancel deal</a>
                                 <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="coupon-order-post">Submit</a>
                             </div>
                         </form>
