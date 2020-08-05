@@ -64,10 +64,89 @@ layui.config({
         });
         return false;
     });
+
     // 删除订单操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
         layer.confirm('确定作废此订单吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
+
+    //审核操作
+    $("body").on("click",".layui-default-check",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定通过审核该订单吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
+
+    //返现操作
+    $("body").on("click",".layui-default-cashback",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定已返现该订单吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
+
+    //评论操作
+    $("body").on("click",".layui-default-review",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定已评论该订单吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

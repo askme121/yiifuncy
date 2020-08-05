@@ -15,13 +15,15 @@ AppAsset::register($this);
             'template' => '<div class="layui-inline">{label}：<div class="layui-input-inline">{input}</div></div><span class="help-block" style="display: inline-block;">{hint}</span>',
         ],
     ]);
+    $order_status = Yii::$app->params['order_status'];
     ?>
+    <?= $form->field($model, 'order_id')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'product_name')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'product_sku')->textInput(['class'=>'layui-input search_input']) ?>
     <div class="layui-inline">
         <?= Html::label('状态：', 'order-status', ['class'=>'control-label'])?>
         <div class="layui-input-inline">
-            <?= Html::dropDownList('OrderSearch[status]', Yii::$app->request->get('OrderSearch')['status']??null, ['1'=>'待提交信息', '2'=>'待审核', '3'=>'待返现', '4'=>'已返现', '5'=>'已评论', '6'=>'已取消', '7'=>'审核拒绝', '8'=>'已作废'], ['id' => 'order-status', 'prompt' => '全部'])?>
+            <?= Html::dropDownList('OrderSearch[status]', Yii::$app->request->get('OrderSearch')['status']??null, $order_status, ['id' => 'order-status', 'prompt' => '全部'])?>
         </div>
     </div>
     <span class="help-block" style="display: inline-block;"></span>

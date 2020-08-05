@@ -860,6 +860,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('.jq-hover-one-deal').show();
                             $('#hover_deal_url').attr('href', response.deals_url);
                             break;
+                        case 8:
+                            $('.modal-body').hide();
+                            $('.jq-no-review-deal').show();
+                            $('#review_product_img').attr('src', response.product_image);
+                            $('#review_product_name').text(response.product_name);
+                            $('#amazon_review_url').attr('href', response.amazon_url);
+                            break;
                     }
                 },
                 error: function(){

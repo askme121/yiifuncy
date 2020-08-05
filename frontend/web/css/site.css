@@ -1154,17 +1154,15 @@ button.close {
 .offer-ends-container {
     background-color: #f93;
     color: #fff;
-    font-size: 17px;
+    font-size: 24px;
     padding: 10px 0;
     text-align: center;
-    line-height: 16px;
 }
 .offer-ends-container>span {
     display: inline-block;
-    overflow: hidden;
 }
 .secured-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
 }
 .modal-content {
@@ -1332,14 +1330,6 @@ button.close {
     margin:42px auto 0;
     display:block
 }
-.sorry-tip-content {
-    font-size:18px;
-    text-align:center;
-    line-height:1.5;
-    margin-top:35px;
-    margin-bottom:30px;
-    color:#666
-}
 .loading-img {
     display: block;
     margin: 20px auto 0;
@@ -1475,7 +1465,8 @@ button.close {
     line-height: 1.5;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: #666;
+    padding: 0 15px;
+    color: #333;
 }
 .modal-tip-point {
     text-align: center;
@@ -2114,6 +2105,13 @@ button.close {
     -ms-flex-align: center;
     align-items: center;
 }
+.product_name{
+    margin-top: 10px;
+}
+.star_img{
+    width: 100px;
+    margin: 5px 10px 0 10px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2473,6 +2471,14 @@ button.close {
         font-size: 14px;
         border-left: none;
         border-top: 1px solid #f1f1f1;
+    }
+    .product_name{
+        font-size: 12px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .star_img{
+        margin: 5px 10px 0 10px;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

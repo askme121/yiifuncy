@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Config;
+use common\models\Site;
 
 function getSymbol($site_id=null)
 {
@@ -58,4 +59,14 @@ function getOrderID()
     $prefix = Yii::$app->params['order_prefix'];
     $order_id = $prefix.date('YmdHis').rand(1000, 9999);
     return $order_id;
+}
+
+function getSiteUrl($site_id)
+{
+    $site_url = Site::findOne($site_id)->domain;
+    if ($site_url){
+        return $site_url;
+    } else {
+        return '';
+    }
 }

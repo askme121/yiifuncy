@@ -103,4 +103,6 @@ return [
     'order_type' => '订单类型',
     'user_email' => '用户邮箱',
     'order_created_at' => '下单时间',
+    'user_paypay' => '用户paypal',
+    'origin_price' => '原价',
 ];

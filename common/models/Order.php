@@ -28,7 +28,7 @@ class Order extends ActiveRecord
             [['activity_id', 'product_id'], 'required'],
             [['order_id', 'amazon_order_id', 'amazon_url', 'user_phone', 'user_email', 'coupon_code'], 'string'],
             [['order_id'], 'unique'],
-            [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'flow_id', 'site_id'], 'integer'],
+            [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'is_review', 'flow_id', 'site_id'], 'integer'],
             [['cashback_cost', 'coupon_cost', 'origin_cost'], 'number']
         ];
     }
@@ -46,11 +46,14 @@ class Order extends ActiveRecord
             'user_phone' => Yii::t('app', 'user_phone'),
             'user_email' => Yii::t('app', 'user_email'),
             'coupon_code' => Yii::t('app', 'coupon_code'),
-            'user_id' => Yii::t('app', 'user_id'),
+            'user_id' => Yii::t('app', 'user_paypay'),
             'product_name' => Yii::t('app', 'product_name'),
             'product_sku' => Yii::t('app', 'sku'),
             'created_at' => Yii::t('app', 'order_created_at'),
             'updated_at' => Yii::t('app', 'updated_at'),
+            'origin_cost' => Yii::t('app', 'origin_price'),
+            'cashback_cost' => Yii::t('app', 'cashback'),
+            'coupon_cost' => Yii::t('app', 'coupon'),
         ];
     }
 

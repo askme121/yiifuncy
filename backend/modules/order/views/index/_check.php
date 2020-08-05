@@ -16,6 +16,7 @@ AppAsset::register($this);
         ],
     ]);
     ?>
+    <?= $form->field($model, 'order_id')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'product_name')->textInput(['class'=>'layui-input search_input']) ?>
     <?= $form->field($model, 'product_sku')->textInput(['class'=>'layui-input search_input']) ?>
     <div class="layui-inline">

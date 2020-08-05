@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+use common\models\User;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
@@ -92,16 +93,17 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'product.name',
                 'headerOptions' => ['style'=> 'text-align: center; width: 200px;'],
                 'contentOptions' => ['style'=> 'text-align: left; width: 200px;white-space: inherit;overflow: hidden;text-overflow: ellipsis;'],
+                'format' => 'html',
+                'value' => function($model){
+                    $url = getSiteUrl($model->site_id).'/offer/'.$model->activity->url_key.'/'.$model->activity->id;
+                    $str = '<a href="'.$url.'" target="_blank">'.$model->product->name.'</a>';
+                    return $str;
+                }
             ],
             [
                 'attribute' => 'product.sku',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: left;'],
-            ],
-            [
-                'attribute' => 'activity_id',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: center;'],
             ],
             [
                 'attribute' => 'order_type',
@@ -128,55 +130,41 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
+                'attribute' => 'cashback_cost',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model){
+                    return getSymbol($model->site_id).' '.$model->cashback_cost;
+                }
+            ],
+            [
                 'attribute' => 'user_email',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
             ],
             [
-                'attribute' => 'status',
-                'contentOptions' => ['style'=> 'text-align: center;'],
+                'attribute' => 'user_id',
                 'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model){
+                    return User::findOne($model->user_id)->paypal_account;
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'contentOptions' => ['style'=> 'text-align: center;width: 80px;white-space: inherit;'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 80px'],
                 "value" => function($model) {
-                    switch ($model->status)
-                    {
-                        case 1:
-                            return '待提交信息';
-                            break;
-                        case 2:
-                            return '待审核';
-                            break;
-                        case 3:
-                            return '待返现';
-                            break;
-                        case 4:
-                            return '已返现';
-                            break;
-                        case 5:
-                            return '已评论';
-                            break;
-                        case 6:
-                            return '已取消';
-                            break;
-                        case 7:
-                            return '审核拒绝';
-                            break;
-                        case 8:
-                            return '已作废';
-                            break;
-                        default:
-                            return Yii::t('app', 'unkown');
-                            break;
+                    $order_status = Yii::$app->params['order_status'];
+                    if (isset($order_status[$model->status])){
+                        return $order_status[$model->status];
+                    } else {
+                        return Yii::t('app', 'unkown');
                     }
                 },
             ],
             [
                 'attribute' => 'created_at',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'format' => 'datetime',
-            ],
-            [
-                'attribute' => 'updated_at',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'format' => 'datetime',
@@ -203,7 +191,7 @@ $this->registerJs($this->render('js/index.js'));
                     },
                     'check' => function ($url, $model, $key) {
                         if (Yii::$app->user->identity->role_id == 1) {
-                            return '<dd>'.Html::a('返现', Url::to(['cashback','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
+                            return '<dd>'.Html::a('返现', Url::to(['cashback','id'=>$model->id]), ['class' => "layui-default-cashback"]).'</dd>';
                         } else {
                             return '';
                         }

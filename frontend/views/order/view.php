@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use common\models\User;
 
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
@@ -107,6 +108,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </form>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6 pd0 share-view-right">
+                            <p class="detail-review-title" style="margin-left: 0">Refund Status</p>
+                            <p>
+                                Refund Paypal Account: <?= User::findOne($order['user_id'])->paypal_account?>
+                            </p>
                             <?php if ($order['order_type'] != 2 && $order['coupon_code']){?>
                             <p class="detail-review-title" style="margin-left: 0">Code</p>
                             <p>

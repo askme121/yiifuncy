@@ -134,6 +134,28 @@ use yii\helpers\Url;
                 </p>
             </div>
 
+            <div class="modal-body jq-no-review-deal" style="padding: 0 0 30px; display: none;">
+                <p class="offer-ends-container">
+                    <span class="secured-title">Your Opinion Matters!</span>
+                </p>
+                <p class="sorry-tip-content">
+                    We'd really appreciate it if you could leave us an honest review of the last order. Your opinion matters to us and they would help other shoppers make informed decisions.
+                </p>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 review_product">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <img src="" id="review_product_img" class="img-responsive product_img" />
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                        <p id="review_product_name" class="product_name"></p>
+                        <img class="img-responsive star_img" src="<?= getImgUrl('images/star.png') ?>">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <p style="text-align: center; margin-top: 30px">
+                    <a class="btn upOrder-form-btn no-points-btn" id="amazon_review_url" href="#">Write A Review</a>
+                </p>
+            </div>
+
             <div class="modal-body no-points jq-seller-deal" style="padding: 0 0 30px; display: none;">
                 <p class="offer-ends-container" style="background-color: #ed5565;">
                     <span class="secured-title"></span>

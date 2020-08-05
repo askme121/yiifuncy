@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+use common\models\User;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
@@ -47,7 +48,7 @@ $this->registerJs($this->render('js/index.js'));
     }
 </style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_over', ['model' => $searchModel]); ?>
 </blockquote>
 <div class="user-index layui-form news_list">
     <?= GridView::widget([
@@ -129,14 +130,30 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
+                'attribute' => 'cashback_cost',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model){
+                    return getSymbol($model->site_id).' '.$model->cashback_cost;
+                }
+            ],
+            [
                 'attribute' => 'user_email',
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: center;'],
             ],
             [
+                'attribute' => 'user_id',
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model){
+                    return User::findOne($model->user_id)->paypal_account;
+                }
+            ],
+            [
                 'attribute' => 'status',
                 'contentOptions' => ['style'=> 'text-align: center;width: 80px;white-space: inherit;'],
-                'headerOptions' => ['style'=> 'text-align: center;width: 80px;'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 80px'],
                 "value" => function($model) {
                     $order_status = Yii::$app->params['order_status'];
                     if (isset($order_status[$model->status])){
@@ -168,16 +185,6 @@ $this->registerJs($this->render('js/index.js'));
                 'buttons' => [
                     'view' => function ($url, $model, $key){
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
-                    },
-                    'update' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        } else {
-                            return '';
-                        }
-                    },
-                    'delete' => function ($url, $model, $key) {
-                        return Html::a('作废', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);
                     }
                 ]
             ],

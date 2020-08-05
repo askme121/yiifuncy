@@ -45,7 +45,7 @@ class OrderSearch extends Order
 
         $query->andFilterWhere([
             'activity_id' => $this->activity_id,
-            'status' => $this->status,
+            't_order.status' => $this->status,
         ]);
 
         switch ($this->order_type){
@@ -59,7 +59,8 @@ class OrderSearch extends Order
 
         $query->andFilterWhere(['between','created_at',$this->start, $this->end])
               ->andFilterWhere(['like', 'product_name', $this->product_name])
-              ->andFilterWhere(['like', 'product_sku', $this->product_sku]);
+              ->andFilterWhere(['like', 'product_sku', $this->product_sku])
+              ->andFilterWhere(['like', 'order_id', $this->order_id]);
 
         return $dataProvider;
     }
@@ -83,10 +84,6 @@ class OrderSearch extends Order
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'activity_id' => $this->activity_id,
-        ]);
-
         switch ($this->order_type){
             case 1:
                 $query->andFilterWhere(['in', 'order_type', [1, 3]]);
@@ -98,7 +95,8 @@ class OrderSearch extends Order
 
         $query->andFilterWhere(['between','created_at',$this->start, $this->end])
               ->andFilterWhere(['like', 'product_name', $this->product_name])
-              ->andFilterWhere(['like', 'product_sku', $this->product_sku]);
+              ->andFilterWhere(['like', 'product_sku', $this->product_sku])
+              ->andFilterWhere(['like', 'order_id', $this->order_id]);
 
         return $dataProvider;
     }
@@ -122,9 +120,41 @@ class OrderSearch extends Order
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'activity_id' => $this->activity_id,
+        switch ($this->order_type){
+            case 1:
+                $query->andFilterWhere(['in', 'order_type', [1, 3]]);
+                break;
+            case 2:
+                $query->andFilterWhere(['in', 'order_type', [2]]);
+                break;
+        }
+
+        $query->andFilterWhere(['between','created_at',$this->start, $this->end])
+            ->andFilterWhere(['like', 'product_name', $this->product_name])
+            ->andFilterWhere(['like', 'product_sku', $this->product_sku])
+            ->andFilterWhere(['like', 'order_id', $this->order_id]);
+
+        return $dataProvider;
+    }
+
+    public function over($params)
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $query = Order::find()
+            ->innerJoinWith('activity')
+            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.status'=>4]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
         ]);
+        $this->load($params);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
 
         switch ($this->order_type){
             case 1:
@@ -137,7 +167,44 @@ class OrderSearch extends Order
 
         $query->andFilterWhere(['between','created_at',$this->start, $this->end])
             ->andFilterWhere(['like', 'product_name', $this->product_name])
-            ->andFilterWhere(['like', 'product_sku', $this->product_sku]);
+            ->andFilterWhere(['like', 'product_sku', $this->product_sku])
+            ->andFilterWhere(['like', 'order_id', $this->order_id]);
+
+        return $dataProvider;
+    }
+
+    public function review($params)
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $query = Order::find()
+            ->innerJoinWith('activity')
+            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.status'=>4,'t_order.is_review'=>1]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+        $this->load($params);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        switch ($this->order_type){
+            case 1:
+                $query->andFilterWhere(['in', 'order_type', [1, 3]]);
+                break;
+            case 2:
+                $query->andFilterWhere(['in', 'order_type', [2]]);
+                break;
+        }
+
+        $query->andFilterWhere(['between','created_at',$this->start, $this->end])
+            ->andFilterWhere(['like', 'product_name', $this->product_name])
+            ->andFilterWhere(['like', 'product_sku', $this->product_sku])
+            ->andFilterWhere(['like', 'order_id', $this->order_id]);
 
         return $dataProvider;
     }
