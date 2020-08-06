@@ -303,7 +303,8 @@ class OrderController extends Controller
                         'code' => 1,
                         'status' => 6,
                         'message' => 'you have unfinished deals',
-                        'deals_url' => $deals_url
+                        'deals_url' => $deals_url,
+                        'user_id' => $user_id,
                     ]);
                 }
                 $review_order = Order::find()->innerJoinWith('activity')->innerJoinWith('product')->where(['t_order.user_id'=>$user_id, 't_order.status'=>4, 'is_review'=>0])->one();
