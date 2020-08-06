@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
@@ -107,10 +108,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     </div>
                 </div>
                     <?php endforeach; ?>
-                <div>
-                    <br>
-                    <nav aria-label="Page navigation" class="text-center">
-                    </nav>
+                <div class="page_box">
+                    <?php if(is_array($model) && !empty($model)): ?>
+                        <?=
+                        LinkPager::widget([
+                            'pagination' => $pages
+                        ]);
+                        ?>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
             </div>

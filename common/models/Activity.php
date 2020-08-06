@@ -33,7 +33,7 @@ class Activity extends ActiveRecord
     public function rules()
     {
         return [
-            [['url_key', 'amazon_url'], 'string'],
+            [['url_key', 'amazon_url', 'asin'], 'string'],
             [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id', 'coupon_type'], 'integer'],
             [['price', 'cashback', 'coupon'], 'number'],
             [['form_coupon_code', 'start', 'end'], 'safe']

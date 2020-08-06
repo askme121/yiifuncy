@@ -864,6 +864,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 4:
                             $('.modal-body').hide();
                             $('.jq-seller-deal').show();
+                            $('#seller_deal_url').attr('href', response.deals_url);
                             break;
                         case 5:
                             $('.modal-body').hide();

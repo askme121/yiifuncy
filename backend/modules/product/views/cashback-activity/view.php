@@ -29,6 +29,7 @@ LayuiAsset::register($this);
                 }
             ],
             'amazon_url',
+            'asin',
             'price',
             'cashback',
             'qty',

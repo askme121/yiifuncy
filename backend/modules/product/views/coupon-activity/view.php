@@ -43,6 +43,7 @@ LayuiAsset::register($this);
                 }
             ],
             'amazon_url',
+            'asin',
             'price',
             [
                 "attribute" => "coupon_type",

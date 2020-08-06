@@ -40,7 +40,7 @@ class ProductController extends Controller
                     $meta['title'] = $activity_info->meta_title;
                     $meta['description'] = $activity_info->meta_keywords;
                     $meta['keyword'] = $activity_info->meta_description;
-                    $meta['top_title'] = 'Coupon & Cashback Deals';
+                    $meta['top_title'] = 'Coupon + Cashback Deals';
                     $meta['top_desc'] = '';
                     break;
                 case 'cashback':

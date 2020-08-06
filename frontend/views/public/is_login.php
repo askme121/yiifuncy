@@ -115,7 +115,7 @@ use yii\helpers\Url;
                     <span class="secured-title"></span>
                 </p>
                 <p class="sorry-tip-content">
-                    Congratulations! You have applied this deal successfully.
+                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn no-points-btn" id="waiting_deal_url" href="#">Check My Deal</a>
@@ -129,7 +129,7 @@ use yii\helpers\Url;
                     </span>
                 </p>
                 <p class="sorry-tip-content">
-                    Sorry! You have an unfinished deal.<br />Please upload your order info within 24 hours after deal request.
+                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn my-btn" id="hover_deal_url" href="#">Check My Deal</a>
@@ -163,10 +163,10 @@ use yii\helpers\Url;
                     <span class="secured-title">Notice</span>
                 </p>
                 <p class="sorry-tip-content" style="margin-top: 30px">
-                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please wait patiently!
+                    Each user can only apply for a Cashback Deal for this product once, there's no application limit on Coupon+Cashback Deal.
                 </p>
                 <p style="text-align: center; margin-top: 10px">
-                    <a class="btn upOrder-form-btn my-btn" id="hover_deal_url" href="/product/coupon&cashback">I've read it</a>
+                    <a class="btn upOrder-form-btn my-btn" id="seller_deal_url" href="#">Check My Deal</a>
                 </p>
             </div>
         </div>

@@ -95,8 +95,7 @@ $this->registerJs($this->render('js/index.js'));
                 'format' => 'html',
                 'value' => function($model){
                     $url = getSiteUrl($model->site_id).'/offer/'.$model->activity->url_key.'/'.$model->activity->id;
-                    $str = '<a href="'.$url.'" target="_blank">'.$model->product->name.'</a>';
-                    return $str;
+                    return Html::a($model->product->name, $url, ['target' => '_blank']);
                 }
             ],
             [

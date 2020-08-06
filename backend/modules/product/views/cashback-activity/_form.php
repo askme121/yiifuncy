@@ -21,6 +21,7 @@ $product_list = Product::getList();
     <?= $form->field($model, 'price')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'cashback')->input('text', ['class'=>'layui-input', 'placeholder'=>getSymbol()])?>
     <?= $form->field($model, 'amazon_url')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
+    <?= $form->field($model, 'asin')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'qty')->input('number', ['class'=>'layui-input'])?>
     <?= $form->field($model, 'start', ['inputOptions' => ['value' => Yii::$app->formatter->asDatetime($model->start)]])->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => ''],

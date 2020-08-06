@@ -56,7 +56,7 @@ class OrderController extends Controller
             ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.user_id'=>$user_id, 'order_type'=>2]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
         $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
-        return $this->render('index', ['meta'=>$meta, 'model'=>$model, 'currentUrl'=>$currentUrl]);
+        return $this->render('index', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl]);
     }
 
     public function actionView($id)
@@ -90,7 +90,7 @@ class OrderController extends Controller
         $query->andWhere(['in', 'order_type', [1,3]]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
         $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
-        return $this->render('coupon', ['meta'=>$meta, 'model'=>$model, 'currentUrl'=>$currentUrl]);
+        return $this->render('coupon', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl]);
     }
 
     public function actionUporder($id)
@@ -263,6 +263,7 @@ class OrderController extends Controller
                         'code' => 1,
                         'status' => 4,
                         'message' => 'you have unfinished deals',
+                        'deals_url' => '/account/deal'
                     ]);
                 }
                 $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->all();
@@ -304,13 +305,13 @@ class OrderController extends Controller
                         'deals_url' => $deals_url
                     ]);
                 }
-                $review_order = Order::find()->innerJoinWith('product')->where(['t_order.user_id'=>$user_id, 't_order.status'=>4, 'is_review'=>0])->one();
+                $review_order = Order::find()->innerJoinWith('activity')->innerJoinWith('product')->where(['t_order.user_id'=>$user_id, 't_order.status'=>4, 'is_review'=>0])->one();
                 if ($review_order){
                     return json_encode([
                         'code' => 1,
                         'status' => 8,
                         'message' => 'you have unfinished deals',
-                        'amazon_url' => 'https://www.amazon.com/review/review-your-purchases/?asin=XXXXXXXX',
+                        'amazon_url' => 'https://www.amazon.com/review/review-your-purchases/?asin='.$review_order->activity->asin,
                         'product_name' => $review_order->product->name,
                         'product_image' => $review_order->product->thumb_image,
                     ]);

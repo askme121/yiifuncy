@@ -125,7 +125,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
         <div class="deals-classify-section" style="margin-bottom: 20px;">
             <h3 class="deal-type-title">
-                <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon & Cashback Deals</a>
+                <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon + Cashback Deals</a>
                 <a class="inline-view-all" href="<?= Url::toRoute('/product/coupon&cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
             <div>
@@ -221,7 +221,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <section id="page" class="container visible-sm visible-xs">
     <div class="deals-classify-section row">
         <h3 class="deal-type-title" style="margin-top: 0;">
-            <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon & Cashback Deals</a>
+            <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon + Cashback Deals</a>
             <a class="inline-view-all" href="<?= Url::toRoute('/product/coupon&cashback');?>">View All <i class="fa fa-angle-right view-all-icon" aria-hidden="true"></i></a>
         </h3>
         <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)): ?>

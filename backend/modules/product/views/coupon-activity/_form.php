@@ -25,6 +25,7 @@ $product_list = Product::getList();
         <?= $form->field($model, 'form_coupon_code')->textarea(['class'=>'layui-textarea', 'style'=>'min-height:300px']) ?>
     <?php }?>
     <?= $form->field($model, 'amazon_url')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
+    <?= $form->field($model, 'asin')->textInput(['maxlength' => 255, 'class'=>'layui-input']) ?>
     <?= $form->field($model, 'start', ['inputOptions' => ['value' => Yii::$app->formatter->asDatetime($model->start)]])->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => ''],
         'pluginOptions' => [

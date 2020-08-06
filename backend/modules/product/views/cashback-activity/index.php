@@ -88,6 +88,11 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'product.name',
                 'headerOptions' => ['style'=> 'text-align: center;width: 200px;'],
                 'contentOptions' => ['style'=> 'text-align: left;width: 200px;white-space: inherit;overflow: hidden;text-overflow: ellipsis;'],
+                'format' => 'html',
+                'value' => function($model){
+                    $url = getSiteUrl($model->site_id).'/offer/'.$model->url_key.'/'.$model->id;
+                    return Html::a($model->product->name, $url, ['target' => '_blank']);
+                }
             ],
             [
                 'attribute' => 'product.sku',
