@@ -264,7 +264,6 @@ class OrderController extends Controller
                         'status' => 4,
                         'message' => 'you have unfinished deals',
                         'deals_url' => '/account/deal',
-                        'user_id' => $user_id,
                     ]);
                 }
                 $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->all();
@@ -292,7 +291,7 @@ class OrderController extends Controller
                         'order_id' => $curr_order->id
                     ]);
                 }
-                $unover_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['>', 'status', 1])->andWhere(['<', 'status', 4]);
+                $unover_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['>', 'status', 1])->andWhere(['<', 'status', 4])->one();
                 if ($unover_order){
                     if ($curr_order->order_type == 2){
                         $deals_url = '/account/deal';
@@ -304,7 +303,6 @@ class OrderController extends Controller
                         'status' => 6,
                         'message' => 'you have unfinished deals',
                         'deals_url' => $deals_url,
-                        'user_id' => $user_id,
                     ]);
                 }
                 $review_order = Order::find()->innerJoinWith('activity')->innerJoinWith('product')->where(['t_order.user_id'=>$user_id, 't_order.status'=>4, 'is_review'=>0])->one();
