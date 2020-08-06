@@ -2112,6 +2112,12 @@ button.close {
     width: 100px;
     margin: 5px 10px 0 10px;
 }
+.my-btn{
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    padding: 0 15px !important;
+}
 
 @media (min-width:1400px) {
     .container {

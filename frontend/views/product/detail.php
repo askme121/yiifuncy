@@ -429,13 +429,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body jq-loading" style="padding: 0px;text-align: center;">
-                <i class="fa fa-check col-xs-12 col-sm-12 col-lg-12" aria-hidden="true" style="font-size: 22px;text-align:center;color:#6c6;"></i>
+                <i class="fa fa-check col-xs-12 col-sm-12 col-lg-12" aria-hidden="true" style="font-size: 46px;text-align:center;color:#6c6; display: block; margin: 10px auto"></i>
                 <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
                     The order info you submitted is under review. Please wait for your order verification and refund patiently.<br>
                     We'd really appreciate if if you left us an honest product review.Reviews are very important for us,and they help other shoppers make informed decisions.Thank you!
                 </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
-                    <a id="review-btn" type="button" class="btn upOrder-form-btn" style="height: 50px !important;line-height: 50px !important;display: inline-block;font-size: 24px;" data-dismiss="modal" aria-label="Close">I've read it</a>
+                    <a id="review-btn" type="button" class="btn upOrder-form-btn my-btn" data-dismiss="modal" aria-label="Close">I've read it</a>
                 </div>
             </div>
         </div>
@@ -725,8 +725,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             if ($('#current_order_id').val() == ''){
                 return false;
             }
-            if ($('#order_id').val().trim() == ''){
+            var orderid = $("#order_id").val().trim();
+            var reg_order = /^\d{3}-\d{7}-\d{7}\s*$/;
+            if(orderid.indexOf('ORDER #') != -1){
+                orderid = orderid.split('#')[1].trim();
+            }
+            if(orderid.length == "0"){
                 $('#order_id').focus();
+                $("#order-id-tips").html("Order ID can't be empty!");
+                return false;
+            }else if(!reg_order.test(orderid)){
+                $('#order_id').focus();
+                $("#order-id-tips").html("Please enter the correct Order ID.<br>e.g. 123-1234567-1234567");
                 return false;
             }
             $.ajax({
@@ -735,7 +745,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 dataType: 'json',
                 data: {
                     "order_id": $('#current_order_id').val(),
-                    "amz_order_id": $('#order_id').val()
+                    "amz_order_id": orderid
                 },
                 success: function(response){
                     if (response.code == 1) {
@@ -757,8 +767,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             if ($('#current_order_id').val() == ''){
                 return false;
             }
-            if ($('#coupon_order_id').val().trim() == ''){
+            var orderid = $("#coupon_order_id").val().trim();
+            var reg_order = /^\d{3}-\d{7}-\d{7}\s*$/;
+            if(orderid.indexOf('ORDER #') != -1){
+                orderid = orderid.split('#')[1].trim();
+            }
+            if(orderid.length == "0"){
                 $('#coupon_order_id').focus();
+                $("#coupon-order-id-tips").html("Order ID can't be empty!");
+                return false;
+            }else if(!reg_order.test(orderid)){
+                $('#coupon_order_id').focus();
+                $("#coupon-order-id-tips").html("Please enter the correct Order ID.<br>e.g. 123-1234567-1234567");
                 return false;
             }
             $.ajax({
@@ -767,7 +787,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 dataType: 'json',
                 data: {
                     "order_id": $('#current_order_id').val(),
-                    "amz_order_id": $('#coupon_order_id').val()
+                    "amz_order_id": orderid
                 },
                 success: function(response){
                     if (response.code == 1) {
@@ -843,7 +863,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             break;
                         case 4:
                             $('.modal-body').hide();
-                            $('.model-close').css('cssText', 'color:#fff !important;');
                             $('.jq-seller-deal').show();
                             break;
                         case 5:

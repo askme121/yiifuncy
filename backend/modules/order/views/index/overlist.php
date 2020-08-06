@@ -102,8 +102,8 @@ $this->registerJs($this->render('js/index.js'));
             ],
             [
                 'attribute' => 'product.sku',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 80px;'],
+                'contentOptions' => ['style'=> 'text-align: left;width: 80px;white-space: inherit;'],
             ],
             [
                 'attribute' => 'order_type',

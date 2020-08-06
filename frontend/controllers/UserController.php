@@ -101,6 +101,13 @@ class UserController extends Controller
         $param = Yii::$app->request->post();
         $redirect_url = isset($param['redirect_url'])?$param['redirect_url']:'';
         if (isset($param['amazon_profile_link']) && trim($param['amazon_profile_link']) && isset($param['paypal']) && trim($param['paypal'])){
+            $user = User::find()->andWhere(['or',['amazon_profile_url'=>trim($param['amazon_profile_link'])], ['paypal_account'=>trim($param['paypal'])]])->one();
+            if ($user){
+                return json_encode([
+                    'code' => 401,
+                    'message' => 'The Amazon Profile URL or Paypal Account is already used',
+                ]);
+            }
             $model = User::findOne($user_id);
             $model->amazon_profile_url = trim($param['amazon_profile_link']);
             $model->paypal_account = trim($param['paypal']);

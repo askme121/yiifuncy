@@ -147,7 +147,7 @@ class OrderController extends Controller
             return json_encode([
                 'code' => 209,
                 'status' => 0,
-                'message' => 'Other account has already submitted this order ID'
+                'message' => 'Other order has already submitted this order ID'
             ]);
         }
         $model->amazon_order_id = $amz_order_id;
@@ -257,6 +257,14 @@ class OrderController extends Controller
                         'message' => 'Sold Out'
                     ]);
                 }
+                $cashback_order = Order::find()->where(['user_id'=>$user_id, 'order_type'=>2, 'product_id'=>$product_id])->andWhere(['!=', 'status', 1])->andWhere(['<=', 'status', 4])->all();
+                if ($cashback_order){
+                    return json_encode([
+                        'code' => 1,
+                        'status' => 4,
+                        'message' => 'you have unfinished deals',
+                    ]);
+                }
                 $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->all();
                 if ($hover_order){
                     return json_encode([
@@ -266,18 +274,34 @@ class OrderController extends Controller
                         'deals_url' => '/account/deal'
                     ]);
                 }
-                $curr_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->one();
+                $curr_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['=', 'status', 1])->one();
                 if ($curr_order){
                     if ($curr_order->order_type == 2){
-                        $deal_url = '/account/deal';
+                        $starus = 1;
                     } else {
-                        $deal_url = '/account/coupon';
+                        $starus = 2;
+                    }
+                    return json_encode([
+                        'code' => 1,
+                        'status' => $starus,
+                        'message' => 'you have unfinished deals',
+                        'coupon_code' => $curr_order->coupon_code,
+                        'link' => $curr_order->amazon_url,
+                        'order_id' => $curr_order->id
+                    ]);
+                }
+                $unover_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['>', 'status', 1])->andWhere(['<', 'status', 4]);
+                if ($unover_order){
+                    if ($curr_order->order_type == 2){
+                        $deals_url = '/account/deal';
+                    } else {
+                        $deals_url = '/account/coupon';
                     }
                     return json_encode([
                         'code' => 1,
                         'status' => 6,
                         'message' => 'you have unfinished deals',
-                        'deals_url' => '/account/deal'
+                        'deals_url' => $deals_url
                     ]);
                 }
                 $review_order = Order::find()->innerJoinWith('product')->where(['t_order.user_id'=>$user_id, 't_order.status'=>4, 'is_review'=>0])->one();
@@ -426,7 +450,7 @@ class OrderController extends Controller
             return json_encode([
                 'code' => 209,
                 'status' => 0,
-                'message' => 'Other account has already submitted this order ID'
+                'message' => 'Other order has already submitted this order ID'
             ]);
         }
         $model->amazon_order_id = $amz_order_id;

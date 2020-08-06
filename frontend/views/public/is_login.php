@@ -81,7 +81,7 @@ use yii\helpers\Url;
                             </div>
                             <div class="upOrder-form-btnss">
                                 <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important; float: left">Cancel deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="order-post" >Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="order-post" >Submit</a>
                             </div>
                         </form>
                     </div>
@@ -115,7 +115,7 @@ use yii\helpers\Url;
                     <span class="secured-title"></span>
                 </p>
                 <p class="sorry-tip-content">
-                    Congratulations! You have applied this deal successfully.<br />Upload your order info within 24 hours after getting seller's confirmation.
+                    Congratulations! You have applied this deal successfully.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn no-points-btn" id="waiting_deal_url" href="#">Check My Deal</a>
@@ -124,13 +124,15 @@ use yii\helpers\Url;
 
             <div class="modal-body jq-hover-one-deal" style="padding: 0 0 30px; display: none;">
                 <p class="offer-ends-container">
-                    <span class="secured-title"></span>
+                    <span class="secured-title">
+                        NOTICE!
+                    </span>
                 </p>
                 <p class="sorry-tip-content">
-                    Sorry! You have unfinished deals.<br />Upload your order info within 24 hours after getting seller's confirmation.
+                    Sorry! You have an unfinished deal.<br />Please upload your order info within 24 hours after deal request.
                 </p>
                 <p style="text-align: center">
-                    <a class="btn upOrder-form-btn no-points-btn" id="hover_deal_url" href="#">Check My Deal</a>
+                    <a class="btn upOrder-form-btn my-btn" id="hover_deal_url" href="#">Check My Deal</a>
                 </p>
             </div>
 
@@ -152,18 +154,19 @@ use yii\helpers\Url;
                 </div>
                 <div class="clearfix"></div>
                 <p style="text-align: center; margin-top: 30px">
-                    <a class="btn upOrder-form-btn no-points-btn" id="amazon_review_url" href="#">Write A Review</a>
+                    <a class="btn upOrder-form-btn my-btn" id="amazon_review_url" href="#">Write A Review</a>
                 </p>
             </div>
 
-            <div class="modal-body no-points jq-seller-deal" style="padding: 0 0 30px; display: none;">
-                <p class="offer-ends-container" style="background-color: #ed5565;">
-                    <span class="secured-title"></span>
+            <div class="modal-body no-points jq-seller-deal" style="padding: 0 0 10px; display: none;">
+                <p class="offer-ends-container">
+                    <span class="secured-title">Notice</span>
                 </p>
-                <p class="sorry-tip-content">
-                    Request failed.
-                    <br />
-                    Buyers cannot buy products from the same seller twice within 30 days
+                <p class="sorry-tip-content" style="margin-top: 30px">
+                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please wait patiently!
+                </p>
+                <p style="text-align: center; margin-top: 10px">
+                    <a class="btn upOrder-form-btn my-btn" id="hover_deal_url" href="/product/coupon&cashback">I've read it</a>
                 </p>
             </div>
         </div>
