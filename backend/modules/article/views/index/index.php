@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
-use common\models\Category;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
@@ -71,18 +70,7 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;']
             ],
             [
-                'attribute' => 'thumb_image',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                "format"=>[
-                    "image",
-                    [
-                        "width"=>"50px",
-                    ],
-                ],
-            ],
-            [
-                'attribute' => 'name',
+                'attribute' => 'title',
                 'headerOptions' => ['width'=>'10%','style'=> 'text-align: center;'],
                 'contentOptions' => ['style'=> 'text-align: left;']
             ],
@@ -92,27 +80,9 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: left;'],
             ],
             [
-                'attribute' => 'sku',
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'contentOptions' => ['style'=> 'text-align: left;'],
-            ],
-            [
-                'attribute' => 'category_id',
+                'attribute' => 'order',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
-                "value" => function($model) {
-                    if ($model->category_id == 0)
-                    {
-                        return Yii::t('app', 'undefined');
-                    }
-                    $category_parent = Category::formatTree();
-                    foreach ($category_parent as $k=>$v){
-                        if ($model->category_id == $k){
-                            return $v;
-                        }
-                    }
-                    return Yii::t('app', 'unkown');
-                },
             ],
             [
                 'attribute' => 'status',
@@ -134,6 +104,12 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
+                'attribute' => 'created_at',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'datetime'
+            ],
+            [
                 'header' => '操作',
                 'class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['class'=>'text-center'],
@@ -146,7 +122,6 @@ $this->registerJs($this->render('js/index.js'));
                                  {view}
                                  <dl class="nav-myself-dl">
                                      {update}
-                                     {activate}
                                      {delete}
                                  </dl>
                              </li>
@@ -156,20 +131,7 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
                     'update' => function ($url, $model, $key) {
-                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        } else {
-                            return '';
-                        }
-                    },
-                    'activate' => function ($url, $model, $key) {
-                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
-                            if($model->status == 2){
-                                return '<dd>'.Html::a('激活', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</dd>';
-                            }else{
-                                return '<dd>'.Html::a('关闭', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-default-inactive"]).'</dd>';
-                            }
-                        }
+                        return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
                     },
                     'delete' => function ($url, $model, $key) {
                         if (Yii::$app->user->identity->role_id == 1) {

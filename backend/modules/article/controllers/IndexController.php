@@ -1,12 +1,12 @@
 <?php
 
-namespace product\controllers;
+namespace article\controllers;
 
-use common\models\Product;
-use common\models\searchs\ProductSearch;
+use common\models\searchs\ArticleSearch;
+use common\models\Article;
+use yii\web\Controller;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class IndexController extends Controller
@@ -25,7 +25,7 @@ class IndexController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -41,11 +41,9 @@ class IndexController extends Controller
 
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new Article();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
-                $model->role_id = Yii::$app->user->identity->role_id;
-                $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->site_id = Yii::$app->session['default_site_id'];
                 $model->save();
@@ -77,10 +75,10 @@ class IndexController extends Controller
     public function actionActive($id)
     {
         $model = $this->findModel($id);
-        if($model->status == Product::STATUS_ENABLE){
-            return json_encode(['code'=>400,"msg"=>"该产品已经是激活状态"]);
+        if($model->status == 1){
+            return json_encode(['code'=>400,"msg"=>"该页面已经是激活状态"]);
         }
-        $model->status = Product::STATUS_ENABLE;
+        $model->status = 1;
         if($model->save()){
             return json_encode(['code'=>200,"msg"=>"激活成功"]);
         }else{
@@ -92,10 +90,10 @@ class IndexController extends Controller
     public function actionInactive($id)
     {
         $model = $this->findModel($id);
-        if($model->status == Product::STATUS_DISABLE){
-            return json_encode(['code'=>400,"msg"=>"该产品已经是禁用状态"]);
+        if($model->status == 2){
+            return json_encode(['code'=>400,"msg"=>"该页面已经是关闭状态"]);
         }
-        $model->status = Product::STATUS_DISABLE;
+        $model->status = 2;
         if($model->save()){
             return json_encode(['code'=>200,"msg"=>"关闭成功"]);
         }else{
@@ -117,7 +115,7 @@ class IndexController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

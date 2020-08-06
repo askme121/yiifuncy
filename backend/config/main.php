@@ -30,6 +30,9 @@ return [
         "order" => [
             'class' => 'order\Module',
         ],
+        "article" => [
+            'class' => 'article\Module',
+        ],
     ],
     "aliases" => [
         '@rbac' => '@backend/modules/rbac',
@@ -37,6 +40,7 @@ return [
         '@backup' => '@backend/modules/backup',
         '@product' => '@backend/modules/product',
         '@order' => '@backend/modules/order',
+        '@article' => '@backend/modules/article',
     ],
     'components' => [
         'request' => [

@@ -8,7 +8,7 @@ layui.config({
     // 添加分类
     $(".layui-default-add").click(function(){
         var index = layui.layer.open({
-            title : "添加产品",
+            title : "添加页面",
             type : 2,
             area: ['800px', '655px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
@@ -42,17 +42,17 @@ layui.config({
     $("body").on("click",".layui-default-view",function(){
         var href = $(this).attr("href");
         var index = layui.layer.open({
-            title : "查看产品",
+            title : "查看页面",
             type: 2,
-            area: ['400px', '450px'],
-            content : [href, 'no']
+            area: ['800px', '450px'],
+            content : [href, 'yes']
         });
         return false;
     });
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定激活此产品吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定激活此页面吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -77,7 +77,7 @@ layui.config({
     //  禁用操作
     $("body").on("click",".layui-default-inactive",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定关闭此产品吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定关闭此页面吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -104,7 +104,7 @@ layui.config({
         var href = $(this).attr("href");
         console.log(href);
         var index = layui.layer.open({
-            title : "修改产品",
+            title : "修改页面",
             type : 2,
             area:['800px', '655px'],
             content :[href,"yes"],
@@ -118,7 +118,7 @@ layui.config({
     //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定删除此产品吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定删除此页面吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

@@ -105,4 +105,7 @@ return [
     'order_created_at' => '下单时间',
     'user_paypay' => '用户paypal',
     'origin_price' => '原价',
+    'title' => '标题',
+    'content' => '内容',
+    'publish_at' => '发布时间'
 ];
