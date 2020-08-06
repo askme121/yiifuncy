@@ -65,7 +65,7 @@ use yii\helpers\Html;
                 <?php if (Yii::$app->user->isGuest) {?>
                     <ul class="nav navbar-nav navbar-right cbb-check-login" style="padding-right: 0;">
                         <li style="float: right; margin-left: 20px;">
-                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::toRoute('/site/signup');?>">Join for free</a>
+                            <a class="btn btn-sm btn-w-m join-for-free" style="background-color: white; color: #f93 !important; height: 36px; line-height: 2.5; margin-top: 18px; padding-left: 8px !important; padding-right: 8px !important;" href="<?= Url::toRoute('/site/signup');?>">Join for free</a>
                         </li>
                         <li style="float: right;">
                             <a class="register-login-a" href="<?= Url::toRoute('/site/login');?>" target="_self" style="padding: 0 !important;">Login</a>
