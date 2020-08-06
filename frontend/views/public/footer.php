@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 <div id="newsletter" class="hidden-sm hidden-xs">
@@ -40,20 +41,14 @@ use yii\helpers\Html;
             <div class="col-sm-4">
                 <div class="footer-section" style="width: 75%;">
                     <p class="footer-title">HELPFUL LINKS</p>
-
                     <div style="width: 50%; float: left;">
-                        <a class="help-link" href="" target="_blank">Deals</a>
-                        <a class="help-link" href="" target="_blank">FAQ &amp; Help</a>
-                        <a class="help-link" href="" target="_blank">About Us</a>
-                        <a class="help-link" href="" target="_blank">Contact Us</a>
+                        <a class="help-link" href="<?= Url::toRoute('/site/faq');?>" target="_blank">FAQ &amp; Help</a>
+                        <a class="help-link" href="<?= Url::toRoute('/site/about');?>" target="_blank">About Us</a>
+                        <a class="help-link" href="<?= Url::toRoute('/site/contact');?>" target="_blank">Contact Us</a>
                     </div>
-
                     <div style="width: 50%; float: right;">
-                        <a class="help-link" href="" target="_blank">Seller Central</a>
-                        <a class="help-link" href="" target="_blank">Shopper Affiliate</a>
-                        <a class="help-link" href="" target="_blank">Seller Affiliate</a>
-                    </div>
 
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -64,19 +59,19 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="copyright">
-            © 2020 Thefuncy &nbsp;&nbsp;&nbsp;&nbsp;<a href="">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@thefuncy.com">support@thefuncy.com</a>
+            © 2020 Thefuncy &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@thefuncy.com">support@thefuncy.com</a>
         </div>
     </div>
     <div class="hidden-md hidden-lg">
         <ul class="footer-nav-list col-xs-12">
             <li>
-                <a href="">About Us</a>
+                <a href="<?= Url::toRoute('/site/about');?>">About Us</a>
             </li>
             <li>
-                <a href="">FAQ</a>
+                <a href="<?= Url::toRoute('/site/faq');?>">FAQ</a>
             </li>
             <li>
-                <a href="">Terms&amp;Privacy</a>
+                <a href="<?= Url::toRoute('/site/terms');?>">Terms&amp;Privacy</a>
             </li>
         </ul>
         <p class="copyright-txt">© 2020 Thefuncy All Rights Reserved.</p>

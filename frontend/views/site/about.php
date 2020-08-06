@@ -1,16 +1,27 @@
 <?php
+use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $meta['title'];
+$this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
+$this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="split"></div>
+<div class="container mt55">
+    <h1 class="aboutus-title">About Us</h1>
+    <p class="aboutus-banner-content" style="font-family: SegoeUIEmoji, Arial, sans-serif, Helvetica, Montserrat;">
+        Launched in 2018, Cashbackbase is notably one of the fastest-growing communities for Amazon deals. We are consistently innovating, staying ahead of the curve in tech trends and product ideas. We select the best offers from Amazon and provide discounts and product testing opportunities exclusively for our users.
+    </p>
+    <div>
+        <div class="aboutus-tip-container">
+            <img class="aboutus-banner-icon" src="<?= getImgUrl('images/SelectiveBrands.png') ?>">
+            <p class="aboutus-banner-tip">Selective Brands</p>
+        </div>
+        <div class="sept-line">
 
-    <p>This is the About page. You may modify the following file to customize its content:</p>
-
-    <code><?= __FILE__ ?></code>
+        </div>
+        <div class="aboutus-tip-container">
+            <img class="aboutus-banner-icon" src="<?= getImgUrl('images/BigDiscounts.png') ?>">
+            <p class="aboutus-banner-tip">Big Discounts</p>
+        </div>
+    </div>
 </div>

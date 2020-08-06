@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Article;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use yii\helpers\Url;
@@ -241,6 +242,11 @@ class SiteController extends Controller
 
     public function actionContact()
     {
+        $site_id = Yii::$app->params['site_id'];
+        $model = Article::find()->where(['url_key'=>'contact', 'site_id'=>$site_id])->one();
+        if (!$model){
+            return $this->render('/site/error');
+        }
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -259,7 +265,21 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $site_id = Yii::$app->params['site_id'];
+        $model = Article::find()->where(['url_key'=>'about_us', 'site_id'=>$site_id])->one();
+        if (!$model){
+            return $this->render('/site/error');
+        }
+        $meta = [];
+        $meta['title'] = $model->meta_title;
+        $meta['description'] = $model->meta_description;
+        $meta['keyword'] = $model->meta_keywords;
+        return $this->render('about', ['model'=>$model, 'meta'=>$meta]);
+    }
+
+    public function actionFaq()
+    {
+        return $this->render('faq');
     }
 
     public function actionSignup()

@@ -2118,6 +2118,11 @@ button.close {
     font-size: 15px;
     padding: 0 15px !important;
 }
+.aboutus-tip-container {
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+}
 
 @media (min-width:1400px) {
     .container {
