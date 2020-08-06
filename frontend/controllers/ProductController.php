@@ -157,7 +157,7 @@ class ProductController extends Controller
                     array_unshift($mutil_image, ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']]);
                     $model['product']['mutil_image'] = $mutil_image;
                 } else {
-                    $model['product']['mutil_image'][] = ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']];
+                    $model['product']['mutil_image'][0] = ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']];
                 }
                 return $this->render('detail', ['model' => $model, 'meta' => $meta, 'currentUrl' => $currentUrl]);
             } else {
