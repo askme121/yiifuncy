@@ -153,7 +153,7 @@ class ProductController extends Controller
                 }
                 $model['save_price'] = number_format($model['price'] - $model['final_price'], 2);
                 $mutil_image = unserialize($model['product']['mutil_image'])? unserialize($model['product']['mutil_image']): [];
-                if ($mutil_image){
+                if (!empty($mutil_image)){
                     array_unshift($mutil_image, ['image'=>$model['product']['image'], 'thumb_image'=>$model['product']['thumb_image']]);
                     $model['product']['mutil_image'] = $mutil_image;
                 } else {
