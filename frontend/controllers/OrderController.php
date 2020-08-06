@@ -263,7 +263,8 @@ class OrderController extends Controller
                         'code' => 1,
                         'status' => 4,
                         'message' => 'you have unfinished deals',
-                        'deals_url' => '/account/deal'
+                        'deals_url' => '/account/deal',
+                        'user_id' => $user_id,
                     ]);
                 }
                 $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->all();
