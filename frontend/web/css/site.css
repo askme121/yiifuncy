@@ -761,7 +761,7 @@ a:link, a:visited, a:hover, a:active {
 }
 .footer-nav-list li {
     float: left;
-    padding: 0 24px;
+    padding: 0 22px;
     height: 14px;
     line-height: 14px;
     border-left: 1px solid #ccc;
@@ -2123,6 +2123,12 @@ button.close {
     text-align: center;
     display: inline-block;
 }
+.method-link {
+    color: #2b95ff !important;
+}
+.method-link:hover{
+    text-decoration: underline !important;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2345,8 +2351,11 @@ button.close {
         margin-bottom: 0px;
     }
     #deal-detal-tab li a {
-        font-size: 12px;
+        font-size: 10px;
         padding: 10px 5px;
+    }
+    .nav-tabs {
+        border-bottom: none;
     }
     .account-content-container{
         width: auto;
@@ -2490,6 +2499,12 @@ button.close {
     }
     .star_img{
         margin: 5px 10px 0 10px;
+    }
+    .deal-account-list {
+        font-size: 11px;
+    }
+    .origin-price {
+        font-size: 11px;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

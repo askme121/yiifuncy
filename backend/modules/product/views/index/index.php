@@ -156,7 +156,7 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
                     'update' => function ($url, $model, $key) {
-                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
+                        if (Yii::$app->user->identity->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
                             return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
                         } else {
                             return '';

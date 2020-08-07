@@ -194,6 +194,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </div>
                 <div class="tab-pane fade" id="amazon-profile">
                     <form class="submit-amazon-profile-form" id="submit-amazon-profile-form" style="margin-left: 20px;" action="/account/amazon_profile_link?type=redirect&amp;url=" method="POST">
+                        <?php if (Yii::$app->request->get("tabtarget")){?>
+                        <div class="alert alert-success" role="alert" style="margin-top:20px; width: 100%;color: #f00">
+                            You need to submit your Amazon Profile Link &amp; Paypal first before requesting a deal
+                        </div>
+                        <? }?>
                         <ul class="profile-list" style="margin-top: 20px;">
                             <li>
                                 <span class="method-dot">1</span>

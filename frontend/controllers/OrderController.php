@@ -257,22 +257,29 @@ class OrderController extends Controller
                         'message' => 'Sold Out'
                     ]);
                 }
-                $cashback_order = Order::find()->where(['user_id'=>$user_id, 'order_type'=>2, 'product_id'=>$product_id])->andWhere(['!=', 'status', 1])->andWhere(['<=', 'status', 4])->all();
-                if ($cashback_order){
-                    return json_encode([
-                        'code' => 1,
-                        'status' => 4,
-                        'message' => 'you have unfinished deals',
-                        'deals_url' => '/account/deal',
-                    ]);
+                if ($activity->type == 2){
+                    $cashback_order = Order::find()->where(['user_id'=>$user_id, 'order_type'=>2, 'product_id'=>$product_id, 'status'=>4, 'is_review'=>1])->one();
+                    if ($cashback_order){
+                        return json_encode([
+                            'code' => 1,
+                            'status' => 4,
+                            'message' => 'you have unfinished deals',
+                            'deals_url' => '/account/deal',
+                        ]);
+                    }
                 }
-                $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->all();
+                $hover_order = Order::find()->where(['user_id'=>$user_id])->andWhere(['<>', 'activity_id', $activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['<', 'status', 4])->one();
                 if ($hover_order){
+                    if ($hover_order->order_type == 2){
+                        $deals_url = '/account/deal';
+                    } else {
+                        $deals_url = '/account/coupon';
+                    }
                     return json_encode([
                         'code' => 1,
                         'status' => 7,
                         'message' => 'you have unfinished deals',
-                        'deals_url' => '/account/deal'
+                        'deals_url' => $deals_url
                     ]);
                 }
                 $curr_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['=', 'status', 1])->one();
