@@ -243,10 +243,14 @@ class SiteController extends Controller
     public function actionContact()
     {
         $site_id = Yii::$app->params['site_id'];
-        $model = Article::find()->where(['url_key'=>'contact', 'site_id'=>$site_id])->one();
-        if (!$model){
+        $page = Article::find()->where(['url_key'=>'contact', 'site_id'=>$site_id])->one();
+        if (!$page){
             return $this->render('/site/error');
         }
+        $meta = [];
+        $meta['title'] = $page->meta_title;
+        $meta['description'] = $page->meta_description;
+        $meta['keyword'] = $page->meta_keywords;
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -254,11 +258,11 @@ class SiteController extends Controller
             } else {
                 Yii::$app->session->setFlash('error', 'There was an error sending your message.');
             }
-
             return $this->refresh();
         } else {
             return $this->render('contact', [
-                'model' => $model,
+                'model' => $page,
+                'meta' => $meta
             ]);
         }
     }
