@@ -174,6 +174,34 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 }
             });
         });
+        $('.jq-cancel-order').click(function () {
+            var url = $(this).attr('data-url');
+            $('#cancel-yes').attr('data-url', url);
+        });
+        $('#cancel-yes').click(function() {
+            var url = $(this).attr('data-url');
+            $.ajax({
+                type: 'post',
+                url: url,
+                dataType: 'json',
+                data: {},
+                success: function(response){
+                    if (response.code == 1) {
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.reload();
+                    }
+                },
+                error: function(){
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
+            });
+        });
     });
     <?php $this->endBlock(); ?>
 </script>

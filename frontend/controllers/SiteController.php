@@ -279,7 +279,13 @@ class SiteController extends Controller
 
     public function actionFaq()
     {
-        return $this->render('faq');
+        $site_id = Yii::$app->params['site_id'];
+        $model = Article::find()->where(['cate_id'=>1])->all();
+        $meta = [];
+        $meta['title'] = 'Log In | '.Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
+        return $this->render('faq', ['model'=>$model, 'meta'=>$meta]);
     }
 
     public function actionSignup()

@@ -2144,6 +2144,55 @@ button.close {
     display: inline-block;
     margin-left: 20px;
 }
+.menu_title{
+    color: #ff9936;
+    line-height: 30px;
+    padding-left: 20px;
+}
+#divstyletab li {
+    float: none;
+    margin: 0!important;
+}
+#divstyletab li.active a {
+    background-color: #f3f3f3;
+    border-left: 3px solid #f93;
+    border-radius: 0;
+    color: #333;
+    padding: 0 0 0 15px;
+    line-height: 50px;
+}
+#divstyletab li a {
+    border-radius: 0;
+    color: #333;
+    padding: 0 0 0 15px;
+    background-color: #fff;
+    border-left: 3px solid #fff;
+    line-height: 50px;
+}
+#divstyletab li a:hover {
+    border-left: 3px solid #f93;
+}
+.faq-titles {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    font-weight: 700;
+}
+.faq-titles:first-child {
+    margin-top: 0;
+}
+.faqTitle-vertical-line {
+    display: inline-block;
+    width: 3px;
+    height: 22px;
+    background-color: #f93;
+    margin-right: 7px;
+    margin-bottom: -5px;
+}
+.faq-contents {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
 
 @media (min-width:1400px) {
     .container {
