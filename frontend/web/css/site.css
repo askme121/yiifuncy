@@ -162,7 +162,8 @@ a:link, a:visited, a:hover, a:active {
 }
 .index-nav-ul .active {
     color:#f93;
-    border-color:#f93
+    border-color:#f93;
+    border-right: none;
 }
 .deal-nav-a {
     display:inline-block;
