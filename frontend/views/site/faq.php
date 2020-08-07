@@ -13,29 +13,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <h4 class="menu_title">FAQ</h4>
                 <ul class="nav nav-pills account-menu-list" id="divstyletab">
                     <?php if ($model){?>
-                        <?php foreach ($top_all as $product): ?>
-                    <li class="active">
-                        <a href="#pre-sale" class="account-menu-a" data-toggle="tab">Pre-sale Service</a>
+                        <?php foreach ($model as $key=>$item): ?>
+                    <li <?php if ($key==0){?>class="active"<?php }?>>
+                        <a href="#<?= $item->url_key?>" class="account-menu-a" data-toggle="tab"><?= $item->title?></a>
                     </li>
+                        <?php endforeach; ?>
                     <?php }?>
-                    <li>
-                        <a href="#refund-return" class="account-menu-a" data-toggle="tab">Refund &amp; Return</a>
-                    </li>
-                    <li>
-                        <a href="#privacy-acc" class="account-menu-a" data-toggle="tab">Privacy &amp; Account</a>
-                    </li>
                 </ul>
             </div>
             <div class="tab-content account-content-container tab-content-container">
-                <div class="tab-pane fade active in" id="pre-sale">
-
-                </div>
-                <div class="tab-pane fade" id="refund-return">
-
-                </div>
-                <div class="tab-pane fade" id="privacy-acc">
-
-                </div>
+                <?php if ($model){?>
+                    <?php foreach ($model as $key=>$item): ?>
+                        <div class="tab-pane fade <?php if ($key==0){?>active<?php }?> in" id="<?= $item->url_key?>">
+                            <?= $item->content?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php }?>
             </div>
         </div>
     </div>

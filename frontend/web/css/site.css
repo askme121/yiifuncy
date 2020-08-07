@@ -2191,7 +2191,21 @@ button.close {
 }
 .faq-contents {
     font-size: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+}
+.faq-none-tip {
+    margin: 0 0 30px;
+    color: #666;
+    font-size: 14px;
+    text-align: right;
+}
+.faq-none-tip a {
+    display: inline-block;
+    padding: 0 5px;
+    border: 1px solid #f93;
+    border-radius: 3px;
+    color: #f93;
+    margin-left: 5px;
 }
 
 @media (min-width:1400px) {
