@@ -16,7 +16,7 @@ use yii\helpers\Url;
             <div class="modal-body jq-got-coupon-code-success" style="padding: 0; display:none;">
                 <p class="offer-ends-container" style="margin-bottom: 0; padding: 24px 10px 10px 10px;">
                     <span class="secured-title" style="text-align: center; display: block">Congratulations!</span>
-                    <span class="secured-title" style="line-height: 15px; text-align: center; display: block; margin-top: 10px; margin-bottom: 10px">You deal application is successfully.</span>
+                    <span class="secured-title" style="line-height: 20px; text-align: center; display: block; margin-top: 10px; margin-bottom: 10px">You deal application is successfully.</span>
                     <span class="secured-tip">Follow the guidance below to get your cash back.</span>
                     <br>
                     <span class="secured-tip">Upload your order info within 24 hours!</span>
@@ -38,12 +38,11 @@ use yii\helpers\Url;
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
                                 <label class="form-group-tip" for="coupon_order_id"><span class="mandatory-identification">* </span>Order ID:</label>
-                                <input class="form-control form-group-input" id="coupon_order_id" type="text" name="coupon_order_id" value="" placeholder="Enter your Amazon order info">
+                                <input class="form-control form-group-input" id="coupon_order_id" type="text" name="coupon_order_id" value="" placeholder="Enter your Amazon order info within 24 hours">
                                 <div class="form-group-error error" id="coupon-order-id-tips"></div>
                             </div>
-                            <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="coupon-abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important; float: left">Cancel deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="coupon-order-post">Submit</a>
+                            <div class="upOrder-form-btnss text-center">
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="coupon-order-post">Submit</a>
                             </div>
                         </form>
                     </div>
@@ -59,7 +58,7 @@ use yii\helpers\Url;
             <div class="modal-body get-quota jq-get-quota" style="padding: 0;display:none;">
                 <p class="offer-ends-container" style="margin-bottom: 0; padding: 24px 10px 10px 10px;">
                     <span class="secured-title" style="text-align: center; display: block">Congratulations!</span>
-                    <span class="secured-title" style="line-height: 15px; text-align: center; display: block; margin-top: 10px; margin-bottom: 10px">You deal application is successfully.</span>
+                    <span class="secured-title" style="line-height: 20px; text-align: center; display: block; margin-top: 10px; margin-bottom: 10px">You deal application is successfully.</span>
                     <span class="secured-tip">Follow the guidance below to get your cash back.</span>
                     <br>
                     <span class="secured-tip">Upload your order info within 24 hours!</span>
@@ -76,12 +75,11 @@ use yii\helpers\Url;
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
                             <div class="form-group upOrder-form-group">
                                 <label class="form-group-tip" for="order_id"><span class="mandatory-identification">* </span>Order ID:</label>
-                                <input class="form-control form-group-input" id="order_id" type="text" name="order_id" value="" placeholder="Enter your Amazon order info">
+                                <input class="form-control form-group-input" id="order_id" type="text" name="order_id" value="" placeholder="Enter your Amazon order info within 24 hours">
                                 <div class="form-group-error error" id="order-id-tips"></div>
                             </div>
-                            <div class="upOrder-form-btnss">
-                                <a type="button" class="btn upOrder-form-btn jq-cancel-order operation-btn" id="abandon-deal-btn" data-href="#" style="background-color: #fff;margin-bottom: 0;color: #f93 !important; float: left">Cancel deal</a>
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" style="float: right" id="order-post" >Submit</a>
+                            <div class="upOrder-form-btnss text-center">
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="order-post" >Submit</a>
                             </div>
                         </form>
                     </div>

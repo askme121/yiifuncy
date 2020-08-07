@@ -1420,7 +1420,7 @@ button.close {
     width: 100%!important;
     margin-top: 5px!important;
 }
-.upOrder-form-btnss {
+.upOrder-form-btn-ss {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -1724,13 +1724,13 @@ button.close {
 .upOrder-form-btn {
     color: #fff!important;
     background-color: #ff9936;
-    height: 30px;
+    height: 40px;
     padding: 0 5px!important;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700!important;
     border-radius: 3px!important;
     text-transform: none!important;
-    line-height: 30px;
+    line-height: 40px;
     display: inline-block!important;
     min-width: 120px!important;
 }
@@ -2632,6 +2632,9 @@ button.close {
     }
     .faq-none-tip {
         font-size: 12px;
+    }
+    .go-amazon-btn{
+        width: 70%;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){
