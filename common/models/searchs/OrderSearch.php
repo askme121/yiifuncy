@@ -142,7 +142,7 @@ class OrderSearch extends Order
         $site_id = \Yii::$app->session['default_site_id'];
         $query = Order::find()
             ->innerJoinWith('activity')
-            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.status'=>4]);
+            ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.status'=>4,'t_order.is_review'=>0]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
