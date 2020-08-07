@@ -2207,6 +2207,10 @@ button.close {
     color: #f93;
     margin-left: 5px;
 }
+.faq-content ul{
+    font-size: 14px;
+    margin-bottom: 30px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2583,6 +2587,51 @@ button.close {
     }
     .origin-price {
         font-size: 11px;
+    }
+    .account-menu-container {
+        float: none;
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+    #divstyletab li {
+        display: inline-block;
+    }
+    #divstyletab li a {
+        color: #666;
+        text-align: center;
+        font-size: 12px;
+        border-left: none;
+        line-height: 40px;
+        height: 40px;
+        padding: 0 5px;
+    }
+    #divstyletab li.active a {
+        text-align: center;
+        background-color: #f3f3f3;
+        border-left: none;
+        line-height: 40px;
+        height: 40px;
+        color: #333;
+        padding: 0 5px;
+        border-bottom: 2px solid #f93;
+    }
+    .faq-titles:first-child {
+        margin-top: 10px;
+    }
+    .faq-titles {
+        font-size: 13px;
+    }
+    .faq-contents {
+        font-size: 12px;
+    }
+    .faq-content ul{
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    .faq-none-tip {
+        font-size: 12px;
     }
 }
 @media (min-width: 992px) and (max-width: 1200px){

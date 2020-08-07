@@ -10,7 +10,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="container-bg">
         <div class="tabbable">
             <div class="account-menu-container">
-                <h4 class="menu_title">FAQ</h4>
+                <h4 class="menu_title visible-lg visible-md">FAQ</h4>
                 <ul class="nav nav-pills account-menu-list" id="divstyletab">
                     <?php if ($model){?>
                         <?php foreach ($model as $key=>$item): ?>
@@ -21,7 +21,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     <?php }?>
                 </ul>
             </div>
-            <div class="tab-content account-content-container tab-content-container">
+            <div class="tab-content account-content-container tab-content-container faq-content">
                 <?php if ($model){?>
                     <?php foreach ($model as $key=>$item): ?>
                         <div class="tab-pane fade <?php if ($key==0){?>active<?php }?> in" id="<?= $item->url_key?>">
