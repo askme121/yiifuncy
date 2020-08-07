@@ -403,8 +403,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     We invite you to participate in our Cashback Deals to experience our products, and We'd really appreciate if if you left us an honest review.Reviews are very important for us,and they help other shoppers make informed decisions.
                 </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
-                    <a href="/" class="btn upOrder-form-btn operation-btn" data-href="#" style="height: 60px !important;line-height: 60px !important;display: inline-block;float: unset;margin: 0;width: 160px; background-color: #ccc !important;">No thanks</a>
-                    <a id="detail-btn" type="button" class="btn upOrder-form-btn" style="height: 60px !important;line-height: 60px !important;display: inline-block;font-size: 28px;width: 160px;margin-left: 20px;" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
+                    <a href="/" class="btn upOrder-form-btn no-thanks" data-href="#">No thanks</a>
+                    <a id="detail-btn" type="button" class="btn upOrder-form-btn make-sure" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
                 </div>
             </div>
             <div class="check-my-dealss modal-body no-points jq-waiting-one-deal" style="padding: 0 0 30px;display: none;">

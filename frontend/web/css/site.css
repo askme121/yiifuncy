@@ -2130,6 +2130,20 @@ button.close {
 .method-link:hover{
     text-decoration: underline !important;
 }
+.no-thanks{
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    float: unset;
+    margin: 0;
+    background-color: #ccc !important;
+}
+.make-sure{
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin-left: 20px;
+}
 
 @media (min-width:1400px) {
     .container {
