@@ -150,6 +150,14 @@
 #photo-list li .operate .check .layui-form-checkbox[lay-skin=primary] i{position:absolute; left:0; top:0;}
 #photo-list li .operate .img_del{ float:right; margin:9px 11px 0 0; font-size: 22px !important; cursor:pointer; }
 #photo-list li .operate .img_del:hover{ color:#f00; }
+
+.help-block{
+	margin-top: 5px;
+}
+.help-block-error{
+	color: red;
+}
+
 @media screen and (max-width:1050px){#photo-list li{ width:24%;}}
 @media screen and (max-width: 750px){#photo-list li{ width:49%;}}
 @media screen and (max-width:432px){#photo-list li{ width:99%;}}
