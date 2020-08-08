@@ -2212,7 +2212,7 @@ button.close {
 .page-title {
     text-align: center;
     font-size: 30px;
-    margin: 0 0 80px;
+    margin: 0 0 50px;
 }
 .detail-points-container {
     line-height: 22px;
@@ -2221,6 +2221,28 @@ button.close {
 }
 .earn-points {
     color: #0c0;
+}
+.customer-tip-container {
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 50px;
+}
+.customer-enrty-content {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+.contact-form-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.contact-form .form-control {
+    width: 85%;
+    background-color: #f4f4f4;
+    border-radius: 3px;
+    border-color: #ccc;
+    margin-top: 22px;
+    font-size: 14px;
+    color: #666;
 }
 
 @media (min-width:1400px) {

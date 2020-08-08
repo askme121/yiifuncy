@@ -84,4 +84,13 @@ return array (
       '@kartik/date' => $vendorDir . '/kartik-v/yii2-widget-datepicker/src',
     ),
   ),
+  'wadeshuler/yii2-sendgrid' => 
+  array (
+    'name' => 'wadeshuler/yii2-sendgrid',
+    'version' => '1.0.3.0',
+    'alias' => 
+    array (
+      '@wadeshuler/sendgrid' => $vendorDir . '/wadeshuler/yii2-sendgrid/src',
+    ),
+  ),
 );

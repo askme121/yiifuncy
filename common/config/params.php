@@ -1,9 +1,9 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'askme-121@163.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'supportEmail' => 'service@theclubofcashback.com',
+    'senderEmail' => 'noreply@theclubofcashback.com',
+    'senderName' => 'cashbackclub',
     'user.passwordResetTokenExpire' => 3600,
     'admin.passwordResetTokenExpire' => 3600,
     'order.Expire' => 1,

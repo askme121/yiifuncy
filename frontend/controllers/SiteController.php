@@ -261,7 +261,8 @@ class SiteController extends Controller
             return $this->refresh();
         } else {
             return $this->render('contact', [
-                'model' => $page,
+                'model' => $model,
+                'page' => $page,
                 'meta' => $meta
             ]);
         }

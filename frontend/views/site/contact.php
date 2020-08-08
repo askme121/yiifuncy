@@ -20,11 +20,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form class="contact-form" id="contact-form" action="" method="post" novalidate="novalidate">
+                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                     <p class="contact-form-title">Write to us here</p>
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" value="" placeholder="* Name">
-                    </div>
+                    <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'placeholder'=>'* Name']) ?>
                     <div class="form-group">
                         <input type="text" name="email" value="" class="form-control" placeholder="* Email">
                     </div>
@@ -51,10 +49,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </span>
                     </div>
                     <input type="submit" class="btn upOrder-form-btn" id="contact-btn" value="Submit">
-                </form>
+                <?php ActiveForm::end(); ?>
             </div>
             <div class="col-sm-6">
-                <img class="aside-img img-responsive" src="<?= getImgUrl('images/about_us.jpg') ?>">
+                <img class="aside-img img-responsive" style="margin-top: 100px" src="<?= getImgUrl('images/about_us.jpg') ?>">
             </div>
         </div>
     </div>
