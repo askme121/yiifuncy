@@ -22,33 +22,27 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <div class="col-sm-6">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                     <p class="contact-form-title">Write to us here</p>
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'placeholder'=>'* Name']) ?>
                     <div class="form-group">
-                        <input type="text" name="email" value="" class="form-control" placeholder="* Email">
+                        <input type="text" name="name" class="form-control" value="" placeholder="* Name">
                     </div>
                     <div class="form-group">
-                        <select name="type" value="" class="form-control">
-                            <option value="">Please choose your identity</option>
-                            <option value="customer">I am a customer</option>
-                            <option value="seller">I am a seller</option>
-                        </select>
+                        <input type="text" name="email" value="" class="form-control" placeholder="* Email">
                     </div>
                     <div class="form-group">
                         <input type="text" name="subject" value="" class="form-control" placeholder="* Subject">
                     </div>
                     <div class="form-group">
-                        <textarea rows="9" cols="88" name="content" id="contact-message" class="form-control" placeholder="* Message"></textarea>
+                        <textarea rows="9" cols="88" name="body" id="contact-message" class="form-control" placeholder="* Message"></textarea>
                     </div>
-
                     <div class="form-group" style="line-height: 32px;">
                         <label class="required" aria-required="true"></label>
-                        <input type="text" name="captcha" class="form-control verify-code" placeholder="* Fill in the mathematical result" style="margin-top: 0 !important;">
-                        <img id="captcha" src="https://www.cashbackbase.com/captcha/math?WZYB5L1G" onclick="this.src='/captcha/math?'+Math.random()">
+                        <input type="text" name="verifyCode" class="form-control verify-code" placeholder="* Fill in the mathematical result" style="margin-top: 0 !important;">
+                        <img id="captcha" src="<?= Url::toRoute('/site/captcha');?>" onclick="this.src='/captcha?'+Math.random()">
                         <span>
-                                <a class="change-code-btn" href="javascript:;" onclick="$('#captcha').attr('src', '/captcha/math?'+Math.random());">Change</a>
-                            </span>
+                            <a class="change-code-btn" href="javascript:;" onclick="$('#captcha').attr('src', '/captcha?'+Math.random());">Change</a>
+                        </span>
                     </div>
-                    <input type="submit" class="btn upOrder-form-btn" id="contact-btn" value="Submit">
+                    <input type="button" class="btn upOrder-form-btn" id="contact-btn" value="Submit">
                 <?php ActiveForm::end(); ?>
             </div>
             <div class="col-sm-6">
@@ -57,3 +51,47 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    <?php $this->beginBlock('js_block') ?>
+    $(function () {
+        $("#contact-btn").click(function(){
+            var btn = $(this);
+            if (btn.hasClass("onused")){
+                return false;
+            }
+            btn.addClass("onused");
+            $.ajax({
+                type: 'post',
+                url: $("#contact-form").attr('action'),
+                dataType: 'json',
+                data: $("#contact-form").serialize(),
+                success: function(response){
+                    if (response.code == 1) {
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.href = location.href;
+                    } else {
+                        btn.removeClass("onused");
+                        swal({
+                            type: 'error',
+                            title: 'Oops',
+                            text: response.message,
+                            html: true
+                        });
+                    }
+                },
+                error: function(){
+                    btn.removeClass("onused");
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
+            });
+        });
+    });
+    <?php $this->endBlock(); ?>
+</script>
+<?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>

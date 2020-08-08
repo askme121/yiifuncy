@@ -2244,6 +2244,13 @@ button.close {
     font-size: 14px;
     color: #666;
 }
+.change-code-btn {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: #ff9936;
+    border: none;
+    color: #fff !important;
+}
 
 @media (min-width:1400px) {
     .container {

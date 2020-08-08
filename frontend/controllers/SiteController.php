@@ -59,12 +59,12 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'backColor'=>0x000000,//背景颜色
+                'backColor'=>0x666666,//背景颜色
                 'maxLength' => 5, //最大显示个数
                 'minLength' => 4,//最少显示个数
                 'padding' => 5,//间距
                 'height'=>35, //高度
-                'width' => 130,  //宽度
+                'width' => 70,  //宽度
                 'foreColor'=>0xffffff, //字体颜色
                 'offset'=>4, //设置字符偏移量 有效果
             ],
@@ -252,13 +252,26 @@ class SiteController extends Controller
         $meta['description'] = $page->meta_description;
         $meta['keyword'] = $page->meta_keywords;
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if (!$model->validate()){
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                if ($model->doSubmit()) {
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'Thank you for contacting us. We will respond to you as soon as possible.'
+                    ]);
+                } else {
+                    return json_encode([
+                        'code' => 0,
+                        'message' => 'Request failed',
+                    ]);
+                }
             }
-            return $this->refresh();
         } else {
             return $this->render('contact', [
                 'model' => $model,
