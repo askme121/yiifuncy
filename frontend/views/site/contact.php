@@ -10,26 +10,17 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
 <div class="split"></div>
 <div class="container mt55">
-    <div class="container-bg">
+    <div class="container-bg pad15">
         <h2 class="page-title">Contact Us</h2>
         <div class="customer-tip-container row">
-            <div class="col-sm-6">
-                <p class="customer-enrty-title"><span class="li-dot" style="width:10px;height:10px;margin-bottom:2px;"></span>If you're a customer:</p>
-                <p class="customer-enrty-content">
-                    If you have any questions or concerns, you can visit our <a href="/faq" style="color: #FF9933;text-decoration: underline;">FAQs page</a>.<br>
-                    If you cannot find the answer to your question, complete the form below to contact us.
-                </p>
-            </div>
-            <div class="col-sm-6">
-                <p class="customer-enrty-title"><span class="li-dot" style="width:10px;height:10px;margin-bottom:2px;"></span>If you're a seller who wants to submit a deal:</p>
-                <p class="customer-enrty-content">
-                    If you are a seller who wants to promote your newly developed products on Amazon, you can go to the <a href="/seller-central" style="color: #FF9933;text-decoration: underline;">Seller Central</a> to apply for a seller account and submit your deal.
-                </p>
-            </div>
+            <p class="customer-enrty-content">
+                If you have any questions or concerns, you can visit our <a href="/faq" style="color: #FF9933;text-decoration: underline;">FAQs page</a>.<br>
+                If you cannot find the answer to your question, complete the form below to contact us.
+            </p>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form class="contact-form" id="contact-form" action="https://www.cashbackbase.com/contactus#contact_us_anchor" method="post" novalidate="novalidate">
+                <form class="contact-form" id="contact-form" action="" method="post" novalidate="novalidate">
                     <p class="contact-form-title">Write to us here</p>
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" value="" placeholder="* Name">
@@ -63,7 +54,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </form>
             </div>
             <div class="col-sm-6">
-                <img class="aside-img img-responsive" width="" height="" src="https://www.cashbackbase.com/css/front/images/about_us.jpg" alt="About cashbackbase team">
+                <img class="aside-img img-responsive" src="<?= getImgUrl('images/about_us.jpg') ?>">
             </div>
         </div>
     </div>

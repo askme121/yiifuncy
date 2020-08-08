@@ -258,14 +258,12 @@ a:link, a:visited, a:hover, a:active {
     font-size:16px!important
 }
 #bs-navbar li a {
-    text-transform:uppercase;
-    font-size:18px;
     color:#fff;
     background-color:#f93;
     height:74px;
     padding:0 15px;
     line-height:74px;
-    font-size:14px!important
+    font-size:16px!important
 }
 #bs-navbar li a:focus, #bs-navbar li a:hover {
     background-color:#f93!important;
@@ -919,7 +917,7 @@ a:link, a:visited, a:hover, a:active {
 #detail-arousel {
     background-color:#fff;
     padding-top:15px;
-    padding-bottom:20px
+    padding-bottom:0px
 }
 .carousel, .carousel-inner {
     position: relative;
@@ -1043,7 +1041,7 @@ a:link, a:visited, a:hover, a:active {
 }
 .function-block-title {
     font-weight: 700;
-    margin: 20px 0;
+    margin: 10px 0;
     border-bottom: 1px solid #d7d7d7;
     font-size: 16px;
     padding-bottom: 10px;
@@ -1214,9 +1212,6 @@ button.close {
     margin: 0 auto 24px;
     border: 1px solid #f0f0f0;
     height: 400px;
-}
-.describe-container {
-    margin-top: 30px;
 }
 .v3-banner-right {
     margin-left: 0;
@@ -2210,6 +2205,22 @@ button.close {
 .faq-content ul{
     font-size: 14px;
     margin-bottom: 30px;
+}
+.pad15{
+    padding: 40px 50px;
+}
+.page-title {
+    text-align: center;
+    font-size: 30px;
+    margin: 0 0 80px;
+}
+.detail-points-container {
+    line-height: 22px;
+    text-align: center;
+    border: 1px dashed;
+}
+.earn-points {
+    color: #0c0;
 }
 
 @media (min-width:1400px) {

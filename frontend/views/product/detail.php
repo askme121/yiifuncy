@@ -116,6 +116,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <?php }?>
                                 </ul>
                             </div>
+                            <div class="detail-points-container earn-points" style="margin: 0 20px;">
+                                <?php if ($model['type'] == 2){?>
+                                    Buy it on amazon and earn cashback,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
+                                <?php } else {?>
+                                    Buy it on amazon by coupon then earn cashback, you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?> in total
+                                <?php }?>
+                            </div>
                         </div>
                     </li>
                     <li class="col-xs-12 describe-container detail-contents-2" style="overflow: hidden;">
@@ -176,7 +183,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </div>
                 <div class="col-md-4 col-sm-5 col-xs-12 deal-detail-price">
                     <div class="row">
-                        <div class="banner-content v3-banner-right details-mobile" id="v3-banner-right" style="position: static; top: 0px; width: 390px;">
+                        <div class="banner-content v3-banner-right details-mobile" id="v3-banner-right" style="position: static; top: 0px;">
                             <div class="detail-banner-right" style="margin: 35px 20px 23px;">
                                 <div class="v3-detail-price">
                                     <p class="v3-price-container">
@@ -271,7 +278,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         </button>
                                         <div style="width: 0px; border-style: solid solid solid solid; border-width: 0px 8px 8px 8px; border-color: #fff #fff #1ab394 #fff; margin: 0 auto; margin-top: 2px; margin-bottom: -1px;"></div>
                                         <p class="detail-points-left" style="color: #1ab394; margin: 0px 0 10px 0; padding: 5px 0; border: 1px dashed #1ab394; border-radius: 5px;">
-                                            <i class="fa fa-exclamation-circle"></i> Buy to amazon and earn cashback,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
+                                            <i class="fa fa-exclamation-circle"></i>Buy it on amazon and earn cashback,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
                                         </p>
                                     <?php }else{?>
                                         <?php if (Yii::$app->user->isGuest) {?>
@@ -285,7 +292,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         <?php }?>
                                         <div style="width: 0px; border-style: solid solid solid solid; border-width: 0px 8px 8px 8px; border-color: #fff #fff #1ab394 #fff; margin: 0 auto; margin-top: 2px; margin-bottom: -1px;"></div>
                                         <p class="detail-points-left" style="color: #1ab394; margin: 0px 0 10px 0; padding: 5px 0; border: 1px dashed #1ab394; border-radius: 5px;">
-                                            <i class="fa fa-exclamation-circle"></i> Use coupon to discount,you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?>
+                                            <i class="fa fa-exclamation-circle"></i>Buy it on amazon by coupon then earn cashback, you can save <?= getSymbol(Yii::$app->params['site_id']) ?> <?= $model['save_price']?> in total.
                                         </p>
                                     <?php }?>
                                 <?php }else{?>
