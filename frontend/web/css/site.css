@@ -2676,6 +2676,19 @@ button.close {
     .go-amazon-btn{
         width: 70%;
     }
+    .pad15 {
+        padding: 20px 20px;
+    }
+    .page-title {
+        font-size: 20px;
+        margin: 0 0 20px;
+    }
+    .customer-enrty-content {
+        margin-bottom: 15px;
+    }
+    .customer-tip-container {
+        margin-bottom: 20px;
+    }
 }
 @media (min-width: 992px) and (max-width: 1200px){
     #logo{

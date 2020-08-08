@@ -9,17 +9,17 @@ $this->registerMetaTag(array("name"=>"description","content"=>$meta['description
 $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
 <div class="split"></div>
-<div class="container mt55">
+<div class="container">
     <div class="container-bg pad15">
         <h2 class="page-title">Contact Us</h2>
-        <div class="customer-tip-container row">
+        <div class="customer-tip-container">
             <p class="customer-enrty-content">
                 If you have any questions or concerns, you can visit our <a href="/faq" style="color: #FF9933;text-decoration: underline;">FAQs page</a>.<br>
                 If you cannot find the answer to your question, complete the form below to contact us.
             </p>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                     <p class="contact-form-title">Write to us here</p>
                     <div class="form-group">
@@ -36,16 +36,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     </div>
                     <div class="form-group" style="line-height: 32px;">
                         <label class="required" aria-required="true"></label>
-                        <input type="text" name="verifyCode" class="form-control verify-code" placeholder="* Fill in the mathematical result" style="margin-top: 0 !important;">
-                        <img id="captcha" src="<?= Url::toRoute('/site/captcha');?>" onclick="this.src='/captcha?'+Math.random()">
-                        <span>
-                            <a class="change-code-btn" href="javascript:;" onclick="$('#captcha').attr('src', '/captcha?'+Math.random());">Change</a>
-                        </span>
+                        <input type="text" name="verifyCode" class="form-control verify-code" placeholder="* Fill in the verifyCode" style="margin-top: 0 !important;">
+                        <img id="captcha" style="cursor: pointer" src="<?= Url::toRoute('/site/captcha');?>" onclick="this.src='/captcha?'+Math.random()">
                     </div>
                     <input type="button" class="btn upOrder-form-btn" id="contact-btn" value="Submit">
                 <?php ActiveForm::end(); ?>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 visible-lg visible-md">
                 <img class="aside-img img-responsive" style="margin-top: 100px" src="<?= getImgUrl('images/about_us.jpg') ?>">
             </div>
         </div>
