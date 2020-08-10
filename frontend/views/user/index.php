@@ -77,8 +77,47 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </a>
             </li>
         </ul>
+        <?php if (!Yii::$app->user->isGuest) {?>
         <div class="col-sm-12 col-xs-12 text-center">
-            <button class="btn upOrder-form-btn sign-out">Sign Out</button>
+            <button id="sign-out" class="btn upOrder-form-btn sign-out">Sign Out</button>
         </div>
+        <?php }?>
     </div>
 </div>
+<script>
+    <?php $this->beginBlock('js') ?>
+    $(document).ready(function(){
+        $("#sign-out").click(function(){
+            $.ajax({
+                type: 'post',
+                url: '/site/logout',
+                dataType: 'json',
+                data: {},
+                success: function(response){
+                    if (response.code == 1) {
+                        swal({
+                            type: 'success',
+                            title: 'Oops',
+                            text: response.message,
+                            timer: 2000,
+                            html: true
+                        });
+                        window.location.href = response.href;
+                    } else {
+                        swal({
+                            type: 'error',
+                            title: 'Oops',
+                            text: response.message,
+                            html: true
+                        });
+                    }
+                },
+                error: function(){
+                    swal('Oops', 'Server error, please try again later.', 'error');
+                }
+            });
+        });
+    });
+    <?php $this->endBlock(); ?>
+    <?php $this->registerJs($this->blocks['js'],\yii\web\View::POS_END); ?>
+</script>

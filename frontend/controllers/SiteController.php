@@ -237,7 +237,15 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->goHome();
+        if (Yii::$app->request->isAjax){
+            return json_encode([
+                'code' => 1,
+                'message' => 'logout successful',
+                'href' => Url::home(),
+            ]);
+        } else {
+            return $this->goHome();
+        }
     }
 
     public function actionContact()
