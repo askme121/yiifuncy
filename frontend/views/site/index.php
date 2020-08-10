@@ -19,6 +19,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 deal-entry-container">
             <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                 <div class="deal-entry">
+                    <div class="circle-tip">
+                        <div class="circle-tip-body">
+                            <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                            <p style="margin: 0;">Off</p>
+                        </div>
+                    </div>
                     <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                     </div>
                     <p class="deal-entity-title"><?= $product['product']['name'] ?></p>
@@ -49,7 +55,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php foreach ($top_all as $product): ?>
         <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
             <div style="position: relative;">
-                <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
+                <div class="circle-tip">
+                    <div class="circle-tip-body">
+                        <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                        <p style="margin: 0;">Off</p>
+                    </div>
+                </div>
+                <div class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
                 </div>
                 <p class="hot-entity-title"><span><?= $product['product']['name'] ?></span></p>
                 <ul class="prime-acount-list normal-account-list" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
@@ -132,7 +144,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)):  $i=0;?>
                     <?php foreach ($cashbackCouponProducts as $product):  $i++;?>
                         <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="new-deal-entry">
-                            <div>
+                            <div style="position: relative;">
+                                <div class="circle-tip">
+                                    <div class="circle-tip-body">
+                                        <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                                        <p style="margin: 0;">Off</p>
+                                    </div>
+                                </div>
                                 <div class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)"></div>
                                 <p class="new-entity-title">
                                     <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
@@ -178,18 +196,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <a href="<?= Url::toRoute('/product/cashback');?>">Cashback Deals</a>
                 <a class="inline-view-all" href="<?= Url::toRoute('/product/cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
-            <p style="margin-bottom: 20px;">Cashback to you paypal account.</p>
             <div>
                 <?php if (is_array($cashbackProducts) && !empty($cashbackProducts)):  $i=0;?>
                     <?php foreach ($cashbackProducts as $product):  $i++;?>
                         <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                             <div style="position: relative;">
-                                <div class="cashback-circle-tip">
-                                    <div style="display: inline-block; height: 28px; vertical-align: middle; line-height: 15px; transform:rotate(-15deg);">
-                                        <p style="margin: 0;">Cashback</p><p style="margin: 0;"><?= getSymbol(Yii::$app->params['site_id']) ?> <?= $product['cashback'] ?></p>
+                                <div class="circle-tip">
+                                    <div class="circle-tip-body">
+                                        <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                                        <p style="margin: 0;">Off</p>
                                     </div>
                                 </div>
-                                <div href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
+                                <div class="product-img-container shade-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                                 </div>
                                 <p class="hot-entity-title">
                                     <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
@@ -229,6 +247,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 coupon-entry-container">
                     <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                         <div class="deal-entry">
+                            <div class="circle-tip">
+                                <div class="circle-tip-body">
+                                    <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                                    <p style="margin: 0;">Off</p>
+                                </div>
+                            </div>
                             <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                             </div>
                             <p class="deal-entity-title"><?= $product['product']['name'] ?></p>
@@ -262,6 +286,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 padd0 coupon-entry-container">
                     <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                         <div class="deal-entry">
+                            <div class="circle-tip">
+                                <div class="circle-tip-body">
+                                    <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
+                                    <p style="margin: 0;">Off</p>
+                                </div>
+                            </div>
                             <div class="product-img-container lazy shade-container" data-bg="url(<?= $product['product']['thumb_image'] ?>)">
                             </div>
                             <p class="deal-entity-title"><?= $product['product']['name'] ?></p>

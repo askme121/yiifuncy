@@ -27,13 +27,14 @@
             <button type="button" class="close model-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
-            <div class="modal-body">
-                <p style="margin: 10px 0 30px;">
+            <div class="modal-body" style="padding: 0;">
+                <p class="offer-ends-container" style="margin-bottom: 0;padding: 15px 0;font-size: 22px;">Notice</p>
+                <p style="margin: 10px 0 20px; padding: 0 15px">
                     Your quota for purchasing this product will be canceled.
                 </p>
                 <div style="text-align: center;">
-                    <button class="btn surebox-btn" id="cancel-yes" data-url="#">Yes</button>
-                    <button class="btn surebox-btn" data-dismiss="modal" aria-label="Close" id="cancel-no" style="margin-left: 60px;">No</button>
+                    <button class="btn upOrder-form-btn" id="cancel-yes" data-url="#">Yes</button>
+                    <button class="btn upOrder-form-btn" data-dismiss="modal" aria-label="Close" id="cancel-no" style="margin-left: 60px;">No</button>
                 </div>
             </div>
         </div>
