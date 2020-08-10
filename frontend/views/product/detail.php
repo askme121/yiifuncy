@@ -465,7 +465,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <script type="text/javascript">
         <?php $this->beginBlock('js_block') ?>
         $(document).ready(function(){
-            $('.notice-review').modal('show');
             $('#detail-arousel').carousel({
                 pause: true,
                 interval: 5000
