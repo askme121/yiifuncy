@@ -405,7 +405,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     <span class="secured-title">Try-me Invitation!</span>
                 </p>
                 <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
-                    We invite you to participate in our Cashback Deals to experience our products, and We'd really appreciate if if you left us an honest review.Reviews are very important for us,and they help other shoppers make informed decisions.
+                    We invite you to participate in our Cashback Deals to trial our products, and We'd really appreciate if if you left us an honest review.Reviews are very important for us,and they help other shoppers make informed decisions.
                 </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
                     <a href="/" class="btn upOrder-form-btn no-thanks" data-href="#">No thanks</a>
