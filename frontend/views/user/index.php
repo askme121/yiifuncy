@@ -23,7 +23,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
         <div class="col-xs-9" style="padding-top: 20px;overflow: hidden;">
             <div class="user-email"><?= Yii::$app->user->identity->username?></div>
-            <div class="point-mess-container">
+            <!--<div class="point-mess-container">
                 <div class="point-container">
                     <a href="/account/points">
                         <img src="<?= getImgUrl('images/points.png') ?>">
@@ -36,7 +36,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <div class="news-amount">6</div>
                     </a>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -77,5 +77,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </a>
             </li>
         </ul>
+        <div class="col-sm-12 col-xs-12 text-center">
+            <button class="btn upOrder-form-btn sign-out">Sign Out</button>
+        </div>
     </div>
 </div>

@@ -2269,6 +2269,12 @@ button.close {
     font-weight: 500;
     padding: 25px 0;
 }
+.sign-out{
+    margin: 15px auto;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2454,7 +2460,7 @@ button.close {
         display: none !important;
     }
     .user-email {
-        margin: 10px 0 15px;
+        margin: 25px 0 15px;
         font-size: 16px;
         color: #222;
         text-align: left;
