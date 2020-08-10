@@ -37,7 +37,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <p class="forget-tips" style="text-align: right; margin: 10px 0;">
                             <a href="<?= Url::toRoute('/site/request-password-reset')?>" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
                         </p>
-                        <?= Html::button('Sign In', ['class' => 'btn upOrder-form-btn ladda-button', 'id' => 'submit-sign-in', 'style' => 'width: 100%; height: 32px;']) ?>
+                        <?= Html::button('Sign In', ['class' => 'btn upOrder-form-btn ladda-button', 'id' => 'submit-sign-in', 'style' => 'width: 100%;']) ?>
                         <!--<hr>
                         <button type="button" class="btn upOrder-form-btn" id="LoginWithAmazon" style="width: 100%; height: 32px; background-color: #f98;">Sign In With Amazon</button>-->
                         <p style="margin: 10px 0 0 0;">

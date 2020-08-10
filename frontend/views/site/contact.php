@@ -21,9 +21,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                    <input type="hidden" name="order_id" value="<?= Yii::$app->request->get("order_id")??0?>">
                     <p class="contact-form-title">Write to us here</p>
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" value="" placeholder="* Name">
+                        <input type="text" name="name" class="form-control" <?php if (!Yii::$app->user->isGuest){?>value="<?=Yii::$app->user->identity->firstname?> <?=Yii::$app->user->identity->lastname?>"<?php }else{?>value=""<?php }?> placeholder="* Name">
                     </div>
                     <div class="form-group">
                         <input type="text" name="email" value="" class="form-control" placeholder="* Email">

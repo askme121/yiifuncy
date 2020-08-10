@@ -93,28 +93,28 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 pd0">
                             <div class="option-list">
                                 <?php if ($order['status'] == 1){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                     <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
                                     <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
                                     <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
                                 <?php } else if ($order['status'] == 2){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                     <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
                                     <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
                                 <?php } else if ($order['status'] == 3){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                     <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
                                     <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
                                 <?php } else if ($order['status'] == 4){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                     <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
                                 <?php } else if ($order['status'] == 5){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                     <a class="operation-btn" href="<?= Url::toRoute('/order/deal/'.$order['id'])?>">More Details</a>
                                 <?php } else if ($order['status'] == 6){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                 <?php } else if ($order['status'] == 7){?>
-                                    <a class="btn btn-lg operation-btn btn-w-m" href=""><i class="fa fa-comments"></i> Contact Us</a>
+                                    <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>"><i class="fa fa-comments"></i> Contact Us</a>
                                 <?php }?>
                             </div>
                         </div>

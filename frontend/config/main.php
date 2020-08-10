@@ -89,6 +89,11 @@ return [
                     'route' => 'order/view',
                     'defaults' => ['id' => 0],
                 ],
+                [
+                    'pattern' => 'contact/<order_id:\d+>',
+                    'route' => 'site/contact',
+                    'defaults' => ['order_id' => 0],
+                ],
             ],
         ],
         'formatter' => [
