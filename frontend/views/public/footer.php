@@ -42,7 +42,7 @@ use yii\helpers\Html;
                 <div class="footer-section" style="width: 75%;">
                     <p class="footer-title">HELPFUL LINKS</p>
                     <div style="width: 50%; float: left;">
-                        <a class="help-link" href="<?= Url::toRoute('/site/faq');?>" target="_blank">FAQ &amp; Help</a>
+                        <a class="help-link" href="<?= Url::toRoute('/site/faq');?>" target="_blank">Faq &amp; Help</a>
                         <a class="help-link" href="<?= Url::toRoute('/site/about');?>" target="_blank">About Us</a>
                         <a class="help-link" href="<?= Url::toRoute('/site/contact');?>" target="_blank">Contact Us</a>
                     </div>
@@ -59,7 +59,7 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="copyright">
-            © 2020 Thefuncy &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@thefuncy.com">support@thefuncy.com</a>
+            © 2020 Cashbackclub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
         </div>
     </div>
     <div class="hidden-md hidden-lg">
@@ -68,13 +68,13 @@ use yii\helpers\Html;
                 <a href="<?= Url::toRoute('/site/about');?>">About Us</a>
             </li>
             <li>
-                <a href="<?= Url::toRoute('/site/faq');?>">FAQ</a>
+                <a href="<?= Url::toRoute('/site/faq');?>">Faq</a>
             </li>
             <li>
                 <a href="<?= Url::toRoute('/site/terms');?>">Terms&amp;Privacy</a>
             </li>
         </ul>
-        <p class="copyright-txt">© 2020 Thefuncy All Rights Reserved.</p>
+        <p class="copyright-txt">© 2020 Cashbackclub All Rights Reserved.</p>
     </div>
 </footer>
 <a id="back-top" href="">

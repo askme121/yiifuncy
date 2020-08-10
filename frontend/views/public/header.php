@@ -22,8 +22,10 @@ use yii\helpers\Html;
     <div>
         <?php if (!Yii::$app->user->isGuest) {?>
         <a href="#" class="nav-msg-container">
-            <span class="nav-msg-icon glyphicon glyphicon-bell"></span>
-            <span class="message-count">3</span>
+            <span class="nav-msg-icon">
+                <img src="<?= getImgUrl('images/nav-news.png'); ?>">
+            </span>
+            <span class="message-count">0</span>
         </a>
         <?php }?>
     </div>
@@ -53,7 +55,7 @@ use yii\helpers\Html;
                         <a href="<?= Url::toRoute('/product/coupon');?>" target="_self">Coupon Deals</a>
                     </li>
                     <li>
-                        <a href="<?= Url::toRoute('/site/faq');?>" target="_self">faq</a>
+                        <a href="<?= Url::toRoute('/site/faq');?>" target="_self">Faq</a>
                     </li>
                     <li>
                         <a href="<?= Url::toRoute('/site/contact');?>" target="_self">Contacts</a>
