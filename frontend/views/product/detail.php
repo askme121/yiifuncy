@@ -71,9 +71,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         <li class="account-off" style="width: 26%;">
                                             <p class="prime-value">
                                                 <?php if ($model['coupon_type'] == 1){?>
-                                                    <?= $model['coupon'] ?> %
+                                                    <?= number_format($model['coupon'], 0) ?> %
                                                 <?php }else{?>
-                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 0) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
@@ -99,9 +99,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         <li class="account-off" style="width: 25%;">
                                             <p class="prime-value">
                                                 <?php if ($model['coupon_type'] == 1){?>
-                                                    <?= $model['coupon'] ?> %
+                                                    <?= number_format($model['coupon'], 0) ?> %
                                                 <?php }else{?>
-                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 0) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
@@ -169,14 +169,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <div class="banner-content details-mobile">
                             <h1 class="banner-title-detail"><?= $model['product']['name']; ?></h1>
                             <?= $this->render('pc_image', ['gallerys'=>$model['product']['mutil_image'], 'image'=>$model['product']['image'], 'name'=>$model['product']['name']]); ?>
-                            <div class="col-xs-12 col-sm-12 col-md-12 describe-container" style="min-height: 100px;">
-                                <?= $model['product']['description']?>
-                            </div>
                         </div>
                         <div style="height: 15px; background: rgba(242, 245, 247, 1);"></div>
                         <div class="banner-content details-mobile" style="padding: 20px 0;">
                             <div class="col-sm-12" style="margin-bottom: 15px;">
-                                <h4 style="margin: 0;"><strong>Customer reviews</strong></h4>
+                                <h4 style="margin: 0;"><strong>Description</strong></h4>
+                                <?= $model['product']['description']?>
                             </div>
                         </div>
                     </div>
@@ -227,9 +225,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         <li class="account-off" style="width: 35% !important;">
                                             <p class="prime-value" style="color: #666;">
                                                 <?php if ($model['coupon_type'] == 1){?>
-                                                    <?= $model['coupon'] ?> %
+                                                    <?= number_format($model['coupon'], 0) ?> %
                                                 <?php }else{?>
-                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 0) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
@@ -255,9 +253,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                         <li class="account-off" style="width: 25% !important;">
                                             <p class="prime-value" style="color: #666;">
                                                 <?php if ($model['coupon_type'] == 1){?>
-                                                    <?= $model['coupon'] ?> %
+                                                    <?= number_format($model['coupon'], 0) ?> %
                                                 <?php }else{?>
-                                                    <?= number_format($model['coupon']/$model['price']*100, 2) ?> %
+                                                    <?= number_format($model['coupon']/$model['price']*100, 0) ?> %
                                                 <?php }?>
                                             </p>
                                             <p class="prime-tile">Off</p>
