@@ -27,7 +27,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <input type="text" name="name" class="form-control" <?php if (!Yii::$app->user->isGuest){?>value="<?=Yii::$app->user->identity->firstname?> <?=Yii::$app->user->identity->lastname?>"<?php }else{?>value=""<?php }?> placeholder="* Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="email" value="" class="form-control" placeholder="* Email">
+                        <input type="text" name="email" <?php if (!Yii::$app->user->isGuest){?>value="<?=Yii::$app->user->identity->email?>"<?php }else{?>value=""<?php }?> class="form-control" placeholder="* Email">
                     </div>
                     <div class="form-group">
                         <input type="text" name="subject" value="" class="form-control" placeholder="* Subject">
