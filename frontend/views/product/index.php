@@ -17,12 +17,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         <div class="col-xs-6 padd0 deal-entry-container">
                             <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                                 <div class="deal-entry">
-                                    <div class="circle-tip">
-                                        <div class="circle-tip-body">
-                                            <p style="margin: 0;"><?= $product['total_off'] ?> %</p>
-                                            <p style="margin: 0;">Off</p>
-                                        </div>
-                                    </div>
                                     <div class="product-img-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
                                     </div>
                                     <p class="deal-entity-title">
