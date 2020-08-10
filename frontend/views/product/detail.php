@@ -435,9 +435,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <div class="modal-content">
             <div class="modal-body jq-loading" style="padding: 0px;text-align: center;">
                 <i class="fa fa-check col-xs-12 col-sm-12 col-lg-12" aria-hidden="true" style="font-size: 46px;text-align:center;color:#6c6; display: block; margin: 10px auto"></i>
-                <p style="padding: 20px 20px 20px 20px; margin: 0;text-align: left;">
-                    The order info you submitted is under review. Please wait for your order verification and refund patiently.<br>
-                    We'd really appreciate if if you left us an honest product review.Reviews are very important for us,and they help other shoppers make informed decisions.Thank you!
+                <p style="padding: 20px 10px; margin: 0;text-align: center; line-height: 25px">
+                    <i class="review-under">The order is under review. </i>
+                    Your order will be verified in 4 days. <br>
+                    Any questions, Please contact us by <a href="mailto:support@theclubofcashback.com" style="color: #0b72b8">support@theclubofcashback.com</a>
                 </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
                     <a id="review-btn" type="button" class="btn upOrder-form-btn my-btn" data-dismiss="modal" aria-label="Close">I've read it</a>
@@ -464,6 +465,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <script type="text/javascript">
         <?php $this->beginBlock('js_block') ?>
         $(document).ready(function(){
+            $('.notice-review').modal('show');
             $('#detail-arousel').carousel({
                 pause: true,
                 interval: 5000
