@@ -6,13 +6,17 @@ LayuiAsset::register($this);
 ?>
 <div class="auth-item-view">
     <?php
-    echo DetailView::widget([
+    $options = [
         'model' => $model,
         'options' => ['class' => 'layui-table'],
         'attributes' => [
             'name',
             'email',
             'title',
+            [
+                "attribute" => "content",
+                "format"=>'html',
+            ],
             'ip',
             [
                 "attribute" => "type",
@@ -31,6 +35,7 @@ LayuiAsset::register($this);
                     }
                 },
             ],
+            'created_at:datetime',
             [
                 "attribute" => "status",
                 "value" => function($model) {
@@ -51,13 +56,15 @@ LayuiAsset::register($this);
                     }
                 },
             ],
-            [
-                "attribute" => "content",
-                "format"=>'html',
-            ],
-            'created_at:datetime'
         ],
         'template' => '<tr><th width="100px">{label}</th><td>{value}</td></tr>',
-    ]);
+    ];
+    if ($model->type == 1 && $model->status == 2 && $model->replay_title && $model->replay_content){
+        array_push($options['attributes'], 'replay_title', [
+            "attribute" => "replay_content",
+            "format"=>'html',
+        ]);
+    }
+    echo DetailView::widget($options);
     ?>
 </div>

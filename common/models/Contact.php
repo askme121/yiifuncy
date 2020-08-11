@@ -7,6 +7,9 @@ use yii\behaviors\TimestampBehavior;
 
 class Contact extends \yii\db\ActiveRecord
 {
+    public $replay_title;
+    public $replay_content;
+
     public static function tableName()
     {
         return '{{%contact}}';
@@ -43,7 +46,9 @@ class Contact extends \yii\db\ActiveRecord
             'type' => '类型',
             'parent' => '父级',
             'order_id' => '订单号',
-            'ip' => 'Ip'
+            'ip' => 'Ip',
+            'replay_title' => '回复主题',
+            'replay_content' => '回复内容'
         ];
     }
 }

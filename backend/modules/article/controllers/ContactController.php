@@ -60,6 +60,13 @@ class ContactController extends Controller
             $model->status = 1;
             $model->save();
         }
+        if ($model->type == 1 && $model->status == 2){
+            $replay = Contact::find()->where(['parent'=>$model->id])->one();
+            if ($replay){
+                $model->replay_title = $replay->title;
+                $model->replay_content = $replay->content;
+            }
+        }
         return $this->render('view', ['model' => $model]);
     }
 
