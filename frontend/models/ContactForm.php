@@ -12,6 +12,7 @@ class ContactForm extends Model
     public $email;
     public $subject;
     public $body;
+    public $order_id;
     public $verifyCode;
 
     public function rules()
@@ -48,6 +49,12 @@ class ContactForm extends Model
         $model->title = $this->subject;
         $model->email = $this->email;
         $model->content = $this->body;
+        $model->type = 1;
+        $model->order_id = $this->order_id;
+        $model->ip = Yii::$app->getRequest()->getUserIP();
+        if (!Yii::$app->user->isGuest){
+            $model->user_id = Yii::$app->user->identity->id;
+        }
         return $model->save() && $this->sendEmail(Yii::$app->params['adminEmail']);
     }
 }

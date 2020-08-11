@@ -22,7 +22,7 @@ class Contact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'title', 'content', 'email'], 'string'],
+            [['name', 'title', 'content', 'email', 'ip'], 'string'],
             [['user_id', 'order_id', 'status', 'type', 'parent'], 'integer'],
             ['email', 'email']
         ];
@@ -42,7 +42,8 @@ class Contact extends \yii\db\ActiveRecord
             'status' => '状态',
             'type' => '类型',
             'parent' => '父级',
-            'order_id' => '订单',
+            'order_id' => '订单号',
+            'ip' => 'Ip'
         ];
     }
 }

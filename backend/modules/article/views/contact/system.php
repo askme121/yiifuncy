@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
-use common\models\Order;
 
 LayuiAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
@@ -47,7 +46,7 @@ $this->registerJs($this->render('js/index.js'));
     }
 </style>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_system', ['model' => $searchModel]); ?>
 </blockquote>
 <div class="user-index layui-form news_list">
     <?= GridView::widget([
@@ -83,18 +82,6 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'email',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
-            ],
-            [
-                'attribute' => 'order_id',
-                'contentOptions' => ['style'=> 'text-align: center;'],
-                'headerOptions' => ['style'=> 'text-align: center;'],
-                'value' => function($model){
-                    if ($model->order_id){
-                        return Order::findOne($model->order_id)->order_id;
-                    } else {
-                        return '';
-                    }
-                }
             ],
             [
                 'attribute' => 'status',
@@ -135,19 +122,11 @@ $this->registerJs($this->render('js/index.js'));
                 'template' =>'<ul class="nav-myself-ul">
                              <li class="nav-myself-li">
                                  {view}
-                                 <dl class="nav-myself-dl">
-                                     {update}
-                                 </dl>
                              </li>
                           </ul>',
                 'buttons' => [
                     'view' => function ($url, $model, $key){
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
-                    },
-                    'update' => function ($url, $model, $key) {
-                        if ($model->status != 2){
-                            return '<dd>'.Html::a('回复', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        }
                     },
                 ]
             ],

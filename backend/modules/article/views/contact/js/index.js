@@ -43,9 +43,9 @@ layui.config({
         var href = $(this).attr("href");
         console.log(href);
         var index = layui.layer.open({
-            title : "修改消息",
+            title : "回复消息",
             type : 2,
-            area:['800px', '655px'],
+            area:['800px', '635px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();
