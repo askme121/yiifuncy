@@ -1,3 +1,3 @@
 <div class="layui-footer footer">
-    <p>copyright @2017 TheFuncy</p>
+    <p>copyright @2020 Cashbackclub</p>
 </div>

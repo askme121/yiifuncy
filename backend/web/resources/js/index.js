@@ -193,7 +193,7 @@ layui.config({
     function lockPage() {
         var backend_user_head_pic = $(".header_user_head_pic").attr("src");
         var backend_user_name = $(".header_user_name").html();
-        alert('请输入admin解锁，默认密码是admin，正式使用可以去掉或者自己后台认证下密码');
+        //alert('请输入admin解锁，默认密码是admin，正式使用可以去掉或者自己后台认证下密码');
         layer.open({
             title: false,
             type: 1,
@@ -201,7 +201,7 @@ layui.config({
                 '<div class="admin-header-lock-img"><img src="' + backend_user_head_pic + '"/></div>' +
                 '<div class="admin-header-lock-name" id="lockUserName">' + backend_user_name + '</div>' +
                 '<div class="input_btn">' +
-                '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入[admin]密码解锁.." name="lockPwd" id="lockPwd" />' +
+                '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />' +
                 '<button class="layui-btn" id="unlock">解锁</button>' +
                 '</div>' +
                 '</div>',
@@ -221,10 +221,10 @@ layui.config({
     // 解锁
     $("body").on("click", "#unlock", function () {
         if ($(this).siblings(".admin-header-lock-input").val() == '') {
-            layer.msg("请输入[admin]解锁密码！");
+            layer.msg("请输入解锁密码！");
             $(this).siblings(".admin-header-lock-input").focus();
         } else {
-            if ($(this).siblings(".admin-header-lock-input").val() == "admin") {
+            if ($(this).siblings(".admin-header-lock-input").val() == "goodjob") {
                 window.sessionStorage.setItem("lockcms", false);
                 $(this).siblings(".admin-header-lock-input").val('');
                 layer.closeAll("page");
@@ -271,9 +271,9 @@ layui.config({
             area: '310px',
             shade: 0.8,
             id: 'LAY_layuipro',
-            btn: ['立即查看'],
+            btn: ['知道啦'],
             moveType: 1,
-			content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>亲爱的，欢迎使用本系统，新增在线音乐功能。<div style="text-align:center;margin-top: -25px;"><br><a target="_blank" style="color:blue;" href="http://www.alilinet.com">前台博客地址</a><br><a target="_blank" style="color:blue;" href="https://github.com/changchang700/yii2cms">后台开源地址</a><br><a target="_blank" style="color:blue;" href="http://qm.qq.com/cgi-bin/qm/qr?k=N9JkOSj4KvWRtb_7fa_YBAYrjziuBSTm">加入群群嗨皮</a></div></p></div>',
+			content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>亲爱的，欢迎使用本系统，请遵守平台规则，勿录入非法信息。<div style="text-align:center;margin-top: 5px;"></div></p></div>',
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
                 btn.css('text-align', 'center');

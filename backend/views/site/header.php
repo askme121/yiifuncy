@@ -9,7 +9,7 @@ $site_list = Site::getSiteList();
 <div class="layui-header blog-header header height-50">
     <div class="layui-main">
         <div class="header-logo">
-            <a href="#" class="logo">TheFuncy</a>
+            <a href="#" class="logo">Cashbackclub</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:;" class="menu_header iconfont hideMenu icon-menufold "></a>
         </div>

@@ -5,7 +5,7 @@ use yii\helpers\Url;
     <a href="<?= Url::toRoute('/user/profile')?>"><img class="user-photo" src="<?= getImgUrl('images/user.png') ?>">
     </a>
     <div class="user-email"><?= Yii::$app->user->identity->username?></div>
-    <div class="point-mess-container">
+    <!--<div class="point-mess-container">
         <div class="point-container">
             <a href="/account/mypoints">
                 <img src="<?= getImgUrl('images/points.png') ?>">
@@ -18,7 +18,7 @@ use yii\helpers\Url;
                 <div class="news-amount">6</div>
             </a>
         </div>
-    </div>
+    </div>-->
     <div class="cross-line"></div>
     <ul class="account-menu-list">
         <li>
