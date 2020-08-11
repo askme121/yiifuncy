@@ -32,10 +32,10 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => '配置键名',
-            'title' => '名称',
-            'email' => '配置键值',
-            'content' => '备注',
+            'name' => '姓名',
+            'title' => '主题',
+            'email' => '邮箱',
+            'content' => '内容',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
             'user_id' => '用户',
