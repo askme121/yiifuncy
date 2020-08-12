@@ -12,7 +12,7 @@ layui.config({
             var index = layui.layer.open({
                 title : "添加模板",
                 type : 2,
-                area: ['600px', '650px'],
+                area: ['800px', '650px'],
                 content : ["<?= yii\helpers\Url::to(['create']); ?>","yes"],
                 end: function () {
                     location.reload();

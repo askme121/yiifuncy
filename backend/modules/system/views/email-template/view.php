@@ -27,6 +27,9 @@ LayuiAsset::register($this);
     .rps_9fbc .foot_top{
         border-top: 1px solid #999 !important;
     }
+    .rps_9fbc p{
+        word-break:break-all !important;
+    }
 </style>
 <div class="config-view">
     <?= DetailView::widget([
