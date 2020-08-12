@@ -48,7 +48,7 @@ layui.config({
         var index = layui.layer.open({
             title : "查看模板",
             type : 2,
-            area: ['600px', '540px'], //宽高
+            area: ['800px', '540px'], //宽高
             content : [href,'yes'],
             success : function(layero, index){
                 setTimeout(function(){
@@ -66,7 +66,7 @@ layui.config({
         var index = layui.layer.open({
             title : "修改模板",
             type : 2,
-            area:['600px', '650px'], //宽高
+            area:['800px', '650px'], //宽高
             content :[href,"yes"],
             end: function () {
                 location.reload();
