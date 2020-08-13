@@ -26,27 +26,23 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     </div>
                     <div class="ibox-content" style="border: 1px solid #f2f2f2;">
                         <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-                            <div class="form-group email-container">
+                            <div class="form-group">
                                 <input type="text" name="first_name" class="form-control" id="first_name" value="" placeholder="First Name">
                                 <div class="input-clear">
                                     <span>x</span>
                                 </div>
-
-                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
-                            <div class="form-group email-container">
+                            </div>
+                            <div class="form-group">
                                 <input type="text" name="last_name" class="form-control" id="last_name" value="" placeholder="Last Name">
                                 <div class="input-clear">
                                     <span>x</span>
                                 </div>
-
-                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div></div>
-
+                            </div>
                             <div class="form-group email-container">
                                 <input type="text" name="username" class="form-control" id="username" value="" placeholder="Email">
                                 <div class="input-clear">
                                     <span>x</span>
                                 </div>
-                                <div id="mailBox" style="top:44px;left:0px;width:336px"></div>
                             </div>
                             <div class="form-group" style="position: relative;">
                                 <input type="password" name="password" class="form-control" id="register-pass" value="" placeholder="Password">
@@ -57,7 +53,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="form-group email-container">
+                            <div class="form-group">
                                 <input type="text" name="captcha" class="form-control verify-code" placeholder="*Enter code on the right" style="margin-top: 0 !important;">
                                 <img id="captcha" src="<?= Url::toRoute('/site/captcha');?>" onclick="this.src='/captcha?'+Math.random()">
                                 <br>
@@ -66,10 +62,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 </span>
                             </div>
                             <div class="form-group">
-                                <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to cashbackbase's
-                                    <a class="agreement" target="_blank" href="https://www.cashbackbase.com/terms" style="color:#2b95ff;">terms of service</a>
+                                <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to cashbackclub's
+                                    <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">terms of service</a>
                                     and
-                                    <a class="agreement" target="_blank" href="/terms?tabtarget=privacy" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
+                                    <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
                                 </p>
                             </div>
                             <div class="text-center">
@@ -92,6 +88,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <script>
     <?php $this->beginBlock('js') ?>
     $(document).ready(function(){
+        $('#username').autoMail({
+            emails:['gmail.com','yahoo.com','hotmail.com','outlook.com']
+        });
+        showHidePassword('#password');
+        inputClear('#username');
         $("#submit-sign-up").click(function(){
             var first_name = $('input[name="first_name"][id="first_name"]').val();
             var last_name = $('input[name="last_name"][id="last_name"]').val();

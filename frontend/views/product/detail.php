@@ -836,6 +836,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     switch(status) {
                         case 0:
                             $('.modal-body').hide();
+                            $('.jq-error').show();
                             break;
                         case 1:
                             $('.modal-body').hide();

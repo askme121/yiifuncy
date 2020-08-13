@@ -52,6 +52,7 @@ return [
                 'faq' => '/site/faq',
                 'aboutus' => '/site/about',
                 'account/forgotpassword' => '/site/request-password-reset',
+                'account/password/reset' => '/site/reset-password',
                 'account/profile' => '/user/profile',
                 'account/coupon' => '/order/coupon',
                 'account/deal' => '/order/index',

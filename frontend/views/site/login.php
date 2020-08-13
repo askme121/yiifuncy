@@ -56,6 +56,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <script>
     <?php $this->beginBlock('js') ?>
     $(document).ready(function(){
+        $('#username').autoMail({
+            emails:['gmail.com','yahoo.com','hotmail.com','outlook.com']
+        });
+        showHidePassword('#password');
+        inputClear('#username');
         $("#submit-sign-in").click(function(){
             var username = $('input[name="username"][id="username"]').val();
             var password = $('input[name="password"][id="password"]').val();

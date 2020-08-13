@@ -352,24 +352,46 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
+        $site_id = Yii::$app->params['site_id'];
+        $meta = [];
+        $meta['title'] = 'Forgot Password | '.Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if ($model->validate()) {
+                if ($model->sendEmail()) {
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'Check your email for further instructions.',
+                    ]);
+                } else {
+                    return json_encode([
+                        'code' => 0,
+                        'message' => 'Sorry, we are unable to reset password for the provided email address.',
+                    ]);
+                }
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
             }
         }
-
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
+            'meta' => $meta
         ]);
     }
 
     public function actionResetPassword($token)
     {
+        $site_id = Yii::$app->params['site_id'];
+        $meta = [];
+        $meta['title'] = 'Reset the Password | '.Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidArgumentException $e) {
@@ -383,6 +405,7 @@ class SiteController extends Controller
 
         return $this->render('resetPassword', [
             'model' => $model,
+            'meta' => $meta
         ]);
     }
 

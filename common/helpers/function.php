@@ -13,7 +13,7 @@ function getSymbol($site_id=null)
     $currency_array = array_column($currency, null, 'currency_code');
     if (empty($site_id))
     {
-        $curr_site_id = \Yii::$app->session['default_site_id'];
+        $curr_site_id = Yii::$app->session['default_site_id'];
     }
     else
     {
@@ -69,4 +69,23 @@ function getSiteUrl($site_id)
     } else {
         return '';
     }
+}
+
+function sendEmail($email, $email_content, $email_title, $params=[])
+{
+    $email_content = htmlspecialchars_decode($email_content);
+    if ($params){
+        foreach ($params as $k => $v)
+        {
+            $email_content = str_replace('{{'.$k.'}}', $v, $email_content);
+        }
+    }
+    return Yii::$app
+        ->mailer
+        ->compose()
+        ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+        ->setTo($email)
+        ->setSubject($email_title)
+        ->setHtmlBody($email_content)
+        ->send();
 }

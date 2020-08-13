@@ -2272,6 +2272,104 @@ button.close {
     height: 30px;
     line-height: 30px;
 }
+#mailBox {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 3px 5px 5px;
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.35);
+}
+#mailBox ul {
+    padding: 0;
+    margin: 0;
+}
+#mailBox li {
+    font-size: 15px;
+    height: 32px;
+    line-height: 32px;
+    color: #333;
+    font-family: 'Tahoma';
+    list-style: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+.form-bg-container {
+    width: 996px;
+    padding: 0;
+    margin: 50px auto 60px auto;
+    background-color: #fff;
+}
+.form-bg-container h3 {
+    height: 62px;
+    line-height: 62px;
+    font-size: 22px;
+    font-weight: 400;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 59px;
+    text-align: center;
+}
+.form-content-container {
+    width: 376px;
+    margin: 0 auto;
+    padding-bottom: 110px;
+}
+.reset-input {
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+.reset-btn {
+    height: 46px!important;
+    width: 100%!important;
+    font-size: 22px!important;
+    margin-bottom: 15px!important;
+    margin-top: 60px;
+}
+.login-tips, .register-tips {
+    margin-top: 20px;
+    text-align: center;
+}
+.login-tips a, .register-tips a {
+    color: #f93!important;
+}
+.forget-password-container {
+    max-width: 996px;
+    margin: 50px auto 60px auto;
+    background-color: #fff;
+}
+.white-block {
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, .02);
+    padding: 20px 30px;
+    text-align: justify;
+}
+.email-send-title {
+    text-align: center;
+    color: #77C84E;
+    margin-bottom: 20px;
+}
+.forget-login-btn {
+    line-height: 40px;
+}
+.login-btn, .register-btn, .recover-password-btn {
+    display: block;
+    margin: 30px auto 10px;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+    color: #ffffff !important;
+    background-color: #FF9933;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 1px 2px 0 rgba(0,0,0,.24);
+}
+.back-upstep {
+    color: #ff9933 !important;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2464,6 +2562,9 @@ button.close {
     }
     .mt55 {
         margin-top: 45px;
+    }
+    .mt25 {
+        margin-top: 25px;
     }
     .upload-img {
         display: block;
@@ -2720,6 +2821,28 @@ button.close {
         height: 24px;
         line-height: 12px;
         margin-top: 3px;
+    }
+    .form-bg-container {
+        width: 100%;
+        margin: 0;
+        padding: 0px 10px;
+    }
+    .form-content-container {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .form-bg-container h3{
+        margin-bottom: 20px;
+    }
+    .reset-input {
+        margin-top: 20px;
+    }
+    .forget-password-container {
+        margin: 0 -15px;
+    }
+    .white-block {
+        box-shadow: none;
+        padding: 20px 10px;
     }
 }
 
