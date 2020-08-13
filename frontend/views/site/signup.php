@@ -85,14 +85,42 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </section>
+<div class="modal inmodal fade in" id="first-access-register-tips" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content animated bounceInDown">
+            <div class="modal-body" style="padding: 0 0 20px;">
+                <p class="offer-ends-container">
+                    <span class="secured-title">
+                        NOTICE!
+                    </span>
+                </p>
+                <p class="sorry-tip-content" style="text-align: left; line-height: 24px">
+                    1.Please follow our order process. Check the UserGuide for detail.<br>
+                    2.If you have any questions about the product on Cashbackclub, please contact CashBackClub’s customer service first instead of leaving a negative review directly on amazon.
+                </p>
+                <p style="text-align: center">
+                    <a class="btn upOrder-form-btn my-btn" id="skip-register-popup" href="#">Confirm</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     <?php $this->beginBlock('js') ?>
+    var flag = localStorage.getItem('shown-register-popup');
+    if (!flag){
+        $('#first-access-register-tips').modal('show');
+    }
     $(document).ready(function(){
         $('#username').autoMail({
             emails:['gmail.com','yahoo.com','hotmail.com','outlook.com']
         });
         showHidePassword('#password');
         inputClear('#username');
+        $('#skip-register-popup').click(function(){
+            $('#first-access-register-tips').modal('hide');
+            localStorage.setItem('shown-register-popup', 'true');
+        });
         $("#submit-sign-up").click(function(){
             var first_name = $('input[name="first_name"][id="first_name"]').val();
             var last_name = $('input[name="last_name"][id="last_name"]').val();

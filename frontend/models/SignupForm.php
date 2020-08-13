@@ -2,9 +2,11 @@
 
 namespace frontend\models;
 
+use common\models\EmailTemplate;
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use yii\helpers\Html;
 
 class SignupForm extends Model
 {
@@ -34,6 +36,7 @@ class SignupForm extends Model
 
     public function signup()
     {
+        $site_id = Yii::$app->params['site_id'];
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->username;
@@ -45,20 +48,16 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        return $user->save() && Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
-    }
 
-    protected function sendEmail($user)
-    {
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
+        $template = EmailTemplate::find()->where(['site_id'=>$site_id, 'scene'=>'register'])->one();
+        if (!$template){
+            return false;
+        }
+
+        $email_content = $template->content;
+        $email_title = $template->title;
+        $params['user_name'] = Html::encode($this->last_name. ' '. $this->first_name);
+        sendEmail($this->username, $email_content, $email_title, $params);
+        return $user->save() && Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
     }
 }

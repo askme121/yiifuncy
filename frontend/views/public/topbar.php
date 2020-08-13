@@ -9,7 +9,7 @@ use yii\helpers\Url;
                     All Deals
                 </a>
                 <a href="<?= Url::toRoute('/product/coupon&cashback');?>" class="deal-nav-a <?php if (isset($curr) && $curr == 3){?>active<?php }?>">
-                    Coupon & Cashback
+                    Coupon + Cashback
                 </a>
                 <a href="<?= Url::toRoute('/product/cashback');?>" class="deal-nav-a <?php if (isset($curr) && $curr == 2){?>active<?php }?>">
                     Cashback Deals
