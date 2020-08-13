@@ -193,12 +193,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     </form>
                 </div>
                 <div class="tab-pane fade" id="amazon-profile">
-                    <form class="submit-amazon-profile-form" id="submit-amazon-profile-form" style="margin-left: 20px;" action="/account/amazon_profile_link?type=redirect&amp;url=" method="POST">
-                        <?php if (Yii::$app->request->get("tabtarget")){?>
+                    <form class="submit-amazon-profile-form" id="submit-amazon-profile-form" action="/account/amazon_profile_link?type=redirect&amp;url=" method="POST">
+                        <?php if (empty($model->paypal_account) || empty($model->amazon_profile_url)){?>
                         <div class="alert alert-success" role="alert" style="margin-top:20px; width: 100%;color: #f00">
                             You need to submit your Amazon Profile Link &amp; Paypal first before requesting a deal
                         </div>
                         <? }?>
+                        <p style="margin-top: 20px">
+                            <strong>How to find my Amazon public profile page?</strong><br>
+                            Your Amazon Profile Page is where you as a user can share information about yourself, your personal tastes, and opinions regarding various products and services. This page is open to the public. By default it will not disclose any personal account information other than your user name. Follow the instructions below to find the link to your Amazon Profile Page.
+                        </p>
                         <ul class="profile-list" style="margin-top: 20px;">
                             <li>
                                 <span class="method-dot">1</span>
@@ -213,11 +217,15 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <img src="<?= getImgUrl('images/profile-link-example.png') ?>" width="72%" style="margin-top: 5px;">
                             </li>
                         </ul>
-                        <div class="form-group" style="margin-bottom: 0;">
+                        <div class="form-group" style="margin-bottom: 0; position: relative">
                             <label>Amazon Profile URL: </label>
                             <input type="hidden" id="redirect_url" name="redirect_url" value="<?= Yii::$app->request->get("redirect")?>">
                             <input name="amazon_profile_link" required type="text" <?php if (!empty($model->amazon_profile_url)){?>disabled<?php }?> class="form-control" value="<?= $model->amazon_profile_url?>">
-                            <span class="help-block m-b-none" style="margin-left: 0px; color: #ed5565;"></span>
+                            <?php if (!empty($model->amazon_profile_url) && $model->change_times<1){?>
+                            <span id="change-url" class="help-block m-b-none open-edit">
+                                <i class="fa fa-pencil"></i>
+                            </span>
+                            <? }?>
                         </div>
                         <div class="form-group">
                             <label>Paypal Account:<button type="button" class="btn-default question-icon" data-toggle="tooltip" title="" data-original-title="Refund PayPal Account (can’t be changed), PayPal account must be an email">?</button></label>
@@ -232,6 +240,30 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         </p>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal operation-change-url" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close model-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="modal-body" style="padding: 0;">
+                <p class="offer-ends-container" style="margin-bottom: 0;padding: 15px 0;font-size: 22px;">&nbsp;</p>
+
+                <form id="upOrder-form" enctype="multipart/form-data" method="post" action="#" style="width: 352px;margin: 30px auto 0;">
+                    <div class="form-group upOrder-form-group">
+                        <p style="margin-bottom: 0;padding: 15px 0;font-size: 22px; text-align: center">Update Amazon Url</p>
+                        <input class="form-control" id="amazon_url" type="text" name=amazon_url" value="<?= $model->amazon_profile_url?>">
+                        <div class="form-group-error error" id="order-id-tips"></div>
+                    </div>
+                    <div class="upOrder-form-btnss">
+                        <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" style="float: none;" >Submit</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -469,6 +501,9 @@ $(function () {
                 swal('Oops', 'Server error, please try again later.', 'error');
             }
         });
+    });
+    $('#change-url').click(function (){
+        $('.operation-change-url').modal('show');
     });
 });
 <?php $this->endBlock(); ?>
