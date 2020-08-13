@@ -104,7 +104,7 @@ use yii\helpers\Url;
                 </div>
             </div>
 
-            <div class="modal-body jq-error" style="padding: 50px 0 30px;display: none;">
+            <div class="modal-body jq-error" style="padding: 0 0 30px;display: none;">
                 <p class="offer-ends-container">
                     <span class="secured-title">
                         NOTICE!
