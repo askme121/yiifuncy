@@ -94,9 +94,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         NOTICE!
                     </span>
                 </p>
-                <p class="sorry-tip-content" style="text-align: left; line-height: 24px">
-                    1.Please follow our order process. Check the UserGuide for detail.<br>
-                    2.If you have any questions about the product on Cashbackclub, please contact CashBackClub’s customer service first instead of leaving a negative review directly on amazon.
+                <p class="sorry-tip-content" style="text-align: left; line-height: 24px; padding: 0 20px">
+                    1.Please follow our order process. Check the <a href="/faq" target="_blank" style="color: #f93">User Guide</a> for detail.<br>
+                    2.If you have any questions about the product on Cashbackclub, please contact Cashbackclub’s customer service first instead of leaving a negative review directly on amazon.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn my-btn" id="skip-register-popup" href="#">Confirm</a>
