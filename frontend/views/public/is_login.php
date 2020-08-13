@@ -105,12 +105,19 @@ use yii\helpers\Url;
             </div>
 
             <div class="modal-body jq-error" style="padding: 50px 0 30px;display: none;">
-                <p class="modal-tip-point">There was a mistake, try again later!</p>
+                <p class="offer-ends-container">
+                    <span class="secured-title">
+                        NOTICE!
+                    </span>
+                </p>
+                <p class="sorry-tip-content">There was a mistake, try again later!</p>
             </div>
 
             <div class="modal-body no-points jq-waiting-one-deal" style="padding: 0 0 30px; display: none;">
                 <p class="offer-ends-container">
-                    <span class="secured-title"></span>
+                    <span class="secured-title">
+                        NOTICE!
+                    </span>
                 </p>
                 <p class="sorry-tip-content">
                     Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.
