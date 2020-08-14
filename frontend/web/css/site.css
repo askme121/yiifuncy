@@ -2413,6 +2413,26 @@ button.close {
     width: 80%;
     margin: 30px auto;
 }
+.shade-layer, .shade-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+.shade-layer {
+    background-color: #383838;
+    opacity: .6;
+    z-index: 20;
+}
+.shade-tip {
+    display: inline-block;
+    z-index: 30;
+    font-size: 28px;
+    color: #fff;
+    line-height: 206px;
+}
 
 @media (min-width:1400px) {
     .container {

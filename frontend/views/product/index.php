@@ -18,6 +18,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                                 <div class="deal-entry">
                                     <div class="product-img-container lazy" data-bg="url(<?= $product['product']['thumb_image'] ?>)" data-was-processed="true">
+                                        <?php if ($product['qty'] <= 0){?>
+                                            <div class="shade-layer"></div>
+                                            <span class="shade-tip" style="line-height: 20px;padding: 60px 0;">
+                                                <font style="line-height: 40px">Sold Out</font>
+                                                <font style="font-size: 16px;line-height: 22px"><br>Available Tomorrow</font>
+                                            </span>
+                                        <?php }?>
                                     </div>
                                     <p class="deal-entity-title">
                                         <?= $product['product']['name'] ?>
@@ -60,7 +67,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 </div>
                             </div>
                             <div class="product-img-container lazy shade-container"  data-bg="url(<?= $product['product']['thumb_image'] ?>)">
-
+                                <?php if ($product['qty'] <= 0){?>
+                                    <div class="shade-layer"></div>
+                                    <span class="shade-tip" style="line-height: 20px;padding: 60px 0;">
+                                        <font style="line-height: 40px">Sold Out</font>
+                                        <font style="font-size: 16px;line-height: 22px"><br>Available Tomorrow</font>
+                                    </span>
+                                <?php }?>
                             </div>
                             <p class="hot-entity-title">
                                 <span href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>"><?= $product['product']['name'] ?></span>
