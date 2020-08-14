@@ -2440,6 +2440,107 @@ button.close {
 .drop_time{
     color: red;
 }
+.aboutus-banner {
+    margin-top: -30px;
+    height: 750px;
+    padding: 180px 0 80px;
+    background-size: cover!important;
+    background-position: 50%!important;
+}
+.aboutus-title {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 55px;
+    font-weight: 300;
+    opacity: .9;
+}
+.aboutus-banner-content {
+    color: #fff;
+    font-size: 20px;
+    width: 60%;
+    line-height: 2;
+    font-family: SegoeUIEmoji,Arial,sans-serif;
+    letter-spacing: 1.3px;
+    font-weight: 400;
+}
+.aboutus-tip-container {
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+}
+.aboutus-banner-tip {
+    margin: 36px 0 0;
+    color: #fff;
+    opacity: .6;
+}
+.sept-line {
+    margin: 1px 26px 56px;
+    display: inline-block;
+    width: 1px;
+    height: 30px;
+    background-color: #c8cbcf;
+}
+.our-mission {
+    margin: 80px 0 56px;
+    font-size: 36px;
+    text-align: center;
+}
+span.septal-row {
+    display: inline-block;
+    width: 70px;
+    height: 1px;
+    background-color: #f93;
+    line-height: 36px;
+    margin-bottom: 11px;
+}
+.our-mission-entry {
+    width: 30%;
+    background-color: #fff;
+    float: left;
+    height: 547px;
+    text-align: center;
+    padding: 0 40px;
+    margin: 0 0 90px 0;
+    -webkit-box-shadow: 0 4px 16px 4px #f3f4f8;
+    box-shadow: 0 4px 16px 4px #f3f4f8;
+}
+.our-middle{
+    margin: 0 5% 90px 5%;
+}
+.our-mission-entry img {
+    margin-top: 70px;
+}
+.mission-title {
+    font-size: 24px;
+    margin: 56px 0 0;
+}
+.mission-content {
+    margin: 20px 0 0;
+    font-size: 18px;
+    color: #888;
+    text-align: left;
+    line-height: 1.5;
+}
+.abouus-banner-bottom {
+    height: 540px;
+    padding: 80px 0 0;
+    background-size: cover!important;
+    background-position: 50%!important;
+    margin-bottom: 60px;
+}
+.banner-bottom-title {
+    font-size: 36px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 80px;
+}
+.banner-bottom-content {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.7;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2939,6 +3040,39 @@ button.close {
     }
     .upOrder-form{
         width: 100%;
+    }
+    .aboutus-banner {
+        margin-top: 45px;
+        height: auto;
+        padding: 20px 0 30px;
+    }
+    .aboutus-title {
+        font-size: 36px;
+        color: #fff;
+        margin-bottom: 25px;
+    }
+    .aboutus-banner-content {
+        width: 100%;
+    }
+    .sept-line {
+        margin: 1px 6px 56px;
+    }
+    .aboutus-tip-container {
+        width: 45%;
+    }
+    span.septal-row {
+        width: 20px;
+        margin-bottom: 6px;
+    }
+    .our-mission {
+        margin: 40px 0 30px;
+        font-size: 24px;
+    }
+    .our-mission-entry {
+        width: 100%;
+    }
+    .our-middle{
+        margin: 0;
     }
 }
 

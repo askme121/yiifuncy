@@ -14,8 +14,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <h2 class="page-title">Contact Us</h2>
         <div class="customer-tip-container">
             <p class="customer-enrty-content">
-                If you have any questions or concerns, you can visit our <a href="/faq" style="color: #FF9933;text-decoration: underline;">FAQs page</a>.<br>
-                If you cannot find the answer to your question, complete the form below to contact us.
+                <?= $page->content?>
             </p>
         </div>
         <div class="row">
