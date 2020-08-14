@@ -24,7 +24,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <div class="shade-layer"></div>
                             <span class="shade-tip" style="line-height: 20px;padding: 60px 0;">
                                 <font style="line-height: 40px">Sold Out</font>
-                                <font style="font-size: 16px;line-height: 22px"><br>Available Tomorrow</font>
+                                <font style="font-size: 14px;line-height: 22px"><br>Available Tomorrow</font>
                             </span>
                         <?php }?>
                     </div>
@@ -275,7 +275,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <div class="shade-layer"></div>
                                     <span class="shade-tip" style="line-height: 20px;padding: 60px 0;">
                                        <font style="line-height: 40px">Sold Out</font>
-                                       <font style="font-size: 16px;line-height: 22px"><br>Available Tomorrow</font>
+                                       <font style="font-size: 14px;line-height: 22px"><br>Available Tomorrow</font>
                                     </span>
                                 <?php }?>
                             </div>
@@ -315,7 +315,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <div class="shade-layer"></div>
                                     <span class="shade-tip" style="line-height: 20px;padding: 60px 0;">
                                         <font style="line-height: 40px">Sold Out</font>
-                                        <font style="font-size: 16px;line-height: 22px"><br>Available Tomorrow</font>
+                                        <font style="font-size: 14px;line-height: 22px"><br>Available Tomorrow</font>
                                     </span>
                                 <?php }?>
                             </div>
