@@ -24,7 +24,7 @@ class UserController extends Controller
                         'roles' => ['@'],
                     ],
                     ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
-                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile'], 'verbs' => ['POST']],
+                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile', 'change-url'], 'verbs' => ['POST']],
                 ],
             ],
             'verbs' => [
@@ -145,6 +145,53 @@ class UserController extends Controller
             return json_encode([
                 'code' => 402,
                 'message' => array_values($error),
+            ]);
+        }
+    }
+
+    public function actionChangeUrl()
+    {
+        if (Yii::$app->user->isGuest) {
+            return json_encode([
+                'code' => 401,
+                'message' => 'please login',
+            ]);
+        }
+        $user_id = Yii::$app->user->identity->getId();
+        $param = Yii::$app->request->post();
+        if (isset($param['amazon_profile_link']) && trim($param['amazon_profile_link'])){
+            $user = User::find()->where(['amazon_profile_url'=>trim($param['amazon_profile_link'])])->one();
+            if ($user){
+                return json_encode([
+                    'code' => 401,
+                    'message' => 'The Amazon Profile URL is already used',
+                ]);
+            }
+            $model = User::findOne($user_id);
+            if ($model->change_times > 0){
+                return json_encode([
+                    'code' => 402,
+                    'message' => 'You can only update your amazon profile url for 1 time,please click "Contact Us" to contact our customer service team if you wish to change it again.',
+                ]);
+            }
+            $model->amazon_profile_url = trim($param['amazon_profile_link']);
+            $model->change_times += 1;
+            if ($model->save()){
+                return json_encode([
+                    'code' => 1,
+                    'message' => 'successful'
+                ]);
+            } else {
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 402,
+                    'message' => array_values($error),
+                ]);
+            }
+        } else {
+            return json_encode([
+                'code' => 403,
+                'message' => 'The request is illegal',
             ]);
         }
     }

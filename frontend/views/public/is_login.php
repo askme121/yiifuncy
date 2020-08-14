@@ -165,7 +165,7 @@ use yii\helpers\Url;
 
             <div class="modal-body no-points jq-seller-deal" style="padding: 0 0 10px; display: none;">
                 <p class="offer-ends-container">
-                    <span class="secured-title">Notice</span>
+                    <span class="secured-title">NOTICE!</span>
                 </p>
                 <p class="sorry-tip-content" style="margin-top: 30px">
                     Each user can only apply for a Cashback Deal for this product once, there's no application limit on Coupon+Cashback Deal.

@@ -2409,6 +2409,10 @@ button.close {
     text-align: center;
     line-height: 40px;
 }
+#update-profile-form{
+    width: 80%;
+    margin: 30px auto;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2886,6 +2890,10 @@ button.close {
     #reset-pass-form {
         width: auto;
         margin: 0 -15px;
+    }
+    #update-profile-form{
+        width: 90%;
+        margin: 20px auto;
     }
 }
 

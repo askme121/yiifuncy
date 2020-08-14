@@ -221,10 +221,17 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <label>Amazon Profile URL: </label>
                             <input type="hidden" id="redirect_url" name="redirect_url" value="<?= Yii::$app->request->get("redirect")?>">
                             <input name="amazon_profile_link" required type="text" <?php if (!empty($model->amazon_profile_url)){?>disabled<?php }?> class="form-control" value="<?= $model->amazon_profile_url?>">
-                            <?php if (!empty($model->amazon_profile_url) && $model->change_times<1){?>
-                            <span id="change-url" class="help-block m-b-none open-edit">
-                                <i class="fa fa-pencil"></i>
-                            </span>
+                            <?php if (!empty($model->amazon_profile_url)){
+                                if ($model->change_times < 1){
+                                ?>
+                                    <span id="change-url" class="help-block m-b-none open-edit" data-toggle="modal" data-target=".operation-change-url">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                                <?php } else {?>
+                                    <span id="notice-change-url" class="help-block m-b-none open-edit" data-toggle="modal" data-target=".notice-change-url">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                                <?php }?>
                             <? }?>
                         </div>
                         <div class="form-group">
@@ -252,18 +259,42 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <span aria-hidden="true">×</span>
             </button>
             <div class="modal-body" style="padding: 0;">
-                <p class="offer-ends-container" style="margin-bottom: 0;padding: 15px 0;font-size: 22px;">&nbsp;</p>
-
-                <form id="upOrder-form" enctype="multipart/form-data" method="post" action="#" style="width: 352px;margin: 30px auto 0;">
+                <p class="offer-ends-container">
+                    <span class="secured-title">&nbsp;</span>
+                </p>
+                <form id="update-profile-form" enctype="multipart/form-data" method="post" action="<?= Url::toRoute('/user/change-url') ?>?>">
                     <div class="form-group upOrder-form-group">
-                        <p style="margin-bottom: 0;padding: 15px 0;font-size: 22px; text-align: center">Update Amazon Url</p>
-                        <input class="form-control" id="amazon_url" type="text" name=amazon_url" value="<?= $model->amazon_profile_url?>">
-                        <div class="form-group-error error" id="order-id-tips"></div>
+                        <p style="margin-bottom: 0;padding: 15px 0;font-size: 22px; text-align: center; color: #f93">Update Amazon Url</p>
+                        <input class="form-control" id="amazon_url" type="text" name="amazon_url" value="<?= $model->amazon_profile_url?>">
+                        <div class="form-group-error">
+                            <small>Notice: you can only update your Amazon profile url for 1 times.</small>
+                        </div>
                     </div>
-                    <div class="upOrder-form-btnss">
-                        <a type="button" class="btn upOrder-form-btn jq-submit-order" id="user-submitted-post" style="float: none;" >Submit</a>
+                    <div class="upOrder-form-btnss text-center" style="margin-bottom: 30px">
+                        <a type="button" class="btn upOrder-form-btn jq-submit-order" id="update-post">Update</a>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal notice-change-url" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close model-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="modal-body" style="padding: 0;">
+                <p class="offer-ends-container">
+                    <span class="secured-title">NOTICE!</span>
+                </p>
+                <p class="sorry-tip-content" style="margin-top: 20px">
+                    You can only update your amazon profile url for 1 time,please click "Contact Us" to contact our customer service team if you wish to change it again.
+                </p>
+                <p style="text-align: center; margin-top: 10px">
+                    <a class="btn upOrder-form-btn my-btn" href="<?= Url::toRoute('/site/contact')?>">Contact Us</a>
+                </p>
             </div>
         </div>
     </div>
@@ -308,6 +339,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+
+
 
 <button type="button" class="btn" id="profile-complete-tip" data-toggle="modal" data-target=".profile-complete-tip" style="display: none;"></button>
 <div class="modal profile-complete-tip" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -502,9 +535,50 @@ $(function () {
             }
         });
     });
-    $('#change-url').click(function (){
-        $('.operation-change-url').modal('show');
-    });
+    $("#update-post").click(function () {
+        var btn = $(this);
+        var url = $("#update-profile-form").attr('action');
+        var amazon_url = $("#amazon_url").val();
+        if (amazon_url.trim() == ''){
+            $("#amazon_url").focus();
+        }
+        if (btn.hasClass("onused")){
+            return false;
+        }
+        btn.addClass("onused");
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                "amazon_profile_link": amazon_url
+            },
+            dataType: "json",
+            success: function(response){
+                if (response.code == 1) {
+                    swal({
+                        type: 'success',
+                        title: 'Oops',
+                        text: response.message,
+                        timer: 2000,
+                        html: true
+                    });
+                    window.location.href = location.href;
+                } else {
+                    btn.removeClass("onused");
+                    swal({
+                        type: 'error',
+                        title: 'Oops',
+                        text: response.message,
+                        html: true
+                    });
+                }
+            },
+            error: function(){
+                btn.removeClass("onused");
+                swal('Oops', 'Server error, please try again later.', 'error');
+            }
+        });
+    })
 });
 <?php $this->endBlock(); ?>
     </script>
