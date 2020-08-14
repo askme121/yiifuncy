@@ -2926,16 +2926,16 @@ button.close {
         font-size: 12px;
     }
     ::-webkit-input-placeholder {
-        font-size: 6px;
+        font-size: 10px;
     }
     :-moz-placeholder {
-        font-size: 6px;
+        font-size: 10px;
     }
     ::-moz-placeholder {
-        font-size: 6px;
+        font-size: 10px;
     }
     :-ms-input-placeholder {
-        font-size: 6px;
+        font-size: 10px;
     }
     .upOrder-form{
         width: 100%;
