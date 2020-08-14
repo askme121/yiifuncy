@@ -122,7 +122,7 @@ use yii\helpers\Url;
                     </span>
                 </p>
                 <p class="sorry-tip-content">
-                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.
+                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.Check the <a href="/faq?#failing" target="_blank" style="color: #f93">User Guide</a> for detail.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn no-points-btn" id="waiting_deal_url" href="#">Check My Deal</a>
@@ -170,7 +170,7 @@ use yii\helpers\Url;
                     <span class="secured-title">NOTICE!</span>
                 </p>
                 <p class="sorry-tip-content" style="margin-top: 30px">
-                    Each user can only apply for a Cashback Deal for this product once, there's no application limit on Coupon+Cashback Deal.
+                    Each user can only apply for a Cashback Deal for this product once, there's no application limit on Coupon+Cashback Deal.Check the <a href="/faq?#failing" target="_blank" style="color: #f93">User Guide</a> for detail.
                 </p>
                 <p style="text-align: center; margin-top: 10px">
                     <a class="btn upOrder-form-btn my-btn" id="seller_deal_url" href="#">Check My Deal</a>
