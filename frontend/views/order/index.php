@@ -43,6 +43,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <p class="deals-item-title">
                                     <a href="<?= Url::to('/offer/'.$order['activity']['url_key'].'/'.$order['activity']['id']);?>" target="_blank"><?= $order['product']['name'] ?></a>
                                 </p>
+                                <p class="deals-sold-by">
+                                    Sold by <?= $order['activity']['sold_by'] ?>
+                                </p>
                                 <ul class="deals-item-info">
                                     <li class="dealRequest-price">
                                         <div class="text-center">Price</div>
@@ -75,6 +78,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     }
                                     ?>
                                 </div>
+                                <?php if ($order['status'] < 2){?>
+                                    <div class="drop_time" data-id="<?= $order['id']?>">
+                                        <span class="t_h"></span>:<span class="t_i"></span>:<span class="t_s"></span>
+                                    </div>
+                                <?php }?>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 pd0">
@@ -202,6 +210,30 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 }
             });
         });
+        window.setInterval(function () {
+            $(".drop_time").each(function () {
+                var order_id = $(this).data("id");
+                var obj = $(this);
+                $.ajax({
+                    type: 'get',
+                    url: '/order/drop',
+                    dataType: 'json',
+                    data: {
+                        order_id: order_id
+                    },
+                    success: function(response){
+                        if (response.code == 1) {
+                            obj.children('.t_h').text(response.data.h);
+                            obj.children('.t_i').text(response.data.i);
+                            obj.children('.t_s').text(response.data.s);
+                        }
+                    },
+                    error: function(){
+                        console.log('error');
+                    }
+                });
+            })
+        }, 1000);
     });
     <?php $this->endBlock(); ?>
 </script>

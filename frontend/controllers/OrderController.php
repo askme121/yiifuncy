@@ -478,4 +478,36 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function actionDrop($order_id)
+    {
+        if (empty($order_id)){
+            return json_encode([
+                'code' => 201,
+                'message' => 'The request is illegal'
+            ]);
+        }
+        $expire_day = Yii::$app->params['order.Expire'];
+        $order = Order::findOne($order_id);
+        $nowtime = time();
+        $endtime = $order->created_at + $expire_day*24*3600;
+        $time = $endtime - $nowtime;
+        if ($time > 0){
+            $h = floor($time/3600);
+            $i = floor(($time - $h * 3600)/60);
+            $s = $time - $h * 3600 - $i * 60;
+            $t['h'] = strlen($h)>1?$h:'0'.$h;
+            $t['i'] = strlen($i)>1?$i:'0'.$i;
+            $t['s'] = strlen($s)>1?$s:'0'.$s;
+        } else {
+            $t['h'] = 00;
+            $t['i'] = 00;
+            $t['s'] = 00;
+        }
+        return json_encode([
+            'code' => 1,
+            'message' => 'successful',
+            'data' => $t
+        ]);
+    }
 }

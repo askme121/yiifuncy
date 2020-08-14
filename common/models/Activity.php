@@ -33,7 +33,7 @@ class Activity extends ActiveRecord
     public function rules()
     {
         return [
-            [['url_key', 'amazon_url', 'asin'], 'string'],
+            [['url_key', 'amazon_url', 'asin', 'sold_by'], 'string'],
             [['type', 'status', 'qty', 'role_id', 'team_id', 'user_id', 'site_id', 'product_id', 'coupon_type'], 'integer'],
             [['price', 'cashback', 'coupon'], 'number'],
             [['form_coupon_code', 'start', 'end'], 'safe']
@@ -62,6 +62,7 @@ class Activity extends ActiveRecord
             'coupon_type' => Yii::t('app', 'coupon_type'),
             'coupon_code' => Yii::t('app', 'coupon_code'),
             'form_coupon_code' => Yii::t('app', 'coupon_code'),
+            'sold_by' => Yii::t('app', 'sold_by'),
         ];
     }
 

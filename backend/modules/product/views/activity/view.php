@@ -44,6 +44,7 @@ LayuiAsset::register($this);
                 ],
                 'amazon_url',
                 'asin',
+                'sold_by',
                 'price',
                 'cashback',
                 [

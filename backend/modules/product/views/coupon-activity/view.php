@@ -44,6 +44,7 @@ LayuiAsset::register($this);
             ],
             'amazon_url',
             'asin',
+            'sold_by',
             'price',
             [
                 "attribute" => "coupon_type",

@@ -107,5 +107,6 @@ return [
     'origin_price' => '原价',
     'title' => '标题',
     'content' => '内容',
-    'publish_at' => '发布时间'
+    'publish_at' => '发布时间',
+    'sold_by' => 'Sold by'
 ];

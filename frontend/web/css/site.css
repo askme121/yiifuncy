@@ -1893,7 +1893,7 @@ button.close {
     font-size: 16px;
     max-height: 42px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 .deals-item-info {
     font-size: 14px;
@@ -2433,6 +2433,13 @@ button.close {
     color: #fff;
     line-height: 206px;
 }
+.deals-sold-by{
+    color: #ed5565;
+    margin-bottom: 5px;
+}
+.drop_time{
+    color: red;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -2914,6 +2921,9 @@ button.close {
     #update-profile-form{
         width: 90%;
         margin: 20px auto;
+    }
+    .deals-sold-by{
+        font-size: 12px;
     }
 }
 

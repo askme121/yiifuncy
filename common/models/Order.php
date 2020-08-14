@@ -59,7 +59,7 @@ class Order extends ActiveRecord
 
     public function getActivity()
     {
-        return $this->hasOne(Activity::className(),['id'=>'activity_id'])->select(['id','url_key', 'asin','price','cashback','coupon_type','coupon','amazon_url']);
+        return $this->hasOne(Activity::className(),['id'=>'activity_id'])->select(['id','url_key','asin','sold_by','price','cashback','coupon_type','coupon','amazon_url']);
     }
 
     public function getProduct()
