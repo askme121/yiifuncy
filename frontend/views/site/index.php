@@ -12,7 +12,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     }
 </style>
 <div class="split"></div>
-<div class="container visible-sm visible-xs" style="background: #fff">
+<div class="container visible-sm visible-xs" style="background: #fff; padding-left: 10px; padding-right: 10px">
     <div class="index_tops">
         <?php if (is_array($top_all) && !empty($top_all)): ?>
         <?php foreach ($top_all as $product): ?>
