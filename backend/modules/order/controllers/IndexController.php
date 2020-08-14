@@ -103,6 +103,10 @@ class IndexController extends Controller
             return json_encode(['code'=>401,"msg"=>'订单不符合返现条件']);
         }
         $model->status = 4;
+        $res = Order::find()->where(['product_id'=>$model->product_id, 'user_id'=>$model->user_id, 'status'=>4, 'is_review'=>1])->one();
+        if ($res){
+            $model->is_review = 1;
+        }
         if($model->save()){
             return json_encode(['code'=>200,"msg"=>"操作成功"]);
         }else{

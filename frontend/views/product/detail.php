@@ -844,12 +844,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             $('.amazon_link').attr('href', response.link);
                             $('.deal-expires-time').attr('data-expired-time', response.expired_at);
                             $('#current_order_id').val(response.order_id);
+                            $('#sold-by').text(response.sold_by);
                             break;
                         case 2:
                             $('.modal-body').hide();
                             $('#show-coupon-code').text(response.coupon_code);
                             $('#coupon-purchase-link').attr('href', response.link);
                             $('#current_order_id').val(response.order_id);
+                            $('#coupon-sold-by').text(response.sold_by);
                             $('.jq-got-coupon-code-success').show();
                             var clipboard = new ClipboardJS('#show-coupon-code', {
                                 text: function() {

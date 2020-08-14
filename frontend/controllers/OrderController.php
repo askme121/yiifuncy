@@ -295,7 +295,8 @@ class OrderController extends Controller
                         'message' => 'you have unfinished deals',
                         'coupon_code' => $curr_order->coupon_code,
                         'link' => $curr_order->amazon_url,
-                        'order_id' => $curr_order->id
+                        'order_id' => $curr_order->id,
+                        'sold_by' => $activity->sold_by
                     ]);
                 }
                 $unover_order = Order::find()->where(['user_id'=>$user_id, 'activity_id'=>$activity_id])->andWhere(['>', 'created_at', time()-$expire_day*24*3600])->andWhere(['>', 'status', 1])->andWhere(['<', 'status', 4])->one();
@@ -345,7 +346,8 @@ class OrderController extends Controller
                             'status' => 1,
                             'message' => 'successful',
                             'link' => $activity->amazon_url,
-                            'order_id' => $model->id
+                            'order_id' => $model->id,
+                            'sold_by' => $activity->sold_by
                         ]);
                     } else {
                         $error = $model->firstErrors;
@@ -359,7 +361,7 @@ class OrderController extends Controller
                     $coupon = Coupon::find()->where(['activity_id'=>$activity_id, 'customer_id'=>0, 'status'=>0])->one();
                     if (!$coupon){
                         return json_encode([
-                            'code' => 1,
+                            'code' => 101,
                             'status' => 0,
                             'message' => 'No enough coupon code'
                         ]);
@@ -382,7 +384,8 @@ class OrderController extends Controller
                             'message' => 'successful',
                             'coupon_code' => $coupon->coupon_code,
                             'link' => $activity->amazon_url,
-                            'order_id' => $model->id
+                            'order_id' => $model->id,
+                            'sold_by' => $activity->sold_by
                         ]);
                     } else{
                         $error = $model->firstErrors;

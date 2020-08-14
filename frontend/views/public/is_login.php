@@ -32,6 +32,7 @@ use yii\helpers\Url;
                     <p class="upOrder-step-title">
                         <span>STEP 2:</span>
                     </p>
+                    <small style="display:block;margin-top: -15px; text-align: center; color: red">(Sold by <span id="coupon-sold-by"></span>)</small>
                     <a id="coupon-purchase-link" href="#" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title">STEP 3:</p>
@@ -69,6 +70,7 @@ use yii\helpers\Url;
                     <p class="upOrder-step-title">
                         <span>STEP 1:</span>
                     </p>
+                    <small style="display:block;margin-top: -15px; text-align: center; color: red">(Sold by <span id="sold-by"></span>)</small>
                     <a id="purchase-link" href="#" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title" style="margin-bottom: 10px;">STEP 2:</p>
