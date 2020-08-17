@@ -65,7 +65,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's
                                     <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">terms of service</a>
                                     and
-                                    <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
+                                    <a class="agreement" target="_blank" href="<?= Url::toRoute(['/site/terms', 'tabtarget'=>'privacy']);?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
                                 </p>
                             </div>
                             <div class="text-center">
