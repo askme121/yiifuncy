@@ -17,7 +17,7 @@ use yii\helpers\Html;
         <?php }?>
     </div>
     <a href="<?= Url::home()?>" class="nav-logo-container">
-        <img class="nav-logo-icon" src="<?= getImgUrl('images/mylogo.png') ?>" style="width: 120px;">
+        <img class="nav-logo-icon" src="<?= getImgUrl('images/mylogo.png') ?>">
     </a>
     <div>
         <?php if (!Yii::$app->user->isGuest) {?>
