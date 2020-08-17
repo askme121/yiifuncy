@@ -433,7 +433,7 @@ $(function () {
                         type: 'success',
                         title: 'Oops',
                         text: response.message,
-                        timer: 2000,
+                        timer: 3000,
                         html: true
                     });
                     if (response.redirect_url){
@@ -447,6 +447,7 @@ $(function () {
                         type: 'error',
                         title: 'Oops',
                         text: response.message,
+                        timer: 3000,
                         html: true
                     });
                 }
@@ -476,7 +477,7 @@ $(function () {
                         type: 'success',
                         title: 'Oops',
                         text: response.message,
-                        timer: 2000,
+                        timer: 3000,
                         html: true
                     });
                     window.location.href = location.href;
@@ -486,6 +487,7 @@ $(function () {
                         type: 'error',
                         title: 'Oops',
                         text: response.message,
+                        timer: 3000,
                         html: true
                     });
                 }
@@ -515,7 +517,7 @@ $(function () {
                         type: 'success',
                         title: 'Oops',
                         text: response.message,
-                        timer: 2000,
+                        timer: 3000,
                         html: true
                     });
                     window.location.href = location.href;
@@ -525,6 +527,7 @@ $(function () {
                         type: 'error',
                         title: 'Oops',
                         text: response.message,
+                        timer: 3000,
                         html: true
                     });
                 }
@@ -559,7 +562,7 @@ $(function () {
                         type: 'success',
                         title: 'Oops',
                         text: response.message,
-                        timer: 2000,
+                        timer: 3000,
                         html: true
                     });
                     window.location.href = location.href;
@@ -569,6 +572,7 @@ $(function () {
                         type: 'error',
                         title: 'Oops',
                         text: response.message,
+                        timer: 3000,
                         html: true
                     });
                 }

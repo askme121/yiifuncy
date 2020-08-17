@@ -64,7 +64,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             type: 'success',
                             title: 'Oops',
                             text: response.message,
-                            timer: 2000,
+                            timer: 3000,
                             html: true
                         });
                         window.location.href = '/account/login';
@@ -74,6 +74,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             type: 'error',
                             title: 'Oops',
                             text: response.message,
+                            timer: 3000,
                             html: true
                         });
                     }

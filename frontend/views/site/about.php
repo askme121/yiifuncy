@@ -47,10 +47,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </p>
         </div>
         <div class="our-mission-entry">
-            <img src="<?= getImgUrl('images/Achievewin-win.png') ?>">
-            <p class="mission-title">Connecting</p>
+            <img src="<?= getImgUrl('images/icon_pc.png') ?>">
+            <p class="mission-title">Zero Risk</p>
             <p class="mission-content">
-                New technologies and product ideas mean nothing if their practicality goes unnoticed by customers. We connect thousands of brands with more than 7,000,000 customers on Amazon. With an increasing number of brands joining CashBackClub, our users will save more on Amazon and new stores can grow and flourish.
+                Shop on Amazon directly with no need to pay other fees.
             </p>
         </div>
     </div>

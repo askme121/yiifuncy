@@ -15,7 +15,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <form class="form-container form-bg-container" id="recover-password" method="post" action="<?= Url::toRoute('/site/request-password-reset')?>">
                 <h3>Reset Your Password?</h3>
                 <div class="form-content-container">
-                    <p style="font-size: 16px;color: #999;">Enter your <b style="color: #333;">email address</b> or <b style="color: #333;">username</b> and we'll email you a link to reset your passwod.</p>
+                    <p style="font-size: 16px;color: #999;">Enter your <b style="color: #333;">email address</b> and we'll email you a link to reset your passwod.</p>
                     <?= Html::textInput('email','', ['id' => 'email', 'autofocus' => true, 'class' => 'reset-input form-control', 'placeholder'=>'Email', 'aria-required'=>'true', 'aria-invalid'=>'false']) ?>
                     <?= Html::button('Submit', ['id' => 'reset-password','class' => 'btn upOrder-form-btn reset-btn']) ?>
                     <p class="login-tips">
@@ -77,6 +77,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             type: 'error',
                             title: 'Oops',
                             text: response.message,
+                            timer: 3000,
                             html: true
                         });
                     }
