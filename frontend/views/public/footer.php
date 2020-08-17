@@ -7,7 +7,7 @@ use yii\helpers\Html;
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12 newsletter-tip-block">
                 <h4 class="">
-                    Get Updates for <span class="color-orange">free</span>
+                    Get Updates For <span class="color-orange">Free</span>
                 </h4>
                 <p>
                     Subscribe to our newsletter for latest deals.
@@ -69,7 +69,7 @@ use yii\helpers\Html;
                 <a href="<?= Url::toRoute('/site/about');?>">About Us</a>
             </li>
             <li>
-                <a href="<?= Url::toRoute('/site/faq');?>">Faq</a>
+                <a href="<?= Url::toRoute('/site/faq');?>">FAQ</a>
             </li>
             <li>
                 <a href="<?= Url::toRoute('/site/terms');?>">Terms&amp;Privacy</a>

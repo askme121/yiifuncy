@@ -55,7 +55,7 @@ use yii\helpers\Html;
                         <a href="<?= Url::toRoute('/product/coupon');?>" target="_self">Coupon Deals</a>
                     </li>
                     <li>
-                        <a href="<?= Url::toRoute('/site/faq');?>" target="_self">Faq</a>
+                        <a href="<?= Url::toRoute('/site/faq');?>" target="_self">FAQ</a>
                     </li>
                     <li>
                         <a href="<?= Url::toRoute('/site/contact');?>" target="_self">Contacts</a>
