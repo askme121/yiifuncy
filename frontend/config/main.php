@@ -50,6 +50,7 @@ return [
                 'account' => '/user/index',
                 'contact' => '/site/contact',
                 'faq' => '/site/faq',
+                'terms' => '/site/terms',
                 'aboutus' => '/site/about',
                 'account/forgotpassword' => '/site/request-password-reset',
                 'account/profile' => '/user/profile',

@@ -17,7 +17,7 @@ use yii\helpers\Html;
         <?php }?>
     </div>
     <a href="<?= Url::home()?>" class="nav-logo-container">
-        <img class="nav-logo-icon" src="<?= getImgUrl('images/logo.png') ?>" style="width: 120px;">
+        <img class="nav-logo-icon" src="<?= getImgUrl('images/mylogo.png') ?>" style="width: 120px;">
     </a>
     <div>
         <?php if (!Yii::$app->user->isGuest) {?>
@@ -35,7 +35,7 @@ use yii\helpers\Html;
         <div class="container" style="padding: 0; margin: 0 auto">
             <nav class="navbar-collapse collapse" id="bs-navbar" aria-expanded="false">
                 <div class="navbar-header">
-                    <div id="logo" style="background: url(<?= getImgUrl('images/logo.png'); ?>) no-repeat center center; background-size: contain;">
+                    <div id="logo" style="background: url(<?= getImgUrl('images/mylogo.png'); ?>) no-repeat center center; background-size: contain;">
                         <h1 class="logo-keyword">
                             <a href="<?= Url::home()?>">Deals on Amazon</a>
                         </h1>

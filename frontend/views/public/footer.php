@@ -33,7 +33,7 @@ use yii\helpers\Html;
             <div class="col-sm-4">
                 <div class="footer-logo">
                     <a href="/">
-                        <img class="img-responsive logo lazy" data-src="<?= getImgUrl('images/logo-yellow.png'); ?>" alt="">
+                        <img class="img-responsive logo lazy" data-src="<?= getImgUrl('images/logo-cover.png'); ?>" alt="">
                     </a>
                     <p>A community to help you get the latest deals on Amazon.com and help you save up to 100%!</p>
                 </div>

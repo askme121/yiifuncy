@@ -1486,10 +1486,10 @@ button.close {
 }
 .account-menu-container {
     float: left;
-    width: 16%;
+    width: 20%;
 }
 .account-content-container {
-    width: 84%;
+    width: 80%;
     float: left;
     padding: 20px;
     border-left: 1px solid #efefef;
@@ -2149,6 +2149,12 @@ button.close {
     color: #ff9936;
     line-height: 30px;
     padding-left: 20px;
+}
+.tab-content-container{
+    margin-top: 20px;
+}
+#divstyletab{
+    margin-top: 20px;
 }
 #divstyletab li {
     float: none;
