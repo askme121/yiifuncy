@@ -733,6 +733,9 @@ a:link, a:visited, a:hover, a:active {
     max-width: 300px;
     margin: 0 auto;
 }
+.footer-logo p{
+    text-align: left;
+}
 #footer img.logo {
     margin-bottom: 15px;
     width: 200px;
@@ -745,7 +748,7 @@ a:link, a:visited, a:hover, a:active {
     color: #000;
     font-weight: 500;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .help-link {
     display: block;

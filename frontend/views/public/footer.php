@@ -42,13 +42,10 @@ use yii\helpers\Html;
             <div class="col-sm-4">
                 <div class="footer-section" style="width: 75%;">
                     <p class="footer-title">HELPFUL LINKS</p>
-                    <div style="width: 50%; float: left;">
+                    <div style="width: 100%">
                         <a class="help-link" href="<?= Url::toRoute('/site/faq');?>" target="_blank">FAQ &amp; Help</a>
                         <a class="help-link" href="<?= Url::toRoute('/site/about');?>" target="_blank">About Us</a>
                         <a class="help-link" href="<?= Url::toRoute('/site/contact');?>" target="_blank">Contact Us</a>
-                    </div>
-                    <div style="width: 50%; float: right;">
-
                     </div>
                 </div>
             </div>
