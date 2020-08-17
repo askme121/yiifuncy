@@ -56,7 +56,7 @@ class SignupForm extends Model
 
         $email_content = $template->content;
         $email_title = $template->title;
-        $params['user_name'] = Html::encode($this->last_name. ' '. $this->first_name);
+        $params['user_name'] = Html::encode($this->first_name. ' '. $this->last_name);
         sendEmail($this->username, $email_content, $email_title, $params);
         return $user->save() && Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
     }

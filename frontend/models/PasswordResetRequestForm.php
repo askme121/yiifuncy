@@ -52,7 +52,7 @@ class PasswordResetRequestForm extends Model
 
         $email_content = $template->content;
         $email_title = $template->title;
-        $params['user_name'] = Html::encode($user->lastname. ' '. $user->firstname);
+        $params['user_name'] = Html::encode($user->firstname. ' '. $user->lastname);
         $params['link'] = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->password_reset_token]);
         $params['expire'] = date("M/d/Y H:i:s",Yii::$app->params['user.passwordResetTokenExpire'] + time());
         return sendEmail($this->email, $email_content, $email_title, $params);
