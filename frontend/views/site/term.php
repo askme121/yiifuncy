@@ -29,7 +29,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     <div class="account-content-container tab-content-container">
                         <div class="term-entry" id="term-1">
                             <p class="term-min-title">1. Terms Overview</p>
-                            <p class="term-content">By accessing the website at http://CashBackClub.com, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
+                            <p class="term-content">By accessing the website at http://www.theclubofcashback.com, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
                             <p class="term-content">If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
                         </div>
 
@@ -99,8 +99,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     <div class="account-content-container tab-content-container">
                         <div class="term-entry" id="privacy-1">
                             <p class="term-min-title">1. Policy Overview</p>
-                            <p class="term-content">Welcome to CashBackClub.com. This Privacy Policy is provided to inform you of our policies and practices regarding the collection, use, and disclosure of information about you.</p>
-                            <p class="term-content">CashBackClub.com (“CashBackClub”, “we,” “us” or “our”) is committed to respecting the privacy rights and concerns of all users of the CashBackClub.com website where this Privacy Policy is posted (the “Site”) (we refer to the Site and the services made available through the Site, collectively, as “CashBackClub Features”). As such, we have established and implemented this Privacy Policy to inform visitors to the Site and users of the CashBackClub Features how we use and protect the information we collect through the Site and CashBackClub Features.</p>
+                            <p class="term-content">Welcome to www.theclubofcashback.com. This Privacy Policy is provided to inform you of our policies and practices regarding the collection, use, and disclosure of information about you.</p>
+                            <p class="term-content">www.theclubofcashback.com (“CashBackClub”, “we,” “us” or “our”) is committed to respecting the privacy rights and concerns of all users of the www.theclubofcashback.com website where this Privacy Policy is posted (the “Site”) (we refer to the Site and the services made available through the Site, collectively, as “CashBackClub Features”). As such, we have established and implemented this Privacy Policy to inform visitors to the Site and users of the CashBackClub Features how we use and protect the information we collect through the Site and CashBackClub Features.</p>
                             <p class="term-content">By visiting the Site or using any of the CashBackClub Features, you consent to CashBackClub’s collection, use, storage, deletion and disclosure of information relating to you as set forth in this Privacy Policy. This Privacy Policy is effective as of the date set forth above and is only applicable to the Site and not to any other website that you may be able to access from the Site which may have its own data collection and use practices and policies.</p>
                         </div>
 
