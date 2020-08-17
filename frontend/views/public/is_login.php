@@ -136,7 +136,7 @@ use yii\helpers\Url;
                     </span>
                 </p>
                 <p class="sorry-tip-content">
-                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.
+                    Dear user, you can't apply for a new deal before the previous deal order is completed. Please Wait patiently.Check the <a href="/faq?#failing" target="_blank" style="color: #f93">User Guide</a> for detail.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn my-btn" id="hover_deal_url" href="#">Check My Deal</a>
