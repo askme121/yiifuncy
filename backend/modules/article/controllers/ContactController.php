@@ -2,6 +2,7 @@
 
 namespace article\controllers;
 
+use common\models\EmailTemplate;
 use common\models\searchs\ContactSearch;
 use common\models\Contact;
 use yii\web\Controller;
@@ -73,7 +74,12 @@ class ContactController extends Controller
     public function actionUpdate($id)
     {
         $msg = $this->findModel($id);
+        $site_id = $msg->site_id;
         $model = new Contact();
+        $template = EmailTemplate::find()->where(['site_id'=>$site_id, 'scene'=>'reply'])->one();
+        if (!$template){
+            return json_encode(['code'=>501, "msg"=>"邮件模板不存在"]);
+        }
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
                 $pre = Contact::findOne($model->parent);
@@ -86,6 +92,10 @@ class ContactController extends Controller
                 $model->save();
                 $pre->status = 2;
                 $pre->save();
+                $email_content = $template->content;
+                $params['user_name'] = $pre->name;
+                $params['msg'] = $model->content;
+                sendEmail($pre->email, $email_content, $model->title);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;

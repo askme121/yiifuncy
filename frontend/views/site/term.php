@@ -16,10 +16,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <div class="tab-pane" id="terms">
                 <div class="tabbable">
                     <ul class="account-menu-list account-menu-container" id="divstyletab">
-                        <li class=""><a href="#term-1" class="account-menu-a">1. Terms Overview</a></li>
-                        <li class=""><a href="#term-2" class="account-menu-a">2. Use License</a></li>
-                        <li class=""><a href="#term-3" class="account-menu-a">3. Disclaimer</a></li>
-                        <li class="active"><a href="#term-4" class="account-menu-a">4. Deals Policy</a></li>
+                        <li class="active"><a href="#term-1" class="account-menu-a">1. Terms Overview</a></li>
+                        <li><a href="#term-2" class="account-menu-a">2. Use License</a></li>
+                        <li><a href="#term-3" class="account-menu-a">3. Disclaimer</a></li>
+                        <li><a href="#term-4" class="account-menu-a">4. Deals Policy</a></li>
                         <li><a href="#term-5" class="account-menu-a">5. Limitations</a></li>
                         <li><a href="#term-6" class="account-menu-a">6. Accuracy of Materials</a></li>
                         <li><a href="#term-7" class="account-menu-a">7. Links</a></li>
@@ -88,13 +88,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <div class="tab-pane active" id="privacy">
                 <div class="tabbable">
                     <ul class="account-menu-list account-menu-container" id="divstyletab">
-                        <li class=""><a href="#privacy-1" class="account-menu-a">1. Policy Overview</a></li>
-                        <li class=""><a href="#privacy-2" class="account-menu-a">2. Information  We Collect</a></li>
-                        <li class=""><a href="#privacy-3" class="account-menu-a">3. Use of Informaiton</a></li>
-                        <li class=""><a href="#privacy-4" class="account-menu-a">4. Sharing Your Information</a></li>
-                        <li class=""><a href="#privacy-5" class="account-menu-a">5. Your Privacy Controls</a></li>
+                        <li class="active"><a href="#privacy-1" class="account-menu-a">1. Policy Overview</a></li>
+                        <li><a href="#privacy-2" class="account-menu-a">2. Information  We Collect</a></li>
+                        <li><a href="#privacy-3" class="account-menu-a">3. Use of Informaiton</a></li>
+                        <li><a href="#privacy-4" class="account-menu-a">4. Sharing Your Information</a></li>
+                        <li><a href="#privacy-5" class="account-menu-a">5. Your Privacy Controls</a></li>
                         <li><a href="#privacy-6" class="account-menu-a">6. Security Measures</a></li>
-                        <li class="active"><a href="#privacy-7" class="account-menu-a">7. About This Policy</a></li>
+                        <li><a href="#privacy-7" class="account-menu-a">7. About This Policy</a></li>
                     </ul>
                     <div class="account-content-container tab-content-container">
                         <div class="term-entry" id="privacy-1">
