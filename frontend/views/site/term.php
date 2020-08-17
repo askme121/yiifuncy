@@ -7,10 +7,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
 <div class="split"></div>
 <div class="container">
-    <div class="container-bg" style="padding-top: 30px">
-        <ul id="deal-detal-tab" class="nav nav-tabs" style="margin: 0 30px 0 30px;">
-            <li class="" id="terms-tab"><a href="#terms" data-toggle="tab" style="padding-left:50px;padding-right:50px;" aria-expanded="false">Terms</a></li>
-            <li id="privacy-tab" class="active"><a href="#privacy" data-toggle="tab" style="padding-left:50px;padding-right:50px;" aria-expanded="true">Privacy</a></li>
+    <div class="container-bg terms-bar">
+        <ul id="deal-detal-tab" class="nav nav-tabs terms-nav">
+            <li class="active" id="terms-tab"><a href="#terms" data-toggle="tab" aria-expanded="false">Terms</a></li>
+            <li id="privacy-tab"><a href="#privacy" data-toggle="tab" aria-expanded="true">Privacy</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane" id="terms">
@@ -213,6 +213,15 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         $('#divstyletab li').click(function(){
             $(this).addClass('active').siblings().removeClass('active');
         });
+        var urlParam = GetRequest();
+        if(urlParam.tabtarget === "privacy"){
+            $('#terms-tab').removeClass('active');
+            $('#terms').removeClass('active');
+            $('#terms-tab a').attr('aria-expanded','false');
+            $('#privacy-tab').addClass('active');
+            $('#privacy').addClass('active');
+            $('#privacy-tab a').attr('aria-expanded','true');
+        }
     });
     <?php $this->endBlock(); ?>
 </script>

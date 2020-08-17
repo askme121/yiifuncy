@@ -2548,6 +2548,16 @@ span.septal-row {
     color: #fff;
     line-height: 1.7;
 }
+.terms-bar{
+    padding-top: 30px;
+}
+.terms-nav{
+    margin: 0 30px 0 30px !important;
+}
+.terms-nav li a{
+    padding-left:50px;
+    padding-right:50px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -3107,6 +3117,22 @@ span.septal-row {
         width: auto;
         padding: 10px 15px;
         font-size: 14px;
+    }
+    .terms-bar{
+        padding-top: 0px;
+    }
+    .terms-nav {
+        margin: 0 10px 0 10px !important;
+    }
+    .terms-nav li a{
+        padding: 10px 50px !important;
+        font-size: 14px !important;
+    }
+    #divstyletab {
+        margin-top: 0;
+    }
+    .tab-content-container {
+        margin-top: 0;
     }
 }
 

@@ -59,7 +59,7 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="copyright">
-            © 2020 CashBackClub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
+            © 2020 CashBackClub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute(['/site/terms', 'tabtarget'=>'privacy']);?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
         </div>
     </div>
     <div class="hidden-md hidden-lg">
