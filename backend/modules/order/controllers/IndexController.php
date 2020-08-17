@@ -98,8 +98,12 @@ class IndexController extends Controller
         $params['user_name'] = $user->firstname.' '.$user->lastname;
         $model->status = 3;
         if($model->save()){
-            sendEmail($user->email, $email_content, $email_title, $params);
-            return json_encode(['code'=>200,"msg"=>"审核成功"]);
+            $ref = sendEmail($user->email, $email_content, $email_title, $params);
+            if ($ref){
+                return json_encode(['code'=>200,"msg"=>"审核成功"]);
+            } else {
+                return json_encode(['code'=>200,"msg"=>"审核成功","res"=>$ref]);
+            }
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);
