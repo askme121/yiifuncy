@@ -2,6 +2,7 @@
 
 namespace order\controllers;
 
+use common\models\Activity;
 use common\models\EmailTemplate;
 use common\models\searchs\OrderSearch;
 use common\models\Order;
@@ -112,12 +113,13 @@ class IndexController extends Controller
             return json_encode(['code'=>401,"msg"=>'订单不符合返现条件']);
         }
         $user = User::findOne($model->user_id);
+        $activity = Activity::findOne($model->activity_id);
         $site_id = $model->site_id;
         $template = EmailTemplate::find()->where(['site_id'=>$site_id, 'scene'=>'paypal'])->one();
         $email_content = $template->content;
         $email_title = $template->title;
         $params['user_name'] = $user->firstname.' '.$user->lastname;
-        $params['link'] = '';
+        $params['link'] = 'https://www.amazon.com/review/review-your-purchases/?asin='.$activity->asin;
         $model->status = 4;
         $res = Order::find()->where(['product_id'=>$model->product_id, 'user_id'=>$model->user_id, 'status'=>4, 'is_review'=>1])->one();
         if ($res){
