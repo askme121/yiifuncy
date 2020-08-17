@@ -59,7 +59,7 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="copyright">
-            © 2020 Cashbackclub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
+            © 2020 CashBackClub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
         </div>
     </div>
     <div class="hidden-md hidden-lg">
@@ -74,7 +74,7 @@ use yii\helpers\Html;
                 <a href="<?= Url::toRoute('/site/terms');?>">Terms&amp;Privacy</a>
             </li>
         </ul>
-        <p class="copyright-txt">© 2020 Cashbackclub All Rights Reserved.</p>
+        <p class="copyright-txt">© 2020 CashBackClub All Rights Reserved.</p>
     </div>
 </footer>
 <a id="back-top" href="">

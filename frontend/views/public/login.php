@@ -57,7 +57,7 @@ use yii\helpers\Url;
                         </span>
                     </div>
                     <div class="form-group">
-                        <p style="margin-top: 10px; margin-bottom: 0; font-size: 14px;">By clicking “Sign up”, I agree to cashbackbase's
+                        <p style="margin-top: 10px; margin-bottom: 0; font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's
                             <a class="agreement" target="_blank" href="<?= Url::toRoute('terms') ?>" style="color:#2b95ff;">terms of service</a>
                             and
                             <a class="agreement" target="_blank" href="<?= Url::toRoute('privacy') ?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.

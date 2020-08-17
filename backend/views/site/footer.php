@@ -1,3 +1,3 @@
 <div class="layui-footer footer">
-    <p>copyright @2020 Cashbackclub</p>
+    <p>copyright @2020 CashBackClub</p>
 </div>

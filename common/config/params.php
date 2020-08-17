@@ -3,7 +3,7 @@ return [
     'adminEmail' => 'support@theclubofcashback.com',
     'supportEmail' => 'service@theclubofcashback.com',
     'senderEmail' => 'noreply@theclubofcashback.com',
-    'senderName' => 'cashbackclub',
+    'senderName' => 'CashBackClub',
     'user.passwordResetTokenExpire' => 3600,
     'admin.passwordResetTokenExpire' => 3600,
     'order.Expire' => 1,

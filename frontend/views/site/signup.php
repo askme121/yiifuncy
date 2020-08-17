@@ -62,7 +62,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 </span>
                             </div>
                             <div class="form-group">
-                                <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to cashbackclub's
+                                <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's
                                     <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">terms of service</a>
                                     and
                                     <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
@@ -96,7 +96,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </p>
                 <p class="sorry-tip-content" style="text-align: left; line-height: 24px; padding: 0 20px">
                     1.Please follow our order process. Check the <a href="/faq" target="_blank" style="color: #f93">User Guide</a> for detail.<br>
-                    2.If you have any questions about the product on Cashbackclub, please contact Cashbackclub’s customer service first instead of leaving a negative review directly on amazon.
+                    2.If you have any questions about the product on CashBackClub, please contact CashBackClub’s customer service first instead of leaving a negative review directly on amazon.
                 </p>
                 <p style="text-align: center">
                     <a class="btn upOrder-form-btn my-btn" id="skip-register-popup" href="#">Confirm</a>

@@ -50,7 +50,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <img src="<?= getImgUrl('images/Achievewin-win.png') ?>">
             <p class="mission-title">Connecting</p>
             <p class="mission-content">
-                New technologies and product ideas mean nothing if their practicality goes unnoticed by customers. We connect thousands of brands with more than 7,000,000 customers on Amazon. With an increasing number of brands joining Cashbackclub, our users will save more on Amazon and new stores can grow and flourish.
+                New technologies and product ideas mean nothing if their practicality goes unnoticed by customers. We connect thousands of brands with more than 7,000,000 customers on Amazon. With an increasing number of brands joining CashBackClub, our users will save more on Amazon and new stores can grow and flourish.
             </p>
         </div>
     </div>
@@ -62,6 +62,6 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <span class="septal-row" style="background-color: #fff;"></span>
     </p>
     <p class="banner-bottom-content">
-        Cashbackclub was created by a group of young, tasteful individuals who have a mission to help users improve their life quality. Our talented leadership team has extensive experience and knowledge of the market. Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.
+        CashBackClub was created by a group of young, tasteful individuals who have a mission to help users improve their life quality. Our talented leadership team has extensive experience and knowledge of the market. Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.
     </p>
 </div>

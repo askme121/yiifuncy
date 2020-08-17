@@ -22,7 +22,7 @@
                 <p style="text-align: right; margin-bottom: 0; font-size: 13px; color: rgb(103, 106, 108);">Nov 18, 2019</p>
             </div>
             <div class="testimonial-text" style="float: left;width: 100%;">
-                <p style="font-size: 13px;">Cashbackbase has amazing deals on some great products found on Amazon, especially if you have a Prime account. Youd be an idiot not to check CBB first to see if you can score a partial or even a full refund on items youre already planning to purchase. What I love most about this site is that they dont make you wait 30+ days to get your money back like the other sites. Your cashback is sent to your PayPal account as soon as your order ships. Theres also lots of ways to earn the points required to make a purchase, especially if you can remember to login daily. Theres really no excuse not to...</p>
+                <p style="font-size: 13px;">CashBackClub has amazing deals on some great products found on Amazon, especially if you have a Prime account. Youd be an idiot not to check CBB first to see if you can score a partial or even a full refund on items youre already planning to purchase. What I love most about this site is that they dont make you wait 30+ days to get your money back like the other sites. Your cashback is sent to your PayPal account as soon as your order ships. Theres also lots of ways to earn the points required to make a purchase, especially if you can remember to login daily. Theres really no excuse not to...</p>
             </div>
         </div>
         <div style="width: 33%;float: left;padding-left: 19px;">
@@ -43,7 +43,7 @@
                 <p style="text-align: right; margin-bottom: 0; font-size: 13px; color: rgb(103, 106, 108);">Nov 16, 2019</p>
             </div>
             <div class="testimonial-text" style="float: left;width: 100%;">
-                <p style="font-size: 13px;">I am very much pleased write about Cashbackbase that it is a good website to buy some products at a very low price. I am using this site for the last 1 year and I am very satisfied by using Cashbackbases tons of good offer. I highly recommend this site to other people.</p>
+                <p style="font-size: 13px;">I am very much pleased write about CashBackClub that it is a good website to buy some products at a very low price. I am using this site for the last 1 year and I am very satisfied by using CashBackClub's tons of good offer. I highly recommend this site to other people.</p>
 
             </div>
         </div>
@@ -65,7 +65,7 @@
                 <p style="text-align: right; margin-bottom: 0; font-size: 13px; color: rgb(103, 106, 108);">Nov 15, 2019</p>
             </div>
             <div class="testimonial-text" style="float: left;width: 100%;">
-                <p style="font-size: 13px;">I have had an amazing experience with cashbackbase. The products available for review are amazing; Its pretty much guaranteed that you will find something you like! My experience with the sellers has been great so far. They have been very friendly and respond quite fast! Overall, I am very impressed, and I think a lot of you will be too!<br />
+                <p style="font-size: 13px;">I have had an amazing experience with CashBackClub. The products available for review are amazing; Its pretty much guaranteed that you will find something you like! My experience with the sellers has been great so far. They have been very friendly and respond quite fast! Overall, I am very impressed, and I think a lot of you will be too!<br />
                     <br />
                     - Rick</p>
 
