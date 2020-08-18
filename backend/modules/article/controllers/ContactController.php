@@ -87,6 +87,7 @@ class ContactController extends Controller
                 $model->name = $pre->name;
                 $model->email = $pre->email;
                 $model->order_id = $pre->order_id;
+                $model->site_id = $pre->site_id;
                 $model->type = 2;
                 $model->ip = Yii::$app->getRequest()->getUserIP();
                 $model->save();
@@ -95,7 +96,7 @@ class ContactController extends Controller
                 $email_content = $template->content;
                 $params['user_name'] = $pre->name;
                 $params['msg'] = $model->content;
-                sendEmail($pre->email, $email_content, $model->title);
+                sendEmail($pre->email, $email_content, $model->title, $params);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;
