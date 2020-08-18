@@ -22,16 +22,16 @@ use yii\helpers\Url;
     <div class="cross-line"></div>
     <ul class="account-menu-list">
         <li>
-            <a class="account-menu-a " href="<?= Url::toRoute('/order/index')?>">Refund Deals</a>
+            <a class="account-menu-a <?php if (isset($current) && $current == 'refund'){?>active<?php }?>" href="<?= Url::toRoute('/order/index')?>">Refund Deals</a>
         </li>
         <li>
-            <a class="account-menu-a " href="<?= Url::toRoute('/order/coupon')?>">Coupon Deals</a>
+            <a class="account-menu-a <?php if (isset($current) && $current == 'coupon'){?>active<?php }?>" href="<?= Url::toRoute('/order/coupon')?>">Coupon Deals</a>
         </li>
         <li>
-            <a class="account-menu-a " href="/account/sellermsg">Message Center</a>
+            <a class="account-menu-a <?php if (isset($current) && $current == 'message'){?>active<?php }?>" href="<?= Url::toRoute('/user/message')?>">Message Center</a>
         </li>
         <li>
-            <a class="account-menu-a  active " href="<?= Url::toRoute('/user/profile')?>">Account &amp; Profile</a>
+            <a class="account-menu-a <?php if (isset($current) && $current == 'profile'){?>active<?php }?>" href="<?= Url::toRoute('/user/profile')?>">Account &amp; Profile</a>
         </li>
     </ul>
 </div>

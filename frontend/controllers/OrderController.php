@@ -46,6 +46,7 @@ class OrderController extends Controller
     {
         $site_id = Yii::$app->params['site_id'];
         $user_id = Yii::$app->user->identity->getId();
+        $current = 'refund';
         $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
         $meta = [];
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
@@ -56,7 +57,7 @@ class OrderController extends Controller
             ->innerJoinWith('product')->where(['t_order.site_id'=>$site_id, 't_order.user_id'=>$user_id, 'order_type'=>2]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
         $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
-        return $this->render('index', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl]);
+        return $this->render('index', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl, 'current'=>$current]);
     }
 
     public function actionView($id)
@@ -72,13 +73,19 @@ class OrderController extends Controller
             ->innerJoinWith('activity')
             ->innerJoinWith('product')->where(['t_order.id'=>$id, 't_order.site_id'=>$site_id, 't_order.user_id'=>$user_id])
             ->asArray()->one();
-        return $this->render('view', ['meta'=>$meta, 'order'=>$model, 'currentUrl'=>$currentUrl]);
+        if ($model->order_type == 2) {
+            $current = 'refund';
+        } else {
+            $current = 'coupon';
+        }
+        return $this->render('view', ['meta'=>$meta, 'order'=>$model, 'currentUrl'=>$currentUrl, 'current'=>$current]);
     }
 
     public function actionCoupon()
     {
         $site_id = Yii::$app->params['site_id'];
         $user_id = Yii::$app->user->identity->getId();
+        $current = 'coupon';
         $currentUrl = Yii::$app->request->hostInfo.Yii::$app->request->getUrl();
         $meta = [];
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
@@ -90,7 +97,7 @@ class OrderController extends Controller
         $query->andWhere(['in', 'order_type', [1,3]]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
         $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
-        return $this->render('coupon', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl]);
+        return $this->render('coupon', ['meta'=>$meta, 'model'=>$model, 'pages'=>$pages, 'currentUrl'=>$currentUrl, 'current'=>$current]);
     }
 
     public function actionUporder($id)

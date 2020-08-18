@@ -9,7 +9,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <div class="split"></div>
 <div class="container">
     <div class="container-bg">
-        <?= $this->render('../public/userleftbar.php') ?>
+        <?= $this->render('../public/userleftbar.php', ['current'=>$current]) ?>
         <div class="account-content-container">
             <div class="header-line visible-sm visible-xs">
                 <a href="javascript:history.back()" class="header-line-back">

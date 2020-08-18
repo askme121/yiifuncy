@@ -61,6 +61,7 @@ class UserController extends Controller
         if (empty($user_id)){
             return $this->render('site/error');
         }
+        $current = 'profile';
         $model = User::findOne($user_id);
         $site_id = Yii::$app->params['site_id'];
         $meta = [];
@@ -85,7 +86,7 @@ class UserController extends Controller
                 ]);
             }
         } else {
-            return $this->render('profile', ['meta'=>$meta, 'model'=>$model]);
+            return $this->render('profile', ['meta'=>$meta, 'model'=>$model, 'current'=>$current]);
         }
     }
 
