@@ -322,12 +322,12 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                     <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
                                     <div class="detail-step-item">
                                         <img class="step-item-icon" src="<?= getImgUrl('images/step-finish-icon.png'); ?>">
-                                        Get seller's confirmation and buy it on Amazon
+                                        Buy it on Amazon
                                     </div>
                                     <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
                                     <div class="detail-step-item">
                                         <img class="step-item-icon" src="<?= getImgUrl('images/step-fill-icon.png'); ?>">
-                                        Fill in Amazon order info and approved by the seller
+                                        Fill in Amazon order info and approved by us
                                     </div>
                                     <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
                                     <div class="detail-step-item">

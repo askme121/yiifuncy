@@ -97,6 +97,11 @@ return [
                     'defaults' => ['order_id' => 0],
                 ],
                 [
+                    'pattern' => 'account/message/<id:\d+>',
+                    'route' => 'user/message-view',
+                    'defaults' => ['id' => 0],
+                ],
+                [
                     'pattern' => 'account/password/reset/<token>',
                     'route' => 'site/reset-password',
                     'defaults' => ['token' => ''],

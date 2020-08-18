@@ -26,7 +26,15 @@ use common\models\Contact;
             <span class="nav-msg-icon">
                 <img src="<?= getImgUrl('images/nav-news.png'); ?>">
             </span>
-            <span class="message-count">0</span>
+            <?php
+            $site_id = Yii::$app->params['site_id'];
+            $user_id = Yii::$app->user->identity->id;
+            $msg_count = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->count();
+            $msg_list = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->limit(5)->all();
+            if ($msg_count > 0 && $msg_list) {
+            ?>
+            <span class="message-count"><?= $msg_count?></span>
+            <? }?>
         </a>
         <?php }?>
     </div>
@@ -118,15 +126,10 @@ use common\models\Contact;
                                 <img src="<?= getImgUrl('images/nav-news.png'); ?>" style="width: 80%;">
                             </a>
                             <?php
-                            if (!Yii::$app->user->isGuest) {
-                                $site_id = Yii::$app->params['site_id'];
-                                $user_id = Yii::$app->user->identity->id;
-                                $count = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->count();
-                                $msg_list = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->limit(5)->all();
-                                if ($count > 0 && $msg_list) {
+                            if ($msg_count > 0 && $msg_list) {
                             ?>
                             <div class="message-count">
-                                <?= $count?>
+                                <?= $msg_count?>
                             </div>
                             <ul class="dropdown-menu nav-news-entry" id="nav-news-entry">
                                 <li class="caret-bottom news-caret">
@@ -134,7 +137,7 @@ use common\models\Contact;
                                 </li>
                                 <?php foreach ($msg_list as $item){?>
                                 <li class="new-entry">
-                                    <a href="#" style="background-color: #fff">
+                                    <a href="<?= Url::toRoute(['/user/message-view', 'id'=>$item->id])?>">
                                         <div class="news-content-container">
                                             <div class="new-content" title="<?= $item->title?>"><?= $item->title?></div>
                                         </div>
@@ -146,7 +149,7 @@ use common\models\Contact;
                                     <a id="view-all-message" href="<?= Url::toRoute('/user/message')?>">Check All Messages</a>
                                 </li>
                             </ul>
-                            <?php }}?>
+                            <?php }?>
                         </li>
                     </ul>
                 <?php }?>

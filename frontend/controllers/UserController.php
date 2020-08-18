@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\Contact;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -200,11 +202,37 @@ class UserController extends Controller
     public function actionMessage()
     {
         $site_id = Yii::$app->params['site_id'];
-        $current = 'profile';
+        $user_id = Yii::$app->user->identity->getId();
+        $current = 'message';
         $meta = [];
         $meta['title'] = Config::getConfig('web_site_title', $site_id);
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
-        return $this->render('message', ['meta'=>$meta, 'current'=>$current]);
+        $type = Yii::$app->request->get('type');
+        $query = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id]);
+        if (empty($type)) {
+            $query->andWhere(['in', 'type', [2,3]]);
+        } else {
+            $query->andWhere(['type'=>$type]);
+        }
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
+        $model = $query->offset($pages->offset)->limit($pages->limit)->all();
+        return $this->render('message', ['model'=>$model, 'meta'=>$meta, 'current'=>$current]);
+    }
+
+    public function actionMessageView($id)
+    {
+        $site_id = Yii::$app->params['site_id'];
+        $model = Contact::findOne($id);
+        if ($model->status == 0) {
+            $model->status = 1;
+            $model->save();
+        }
+        $meta = [];
+        $current = 'message';
+        $meta['title'] = Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
+        return $this->render('messageview', ['model'=>$model, 'meta'=>$meta, 'current'=>$current]);
     }
 }
