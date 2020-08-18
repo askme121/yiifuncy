@@ -57,6 +57,7 @@ return [
                 'account/coupon' => '/order/coupon',
                 'account/deal' => '/order/index',
                 'order/deal' => '/order/deal',
+                'account/message' => '/user/message',
                 'account/amazon_profile_link' => '/user/amazon-profile-link',
                 'account/password' => '/user/change-password',
                 '<controller:(product)>' => '<controller>/index',

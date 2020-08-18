@@ -419,12 +419,16 @@ a:link, a:visited, a:hover, a:active {
     display: block!important;
     height: 100%!important;
     padding: 0!important;
+    background: #fff !important;
+}
+.new-entry a:hover{
+    background: #fff !important;
 }
 .news-content-container {
     width: 260px;
-    float: left;
     margin-left: 10px;
-    height: 50px;
+    line-height: 30px;
+    padding: 10px 0px;
 }
 .new-content {
     height: 30px;
@@ -2560,6 +2564,11 @@ span.septal-row {
 .terms-nav li a{
     padding-left:50px;
     padding-right:50px;
+}
+.news-cross {
+    height: 1px;
+    background-color: #f2f2f2;
+    margin: 10px 0;
 }
 
 @media (min-width:1400px) {

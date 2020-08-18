@@ -196,4 +196,15 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function actionMessage()
+    {
+        $site_id = Yii::$app->params['site_id'];
+        $current = 'profile';
+        $meta = [];
+        $meta['title'] = Config::getConfig('web_site_title', $site_id);
+        $meta['description'] = Config::getConfig('web_site_description', $site_id);
+        $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
+        return $this->render('message', ['meta'=>$meta, 'current'=>$current]);
+    }
 }

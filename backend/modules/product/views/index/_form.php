@@ -46,7 +46,7 @@ $attr_group = $attr_group_root + $attr_group;
         </ul>
         <div class="layui-tab-content" style="min-height: 550px;">
             <div class="layui-tab-item layui-show">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => 64,'class'=>'layui-input']) ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => 150,'class'=>'layui-input']) ?>
                 <?= $form->field($model, 'sku')->textInput(['class'=>'layui-input']) ?>
                 <?= $form->field($model, 'url_key')->textInput(['class'=>'layui-input']) ?>
                 <?= $form->field($model, 'category_id')->dropDownList($category_parent) ?>

@@ -21,7 +21,7 @@ use yii\helpers\Html;
     </a>
     <div>
         <?php if (!Yii::$app->user->isGuest) {?>
-        <a href="#" class="nav-msg-container">
+        <a href="<?= Url::toRoute('/user/message')?>" class="nav-msg-container">
             <span class="nav-msg-icon">
                 <img src="<?= getImgUrl('images/nav-news.png'); ?>">
             </span>
@@ -113,7 +113,7 @@ use yii\helpers\Html;
                             </ul>
                         </li>
                         <li id="news-nav" class="right-nav" style="float: right;">
-                            <a href="" class="dropdown-toggle">
+                            <a href="<?= Url::toRoute('/user/message')?>" class="dropdown-toggle">
                                 <img src="<?= getImgUrl('images/nav-news.png'); ?>" style="width: 80%;">
                             </a>
                             <div class="message-count" data-count="2">
@@ -123,9 +123,22 @@ use yii\helpers\Html;
                                 <li class="caret-bottom news-caret">
                                     <span></span>
                                 </li>
-                                <li class="no-news">
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: #FF9933;"></span> There are no new messages yet!
+                                <li class="new-entry">
+                                    <a href="">
+                                        <div class="news-content-container">
+                                            <div class="new-content" title="Earn 30 points by completing daily check-in.">Earn 30 points by completing daily check-in.</div>
+                                        </div>
+                                    </a>
                                 </li>
+                                <li class="news-cross"></li>
+                                <li class="new-entry">
+                                    <a href="">
+                                        <div class="news-content-container">
+                                            <div class="new-content" title="Earn 30 points by completing daily check-in.">Earn 30 points by completing daily check-in.</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="news-cross"></li>
                             </ul>
                         </li>
                     </ul>
