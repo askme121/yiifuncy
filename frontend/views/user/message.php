@@ -16,7 +16,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </a>
                 <h1 class="header-line-page">Message Center</h1>
             </div>
-            <ul id="deal-detal-tab" class="nav nav-tabs msg_nav">
+            <ul id="msg-detal-tab" class="nav nav-tabs msg_nav">
                 <li <?php if (Yii::$app->request->get('type') != 1){?>class="in active"<? }?>>
                     <a href="<?= Url::toRoute('/user/message') ?>">Inbox</a>
                 </li>

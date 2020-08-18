@@ -2628,6 +2628,9 @@ span.septal-row {
 .msg_foot button i{
     margin-right: 5px;
 }
+#msg-detal-tab{
+    margin-top: 15px;
+}
 
 @media (min-width:1400px) {
     .container {
@@ -3215,6 +3218,9 @@ span.septal-row {
     .msg_list li dd{
         text-align: left;
         margin-top: 10px;
+    }
+    #msg-detal-tab{
+        border-bottom: 1px solid #ddd;
     }
 }
 
