@@ -168,7 +168,7 @@ $attr_group = $attr_group_root + $attr_group;
             'plainpaste', 'justifyleft', 'justifycenter', 'justifyright',
             'justifyfull', 'selectall',
             'formatblock', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold',
-            'italic', 'underline', 'strikethrough', 'lineheight', 'image', 'multiimage',
+            'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', 'image', 'multiimage',
             'table', 'hr',
             'anchor', 'link', 'unlink', 'fullscreen'
         ],
