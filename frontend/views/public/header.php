@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use common\models\Contact;
 ?>
 <header id="header" class="hidden-lg hidden-md">
     <div>
@@ -76,7 +77,7 @@ use yii\helpers\Html;
                 <?php } else {?>
                     <ul class="nav navbar-nav navbar-right cbb-check-login" style="padding-right: 0;">
                         <li class="dropdown right-nav" id="account-nav" style="float: right;">
-                            <a href="" class="dropdown-toggle" style="padding: 0 !important;">
+                            <a href="<?= Url::toRoute('/user/profile')?>" class="dropdown-toggle" style="padding: 0 !important;">
                                 <img class="nav-user-img" src="<?= getImgUrl('images/user.png'); ?>">
                                 <span class="caret"></span>
                             </a>
@@ -116,30 +117,36 @@ use yii\helpers\Html;
                             <a href="<?= Url::toRoute('/user/message')?>" class="dropdown-toggle">
                                 <img src="<?= getImgUrl('images/nav-news.png'); ?>" style="width: 80%;">
                             </a>
-                            <div class="message-count" data-count="2">
-                                0
+                            <?php
+                            if (!Yii::$app->user->isGuest) {
+                                $site_id = Yii::$app->params['site_id'];
+                                $user_id = Yii::$app->user->identity->id;
+                                $count = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->count();
+                                $msg_list = Contact::find()->where(['site_id'=>$site_id, 'user_id'=>$user_id, 'type'=>2, 'status'=>0])->limit(5)->all();
+                                if ($count > 0 && $msg_list) {
+                            ?>
+                            <div class="message-count">
+                                <?= $count?>
                             </div>
                             <ul class="dropdown-menu nav-news-entry" id="nav-news-entry">
                                 <li class="caret-bottom news-caret">
                                     <span></span>
                                 </li>
+                                <?php foreach ($msg_list as $item){?>
                                 <li class="new-entry">
-                                    <a href="" style="background-color: #fff">
+                                    <a href="#" style="background-color: #fff">
                                         <div class="news-content-container">
-                                            <div class="new-content" title="Earn 30 points by completing daily check-in.">Earn 30 points by completing daily check-in.</div>
+                                            <div class="new-content" title="<?= $item->title?>"><?= $item->title?></div>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="news-cross"></li>
-                                <li class="new-entry">
-                                    <a href="">
-                                        <div class="news-content-container">
-                                            <div class="new-content" title="Earn 30 points by completing daily check-in.">Earn 30 points by completing daily check-in.</div>
-                                        </div>
-                                    </a>
+                                <?php }?>
+                                <li>
+                                    <a id="view-all-message" href="<?= Url::toRoute('/user/message')?>">Check All Messages</a>
                                 </li>
-                                <li class="news-cross"></li>
                             </ul>
+                            <?php }}?>
                         </li>
                     </ul>
                 <?php }?>

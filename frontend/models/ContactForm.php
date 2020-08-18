@@ -50,11 +50,19 @@ class ContactForm extends Model
         $model->email = $this->email;
         $model->content = $this->body;
         $model->type = 1;
+        $model->site_id = Yii::$app->params['site_id'];
         $model->order_id = $this->order_id;
         $model->ip = Yii::$app->getRequest()->getUserIP();
         if (!Yii::$app->user->isGuest){
             $model->user_id = Yii::$app->user->identity->id;
         }
-        return $model->save() && $this->sendEmail(Yii::$app->params['adminEmail']);
+        $res = $model->save();
+        if ($res){
+            $this->sendEmail(Yii::$app->params['adminEmail']);
+            return true;
+        } else {
+            $error = $model->firstErrors;
+            return $error;
+        }
     }
 }

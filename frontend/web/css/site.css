@@ -266,8 +266,7 @@ a:link, a:visited, a:hover, a:active {
     font-size:16px!important
 }
 #bs-navbar li a:focus, #bs-navbar li a:hover {
-    background-color:#f93!important;
-    color:#ffffffa6!important
+    color:#ffffffa6 !important
 }
 #bs-navbar li a.join-for-free:hover {
     color: #f93 !important;
@@ -419,9 +418,6 @@ a:link, a:visited, a:hover, a:active {
     display: block!important;
     height: 100%!important;
     padding: 0!important;
-    background: #fff !important;
-}
-.new-entry a:hover{
     background: #fff !important;
 }
 .news-content-container {

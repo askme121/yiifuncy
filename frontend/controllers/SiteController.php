@@ -268,7 +268,8 @@ class SiteController extends Controller
                     'message' => array_values($error),
                 ]);
             } else {
-                if ($model->doSubmit()) {
+                $res = $model->doSubmit();
+                if ($res === true) {
                     return json_encode([
                         'code' => 1,
                         'message' => 'Thank you for contacting us. We will respond to you as soon as possible.'
@@ -276,7 +277,7 @@ class SiteController extends Controller
                 } else {
                     return json_encode([
                         'code' => 0,
-                        'message' => 'Request failed',
+                        'message' => $res,
                     ]);
                 }
             }
