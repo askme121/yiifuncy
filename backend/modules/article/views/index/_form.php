@@ -64,7 +64,7 @@ LayuiAsset::addScript($this, 'plugins/kindeditor/lang/zh-CN.js');
                 'plainpaste', 'justifyleft', 'justifycenter', 'justifyright',
                 'justifyfull', 'selectall',
                 'formatblock', 'fontname', 'fontsize', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'image', 'multiimage',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', 'image', 'multiimage',
                 'table', 'hr',
                 'anchor', 'link', 'unlink', 'fullscreen'
             ],
