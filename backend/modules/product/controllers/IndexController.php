@@ -4,6 +4,7 @@ namespace product\controllers;
 
 use common\models\Product;
 use common\models\searchs\ProductSearch;
+use Faker\Provider\Uuid;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -44,12 +45,20 @@ class IndexController extends Controller
         $model = new Product();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
+                if (empty($model->url_key)){
+                    $model->url_key = Uuid::uuid();
+                }
                 $model->role_id = Yii::$app->user->identity->role_id;
                 $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->site_id = Yii::$app->session['default_site_id'];
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                $res = $model->save();
+                if ($res){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    $error = $model->firstErrors;
+                    return json_encode(['code'=>500, "msg"=>"操作失败", "data"=>$error]);
+                }
             } else {
                 $error = $model->firstErrors;
                 return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
@@ -64,8 +73,13 @@ class IndexController extends Controller
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                $res = $model->save();
+                if ($res !== false){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    $error = $model->firstErrors;
+                    return json_encode(['code'=>500, "msg"=>"操作失败", "data"=>$error]);
+                }
             } else {
                 $error = $model->firstErrors;
                 return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);

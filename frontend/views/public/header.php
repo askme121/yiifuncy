@@ -124,7 +124,7 @@ use yii\helpers\Html;
                                     <span></span>
                                 </li>
                                 <li class="new-entry">
-                                    <a href="">
+                                    <a href="" style="background-color: #fff">
                                         <div class="news-content-container">
                                             <div class="new-content" title="Earn 30 points by completing daily check-in.">Earn 30 points by completing daily check-in.</div>
                                         </div>
