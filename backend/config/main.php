@@ -11,7 +11,7 @@ return [
     'name' => '后台管理系统',
     'basePath' => dirname(__DIR__),
     'language' => 'zh-CN',
-    'timeZone' => 'Asia/Shanghai',
+    'timeZone' => 'America/Los_Angeles',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [

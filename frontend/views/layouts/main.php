@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use common\models\Config;
 
 AppAsset::register($this);
 ?>
@@ -15,6 +16,7 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?= Config::getConfig('ga_code', Yii::$app->params['site_id'])?>
 </head>
 <body>
 <?php $this->beginBody() ?>

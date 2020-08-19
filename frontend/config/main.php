@@ -11,7 +11,7 @@ return [
     'name' => 'default site',
     'basePath' => dirname(__DIR__),
     'language' => 'en',
-    'timeZone' => 'Asia/Shanghai',
+    'timeZone' => 'America/Los_Angeles',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
