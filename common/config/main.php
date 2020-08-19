@@ -5,8 +5,8 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'timeZone' => 'America/Los_Angeles',
     'components' => [
-        'timeZone' => 'America/Los_Angeles',
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=yii2cms',
