@@ -30,11 +30,11 @@ use yii\helpers\Url;
             </div>
             <div id="sign-up-block" style="width: 80%; margin: 20px auto; display: none;">
                 <form class="form-container" id="register-form"  style="width: auto; padding: 0; max-width: 100%; margin: 0 auto;">
-                    <div class="form-group email-container">
+                    <div class="form-group">
                         <input type="text" name="first_name" class="form-control" id="first_name" value="" placeholder="First Name" style="width: 50%; float: left;">
                         <input type="text" name="last_name" class="form-control" id="last_name" value="" placeholder="Last Name" style="width: 50%; float: left; margin-bottom: 15px;">
                     </div>
-                    <div class="form-group email-container">
+                    <div class="form-group">
                         <input type="text" name="username" class="form-control" id="reg_username" value="" placeholder="Email">
                         <div class="input-clear">
                             <span>x</span>
@@ -42,14 +42,14 @@ use yii\helpers\Url;
                     </div>
                     <div class="form-group" style="position: relative;">
                         <input type="password" name="password" class="form-control" id="register-pass" value="" placeholder="Password">
-                        <div class="show-hide-icon" id="show-btn">
+                        <div class="show-hide-icon" id="register-show-btn">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
                         </div>
-                        <div class="show-hide-icon" id="hide-btn" style="display: none">
+                        <div class="show-hide-icon" id="register-hide-btn" style="display: none">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="form-group email-container">
+                    <div class="form-group">
                         <input type="text" name="captcha"  class="form-control verify-code" placeholder="*Enter code" style="margin-top: 0 !important;width: 150px !important;">
                         <img id="captcha" src="<?php echo Url::toRoute('/site/captcha').'?'.md5(time() . mt_rand(1,10000));?>" onclick="this.src='<?= Url::toRoute('/site/captcha') ?>?'+Math.random()">
                         <span>
@@ -58,9 +58,9 @@ use yii\helpers\Url;
                     </div>
                     <div class="form-group">
                         <p style="margin-top: 10px; margin-bottom: 0; font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's
-                            <a class="agreement" target="_blank" href="<?= Url::toRoute('terms') ?>" style="color:#2b95ff;">terms of service</a>
+                            <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms') ?>" style="color:#2b95ff;">terms of service</a>
                             and
-                            <a class="agreement" target="_blank" href="<?= Url::toRoute('privacy') ?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
+                            <a class="agreement" target="_blank" href="<?= Url::toRoute(['/site/terms', 'tabtarget'=>'privacy']);?>" style="color:#2b95ff;">privacy statement</a> and I also agree that only open one account per person.
                         </p>
                     </div>
                     <div class="text-center">
@@ -88,7 +88,7 @@ use yii\helpers\Url;
                         </div>
                     </div>
                     <p class="forget-tips" style="text-align: right; margin: 10px 0;">
-                        <a href="<?= Url::toRoute('forgotpassword') ?>" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
+                        <a href="<?= Url::toRoute('/site/request-password-reset')?>" class="forget_password" style="color: #3399ff;font-size: 12px;">Forgot Password?</a>
                     </p>
                     <button type="button" class="btn upOrder-form-btn ladda-button" id="submit-sign-in" data-style="zoom-in" style="width: 100%; height: 43px; font-weight: 700; font-size: 16px;">Sign In</button>
                     <hr style="margin: 15px 0;">

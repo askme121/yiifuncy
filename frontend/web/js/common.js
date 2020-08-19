@@ -21,6 +21,14 @@ function showHidePassword(e) {
     })
 }
 
+function showHideRegisterPassword(e) {
+    $("#register-show-btn").click(function () {
+        $("#register-hide-btn").show(), $("#register-show-btn").hide(), $(e).attr("type", "text")
+    }), $("#register-hide-btn").click(function () {
+        $("#register-hide-btn").hide(), $("#register-show-btn").show(), $(e).attr("type", "password")
+    })
+}
+
 function inputClear(e) {
     $(e).focus(function () {
         $(e).bind("input propertychange", function (t) {

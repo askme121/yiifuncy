@@ -464,6 +464,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 
     <script type="text/javascript">
         <?php $this->beginBlock('js_block') ?>
+        showHidePassword('#password');
+        showHideRegisterPassword('#register-pass');
         $(document).ready(function(){
             $('#detail-arousel').carousel({
                 pause: true,
