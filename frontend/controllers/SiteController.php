@@ -73,7 +73,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        echo date("Y-m-d H:i:s");exit;
         $site_id = Yii::$app->params['site_id'];
         $time = time();
         $meta = [];
