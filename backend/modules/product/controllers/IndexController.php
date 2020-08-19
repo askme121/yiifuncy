@@ -2,6 +2,7 @@
 
 namespace product\controllers;
 
+use common\models\Activity;
 use common\models\Product;
 use common\models\searchs\ProductSearch;
 use Faker\Provider\Uuid;
@@ -121,11 +122,16 @@ class IndexController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if($model->delete()){
-            return json_encode(['code'=>200,"msg"=>"删除成功"]);
-        }else{
-            $errors = $model->firstErrors;
-            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        $res = Activity::find()->where(['product_id'=>$id])->one();
+        if ($res) {
+            return json_encode(['code'=>401,"msg"=>'该产品有活动，请先删除活动']);
+        } else {
+            if($model->delete()){
+                return json_encode(['code'=>200,"msg"=>"删除成功"]);
+            }else{
+                $errors = $model->firstErrors;
+                return json_encode(['code'=>400,"msg"=>reset($errors)]);
+            }
         }
     }
 

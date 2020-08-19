@@ -2,6 +2,7 @@
 
 namespace product\controllers;
 
+use common\models\Product;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -130,11 +131,16 @@ class CategoryController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if($model->delete()){
-            return json_encode(['code'=>200,"msg"=>"删除成功"]);
-        }else{
-            $errors = $model->firstErrors;
-            return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        $res = Product::find()->where(['category_id'=>$id])->one();
+        if ($res) {
+            return json_encode(['code'=>401,"msg"=>'该分类下面有产品，请先删除产品']);
+        } else {
+            if($model->delete()){
+                return json_encode(['code'=>200,"msg"=>"删除成功"]);
+            }else{
+                $errors = $model->firstErrors;
+                return json_encode(['code'=>400,"msg"=>reset($errors)]);
+            }
         }
     }
 

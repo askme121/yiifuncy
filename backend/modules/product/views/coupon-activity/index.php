@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 use yii\grid\GridView;
+use common\models\Activity;
 use common\models\ActivityType;
 
 LayuiAsset::register($this);
@@ -195,6 +196,7 @@ $this->registerJs($this->render('js/index.js'));
                                  <dl class="nav-myself-dl">
                                      {update}
                                      {copy}
+                                     {del}
                                      <dd>{delete}</dd>
                                  </dl>
                              </li>
@@ -227,6 +229,13 @@ $this->registerJs($this->render('js/index.js'));
                     },
                     'delete' => function ($url, $model, $key) {
                         return Html::a('取消', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);
+                    },
+                    'del' => function ($url, $model, $key) {
+                        if (Yii::$app->user->identity->role_id == 1 && $model->status == Activity::STATUS_CANCEL) {
+                            return Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]);
+                        } else {
+                            return '';
+                        }
                     }
                 ]
             ],

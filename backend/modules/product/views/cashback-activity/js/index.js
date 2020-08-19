@@ -125,10 +125,36 @@ layui.config({
         });
         return false;
     });
-    //  删除分类操作
+    //  取消操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
         layer.confirm('确定取消此活动吗？',{icon:3, title:'提示信息'},function(index){
+            $.post(href,function(data){
+                if(data.code===200){
+                    layer.msg(data.msg);
+                    layer.close(index);
+                    setTimeout(function(){
+                        location.reload();
+                    },500);
+                }else{
+                    layer.close(index);
+                    layer.msg(data.msg);
+                }
+            },"json").fail(function(a,b,c){
+                if(a.status==403){
+                    layer.msg('没有权限');
+                }else{
+                    layer.msg('系统错误');
+                }
+            });
+        });
+        return false;
+    });
+
+    // 删除操作
+    $("body").on("click",".layui-default-del",function(){
+        var href = $(this).attr("href");
+        layer.confirm('确定删除此活动吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
