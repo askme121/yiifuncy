@@ -183,6 +183,18 @@ $this->registerJs($this->render('js/index.js'));
                 },
             ],
             [
+                'attribute' => 'is_hot',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+            ],
+            [
+                'attribute' => 'order',
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'html',
+                ''
+            ],
+            [
                 'header' => '操作',
                 'class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['class'=>'text-center'],

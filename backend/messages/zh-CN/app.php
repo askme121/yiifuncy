@@ -108,5 +108,6 @@ return [
     'title' => '标题',
     'content' => '内容',
     'publish_at' => '发布时间',
-    'sold_by' => 'Sold by'
+    'sold_by' => 'Sold by',
+    'is_hot' => '是否推荐'
 ];

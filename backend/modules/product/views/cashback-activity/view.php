@@ -63,6 +63,17 @@ LayuiAsset::register($this);
                     }
                 }
             ],
+            'order',
+            [
+                "attribute" => "is_hot",
+                "value" => function($model){
+                    if ($model->is_hot == 1) {
+                        return '是';
+                    } else {
+                        return '否';
+                    }
+                }
+            ],
         ],
         'template' => '<tr><th width="100px">{label}</th><td>{value}</td></tr>',
     ]);

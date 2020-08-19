@@ -2,6 +2,7 @@
 
 namespace product\controllers;
 
+use common\models\Order;
 use Faker\Provider\Uuid;
 use Yii;
 use yii\filters\VerbFilter;
@@ -19,6 +20,7 @@ class CashbackActivityController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'del' => ['POST'],
                 ],
             ],
         ];
@@ -166,6 +168,25 @@ class CashbackActivityController extends Controller
         }else{
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);
+        }
+    }
+
+    public function actionDel($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->status != Activity::STATUS_CANCEL){
+            return json_encode(['code'=>402,"msg"=>'已取消的活动才能删除']);
+        }
+        $res = Order::find()->where(['activity_id'=>$id])->one();
+        if ($res){
+            return json_encode(['code'=>401,"msg"=>'该活动已有订单，无法删除']);
+        } else {
+            if($model->delete()){
+                return json_encode(['code'=>200,"msg"=>"删除成功"]);
+            }else{
+                $errors = $model->firstErrors;
+                return json_encode(['code'=>400,"msg"=>reset($errors)]);
+            }
         }
     }
 
