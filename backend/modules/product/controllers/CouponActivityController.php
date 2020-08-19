@@ -215,6 +215,7 @@ class CouponActivityController extends Controller
             return json_encode(['code'=>401,"msg"=>'该活动已有订单，无法删除']);
         } else {
             if($model->delete()){
+                Coupon::deleteAll(['activity_id'=>$id]);
                 return json_encode(['code'=>200,"msg"=>"删除成功"]);
             }else{
                 $errors = $model->firstErrors;

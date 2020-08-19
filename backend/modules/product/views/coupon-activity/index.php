@@ -232,7 +232,7 @@ $this->registerJs($this->render('js/index.js'));
                     },
                     'del' => function ($url, $model, $key) {
                         if (Yii::$app->user->identity->role_id == 1 && $model->status == Activity::STATUS_CANCEL) {
-                            return Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]);
+                            return '<dd>'.Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]).'</dd>';
                         } else {
                             return '';
                         }

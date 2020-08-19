@@ -89,10 +89,14 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'product.name',
                 'headerOptions' => ['style'=> 'text-align: center; width: 200px;'],
                 'contentOptions' => ['style'=> 'text-align: left; width: 200px;white-space: inherit;overflow: hidden;text-overflow: ellipsis;'],
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function($model){
-                    $url = getSiteUrl($model->site_id).'/offer/'.$model->url_key.'/'.$model->id;
-                    return Html::a($model->product->name, $url, ['target' => '_blank']);
+                    if (Yii::$app->user->identity->role_id != 3) {
+                        $url = getSiteUrl($model->site_id).'/offer/'.$model->url_key.'/'.$model->id;
+                        return Html::a($model->product->name, $url, ['target' => '_blank']);
+                    } else {
+                        return $model->product->name;
+                    }
                 }
             ],
             [
@@ -186,6 +190,14 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'is_hot',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
+                'format' => 'raw',
+                'value' => function($model) {
+                    if ($model->is_hot == 1) {
+                        return '<span class="yes" onclick="changeTableVal(\'activity\',\'id\','.$model->id.',\'is_hot\',this)"><i class="fa fa-check-circle"></i>YES</span>';
+                    } else {
+                        return '<span class="no" onclick="changeTableVal(\'activity\',\'id\','.$model->id.',\'is_hot\',this)"><i class="fa fa-ban"></i>NO</span>';
+                    }
+                }
             ],
             [
                 'attribute' => 'order',
@@ -243,7 +255,7 @@ $this->registerJs($this->render('js/index.js'));
                     },
                     'del' => function ($url, $model, $key) {
                         if (Yii::$app->user->identity->role_id == 1 && $model->status == Activity::STATUS_CANCEL) {
-                            return Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]);
+                            return '<dd>'.Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]).'</dd>';
                         } else {
                             return '';
                         }

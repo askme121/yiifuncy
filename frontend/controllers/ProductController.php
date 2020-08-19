@@ -92,7 +92,7 @@ class ProductController extends Controller
                         break;
                     case 3:
                         if ($vv['coupon_type'] == 1){
-                            $model[$kk]['final_price'] = number_format($vv['price'] * (1 - $vv['coupon']/100) - $vv['cashback'], 2);
+                            $model[$kk]['final_price'] = number_format(number_format($vv['price'] * (1 - $vv['coupon']/100), 2) - $vv['cashback'], 2);
                             $model[$kk]['total_off'] = number_format($vv['coupon'] + number_format($vv['cashback']/$vv['price'], 2)*100, 0);
                         } else {
                             $model[$kk]['final_price'] = number_format($vv['price'] - $vv['coupon'] - $vv['cashback'], 2);
@@ -146,7 +146,7 @@ class ProductController extends Controller
                     $model['final_price'] = number_format($model['price'] - $model['cashback'], 2);
                 } else if ($model['type'] == 3){
                     if ($model['coupon_type'] == 1){
-                        $model['final_price'] = number_format($model['price'] * (1 - $model['coupon']/100)-$model['cashback'], 2);
+                        $model['final_price'] = number_format(number_format($model['price'] * (1 - $model['coupon']/100), 2) - $model['cashback'], 2);
                     } else {
                         $model['final_price'] = number_format($model['price'] - $model['coupon'] - $model['cashback'], 2);
                     }

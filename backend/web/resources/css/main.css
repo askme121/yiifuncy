@@ -186,6 +186,20 @@
 .summary{margin-top: 10px}
 .summary b{font-weight: normal; padding: 0 3px; color: red}
 
+i.fa {
+	font-size: 14px;
+	vertical-align: baseline;
+	margin-right: 4px;
+}
+td .no {
+	color: #9ea3a7;
+	cursor: default;
+}
+td .yes {
+	color: #1BBC9D;
+	cursor: default;
+}
+
 /*响应式*/
 @media screen and (max-width:1282px){
 	.panel{ width:33.3333%; }

@@ -102,7 +102,7 @@ class SiteController extends Controller
                         break;
                     case 3:
                         if ($vv['coupon_type'] == 1){
-                            $top_all[$kk]['final_price'] = number_format($vv['price'] * (1 - $vv['coupon']/100) - $vv['cashback'], 2);
+                            $top_all[$kk]['final_price'] = number_format(number_format($vv['price'] * (1 - $vv['coupon']/100), 2) - $vv['cashback'], 2);
                             $top_all[$kk]['total_off'] = number_format($vv['coupon'] + number_format($vv['cashback']/$vv['price'], 2)*100, 0);
                         } else {
                             $top_all[$kk]['final_price'] = number_format($vv['price'] - $vv['coupon'] - $vv['cashback'], 2);
@@ -135,7 +135,7 @@ class SiteController extends Controller
                         break;
                     case 3:
                         if ($vv['coupon_type'] == 1){
-                            $cashback_coupon[$kk]['final_price'] = number_format($vv['price'] * (1 - $vv['coupon']/100) - $vv['cashback'], 2);
+                            $cashback_coupon[$kk]['final_price'] = number_format(number_format($vv['price'] * (1 - $vv['coupon']/100), 2) - $vv['cashback'], 2);
                             $cashback_coupon[$kk]['total_off'] = number_format($vv['coupon'] + number_format($vv['cashback']/$vv['price'], 2)*100, 0);
                         } else {
                             $cashback_coupon[$kk]['final_price'] = number_format($vv['price'] - $vv['coupon'] - $vv['cashback'], 2);
@@ -168,7 +168,7 @@ class SiteController extends Controller
                         break;
                     case 3:
                         if ($vv['coupon_type'] == 1){
-                            $cashback[$kk]['final_price'] = number_format($vv['price'] * (1 - $vv['coupon']/100) - $vv['cashback'], 2);
+                            $cashback[$kk]['final_price'] = number_format(number_format($vv['price'] * (1 - $vv['coupon']/100), 2) - $vv['cashback'], 2);
                             $cashback[$kk]['total_off'] = number_format($vv['coupon'] + number_format($vv['cashback']/$vv['price'], 2)*100, 0);
                         } else {
                             $cashback[$kk]['final_price'] = number_format($vv['price'] - $vv['coupon'] - $vv['cashback'], 2);
