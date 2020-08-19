@@ -192,7 +192,6 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
                 'format' => 'html',
-                ''
             ],
             [
                 'header' => '操作',
