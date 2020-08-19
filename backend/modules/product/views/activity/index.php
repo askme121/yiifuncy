@@ -203,7 +203,10 @@ $this->registerJs($this->render('js/index.js'));
                 'attribute' => 'order',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],
-                'format' => 'html',
+                'format' => 'raw',
+                'value' => function($model) {
+                    return '<input type="text" class="my-input" onkeyup="this.value=this.value.replace(/[^\d]/g,\'\')" onpaste="this.value=this.value.replace(/[^\d]/g,\'\')" onblur="changeTableVal(\'activity\',\'id\','.$model->id.',\'order\',this)" size="4" value="'.$model->order.'">';
+                }
             ],
             [
                 'header' => '操作',

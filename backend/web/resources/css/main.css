@@ -199,6 +199,14 @@ td .yes {
 	color: #1BBC9D;
 	cursor: default;
 }
+.my-input{
+	padding: 2px 4px;
+	border-radius: 4px;
+	color: #333333;
+	background-color: #FFF;
+	border: solid 1px #D7D7D7;
+	width: 40px;
+}
 
 /*响应式*/
 @media screen and (max-width:1282px){
