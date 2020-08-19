@@ -85,7 +85,8 @@ class ActivityController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;
-                return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
+                //return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
+                return array_values($error);
             }
         } else {
             return $this->render('create', ['model' => $model,]);

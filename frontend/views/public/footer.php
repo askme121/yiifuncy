@@ -5,24 +5,13 @@ use yii\helpers\Html;
 <div id="newsletter" class="hidden-sm hidden-xs">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12 newsletter-tip-block">
-                <h4 class="">
-                    Get Updates For Free
+            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 newsletter-tip-block">
+                <h4 class="text-center">
+                    Join CashBackClub for Free & Get up to 100% Cash Back Today!
                 </h4>
-                <p>
-                    Subscribe to our newsletter for latest deals.
+                <p class="text-center" style="margin-top: 40px; margin-bottom: 20px">
+                    <a href="<?= Url::toRoute('/site/login');?>" class="join-btn">Join Now</a>
                 </p>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="newsletter-form">
-                    <div class="input-group">
-                        <input class="form-control" id="newsletter-email" type="text" name="newsletter" placeholder="<?= Yii::t('app', 'enter_email'); ?>" value="">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn" id="newsletter-submit">Subscribe</button>
-                        </span>
-                    </div>
-                </div>
-                <span class="help-block" id="newsletter-tips"></span>
             </div>
         </div>
     </div>

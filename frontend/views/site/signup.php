@@ -62,6 +62,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                                 </span>
                             </div>
                             <div class="form-group">
+                                <label class="login-read">
+                                    <input type="checkbox" name="subscribe" id="is_subscribe" checked>
+                                    <i>✓</i>
+                                    Subscribe to the CashBackClub Newsletter
+                                </label>
+                            </div>
+                            <div class="form-group">
                                 <p style="margin-top: 10px;margin-bottom: 30px;font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's
                                     <a class="agreement" target="_blank" href="<?= Url::toRoute('/site/terms');?>" style="color:#2b95ff;">terms of service</a>
                                     and

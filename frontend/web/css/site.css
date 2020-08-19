@@ -2631,6 +2631,39 @@ span.septal-row {
 #msg-detal-tab{
     margin-top: 15px;
 }
+.join-btn{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    padding: 12px 40px;
+    background-color: #f4511e;
+    border-radius: 25px;
+}
+.login-read{
+    font-size: 14px;
+}
+.login-read input[type="checkbox"]{
+    display: none;
+}
+.login-read input[type="checkbox"]:checked + i {
+    color: #fff;
+}
+.login-read i {
+    font-size: 20px;
+    font-style: normal;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    color: #4BA3D3;
+    vertical-align: middle;
+    margin: -2px 5px 1px 0px;
+    border: #f93 1px solid;
+    background-color: #f93;
+}
 
 @media (min-width:1400px) {
     .container {
