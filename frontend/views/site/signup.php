@@ -64,7 +64,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <div class="form-group">
                                 <label class="login-read">
                                     <input type="checkbox" name="subscribe" id="is_subscribe" checked>
-                                    <i>✓</i>
+                                    <i id="toggle">✓</i>
                                     Subscribe to the CashBackClub Newsletter
                                 </label>
                             </div>
@@ -134,6 +134,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             var username = $('input[name="username"][id="username"]').val();
             var password = $('input[name="password"][id="register-pass"]').val();
             var captcha = $('input[name="captcha"]').val();
+            var is_subscribe = $('input[name="subscribe"]').val();
             if (first_name == '')
             {
                 $("#first_name").focus();
@@ -201,6 +202,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 }
             });
         });
+        $("#toggle").click(function () {
+            var is = $("#is_subscribe").prop("checked");
+            if (is) {
+                $("#is_subscribe").attr("checked", false);
+                $(this).css({color:'#f93'});
+            } else {
+                $("#is_subscribe").attr("checked", true);
+                $(this).css({color:'#fff'});
+            }
+        })
     });
     <?php $this->endBlock(); ?>
     <?php $this->registerJs($this->blocks['js'],\yii\web\View::POS_END); ?>
