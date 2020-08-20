@@ -539,6 +539,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             var username = $('input[name="username"][id="reg_username"]').val();
             var password = $('input[name="password"][id="register-pass"]').val();
             var captcha = $('input[name="captcha"]').val();
+            var is_status = $("#is_subscribe").attr("checked");
+            var is_subscribe = is_status == 'checked'?1:0;
             if (first_name == '')
             {
                 $("#first_name").focus();
@@ -578,7 +580,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     last_name: last_name,
                     username: username,
                     password: password,
-                    captcha: captcha
+                    captcha: captcha,
+                    is_subscribed: is_subscribe
                 },
                 success: function(response){
                     if (response.code == 1) {
@@ -906,6 +909,17 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     $('.jq-error').show();
                 }
             });
+        });
+
+        $("#toggle").click(function () {
+            var is = $("#is_subscribe").prop("checked");
+            if (is) {
+                $("#is_subscribe").attr("checked", false);
+                $(this).css({color:'#f93'});
+            } else {
+                $("#is_subscribe").attr("checked", true);
+                $(this).css({color:'#fff'});
+            }
         });
 
         $('.jq-dismiss-modal').click(function(){

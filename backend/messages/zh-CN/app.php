@@ -109,5 +109,6 @@ return [
     'content' => '内容',
     'publish_at' => '发布时间',
     'sold_by' => 'Sold by',
-    'is_hot' => '是否推荐'
+    'is_hot' => '是否推荐',
+    'is_subscribed' => '是否订阅'
 ];

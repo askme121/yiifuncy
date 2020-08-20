@@ -52,9 +52,13 @@ use yii\helpers\Url;
                     <div class="form-group">
                         <input type="text" name="captcha"  class="form-control verify-code" placeholder="*Enter code" style="margin-top: 0 !important;width: 150px !important;">
                         <img id="captcha" src="<?php echo Url::toRoute('/site/captcha').'?'.md5(time() . mt_rand(1,10000));?>" onclick="this.src='<?= Url::toRoute('/site/captcha') ?>?'+Math.random()">
-                        <span>
-                            <a class="change-code-btn" href="javascript:;" onclick="$('#captcha').attr('src', '<?= Url::toRoute('/site/captcha'); ?>?'+Math.random());">Change</a>
-                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="login-read">
+                            <input type="checkbox" name="subscribe" id="is_subscribe" checked>
+                            <i id="toggle">✓</i>
+                            Subscribe to the CashBackClub Newsletter
+                        </label>
                     </div>
                     <div class="form-group">
                         <p style="margin-top: 10px; margin-bottom: 0; font-size: 14px;">By clicking “Sign up”, I agree to CashBackClub's

@@ -15,6 +15,7 @@ class SignupForm extends Model
     public $username;
     public $password;
     public $captcha;
+    public $is_subscribed;
     public $rememberMe = true;
 
     public function rules()
@@ -31,6 +32,7 @@ class SignupForm extends Model
             ['first_name', 'string', 'min' => 2, 'max' => 255],
             ['last_name', 'string', 'min' => 2, 'max' => 255],
             ['captcha', 'captcha'],
+            [['is_subscribed', 'rememberMe'], 'safe']
         ];
     }
 
@@ -43,6 +45,7 @@ class SignupForm extends Model
         $user->firstname = $this->first_name;
         $user->lastname = $this->last_name;
         $user->r_id = 1;
+        $user->is_subscribed = $this->is_subscribed;
         $user->created_ip = Yii::$app->getRequest()->getUserIP();
         $user->status = User::STATUS_ACTIVE;
         $user->setPassword($this->password);
