@@ -2630,6 +2630,7 @@ span.septal-row {
 }
 #msg-detal-tab{
     margin-top: 15px;
+    position: relative;
 }
 .join-btn{
     font-size: 20px;
@@ -2663,6 +2664,22 @@ span.septal-row {
     margin: -2px 0px 1px 0px;
     border: #f93 1px solid;
     background-color: #f93;
+}
+.create_msg{
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    padding: 7px 15px;
+    background-color: #f93;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+.create_msg i{
+    margin-right: 3px;
+}
+#upmsg-form{
+    padding: 10px;
 }
 
 @media (min-width:1400px) {
@@ -2902,6 +2919,7 @@ span.septal-row {
         width: auto;
         padding: 10px;
         padding-top: 0px;
+        float: none;
     }
     .public-profile {
         width: 90%;

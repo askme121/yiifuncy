@@ -52,6 +52,9 @@ use common\models\Contact;
                 </div>
                 <ul class="nav navbar-nav">
                     <li>
+                        <a href="<?= Url::toRoute('/site/about');?>" target="_self">Home</a>
+                    </li>
+                    <li>
                         <a href="<?= Url::toRoute('/product');?>" target="_self">All Deals</a>
                     </li>
                     <li>

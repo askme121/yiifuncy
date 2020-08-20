@@ -23,6 +23,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 <li <?php if (Yii::$app->request->get('type') == 1){?>class="in active"<? }?>>
                     <a href="<?= Url::toRoute(['/user/message', 'type'=>1]) ?>">Sent items</a>
                 </li>
+                <button class="create_msg" data-toggle="modal" data-target=".operation-upmsg"><i class="fa fa-plus"></i>New message</button>
             </ul>
             <div id="account-tab-content" class="tab-content">
                 <div class="tab-pane fade in active" id="inbox">
@@ -45,3 +46,4 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+<?= $this->render('../public/upmsg'); ?>
