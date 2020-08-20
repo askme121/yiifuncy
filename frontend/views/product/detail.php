@@ -846,6 +846,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 1:
                             $('.modal-body').hide();
                             $('.jq-get-quota').show();
+                            $('#purchase-link').attr('href', response.link);
                             $('#purchase-link').data('href', response.link);
                             $('#purchase-link').data('asin', response.asin);
                             $('.deal-expires-time').attr('data-expired-time', response.expired_at);
@@ -855,6 +856,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 2:
                             $('.modal-body').hide();
                             $('#show-coupon-code').text(response.coupon_code);
+                            $('#coupon-purchase-link').attr('href', response.link);
                             $('#coupon-purchase-link').data('href', response.link);
                             $('#coupon-purchase-link').data('asin', response.asin);
                             $('#current_order_id').val(response.order_id);
@@ -924,7 +926,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             }
         });
 
-        $('#coupon-purchase-link,#purchase-link').click(function (){
+        /*$('#coupon-purchase-link,#purchase-link').click(function (){
             var asin = $(this).data('asin'),
                 link = $(this).data('href'),
                 AMZ_PURCHASE_LINK_WEB = "https://www.amazon.com/dp/",
@@ -938,7 +940,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 //webPurchaseLink += (separator + webLinkTag);
             }
             openWithApp(appPurchaseLink, webPurchaseLink);
-        });
+        });*/
 
         $('.jq-dismiss-modal').click(function(){
             $('.is-logged-in-modal').modal('hide');
