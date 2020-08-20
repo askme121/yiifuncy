@@ -28,9 +28,10 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <div class="msg_foot">
                 <a href="javascript:history.back()">back >></a>
                 <?php if ($model->type == 2) {?>
-                <button type="button" class=""><i class="fa fa-reply"></i>Reply</button>
+                <button type="button" data-toggle="modal" data-target=".operation-upmsg"><i class="fa fa-reply"></i>Reply</button>
                 <?php }?>
             </div>
         </div>
     </div>
 </div>
+<?= $this->render('../public/upmsg'); ?>
