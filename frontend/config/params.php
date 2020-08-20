@@ -1,6 +1,6 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'support@theclubofcashback.com',
     'site_id' => 1,
     'currency' => 'USD',
 ];
