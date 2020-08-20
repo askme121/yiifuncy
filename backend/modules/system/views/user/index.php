@@ -112,12 +112,16 @@ $this->registerJs($this->render('js/index.js'));
 			'created_address',
             [
                 'attribute' => 'last_login_date',
-                'value' => function($model){
-                    return date("Y-m-d H:i:s",$model->last_login_date);
-                },
-				'headerOptions' => [
+                'headerOptions' => [
 					'width' => '8%'
-				]
+				],
+                'value' => function($model){
+                    if ($model->last_login_date) {
+                        return date("Y-m-d H:i:s", $model->last_login_date);
+                    } else {
+                        return '';
+                    }
+                }
             ],
 			'last_login_ip',
 			'last_login_address',
