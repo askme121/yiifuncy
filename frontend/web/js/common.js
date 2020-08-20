@@ -30,8 +30,8 @@ function showHideRegisterPassword(e) {
 }
 
 function openWithApp(appLink, webURL) {
-    var timeout = 2000,
-        timeDelay = 200,
+    var timeout = 5000,
+        timeDelay = 500,
         openTime = Date.now(),
         timer;
 
