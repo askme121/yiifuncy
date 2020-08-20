@@ -846,7 +846,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 1:
                             $('.modal-body').hide();
                             $('.jq-get-quota').show();
-                            $('.amazon_link').attr('href', response.link);
+                            $('#purchase-link').data('href', response.link);
+                            $('#purchase-link').data('asin', response.asin);
                             $('.deal-expires-time').attr('data-expired-time', response.expired_at);
                             $('#current_order_id').val(response.order_id);
                             $('#sold-by').text(response.sold_by);
@@ -854,7 +855,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                         case 2:
                             $('.modal-body').hide();
                             $('#show-coupon-code').text(response.coupon_code);
-                            $('#coupon-purchase-link').attr('href', response.link);
+                            $('#coupon-purchase-link').data('href', response.link);
+                            $('#coupon-purchase-link').data('asin', response.asin);
                             $('#current_order_id').val(response.order_id);
                             $('#coupon-sold-by').text(response.sold_by);
                             $('.jq-got-coupon-code-success').show();
@@ -920,6 +922,22 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 $("#is_subscribe").attr("checked", true);
                 $(this).css({color:'#fff'});
             }
+        });
+
+        $('#coupon-purchase-link,#purchase-link').click(function (){
+            var asin = $(this).data('asin'),
+                link = $(this).data('href'),
+                AMZ_PURCHASE_LINK_WEB = "https://www.amazon.com/dp/",
+                AMZ_PURCHASE_LINK_APP = "com.amazon.mobile.shopping.web://www.amazon.com/dp/",
+                AMZ_DOMAIN = "amazon.com",
+                webLinkTag = "tag=ddddddd-20",
+                separator = (link && link.indexOf('?') !== -1) ? "&" : "?",
+                webPurchaseLink = link ? link : AMZ_PURCHASE_LINK_WEB + asin,
+                appPurchaseLink = AMZ_PURCHASE_LINK_APP + asin;
+            if (webPurchaseLink.indexOf(AMZ_DOMAIN) !== -1) {
+                //webPurchaseLink += (separator + webLinkTag);
+            }
+            openWithApp(appPurchaseLink, webPurchaseLink);
         });
 
         $('.jq-dismiss-modal').click(function(){

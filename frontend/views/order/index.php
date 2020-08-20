@@ -89,7 +89,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             <div class="option-list">
                                 <?php if ($order['status'] == 1){?>
                                     <a class="btn btn-lg operation-btn btn-w-m" href="<?= Url::to('/contact/'.$order['id'])?>" target="_blank"><i class="fa fa-comments"></i> Contact Us</a>
-                                    <a class="operation-btn" href="<?= $order['amazon_url']?>" target="_blank">Buy it on Amazon</a>
+                                    <a class="operation-btn buy_on_amazon" href="javascript:void(0)" data-href="<?= $order['amazon_url']?>" data-asin="<?= $order['activity']['asin'] ?>" target="_blank">Buy it on Amazon</a>
                                     <button type="button" class="btn btn-lg operation-btn jq-add-refund" data-toggle="modal" data-target=".operation-uporder" data-url="<?= Url::to('/order/upgrade/'.$order['id'])?>">Submit Order info</button>
                                     <button type="button" class="btn btn-lg operation-btn jq-cancel-order" id="operation-cancal" data-toggle="modal" data-target=".cancel-surebox" data-url="<?= Url::to('/order/giveup/'.$order['id'])?>">Give Up</button>
                                 <?php } else if ($order['status'] == 2){?>
@@ -209,6 +209,21 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     swal('Oops', 'Server error, please try again later.', 'error');
                 }
             });
+        });
+        $('.buy_on_amazon').click(function (){
+            var asin = $(this).data('asin'),
+                link = $(this).data('href'),
+                AMZ_PURCHASE_LINK_WEB = "https://www.amazon.com/dp/",
+                AMZ_PURCHASE_LINK_APP = "com.amazon.mobile.shopping.web://www.amazon.com/dp/",
+                AMZ_DOMAIN = "amazon.com",
+                webLinkTag = "tag=ddddddd-20",
+                separator = (link && link.indexOf('?') !== -1) ? "&" : "?",
+                webPurchaseLink = link ? link : AMZ_PURCHASE_LINK_WEB + asin,
+                appPurchaseLink = AMZ_PURCHASE_LINK_APP + asin;
+            if (webPurchaseLink.indexOf(AMZ_DOMAIN) !== -1) {
+                //webPurchaseLink += (separator + webLinkTag);
+            }
+            openWithApp(appPurchaseLink, webPurchaseLink);
         });
         window.setInterval(function () {
             $(".drop_time").each(function () {

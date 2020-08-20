@@ -302,6 +302,7 @@ class OrderController extends Controller
                         'message' => 'you have unfinished deals',
                         'coupon_code' => $curr_order->coupon_code,
                         'link' => $curr_order->amazon_url,
+                        'asin' => $activity->asin,
                         'order_id' => $curr_order->id,
                         'sold_by' => $activity->sold_by
                     ]);
@@ -353,6 +354,7 @@ class OrderController extends Controller
                             'status' => 1,
                             'message' => 'successful',
                             'link' => $activity->amazon_url,
+                            'asin' => $activity->asin,
                             'order_id' => $model->id,
                             'sold_by' => $activity->sold_by
                         ]);
@@ -391,6 +393,7 @@ class OrderController extends Controller
                             'message' => 'successful',
                             'coupon_code' => $coupon->coupon_code,
                             'link' => $activity->amazon_url,
+                            'asin' => $activity->asin,
                             'order_id' => $model->id,
                             'sold_by' => $activity->sold_by
                         ]);
