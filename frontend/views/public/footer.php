@@ -10,7 +10,7 @@ use yii\helpers\Html;
                     Join CashBackClub for Free & Get up to 100% Cash Back Today!
                 </h4>
                 <p class="text-center" style="margin-top: 40px; margin-bottom: 20px">
-                    <a href="<?= Url::toRoute('/site/login');?>" class="join-btn">Join Now</a>
+                    <a href="<?= Url::toRoute('/site/signup');?>" class="join-btn">Join Now</a>
                 </p>
             </div>
         </div>
