@@ -146,7 +146,6 @@ $this->registerJs($this->render('js/index.js'));
                                  {view}
                                  <dl class="nav-myself-dl">
                                      {update}
-                                     <dd>{delete}</dd>
                                  </dl>
                              </li>
                              {activate}
@@ -165,9 +164,6 @@ $this->registerJs($this->render('js/index.js'));
                             return '<li class="nav-myself-li">'.Html::a('禁用', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-default-active"]).'</li>';
 						}
                     },
-					'delete' => function ($url, $model, $key) {
-                        return Html::a('删除', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);
-					}
 				]
 			],
         ],
