@@ -28,7 +28,7 @@ class MessageForm extends Model
     {
         return Yii::$app->mailer->compose()
             ->setTo($email)
-            ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+            ->setFrom([$this->email => $this->name])
             ->setReplyTo([$this->email => $this->name])
             ->setSubject($this->subject)
             ->setTextBody($this->body)
