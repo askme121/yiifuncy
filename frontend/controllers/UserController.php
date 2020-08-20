@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Contact;
+use frontend\models\MessageForm;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -26,7 +27,7 @@ class UserController extends Controller
                         'roles' => ['@'],
                     ],
                     ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
-                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile', 'change-url'], 'verbs' => ['POST']],
+                    ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile', 'change-url', 'ajax-message'], 'verbs' => ['POST']],
                 ],
             ],
             'verbs' => [
@@ -234,5 +235,32 @@ class UserController extends Controller
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         return $this->render('messageview', ['model'=>$model, 'meta'=>$meta, 'current'=>$current]);
+    }
+
+    public function actionAjaxMessage()
+    {
+        $model = new MessageForm();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if (!$model->validate()){
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
+            } else {
+                $res = $model->doSubmit();
+                if ($res === true) {
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'Successful'
+                    ]);
+                } else {
+                    return json_encode([
+                        'code' => 0,
+                        'message' => $res,
+                    ]);
+                }
+            }
+        }
     }
 }

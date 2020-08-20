@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use common\models\Contact;
 
-class ContactForm extends Model
+class MessageForm extends Model
 {
     public $name;
     public $email;
@@ -14,7 +14,6 @@ class ContactForm extends Model
     public $body;
     public $order_id = 0;
     public $parent = 0;
-    public $verifyCode;
 
     public function rules()
     {
@@ -22,14 +21,6 @@ class ContactForm extends Model
             [['name', 'email', 'subject', 'body'], 'required'],
             ['email', 'email'],
             [['parent', 'order_id'], 'integer'],
-            ['verifyCode', 'captcha'],
-        ];
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'verifyCode' => 'Verification Code',
         ];
     }
 
@@ -54,12 +45,21 @@ class ContactForm extends Model
         $model->type = 1;
         $model->site_id = Yii::$app->params['site_id'];
         $model->order_id = $this->order_id;
+        if ($this->parent > 0) {
+            $info = Contact::findOne($this->parent);
+            $model->order_id = $info->order_id;
+            $model->parent = $this->parent;
+        }
         $model->ip = Yii::$app->getRequest()->getUserIP();
         if (!Yii::$app->user->isGuest){
             $model->user_id = Yii::$app->user->identity->id;
         }
         $res = $model->save();
         if ($res){
+            if (isset($info) && !empty($info)) {
+                $info->status = 2;
+                $info->save();
+            }
             $this->sendEmail(Yii::$app->params['adminEmail']);
             return true;
         } else {
