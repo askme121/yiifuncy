@@ -427,3 +427,32 @@ function showImg(images){
 		}
 	});
 }
+
+function changeTableVal(table,id_name,id_value,field,obj)
+{
+    var src = "";
+    if($(obj).hasClass('no'))
+    {
+        $(obj).removeClass('no').addClass('yes');
+        $(obj).html("<i class='fa fa-check-circle'></i>YES");
+        var value = 1;
+    }
+    else if($(obj).hasClass('yes'))
+    {
+        $(obj).removeClass('yes').addClass('no');
+        $(obj).html("<i class='fa fa-ban'></i>NO");
+        var value = 0;
+    }
+    else
+    {
+        var value = $(obj).val();
+    }
+    $.ajax({
+        url:"/Admin/Index/changeTableVal?table="+table+"&id_name="+id_name+"&id_value="+id_value+"&field="+field+'&value='+value,
+        success: function(data)
+        {
+            if(!$(obj).hasClass('no') && !$(obj).hasClass('yes'))
+                layer.msg('完了しました', {icon: 1,time:2000});
+        }
+    });
+}
