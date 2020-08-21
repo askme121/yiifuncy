@@ -59,7 +59,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </a>
             </li>
             <li class="account-nav-li">
-                <a href="/account/sellermsg">
+                <a href="<?= Url::toRoute('/user/message')?>">
                     Message Center
                     <i class="fa fa-angle-right account-nav-icon" aria-hidden="true"></i>
                 </a>
