@@ -177,9 +177,4 @@ layui.config({
         });
         return false;
     });
-
-    function set_show(obj){
-        var Url = obj.data('url');
-        parent.layui.index.openTabsPage(Url, obj.attr("data-title"));
-    }
 });

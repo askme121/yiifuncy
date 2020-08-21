@@ -25,7 +25,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'test', 'clear', 'change'],
+                        'actions' => ['logout', 'index', 'test', 'clear', 'change', 'dump'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -139,12 +139,29 @@ class SiteController extends Controller
 
     public function actionChange()
     {
-        $site_id = \Yii::$app->request->get('site_id');
+        $site_id = Yii::$app->request->get('site_id');
         if ($site_id){
             \Yii::$app->session['default_site_id'] = $site_id;
             return json_encode(['code'=>200,"msg"=>"切换成功"]);
         } else {
             return json_encode(['code'=>0,"msg"=>"切换失败"]);
+        }
+    }
+
+    public function actionDump()
+    {
+        $table = Yii::$app->request->get('table'); // 表名
+        $id_name = Yii::$app->request->get('id_name'); // 表主键id名
+        $id_value = Yii::$app->request->get('id_value'); // 表主键id值
+        $field  = Yii::$app->request->get('field'); // 修改哪个字段
+        $value  = Yii::$app->request->get('value'); // 修改字段值
+        $data = Yii::$app->db->createCommand()->update("{{%$table}}", [
+            $field => $value
+        ], "$id_name=:$id_name", [$id_name => $id_value])->execute();
+        if ($data !== false) {
+            return json_encode(['code'=>200,"msg"=>"操作成功"]);
+        } else {
+            return json_encode(['code'=>0,"msg"=>"操作失败"]);
         }
     }
 

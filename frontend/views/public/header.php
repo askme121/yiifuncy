@@ -70,7 +70,7 @@ use common\models\Contact;
                         <a href="<?= Url::toRoute('/site/faq');?>" target="_self">FAQ</a>
                     </li>
                     <li>
-                        <a href="<?= Url::toRoute('/site/contact');?>" target="_self">Contact us</a>
+                        <a href="<?= Url::toRoute('/site/contact');?>" target="_self">Contact Us</a>
                     </li>
                     <li style="float: right;overflow: hidden;">
 
