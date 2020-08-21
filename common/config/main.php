@@ -22,7 +22,8 @@ return [
             'class' => 'yii\redis\Connection',
             'hostname' => 'localhost',
             'port' => 6379,
-            'database' => 0
+            'database' => 0,
+            'password' => ''
         ],
         'mailer' => [
             'class' => 'wadeshuler\sendgrid\Mailer',

@@ -6,8 +6,6 @@ use backend\models\Team;
 use yii\helpers\ArrayHelper;
 
 $this->registerJs($this->render('js/upload.js'));
-$role_list = Role::getList();
-$team_list = Team::getList();
 ?>
 <style type="text/css">
     .userinfo_head_pic{
@@ -18,7 +16,9 @@ $team_list = Team::getList();
     <?php $form = ActiveForm::begin(['options' => ['class' => 'layui-form']]); ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true,'class'=>'layui-input','readonly'=>true]) ?>
 	<?= $form->field($model, 'nickname')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
+    <?php if (Yii::$app->user->identity->role_id == 4) {?>
     <?= $form->field($model, 'sign')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
+    <?php }?>
 	<?= $form->field($model, 'head_pic',['template' => '{label} <div class="row"><div class="col-sm-12">{input}<button type="button" class="layui-btn upload_button" id="test3"><i class="layui-icon"></i>上传文件</button>{error}{hint}</div></div>'])->textInput(['maxlength' => true,'class'=>'layui-input upload_input']) ?>
     <div class="form-group">
         <?= Html::img(@$model->head_pic, ['width'=>'50','height'=>'50','class'=>'layui-circle userinfo_head_pic'])?>

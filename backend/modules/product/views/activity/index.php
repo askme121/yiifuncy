@@ -221,6 +221,7 @@ $this->registerJs($this->render('js/index.js'));
                                  {view}
                                  <dl class="nav-myself-dl">
                                      {update}
+                                     {tag}
                                      {copy}
                                      {del}
                                      <dd>{delete}</dd>
@@ -262,7 +263,14 @@ $this->registerJs($this->render('js/index.js'));
                         } else {
                             return '';
                         }
-                    }
+                    },
+                    'tag' => function ($url, $model, $key) {
+                        if (Yii::$app->user->identity->role_id == 1 && $model->status != Activity::STATUS_CANCEL) {
+                            return '<dd>'.Html::a('tag', Url::to(['tag','id'=>$model->id]), ['class' => "layui-default-tag"]).'</dd>';
+                        } else {
+                            return '';
+                        }
+                    },
                 ]
             ],
         ],
