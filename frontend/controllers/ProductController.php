@@ -72,7 +72,7 @@ class ProductController extends Controller
             $meta['top_desc'] = '';
         }
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => '12']);
-        $model = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        $model = $query->orderBy("t_activity.order")->offset($pages->offset)->limit($pages->limit)->asArray()->all();
         if ($model){
             foreach ($model as $kk=>$vv){
                 switch ($vv['type'])

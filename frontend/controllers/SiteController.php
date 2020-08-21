@@ -80,9 +80,9 @@ class SiteController extends Controller
         $meta['description'] = Config::getConfig('web_site_description', $site_id);
         $meta['keyword'] = Config::getConfig('web_site_keyword', $site_id);
         $select = "t_activity.id,t_activity.url_key,product_id,type,price,cashback,coupon_type,coupon,price,qty";
-        $top_all = Activity::find()->select($select)->innerJoinWith('product')->where(['t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
-        $cashback_coupon = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
-        $cashback = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->asArray()->all();
+        $top_all = Activity::find()->select($select)->innerJoinWith('product')->where(['t_activity.status'=>1, 't_activity.is_hot'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->orderBy("t_activity.order")->asArray()->all();
+        $cashback_coupon = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_COUPON_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->orderBy("t_activity.order")->asArray()->all();
+        $cashback = Activity::find()->select($select)->innerJoinWith('product')->where(['type'=>Activity::CASHBACK_ACTIVITY,'t_activity.status'=>1,'t_activity.site_id'=>$site_id])->andWhere(['<=', 'start', $time])->andWhere(['>=', 'end', $time])->limit(8)->orderBy("t_activity.order")->asArray()->all();
         if ($top_all){
             foreach ($top_all as $kk=>$vv){
                 switch ($vv['type'])
