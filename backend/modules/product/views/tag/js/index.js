@@ -8,26 +8,15 @@ layui.config({
     // 添加分类
     $(".layui-default-add").click(function(){
         var index = layui.layer.open({
-            title : "添加活动",
+            title : "添加标签",
             type : 2,
-            area: ['800px', '630px'],
+            area: ['400px', '500px'],
             content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
             end: function () {
                 location.reload();
             }
         });
     });
-
-    $(".thumb").mouseover(function () {
-        $(this).animate({
-            opacity: '0.8'
-        });
-    }).mouseout(function () {
-        $(this).animate({
-            opacity: '1'
-        });
-    })
-
     //  全选
     form.on('checkbox(allChoose)', function(data){
         var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
@@ -53,29 +42,17 @@ layui.config({
     $("body").on("click",".layui-default-view",function(){
         var href = $(this).attr("href");
         var index = layui.layer.open({
-            title : "查看活动",
+            title : "查看标签",
             type: 2,
-            area: ['500px', '450px'],
+            area: ['400px', '500px'],
             content : [href, 'yes']
         });
         return false;
     });
-
-    $("body").on("click",".layui-default-tag",function(){
-        var href = $(this).attr("href");
-        var index = layui.layer.open({
-            title : "推广活动",
-            type: 2,
-            area: ['600px', '450px'],
-            content : [href, 'no']
-        });
-        return false;
-    });
-
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定启用此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定激活此标签吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -98,9 +75,9 @@ layui.config({
         return false;
     });
     //  禁用操作
-    $("body").on("click",".layui-default-copy",function(){
+    $("body").on("click",".layui-default-inactive",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定复制此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定关闭此标签吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);
@@ -127,9 +104,9 @@ layui.config({
         var href = $(this).attr("href");
         console.log(href);
         var index = layui.layer.open({
-            title : "修改活动",
+            title : "修改标签",
             type : 2,
-            area:['800px', '630px'],
+            area:['400px', '500px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();
@@ -137,36 +114,11 @@ layui.config({
         });
         return false;
     });
-    //  取消操作
+
+    //  删除分类操作
     $("body").on("click",".layui-default-delete",function(){
         var href = $(this).attr("href");
-        layer.confirm('确定取消此活动吗？',{icon:3, title:'提示信息'},function(index){
-            $.post(href,function(data){
-                if(data.code===200){
-                    layer.msg(data.msg);
-                    layer.close(index);
-                    setTimeout(function(){
-                        location.reload();
-                    },500);
-                }else{
-                    layer.close(index);
-                    layer.msg(data.msg);
-                }
-            },"json").fail(function(a,b,c){
-                if(a.status==403){
-                    layer.msg('没有权限');
-                }else{
-                    layer.msg('系统错误');
-                }
-            });
-        });
-        return false;
-    });
-
-    // 删除操作
-    $("body").on("click",".layui-default-del",function(){
-        var href = $(this).attr("href");
-        layer.confirm('确定删除此活动吗？',{icon:3, title:'提示信息'},function(index){
+        layer.confirm('确定删除此标签吗？',{icon:3, title:'提示信息'},function(index){
             $.post(href,function(data){
                 if(data.code===200){
                     layer.msg(data.msg);

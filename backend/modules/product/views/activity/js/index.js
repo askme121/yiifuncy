@@ -61,6 +61,18 @@ layui.config({
         });
         return false;
     });
+
+    $("body").on("click",".layui-default-tag",function(){
+        var href = $(this).attr("href");
+        var index = layui.layer.open({
+            title : "推广活动",
+            type: 2,
+            area: ['600px', '450px'],
+            content : [href, 'no']
+        });
+        return false;
+    });
+
     //  启用操作
     $("body").on("click",".layui-default-active",function(){
         var href = $(this).attr("href");

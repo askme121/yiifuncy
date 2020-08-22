@@ -110,5 +110,8 @@ return [
     'publish_at' => '发布时间',
     'sold_by' => 'Sold by',
     'is_hot' => '是否推荐',
-    'is_subscribed' => '是否订阅'
+    'is_subscribed' => '是否订阅',
+    'tag' => '标签',
+    'flag' => '标识',
+    'channel' => '通道'
 ];

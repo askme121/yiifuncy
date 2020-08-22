@@ -40,6 +40,12 @@ LayuiAsset::register($this);
 				}
 			],
             [
+                'attribute' => 'is_subscribed',
+                'value' => function($model){
+                    return $model->is_subscribed == 1 ? '订阅' : '未订阅';
+                }
+            ],
+            [
                 "attribute"=>"created_at",
                 "value"=>function($data){
                     return date("Y-m-d H:i:s",$data->created_at);

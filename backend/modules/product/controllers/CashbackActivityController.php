@@ -3,6 +3,7 @@
 namespace product\controllers;
 
 use common\models\Order;
+use common\models\Tag;
 use Faker\Provider\Uuid;
 use Yii;
 use yii\filters\VerbFilter;
@@ -40,6 +41,21 @@ class CashbackActivityController extends Controller
     {
         $model = Activity::find()->with('product')->where(['id'=>$id])->one();
         return $this->render('view', ['model' => $model]);
+    }
+
+    public function actionTag($id)
+    {
+        $site_id = Yii::$app->session['default_site_id'];
+        $team_id = Yii::$app->user->identity->team_id;
+        $role_id = Yii::$app->user->identity->role_id;
+        $link_code = Yii::$app->user->identity->sign;
+        $model = Activity::find()->with('product')->where(['id'=>$id])->one();
+        $query = Tag::find()->where(['site_id'=>$site_id, 'status'=>1]);
+        if ($role_id != 1) {
+            $query->andWhere(['team_id'=>$team_id]);
+        }
+        $tag_list = $query->all();
+        return $this->render('tag', ['model' => $model, 'tag_list'=>$tag_list, 'link_code'=>$link_code]);
     }
 
     public function actionCreate()

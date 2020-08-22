@@ -221,6 +221,7 @@ $this->registerJs($this->render('js/index.js'));
                                  {view}
                                  <dl class="nav-myself-dl">
                                      {update}
+                                     {tag}
                                      {copy}
                                      {del}
                                      <dd>{delete}</dd>
@@ -259,6 +260,13 @@ $this->registerJs($this->render('js/index.js'));
                     'del' => function ($url, $model, $key) {
                         if (Yii::$app->user->identity->role_id == 1 && $model->status == Activity::STATUS_CANCEL) {
                             return '<dd>'.Html::a('删除', Url::to(['del','id'=>$model->id]), ['class' => "layui-default-del"]).'</dd>';
+                        } else {
+                            return '';
+                        }
+                    },
+                    'tag' => function ($url, $model, $key) {
+                        if ((Yii::$app->user->identity->role_id == 1 || Yii::$app->user->identity->team_id == $model->team_id) && $model->status == Activity::STATUS_ENABLE && ($model->start <= time() && $model->end >= time())) {
+                            return '<dd>'.Html::a('推广', Url::to(['tag','id'=>$model->id]), ['class' => "layui-default-tag"]).'</dd>';
                         } else {
                             return '';
                         }

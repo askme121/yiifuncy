@@ -45,7 +45,7 @@ layui.config({
             title : "查看产品",
             type: 2,
             area: ['400px', '450px'],
-            content : [href, 'no']
+            content : [href, 'yes']
         });
         return false;
     });

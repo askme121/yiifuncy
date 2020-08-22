@@ -265,12 +265,12 @@ $this->registerJs($this->render('js/index.js'));
                         }
                     },
                     'tag' => function ($url, $model, $key) {
-                        if (Yii::$app->user->identity->role_id == 1 && $model->status != Activity::STATUS_CANCEL) {
-                            return '<dd>'.Html::a('tag', Url::to(['tag','id'=>$model->id]), ['class' => "layui-default-tag"]).'</dd>';
+                        if ((Yii::$app->user->identity->role_id == 1 || Yii::$app->user->identity->team_id == $model->team_id) && $model->status == Activity::STATUS_ENABLE && ($model->start <= time() && $model->end >= time())) {
+                            return '<dd>'.Html::a('推广', Url::to(['tag','id'=>$model->id]), ['class' => "layui-default-tag"]).'</dd>';
                         } else {
                             return '';
                         }
-                    },
+                    }
                 ]
             ],
         ],
