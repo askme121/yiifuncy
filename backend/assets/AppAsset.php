@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'resources/js/common.js',
+        'resources/js/clipboard.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

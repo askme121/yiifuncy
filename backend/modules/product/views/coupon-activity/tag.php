@@ -3,6 +3,7 @@
 use backend\assets\LayuiAsset;
 
 LayuiAsset::register($this);
+$this->registerJs($this->render('js/form.js'));
 ?>
 <style type="text/css">
     .select-tag{
@@ -115,6 +116,7 @@ LayuiAsset::register($this);
         </select>
     </dl>
     <dl class="share_item">
+        <a class="share_btn" id="share-link" href="javascript:void(0)" style="margin-right: 15px">Copy Link</a>
         <a class="share_btn" id="share-btn" href="#" target="_blank">
             <i class="fa"></i> Share
         </a>
@@ -127,7 +129,9 @@ LayuiAsset::register($this);
             var tag = $(this).val();
             if (tag == ''){
                 $("#share-btn").attr('href', '#');
+                $("#share-link").data('href', '');
                 $("#share-btn").hide();
+                $("#share-link").hide();
             } else {
                 var tag_arr = tag.split("-");
                 var channel = tag_arr[tag_arr.length-1];
@@ -148,9 +152,19 @@ LayuiAsset::register($this);
                 }
                 var final_link = pre + link;
                 $("#share-btn").attr('href', final_link);
+                $("#share-link").data('href', link);
                 $("#share-btn").children('i').attr('class', pre_fa);
                 $("#share-btn").show();
+                $("#share-link").show();
             }
+        });
+        var clipboard = new ClipboardJS('#share-link', {
+            text: function() {
+                return $("#share-link").data('href');
+            }
+        });
+        clipboard.on('success', function(e) {
+            layer.msg('copy successful', {icon: 1,time:2000});
         });
     });
     <?php $this->endBlock() ?>
