@@ -26,7 +26,7 @@ class Order extends ActiveRecord
     {
         return [
             [['activity_id', 'product_id'], 'required'],
-            [['order_id', 'amazon_order_id', 'amazon_url', 'user_phone', 'user_email', 'coupon_code'], 'string'],
+            [['order_id', 'amazon_order_id', 'amazon_url', 'user_phone', 'user_email', 'coupon_code', 'tag', 'sign'], 'string'],
             [['order_id'], 'unique'],
             [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'is_review', 'flow_id', 'site_id'], 'integer'],
             [['cashback_cost', 'coupon_cost', 'origin_cost'], 'number']

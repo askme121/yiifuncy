@@ -18,6 +18,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <div class="row detail-contents">
             <input type="hidden" id="activity_view_id" value="<?= $model['id']?>">
             <input type="hidden" id="product_view_id" value="<?= $model['product']['id']?>">
+            <input type="hidden" id="tag" value="<?= Yii::$app->request->get('tag')?>">
+            <input type="hidden" id="sign" value="<?= Yii::$app->request->get('code')?>">
             <div class="visible-sm visible-xs">
                 <ul>
                     <li class="deal-detail-content col-xs-12 detail-contents-1" style="padding: 0;">
@@ -831,7 +833,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 url: "<?= Url::toRoute('order/deal') ?>",
                 data: {
                     "activity_id": $('#activity_view_id').val(),
-                    "product_id": $('#product_view_id').val()
+                    "product_id": $('#product_view_id').val(),
+                    "tag": $("#tag").val(),
+                    "sign": $("#sign").val()
                 },
                 dataType: "json",
                 success: function(response){

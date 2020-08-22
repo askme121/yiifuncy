@@ -7,6 +7,7 @@ use common\models\Coupon;
 use common\models\Product;
 use common\models\User;
 use common\models\Config;
+use backend\models\Admin;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -248,6 +249,22 @@ class OrderController extends Controller
             if ($model->validate()){
                 $activity_id = $model->activity_id;
                 $product_id = $model->product_id;
+                $tag = $model->tag;
+                $sign = $model->sign;
+                if (!empty($tag)){
+                    $flag_arr = explode("-", $tag);
+                    $flag = end($flag_arr);
+                    if ($flag == 'fb'){
+                        $model->channel = 'facebook';
+                    } else if ($flag == 'tw'){
+                        $model->channel = 'twitter';
+                    } else {
+                        $model->channel = '';
+                    }
+                }
+                if (!empty($sign)){
+                    $model->flow_id = Admin::findOne(['sign'=>$sign])->id??0;
+                }
                 $activity = Activity::findOne($activity_id);
                 $product = Product::findOne($product_id);
                 if ($activity->start > time() || $activity->end < time() || $activity->status != 1){
