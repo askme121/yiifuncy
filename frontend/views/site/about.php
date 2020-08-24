@@ -53,7 +53,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </p>
         </div>
     </div>
-    <div class="step-tips visible-lg visible-md">
+    <div class="step-tips hidden-sm hidden-xs">
         <div class="step-detail">
             <img class="step-img" src="<?= getImgUrl('images/step-buy.png'); ?>">
             <div class="steps-content">
@@ -86,7 +86,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             </div>
         </div>
     </div>
-    <div class="visible-xs visible-sm" style="margin-top: 25px;">
+    <div class="hidden-lg hidden-md" style="margin-top: 25px;">
         <h2 class="detail-steps-title">4 Steps to Get Cash Back</h2>
         <div class="detail-step-item text-center">
             <img class="step-item-icon" src="<?= getImgUrl('images/step-add-icon.png'); ?>">
