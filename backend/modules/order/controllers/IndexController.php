@@ -98,7 +98,7 @@ class IndexController extends Controller
         $params['user_name'] = $user->firstname.' '.$user->lastname;
         $model->status = 3;
         if($model->save()){
-            $ref = sendEmail($user->email, $email_content, $email_title, $params);
+            $ref = sendEmail($user->email, $email_content, $email_title, $params, 'checked');
             if ($ref){
                 return json_encode(['code'=>200,"msg"=>"审核成功"]);
             } else {
@@ -130,7 +130,7 @@ class IndexController extends Controller
             $model->is_review = 1;
         }
         if($model->save()){
-            sendEmail($user->email, $email_content, $email_title, $params);
+            sendEmail($user->email, $email_content, $email_title, $params, 'paypal');
             return json_encode(['code'=>200,"msg"=>"操作成功"]);
         }else{
             $errors = $model->firstErrors;

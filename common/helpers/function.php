@@ -99,4 +99,5 @@ function sendEmail($email, $email_content, $email_title, $params=[], $scene='')
         $model->status = 1;
         $model->save();
     }
+    return true;
 }
