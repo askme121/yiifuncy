@@ -6,21 +6,20 @@ $this->registerMetaTag(array("name"=>"description","content"=>$meta['description
 $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 ?>
 <div class="split"></div>
-<section class="aboutus-banner" style="background:url(<?= getImgUrl('images/about-banner.png') ?>) no-repeat">
+<section class="aboutus-banner" style="background:url(<?= getImgUrl('images/about_bg.png') ?>) no-repeat">
     <div class="container">
-        <h1 class="aboutus-title"><?= $model->title?></h1>
-        <?= $model->content?>
-        <div>
-            <div class="aboutus-tip-container">
-                <img class="aboutus-banner-icon" src="<?= getImgUrl('images/SelectiveBrands.png') ?>">
-                <p class="aboutus-banner-tip">Selective Brands</p>
+        <div class="about-info">
+            <p class="log-title">CASHBACKCLUB</p>
+            <h1 class="aboutus-title">
+                SECURELY SHOPPING WITH CASHBACK
+            </h1>
+            <div class="aboutus-content">
+                <?= $model->content?>
             </div>
-            <div class="sept-line">
-
-            </div>
-            <div class="aboutus-tip-container">
-                <img class="aboutus-banner-icon" src="<?= getImgUrl('images/BigDiscounts.png') ?>">
-                <p class="aboutus-banner-tip">Big Discounts</p>
+            <div class="about-join">
+                <p class="text-center" style="margin-top: 40px; margin-bottom: 20px">
+                    <a href="<?= Url::toRoute('/site/signup');?>" class="join-btn about-btn">Sign Up Free</a>
+                </p>
             </div>
         </div>
     </div>
@@ -50,9 +49,79 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
             <img src="<?= getImgUrl('images/icon_pc.png') ?>">
             <p class="mission-title">Zero Risk</p>
             <p class="mission-content">
-                Shop on Amazon directly with no need to pay other fees.
+                You will not pay on CashBackClub but on Amazon! That means you can return anytime for no reason and you won't lose even a single penny! Also, you could return the product and get a refound from Amazon if you're not satisfied with the product. <strong>We protect user's privacy, 100% SECURITY!</strong>
             </p>
         </div>
+    </div>
+    <div class="step-tips visible-lg visible-md">
+        <div class="step-detail">
+            <img class="step-img" src="<?= getImgUrl('images/step-buy.png'); ?>">
+            <div class="steps-content">
+                <h4>Grab the deal</h4>
+                <p>Click deal request</p>
+            </div>
+        </div>
+        <img class="step-line-img" src="<?= getImgUrl('images/step-line.png'); ?>">
+        <div class="step-detail">
+            <img class="step-img" src="<?= getImgUrl('images/step-amzon.png'); ?>">
+            <div class="steps-content">
+                <h4>Buy it on Amazon</h4>
+                <p>Go to Amazon</p>
+            </div>
+        </div>
+        <img class="step-line-img" src="<?= getImgUrl('images/step-line.png'); ?>">
+        <div class="step-detail">
+            <img class="step-img" src="<?= getImgUrl('images/step-order.png'); ?>">
+            <div class="steps-content">
+                <h4>Fill the order info</h4>
+                <p>Order ID & screenshot</p>
+            </div>
+        </div>
+        <img class="step-line-img" src="<?= getImgUrl('images/step-line.png'); ?>">
+        <div class="step-detail">
+            <img class="step-img" src="<?= getImgUrl('images/step-back.png'); ?>">
+            <div class="steps-content">
+                <h4>Get money back</h4>
+                <p>Up to 100% Cashback</p>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs visible-sm" style="margin-top: 25px;">
+        <h2 class="detail-steps-title">4 Steps to Get Cash Back</h2>
+        <div class="detail-step-item text-center">
+            <img class="step-item-icon" src="<?= getImgUrl('images/step-add-icon.png'); ?>">
+            Click the 'Deal Request' button
+        </div>
+        <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
+        <div class="detail-step-item text-center">
+            <img class="step-item-icon" src="<?= getImgUrl('images/step-finish-icon.png'); ?>">
+            Buy it on Amazon
+        </div>
+        <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
+        <div class="detail-step-item text-center">
+            <img class="step-item-icon" src="<?= getImgUrl('images/step-fill-icon.png'); ?>">
+            Fill in Amazon order info and approved by us
+        </div>
+        <img class="step-line-icon" src="<?= getImgUrl('images/step-line-icon.jpg'); ?>">
+        <div class="detail-step-item text-center">
+            <img class="step-item-icon" src="<?= getImgUrl('images/step-back-icon.png'); ?>">
+            Get the cash back to your PayPal account
+        </div>
+    </div>
+    <div>
+        <p class="text-center" style="margin-top: 40px; margin-bottom: 40px">
+            <a href="<?= Url::toRoute('/site/faq');?>" class="join-btn" style="background-color: #f93; color: #fff">Learn More</a>
+        </p>
+    </div>
+    <div class="intu">
+        <h5>
+            Intuitive Features Powerful Results
+        </h5>
+        <p>
+            CashBackClub aim to collects more feedback on products to help both sellers upgrade their products and service and help other customers make better purchase decisions.<br>
+            Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.<br>
+            Shopping online and saving money without much effort. There’s no wrong way to use it, and nothing to lose getting started. You’ll be surprised how life-changing something so simple can be.
+        </p>
     </div>
 </div>
 <div class="abouus-banner-bottom" style="background: url(<?= getImgUrl('images/about-banner-2.png') ?>) no-repeat;">
