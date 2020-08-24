@@ -29,7 +29,7 @@ class ToolController extends Controller
                 $status = Yii::$app
                     ->mailer
                     ->compose()
-                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                    ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
                     ->setReplyTo([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
                     ->setTo($item->email)
                     ->setSubject($item->title)
