@@ -28,7 +28,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     <div class="about-panel">
         <p class="our-mission">
             <span class="septal-row"></span>
-            <span style="margin: 0 24px;">Our Mission</span>
+            <span style="margin: 0 24px; color: #f93; font-weight: bold">Our Mission</span>
             <span class="septal-row"></span>
         </p>
         <div class="our-mission-entry">
