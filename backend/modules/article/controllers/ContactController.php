@@ -96,7 +96,7 @@ class ContactController extends Controller
                 $email_content = $template->content;
                 $params['user_name'] = $pre->name;
                 $params['msg'] = $model->content;
-                sendEmail($pre->email, $email_content, $model->title, $params);
+                sendEmail($pre->email, $email_content, $model->title, $params, 'reply');
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $error = $model->firstErrors;

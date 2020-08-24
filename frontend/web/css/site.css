@@ -2704,8 +2704,9 @@ span.septal-row {
 }
 .intu{
     padding: 30px 15px;
-    background-color: #fff;
+    background-color: #ff914d;
     margin-bottom: 40px;
+    color: #fff;
 }
 .intu h5{
     text-transform: uppercase;

@@ -3,6 +3,7 @@
 namespace console\controllers;
 
 use common\models\Order;
+use common\models\EmailRecord;
 use yii;
 use yii\console\Controller;
 
@@ -16,6 +17,28 @@ class ToolController extends Controller
             foreach ($list as $item){
                 $item->status = 7;
                 $item->save();
+            }
+        }
+    }
+
+    public function actionEmail()
+    {
+        $list = EmailRecord::find()->where(['status'=>0])->all();
+        if ($list){
+            foreach ($list as $item){
+                $status = Yii::$app
+                    ->mailer
+                    ->compose()
+                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                    ->setReplyTo([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
+                    ->setTo($item->email)
+                    ->setSubject($item->title)
+                    ->setHtmlBody($item->content)
+                    ->send();
+                if ($status) {
+                    $item->status = 1;
+                    $item->save();
+                }
             }
         }
     }
