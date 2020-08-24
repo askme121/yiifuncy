@@ -90,7 +90,7 @@ function sendEmail($email, $email_content, $email_title, $params=[], $scene='')
     $status = Yii::$app
         ->mailer
         ->compose()
-        ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+        ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
         ->setReplyTo([Yii::$app->params['adminEmail'] => Yii::$app->params['senderName']])
         ->setTo($email)
         ->setSubject($email_title)
