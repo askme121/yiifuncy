@@ -2,6 +2,7 @@
 
 use common\models\Config;
 use common\models\Site;
+use common\models\EmailRecord;
 
 function getSymbol($site_id=null)
 {
@@ -71,7 +72,7 @@ function getSiteUrl($site_id)
     }
 }
 
-function sendEmail($email, $email_content, $email_title, $params=[])
+function sendEmail($email, $email_content, $email_title, $params=[], $scene='')
 {
     $email_content = htmlspecialchars_decode($email_content);
     if ($params){
@@ -80,7 +81,13 @@ function sendEmail($email, $email_content, $email_title, $params=[])
             $email_content = str_replace('{{'.$k.'}}', $v, $email_content);
         }
     }
-    return Yii::$app
+    $model = new EmailRecord();
+    $model->title = $email_title;
+    $model->email = $email;
+    $model->scene = $scene;
+    $model->content = $email_content;
+    $model->save();
+    $status = Yii::$app
         ->mailer
         ->compose()
         ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
@@ -88,4 +95,8 @@ function sendEmail($email, $email_content, $email_title, $params=[])
         ->setSubject($email_title)
         ->setHtmlBody($email_content)
         ->send();
+    if ($status) {
+        $model->status = 1;
+        $model->save();
+    }
 }
