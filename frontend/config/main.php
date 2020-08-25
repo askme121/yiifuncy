@@ -60,6 +60,7 @@ return [
                 'account/message' => '/user/message',
                 'account/amazon_profile_link' => '/user/amazon-profile-link',
                 'account/password' => '/user/change-password',
+                'fpid' => '/site/trace',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

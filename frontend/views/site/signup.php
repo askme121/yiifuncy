@@ -119,6 +119,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         $('#first-access-register-tips').modal('show');
     }
     $(document).ready(function(){
+        var params = getTrace();
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function () {
+                fpid(params);
+            });
+        } else {
+            setTimeout(function () {
+                fpid(params);
+            }, 500);
+        }
         $('#username').autoMail({
             emails:['gmail.com','yahoo.com','hotmail.com','outlook.com']
         });

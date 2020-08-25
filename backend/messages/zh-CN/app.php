@@ -113,5 +113,13 @@ return [
     'is_subscribed' => '是否订阅',
     'tag' => '标签',
     'flag' => '标识',
-    'channel' => '通道'
+    'channel' => '通道',
+    'country_name' => '国家名称',
+    'device' => '设备',
+    'browser' => '浏览器',
+    'operate' => '操作系统',
+    'url' => '访问页面',
+    'refer_url' => '来源url',
+    'access_date' => '访问日期',
+    'access_time' => '访问时间'
 ];

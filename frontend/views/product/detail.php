@@ -469,6 +469,24 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         showHidePassword('#password');
         showHideRegisterPassword('#register-pass');
         $(document).ready(function(){
+            var params = getTrace();
+            params.product_id = $("#product_view_id").val();
+            params.activity_id = $("#activity_view_id").val();
+            if ($("#tag").val()){
+                params.tag = $("#tag").val();
+            }
+            if ($("#sign").val()){
+                params.sign = $("#sign").val();
+            }
+            if (window.requestIdleCallback) {
+                requestIdleCallback(function () {
+                    fpid(params);
+                });
+            } else {
+                setTimeout(function () {
+                    fpid(params);
+                }, 500);
+            }
             $('#detail-arousel').carousel({
                 pause: true,
                 interval: 5000

@@ -128,6 +128,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php $this->beginBlock('js_block') ?>
         $(document).ready(function(){
             clearRowLastMargin($('.hot-deal-entry'), 4);
+            var params = getTrace();
+            if (window.requestIdleCallback) {
+                requestIdleCallback(function () {
+                    fpid(params);
+                });
+            } else {
+                setTimeout(function () {
+                    fpid(params);
+                }, 500);
+            }
         });
         <?php $this->endBlock(); ?>
     </script>

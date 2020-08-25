@@ -124,13 +124,20 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </p>
     </div>
 </div>
-<!--<div class="abouus-banner-bottom" style="background: url(<?= getImgUrl('images/about-banner-2.png') ?>) no-repeat;">
-    <p class="banner-bottom-title">
-        <span class="septal-row" style="background-color: #fff;"></span>
-        <span style="margin: 0 24px;">Meet the Team</span>
-        <span class="septal-row" style="background-color: #fff;"></span>
-    </p>
-    <p class="banner-bottom-content">
-        CashBackClub was created by a group of young, tasteful individuals who have a mission to help users improve their life quality. Our talented leadership team has extensive experience and knowledge of the market. Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.
-    </p>
-</div>-->
+    <script type="text/javascript">
+        <?php $this->beginBlock('js_block') ?>
+        $(document).ready(function(){
+            var params = getTrace();
+            if (window.requestIdleCallback) {
+                requestIdleCallback(function () {
+                    fpid(params);
+                });
+            } else {
+                setTimeout(function () {
+                    fpid(params);
+                }, 500);
+            }
+        });
+        <?php $this->endBlock(); ?>
+    </script>
+<?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>

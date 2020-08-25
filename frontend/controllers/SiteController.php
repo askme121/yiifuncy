@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Article;
+use common\models\Trace;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use yii\helpers\Url;
@@ -463,5 +464,50 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionTrace()
+    {
+        $model = new Trace();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if (!$model->validate()){
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
+            } else {
+                $model->site_id = Yii::$app->params['site_id'];
+                $model->ip = Yii::$app->getRequest()->getUserIP();
+                $model->access_date = date("Y-m-d");
+                $res = Trace::find()->where(['uuid'=>$model->uuid, 'ip'=>$model->ip, 'url'=>$model->url, 'device'=>$model->device, 'browser'=>$model->browser, 'access_date'=>$model->access_date])->one();
+                if ($res) {
+                    if (time() - $res->created_at > 120) {
+                        $res->times += 1;
+                        $res->save();
+                    }
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'successful'
+                    ]);
+                } else {
+                    if (!Yii::$app->user->isGuest){
+                        $model->user_id = Yii::$app->user->identity->id;
+                    }
+                    $res = $model->save();
+                    if ($res) {
+                        return json_encode([
+                            'code' => 1,
+                            'message' => 'successful'
+                        ]);
+                    } else {
+                        return json_encode([
+                            'code' => 0,
+                            'message' => $res,
+                        ]);
+                    }
+                }
+            }
+        }
     }
 }

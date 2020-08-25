@@ -147,6 +147,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <script type="text/javascript">
     <?php $this->beginBlock('js_block') ?>
     $(document).ready(function(){
+        var params = getTrace();
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function () {
+                fpid(params);
+            });
+        } else {
+            setTimeout(function () {
+                fpid(params);
+            }, 500);
+        }
         $('.jq-add-refund').click(function (){
             var url = $(this).attr('data-url');
             $('#upOrder-form').attr('action', url);

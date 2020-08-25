@@ -51,6 +51,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <script type="text/javascript">
     <?php $this->beginBlock('js_block') ?>
     $(function () {
+        var params = getTrace();
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function () {
+                fpid(params);
+            });
+        } else {
+            setTimeout(function () {
+                fpid(params);
+            }, 500);
+        }
         $("#contact-btn").click(function(){
             var btn = $(this);
             if (btn.hasClass("onused")){

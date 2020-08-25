@@ -33,3 +33,20 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+        <?php $this->beginBlock('js_block') ?>
+        $(document).ready(function(){
+            var params = getTrace();
+            if (window.requestIdleCallback) {
+                requestIdleCallback(function () {
+                    fpid(params);
+                });
+            } else {
+                setTimeout(function () {
+                    fpid(params);
+                }, 500);
+            }
+        });
+        <?php $this->endBlock(); ?>
+    </script>
+<?php $this->registerJs($this->blocks['js_block'],\yii\web\View::POS_END); ?>
