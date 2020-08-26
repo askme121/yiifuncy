@@ -491,6 +491,15 @@ class SiteController extends Controller
                         'message' => 'successful'
                     ]);
                 } else {
+                    if (!empty($model->ip) && $model->ip != '127.0.0.1') {
+                        $data = getIpInfo($model->ip);
+                        if ($data && isset($data['status']) && $data['status'] == 'success') {
+                            $model->country_code = $data['countryCode'];
+                            $model->country_name = $data['country'];
+                            $model->state_name = $data['regionName'];
+                            $model->city_name = $data['city'];
+                        }
+                    }
                     if (!Yii::$app->user->isGuest){
                         $model->user_id = Yii::$app->user->identity->id;
                     }

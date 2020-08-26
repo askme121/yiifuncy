@@ -8,6 +8,7 @@ return [
     'admin.passwordResetTokenExpire' => 3600,
     'order.Expire' => 1,
     'order_prefix' => 'TF',
+    'ip_api' => 'http://ip-api.com/json',
     'order_status' => [
         1 => 'Purphase & Submit order info',
         2 => 'Order Submitted & Wait for Check',
