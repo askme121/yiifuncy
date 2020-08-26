@@ -115,11 +115,11 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     </div>
     <div class="intu">
         <h5>
-            Intuitive Features Powerful Results
+            Intuitive Features<br> Powerful Results
         </h5>
-        <p>
-            CashBackClub aim to collects more feedback on products to help both sellers upgrade their products and service and help other customers make better purchase decisions.<br>
-            Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.<br>
+        <p class="text-center">
+            CashBackClub aim to collects more feedback on products to help both sellers upgrade their products and service and help other customers make better purchase decisions.
+            Together, we share the spirit of continuously optimizing our services through the latest data and technologies to maximize value for our users.
             Shopping online and saving money without much effort. There’s no wrong way to use it, and nothing to lose getting started. You’ll be surprised how life-changing something so simple can be.
         </p>
     </div>

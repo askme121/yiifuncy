@@ -2705,14 +2705,21 @@ span.septal-row {
 .intu{
     padding: 30px 15px;
     background-color: #ff914d;
-    margin-bottom: 40px;
+    margin: 80px auto;
     color: #fff;
 }
 .intu h5{
     text-transform: uppercase;
     text-align: center;
-    line-height: 25px;
+    line-height: 40px;
     color: #fff;
+    font-size: 32px;
+}
+.intu p{
+    font-size: 16px;
+    padding: 0 150px;
+    line-height: 26px;
+    margin-top: 20px;
 }
 
 @media (min-width:1400px) {
@@ -3315,6 +3322,25 @@ span.septal-row {
     }
     .about-info{
         width: auto;
+    }
+    .intu{
+        padding: 30px 15px;
+        background-color: #ff914d;
+        margin: 40px auto;
+        color: #fff;
+    }
+    .intu h5{
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 30px;
+        color: #fff;
+        font-size: 24px;
+    }
+    .intu p{
+        font-size: 14px;
+        padding: 0px;
+        line-height: 26px;
+        margin-top: 20px;
     }
 }
 
