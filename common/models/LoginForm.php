@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use wsl\ip2location\Ip2Location;
 
 class LoginForm extends Model
 {
@@ -38,6 +39,14 @@ class LoginForm extends Model
             $user = $this->getUser();
             $user->last_login_date = time();
             $user->last_login_ip = Yii::$app->getRequest()->getUserIP();
+            if (!empty($user->last_login_ip) && $user->last_login_ip != '127.0.0.1') {
+                $ipLocation = new Ip2Location();
+                $locationModel = $ipLocation->getLocation($user->last_login_ip);
+                $ip_info = $locationModel->toArray();
+                if (isset($ip_info['country'])) {
+                    $user->last_login_address = $ip_info['country'];
+                }
+            }
             $user->save();
             return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }

@@ -93,4 +93,13 @@ return array (
       '@wadeshuler/sendgrid' => $vendorDir . '/wadeshuler/yii2-sendgrid/src',
     ),
   ),
+  'myweishanli/yii2-ip2location' => 
+  array (
+    'name' => 'myweishanli/yii2-ip2location',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@wsl/ip2location' => $vendorDir . '/myweishanli/yii2-ip2location/src',
+    ),
+  ),
 );

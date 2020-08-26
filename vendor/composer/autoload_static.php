@@ -41,6 +41,7 @@ class ComposerStaticInit93f305345f235f03d2320169022ca480
         ),
         'w' => 
         array (
+            'wsl\\ip2location\\' => 16,
             'wadeshuler\\sendgrid\\' => 20,
         ),
         'p' => 
@@ -149,6 +150,10 @@ class ComposerStaticInit93f305345f235f03d2320169022ca480
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'wsl\\ip2location\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myweishanli/yii2-ip2location/src',
         ),
         'wadeshuler\\sendgrid\\' => 
         array (

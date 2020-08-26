@@ -6,6 +6,7 @@ use common\models\Order;
 use common\models\EmailRecord;
 use yii;
 use yii\console\Controller;
+use wsl\ip2location\Ip2Location;
 
 class ToolController extends Controller
 {
@@ -45,7 +46,11 @@ class ToolController extends Controller
 
     public function actionInit()
     {
-        $data = getIpInfo('14.155.156.70');
-        var_dump($data);
+        //$data = getIpInfo('14.155.156.70');
+        //var_dump($data);
+
+        $ipLocation = new Ip2Location();
+        $locationModel = $ipLocation->getLocation('14.30.33.139');
+        print_r($locationModel->toArray());
     }
 }

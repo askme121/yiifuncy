@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\models\EmailTemplate;
+use wsl\ip2location\Ip2Location;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -47,6 +48,14 @@ class SignupForm extends Model
         $user->r_id = 1;
         $user->is_subscribed = $this->is_subscribed;
         $user->created_ip = Yii::$app->getRequest()->getUserIP();
+        if (!empty($user->created_ip) && $user->created_ip != '127.0.0.1') {
+            $ipLocation = new Ip2Location();
+            $locationModel = $ipLocation->getLocation($user->created_ip);
+            $ip_info = $locationModel->toArray();
+            if (isset($ip_info['country'])) {
+                $user->created_address = $ip_info['country'];
+            }
+        }
         $user->status = User::STATUS_ACTIVE;
         $user->setPassword($this->password);
         $user->generateAuthKey();

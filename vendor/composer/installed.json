@@ -72,7 +72,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/twbs/bootstrap.git",
+            "url": "git@github.com:twbs/bootstrap.git",
             "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
         },
         "dist": {
@@ -118,7 +118,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:jquery/jquery-dist.git",
+            "url": "https://github.com/jquery/jquery-dist.git",
             "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
         },
         "dist": {
@@ -1424,6 +1424,51 @@
         ]
     },
     {
+        "name": "myweishanli/yii2-ip2location",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/daycats/yii2-ip2location.git",
+            "reference": "c5a5d58944d9672adfc3caab2a91b99b6e2ddbfc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/daycats/yii2-ip2location/zipball/c5a5d58944d9672adfc3caab2a91b99b6e2ddbfc",
+            "reference": "c5a5d58944d9672adfc3caab2a91b99b6e2ddbfc",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "yiisoft/yii2": ">=2.0.6"
+        },
+        "time": "2016-05-17T04:48:37+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "wsl\\ip2location\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Shanli Wei",
+                "email": "myweishanli@gmail.com"
+            }
+        ],
+        "description": "Yii2 Ip to Location"
+    },
+    {
         "name": "opis/closure",
         "version": "3.5.5",
         "version_normalized": "3.5.5.0",
@@ -2189,7 +2234,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",

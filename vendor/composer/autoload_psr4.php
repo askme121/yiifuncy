@@ -14,6 +14,7 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'wsl\\ip2location\\' => array($vendorDir . '/myweishanli/yii2-ip2location/src'),
     'wadeshuler\\sendgrid\\' => array($vendorDir . '/wadeshuler/yii2-sendgrid/src'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'kartik\\datetime\\' => array($vendorDir . '/kartik-v/yii2-widget-datetimepicker/src'),
