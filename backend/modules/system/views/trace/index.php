@@ -37,6 +37,8 @@ $this->registerJs($this->render('js/index.js'));
             'url',
             'country_code',
             'country_name',
+            'state_name',
+            'city_name',
             'device',
             'browser',
             'operate',

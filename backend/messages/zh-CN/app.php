@@ -121,5 +121,7 @@ return [
     'url' => '访问页面',
     'refer_url' => '来源url',
     'access_date' => '访问日期',
-    'access_time' => '访问时间'
+    'access_time' => '访问时间',
+    'state' => '州/省',
+    'city' => '城市'
 ];

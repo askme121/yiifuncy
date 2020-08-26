@@ -40,6 +40,8 @@ class Trace extends ActiveRecord
             'url' => Yii::t('app', 'url'),
             'country_code' => Yii::t('app', 'country_code'),
             'country_name' => Yii::t('app', 'country_name'),
+            'state_name' => Yii::t('app', 'state'),
+            'city_name' => Yii::t('app', 'city'),
             'device' => Yii::t('app', 'device'),
             'browser' => Yii::t('app', 'browser'),
             'operate' => Yii::t('app', 'operate'),
