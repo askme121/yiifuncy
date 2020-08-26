@@ -45,7 +45,10 @@ layui.config({
             title : "查看产品",
             type: 2,
             area: ['400px', '450px'],
-            content : [href, 'yes']
+            content : [href, 'yes'],
+            end: function () {
+                location.reload();
+            }
         });
         return false;
     });
@@ -102,7 +105,6 @@ layui.config({
     //  修改分类
     $("body").on("click",".layui-default-update",function(){
         var href = $(this).attr("href");
-        console.log(href);
         var index = layui.layer.open({
             title : "修改产品",
             type : 2,

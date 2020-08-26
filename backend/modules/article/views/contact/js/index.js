@@ -33,7 +33,10 @@ layui.config({
             title : "查看消息",
             type: 2,
             area: ['800px', '450px'],
-            content : [href, 'yes']
+            content : [href, 'yes'],
+            end: function () {
+                location.reload();
+            }
         });
         return false;
     });

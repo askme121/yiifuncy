@@ -56,6 +56,9 @@ layui.config({
                         tips: 3
                     });
                 },500);
+            },
+            end: function () {
+                location.reload();
             }
         });
         return false;

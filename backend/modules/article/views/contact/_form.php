@@ -30,7 +30,7 @@ use backend\assets\LayuiAsset;
         <label class="control-label" for="contact-title">回复:</label>
         <hr/>
         <?= $form->field($model, 'parent')->textInput()->hiddenInput(['value'=>$msg->id])->label(false); ?>
-        <?= $form->field($model, 'title')->textInput(['maxlength' => 255,'class'=>'layui-input']) ?>
+        <?= $form->field($model, 'title')->textInput(['maxlength' => 255,'class'=>'layui-input','value'=>'Re:'.$msg->title]) ?>
         <?= $form->field($model, 'content')->textarea(['class'=>'layui-textarea', 'style'=>'width:100%;height:230px;']) ?>
         <div class="form-group" align='right'>
             <?= Html::submitButton('回复', ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal'])?>

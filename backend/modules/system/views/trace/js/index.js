@@ -10,7 +10,7 @@ layui.config({
         var index = layui.layer.open({
             title : "查看",
             type : 2,
-            area: ['400px', '600px'], //宽高
+            area: ['600px', '600px'], //宽高
             content : href
         });
         return false;
