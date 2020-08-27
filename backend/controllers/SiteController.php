@@ -101,7 +101,7 @@ class SiteController extends Controller
         $rows = $query2->select(['access_date', 'COUNT(*) as num'])
             ->from('t_trace')
             ->where(['site_id'=>$site_id])
-            ->orderBy('access_date desc')
+            ->orderBy('access_date')
             ->groupBy('access_date')
             ->limit(15)
             ->all();

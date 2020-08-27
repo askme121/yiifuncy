@@ -20,7 +20,7 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
             </li>
         </ul>
         <div class="layui-tab-content clildFrame">
-            <div class="layui-tab-item layui-show">
+            <div class="layui-tab-item layui-show" style="margin-top: 15px">
                 <div id="echarts_box1" style="width: 50%;height:50%;float: left">
 
                 </div>
