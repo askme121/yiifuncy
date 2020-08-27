@@ -37,7 +37,7 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
 
     option1 = {
     title: {
-    text: '后台访问统计图',
+    text: '访问统计图',
     left:'center'
     },
     tooltip: {

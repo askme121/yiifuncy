@@ -2,18 +2,14 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\db\Query;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use rbac\models\form\Login;
-use rbac\models\Role;
-use common\models\SmallImage;
 
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -40,9 +36,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -52,12 +45,7 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
+    public function actionGrid()
     {
         $sql1='SELECT
 					ip,
@@ -91,14 +79,41 @@ class SiteController extends Controller
             $x[]=$value['date'];
             $y[]=$value['num'];
         }
+        return $this->render('grid', ["data"=>['x'=>$x,'y'=>$y,'x1'=>$x1,'y1'=>$y1]]);
+    }
+
+    public function actionIndex()
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $query1 = new Query();
+        $rows1 = $query1->select(['ip', 'access_date', 'COUNT(*) as num'])
+            ->from('t_trace')
+            ->where(['site_id'=>$site_id,'access_date'=>date("Y-m-d")])
+            ->groupBy('ip')
+            ->all();
+        $x1 = [];
+        $y1 = [];
+        foreach ($rows1 as $value) {
+            $x1[] = $value['ip'];
+            $y1[] = $value['num'];
+        }
+        $query2 = new Query();
+        $rows = $query2->select(['access_date', 'COUNT(*) as num'])
+            ->from('t_trace')
+            ->where(['site_id'=>$site_id])
+            ->orderBy('access_date desc')
+            ->groupBy('access_date')
+            ->limit(15)
+            ->all();
+        $x = [];
+        $y = [];
+        foreach ($rows as $value) {
+            $x[] = $value['access_date'];
+            $y[] = $value['num'];
+        }
         return $this->render('index', ["data"=>['x'=>$x,'y'=>$y,'x1'=>$x1,'y1'=>$y1]]);
     }
 
-    /**
-     * Login action.
-     *
-     * @return string
-     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -116,11 +131,6 @@ class SiteController extends Controller
         }
     }
 
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
