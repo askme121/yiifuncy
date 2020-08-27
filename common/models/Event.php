@@ -6,11 +6,11 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
-class Trace extends ActiveRecord
+class Event extends ActiveRecord
 {
     public static function tableName()
     {
-        return '{{%trace}}';
+        return '{{%event}}';
     }
 
     public function behaviors()
@@ -23,11 +23,11 @@ class Trace extends ActiveRecord
     public function rules()
     {
         return [
-            [['uuid', 'url'], 'required'],
-            [['uuid', 'url', 'country_code', 'country_name', 'state_name', 'city_name', 'device', 'user_agent'], 'string'],
+            [['uuid', 'url', 'event_type', 'event_name'], 'required'],
+            [['uuid', 'url', 'event_type', 'event_name', 'country_code', 'country_name', 'state_name', 'city_name', 'device', 'user_agent'], 'string'],
             [['is_new', 'first_page', 'product_id', 'activity_id'], 'integer'],
             [['browser', 'browser_version', 'browser_date', 'browser_lang', 'operate', 'operate_relase', 'domain', 'refer_url', 'first_referrer_url',
-            'first_referrer_domain', 'device_pixel_ratio', 'resolution', 'color_depth', 'channel', 'tag', 'sign'
+                'first_referrer_domain', 'device_pixel_ratio', 'resolution', 'color_depth', 'channel', 'tag', 'sign'
             ], 'safe']
         ];
     }
@@ -37,7 +37,7 @@ class Trace extends ActiveRecord
         return [
             'id' => 'ID',
             'ip' => Yii::t('app', 'ip'),
-            'url' => Yii::t('app', 'url'),
+            'url' => Yii::t('app', 'current_url'),
             'country_code' => Yii::t('app', 'country'),
             'country_name' => Yii::t('app', 'country_name'),
             'state_name' => Yii::t('app', 'state'),
@@ -49,6 +49,8 @@ class Trace extends ActiveRecord
             'channel' => Yii::t('app', 'channel'),
             'tag' => Yii::t('app', 'tag'),
             'sign' => Yii::t('app', 'flag'),
+            'event_name' => Yii::t('app', 'event_name'),
+            'event_type' => Yii::t('app', 'event_type'),
             'access_date' => Yii::t('app', 'access_date'),
             'created_at' => Yii::t('app', 'access_time'),
         ];

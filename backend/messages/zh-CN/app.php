@@ -120,9 +120,12 @@ return [
     'browser' => '浏览器',
     'operate' => '操作系统',
     'url' => '访问页面',
+    'current_url' => '当前页面',
     'refer_url' => '来源url',
     'access_date' => '访问日期',
     'access_time' => '访问时间',
     'state' => '州/省',
-    'city' => '城市'
+    'city' => '城市',
+    'event_name' => '按钮名称',
+    'event_type' => '事件'
 ];

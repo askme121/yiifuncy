@@ -61,6 +61,7 @@ return [
                 'account/amazon_profile_link' => '/user/amazon-profile-link',
                 'account/password' => '/user/change-password',
                 'fpid' => '/site/trace',
+                'fevent' => '/site/event',
                 '<controller:(product)>' => '<controller>/index',
                 [
                     'pattern' => 'product/<page:\d+>',

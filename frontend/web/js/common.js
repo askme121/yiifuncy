@@ -568,6 +568,21 @@ function fpid(params) {
     });
 }
 
+function fevent(params) {
+    $.ajax({
+        type: "post",
+        url: "/fevent",
+        data: params,
+        dataType: "json",
+        success: function(resp){
+            console.log(resp)
+        },
+        error: function(){
+            console.log('error')
+        }
+    });
+}
+
 function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }

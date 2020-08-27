@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
+use backend\models\Admin;
 use common\models\Article;
+use common\models\Event;
 use common\models\Trace;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -480,7 +482,12 @@ class SiteController extends Controller
                 $model->site_id = Yii::$app->params['site_id'];
                 $model->ip = Yii::$app->getRequest()->getUserIP();
                 $model->access_date = date("Y-m-d");
-                $res = Trace::find()->where(['uuid'=>$model->uuid, 'ip'=>$model->ip, 'url'=>$model->url, 'device'=>$model->device, 'browser'=>$model->browser, 'access_date'=>$model->access_date])->one();
+                if (!Yii::$app->user->isGuest){
+                    $model->user_id = Yii::$app->user->identity->id;
+                } else {
+                    $model->user_id = 0;
+                }
+                $res = Trace::find()->where(['uuid'=>$model->uuid, 'ip'=>$model->ip, 'url'=>$model->url, 'user_id'=>$model->user_id, 'device'=>$model->device, 'browser'=>$model->browser, 'access_date'=>$model->access_date])->one();
                 if ($res) {
                     if (time() - $res->created_at > 120) {
                         $res->times += 1;
@@ -500,8 +507,89 @@ class SiteController extends Controller
                             $model->city_name = $data['city'];
                         }
                     }
-                    if (!Yii::$app->user->isGuest){
-                        $model->user_id = Yii::$app->user->identity->id;
+                    if (!empty($model->tag)){
+                        $flag_arr = explode("-", $model->tag);
+                        $flag = end($flag_arr);
+                        if ($flag == 'fb'){
+                            $model->channel = 'facebook';
+                        } else if ($flag == 'tw'){
+                            $model->channel = 'twitter';
+                        } else {
+                            $model->channel = '';
+                        }
+                    }
+                    if (!empty($model->sign)){
+                        $model->flow_id = Admin::findOne(['sign'=>$model->sign])->id??0;
+                    }
+                    $res = $model->save();
+                    if ($res) {
+                        return json_encode([
+                            'code' => 1,
+                            'message' => 'successful'
+                        ]);
+                    } else {
+                        return json_encode([
+                            'code' => 0,
+                            'message' => $res,
+                        ]);
+                    }
+                }
+            }
+        }
+    }
+
+    public function actionEvent()
+    {
+        $model = new Event();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if (!$model->validate()){
+                $error = $model->firstErrors;
+                return json_encode([
+                    'code' => 401,
+                    'message' => array_values($error),
+                ]);
+            } else {
+                $model->site_id = Yii::$app->params['site_id'];
+                $model->ip = Yii::$app->getRequest()->getUserIP();
+                $model->access_date = date("Y-m-d");
+                if (!Yii::$app->user->isGuest){
+                    $model->user_id = Yii::$app->user->identity->id;
+                } else {
+                    $model->user_id = 0;
+                }
+                $res = Event::find()->where(['uuid'=>$model->uuid, 'ip'=>$model->ip, 'url'=>$model->url, 'device'=>$model->device, 'browser'=>$model->browser, 'user_id'=>$model->user_id, 'event_name'=>$model->event_name, 'event_type'=>$model->event_type, 'access_date'=>$model->access_date])->one();
+                if ($res) {
+                    if (time() - $res->created_at > 120) {
+                        $res->times += 1;
+                        $res->save();
+                    }
+                    return json_encode([
+                        'code' => 1,
+                        'message' => 'successful'
+                    ]);
+                } else {
+                    if (!empty($model->ip) && $model->ip != '127.0.0.1') {
+                        $data = getIpInfo($model->ip);
+                        if ($data && isset($data['status']) && $data['status'] == 'success') {
+                            $model->country_code = $data['countryCode'];
+                            $model->country_name = $data['country'];
+                            $model->state_name = $data['regionName'];
+                            $model->city_name = $data['city'];
+                        }
+                    }
+                    if (!empty($model->tag)){
+                        $flag_arr = explode("-", $model->tag);
+                        $flag = end($flag_arr);
+                        if ($flag == 'fb'){
+                            $model->channel = 'facebook';
+                        } else if ($flag == 'tw'){
+                            $model->channel = 'twitter';
+                        } else {
+                            $model->channel = '';
+                        }
+                    }
+                    if (!empty($model->sign)){
+                        $model->flow_id = Admin::findOne(['sign'=>$model->sign])->id??0;
                     }
                     $res = $model->save();
                     if ($res) {
