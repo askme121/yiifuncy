@@ -398,8 +398,8 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     We invite you to participate in our Cashback Deals to trial our products, and We'd really appreciate if if you left us an honest review.Reviews are very important for us,and they help other shoppers make informed decisions.
                 </p>
                 <div class="upOrder-form-btnss" style="display: inline-block;margin: 0">
-                    <a href="/" class="btn upOrder-form-btn no-thanks" data-href="#">No thanks</a>
-                    <a id="detail-btn" type="button" class="btn upOrder-form-btn make-sure" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
+                    <a href="/" class="btn upOrder-form-btn no-thanks" data-name="No thanks" data-href="#">No thanks</a>
+                    <a id="detail-btn" type="button" class="btn upOrder-form-btn make-sure" data-name="Sure" data-toggle="modal" data-target=".is-logged-in-modal" data-dismiss="modal" aria-label="Close">Sure</a>
                 </div>
             </div>
             <div class="check-my-dealss modal-body no-points jq-waiting-one-deal" style="padding: 0 0 30px;display: none;">
@@ -475,7 +475,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     fpid(params);
                 }, 500);
             }
-            $('.cashback_deal').click(function () {
+            $('.cashback_deal,.no-thanks,.make-sure').click(function () {
                 params.event_type = 'click';
                 params.event_name = $(this).data('name');
                 setTimeout(function () {
