@@ -5,6 +5,9 @@ use yii\helpers\Url;
     <div>
         <nav class="mydeal-nav-brand">
             <div class="deal-content-nav index-nav-ul">
+                <a href="<?= Url::toRoute('/site/about');?>" class="deal-nav-a <?php if (isset($curr) && $curr == 'home'){?>active<?php }?>">
+                    Home
+                </a>
                 <a href="<?= Url::toRoute('/product');?>" class="deal-nav-a <?php if (isset($curr) && $curr == 0){?>active<?php }?>">
                     All Deals
                 </a>

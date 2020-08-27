@@ -296,6 +296,7 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $site_id = Yii::$app->params['site_id'];
+        $curr = 'home';
         $model = Article::find()->where(['url_key'=>'about_us', 'site_id'=>$site_id])->one();
         if (!$model){
             return $this->render('/site/error');
@@ -304,7 +305,7 @@ class SiteController extends Controller
         $meta['title'] = $model->meta_title;
         $meta['description'] = $model->meta_description;
         $meta['keyword'] = $model->meta_keywords;
-        return $this->render('about', ['model'=>$model, 'meta'=>$meta]);
+        return $this->render('about', ['model'=>$model, 'meta'=>$meta, 'curr'=>$curr]);
     }
 
     public function actionFaq()
