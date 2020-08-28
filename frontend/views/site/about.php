@@ -11,7 +11,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <div class="about-info">
             <p class="log-title">CASHBACKCLUB</p>
             <h1 class="aboutus-title">
-                SECURELY SHOPPING WITH CASHBACK
+                SECURELY SHOPPING<br> WITH CASHBACK
             </h1>
             <div class="aboutus-content">
                 <?= $model->content?>

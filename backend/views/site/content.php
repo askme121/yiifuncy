@@ -36,37 +36,43 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
     var myChart2 = echarts.init(document.getElementById('echarts_box2'));
 
     option1 = {
-    title: {
-    text: '访问统计图',
-    left:'center'
-    },
-    tooltip: {
-    trigger: 'axis'
-    },
-    grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-    },
-    xAxis: {
-    name:'时间',
-    type: 'category',
-    boundaryGap: false,
-    data: <?=json_encode($data['x']);?>
-    },
-    yAxis: {
-    name: '访问量',
-    type : 'value'
-    },
-    series: [
-    {
-    name:'历史访问次数',
-    type:'line',
-    stack: '总量',
-    data:<?=json_encode($data['y']);?>
-    }
-    ]
+        title: {
+            text: '访问统计图',
+            left:'center'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            name:'时间',
+            type: 'category',
+            boundaryGap: false,
+            data: <?=json_encode($data['pv']['date']);?>
+        },
+        yAxis: {
+            name: '访问量',
+            type : 'value'
+        },
+        series: [
+            {
+                name:'历史访问数量',
+                type:'line',
+                stack: '总量',
+                data:<?=json_encode($data['pv']['num']);?>
+            },
+            {
+                name:'历史访问人数',
+                type:'line',
+                stack: '人数',
+                data:<?=json_encode($data['pv']['user']);?>
+            },
+        ]
     };
 
     option2 = {
