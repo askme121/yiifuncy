@@ -498,9 +498,9 @@ function getTrace() {
         first_page = 1;
         Set_Cookie('_fto',1, 0.6, '/', '', '');
         if(_fta){
-            Set_Cookie( '_ftreturn',1, 36500, '/', '', '' );
+            Set_Cookie( 'is_new',0, 36500, '/', '', '' );
         }else{
-            Set_Cookie( '_ftreturn',0, 36500, '/', '', '' );
+            Set_Cookie( 'is_new',1, 36500, '/', '', '' );
         }
     }
     thisreferrer = document.referrer || '';
@@ -532,7 +532,7 @@ function getTrace() {
     }
     params.first_referrer_domain = Get_Cookie('_ftreferdomain');
     params.first_referrer_url = Get_Cookie('_ftreferurl');
-    params.is_new = Get_Cookie('_ftreturn')==0?1:0;
+    params.is_new = Get_Cookie('is_new');
     params.first_page = first_page;
     if (cookie_uuid = Get_Cookie('_fta')){
         params.uuid = cookie_uuid;
