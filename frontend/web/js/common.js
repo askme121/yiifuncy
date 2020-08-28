@@ -493,6 +493,7 @@ function getTrace() {
     var _fta = Get_Cookie('_fta');
     if(_fto){
         Set_Cookie('_fto',1, 0.6, '/', '', '');
+        Set_Cookie( 'is_new',0, 36500, '/', '', '' );
         first_page = 0;
     }else{
         first_page = 1;
