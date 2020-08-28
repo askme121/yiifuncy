@@ -47,19 +47,19 @@ class Log extends ActiveRecord
         $model = new Log();
         $model->route = $action->uniqueId;
         $model->url = Yii::$app->request->absoluteUrl;
-
         $headers = Yii::$app->request->headers;
-
         if ($headers->has('User-Agent')) {
             $model->user_agent =  $headers->get('User-Agent');
         }
-
         $model->gets = json_encode(Yii::$app->request->get());
         $model->posts = json_encode(Yii::$app->request->post());
         $model->admin_id = Yii::$app->user->identity['id'];
         $model->admin_email = Yii::$app->user->identity['email'];
         $model->ip = Yii::$app->request->userIP;
-        $model->save();
+        $res = Log::find()->where(['route'=>$model->route, 'url'=>$model->url, 'admin_id'=>$model->admin_id, 'ip'=>$model->ip, 'gets'=>'[]', 'posts'=>'[]'])->andWhere(['<', 'created_at', time()-600])->one();
+        if (!$res){
+            $model->save();
+        }
     }
 
     public function attributeLabels()
