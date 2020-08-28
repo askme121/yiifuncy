@@ -45,7 +45,7 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '6%',
             bottom: '3%',
             containLabel: true
         },
@@ -76,47 +76,47 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
     };
 
     option2 = {
-    title: {
-    text: '今日访问统计图',
-    left:'center'
-    },
-    color: ['#3398DB'],
-    tooltip : {
-    trigger: 'axis',
-    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-    }
-    },
-    grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-    },
-    xAxis : [
-    {
-    name: 'IP地址',
-    type : 'category',
-    data : <?=json_encode($data['x1']);?>,
-    axisTick: {
-    alignWithLabel: true
-    }
-    }
-    ],
-    yAxis : [
-    {
-    name: '访问量',
-    type : 'value'
-    }
-    ],
-    series : [
-    {
-    name:'直接访问',
-    type:'bar',
-    barWidth: '60%',
-    data:<?=json_encode($data['y1']);?>
-    }
-    ]
+        title: {
+            text: '今日访问统计图',
+            left:'center'
+        },
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {
+                type : 'shadow'
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                name: 'IP地址',
+                type : 'category',
+                data : <?=json_encode($data['x1']);?>,
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis : [
+            {
+                name: '访问量',
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'访问量',
+                type:'bar',
+                barWidth: '60%',
+                data:<?=json_encode($data['y1']);?>
+            }
+        ]
     }
 
     myChart1.setOption(option1);
