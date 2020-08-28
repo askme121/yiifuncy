@@ -33,12 +33,12 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['login','signup','captcha'],
+                        'actions' => ['login', 'signup', 'captcha'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'signup'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -332,6 +332,9 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $site_id = Yii::$app->params['site_id'];
         $meta = [];
         $meta['title'] = 'Sign Up | '.Config::getConfig('web_site_title', $site_id);
