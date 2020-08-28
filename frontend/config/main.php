@@ -51,7 +51,7 @@ return [
                 'contact' => '/site/contact',
                 'faq' => '/site/faq',
                 'terms' => '/site/terms',
-                'aboutus' => '/site/about',
+                'home' => '/site/about',
                 'account/forgotpassword' => '/site/request-password-reset',
                 'account/profile' => '/user/profile',
                 'account/coupon' => '/order/coupon',
