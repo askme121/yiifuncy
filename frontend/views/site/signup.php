@@ -196,8 +196,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             text: response.message,
                             timer: 2000,
                             html: true
+                        }, function () {
+                            window.location.href = response.href;
                         });
-                        window.location.href = response.href;
                     } else {
                         btn.removeClass("onused");
                         swal({

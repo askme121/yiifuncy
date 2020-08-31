@@ -210,12 +210,7 @@ class SiteController extends Controller
                     ]);
                 } else {
                     $login_status = $model->login();
-                    if ($login_status == 10) {
-                        return json_encode([
-                            'code' => 2,
-                            'message' => 'The account has been suspended,because we detected that you have created multiple accounts.',
-                        ]);
-                    } else if ($login_status) {
+                    if ($login_status) {
                         return json_encode([
                             'code' => 1,
                             'message' => 'login successful',
@@ -224,7 +219,7 @@ class SiteController extends Controller
                     } else {
                         return json_encode([
                             'code' => 0,
-                            'message' => 'login failed',
+                            'message' => 'The account has been suspended,because we detected that you have created multiple accounts.',
                         ]);
                     }
                 }

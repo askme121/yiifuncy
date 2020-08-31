@@ -38,20 +38,21 @@ class LoginForm extends Model
         if ($this->validate()) {
             $user = $this->getUser();
             if ($user->status != user::STATUS_ACTIVE) {
-                return 10;
-            }
-            $user->last_login_date = time();
-            $user->last_login_ip = Yii::$app->getRequest()->getUserIP();
-            if (!empty($user->last_login_ip) && $user->last_login_ip != '127.0.0.1') {
-                $ipLocation = new Ip2Location();
-                $locationModel = $ipLocation->getLocation($user->last_login_ip);
-                $ip_info = $locationModel->toArray();
-                if (isset($ip_info['country'])) {
-                    $user->last_login_address = $ip_info['country'];
+                return false;
+            } else {
+                $user->last_login_date = time();
+                $user->last_login_ip = Yii::$app->getRequest()->getUserIP();
+                if (!empty($user->last_login_ip) && $user->last_login_ip != '127.0.0.1') {
+                    $ipLocation = new Ip2Location();
+                    $locationModel = $ipLocation->getLocation($user->last_login_ip);
+                    $ip_info = $locationModel->toArray();
+                    if (isset($ip_info['country'])) {
+                        $user->last_login_address = $ip_info['country'];
+                    }
                 }
+                $user->save();
+                return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
             }
-            $user->save();
-            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
     }

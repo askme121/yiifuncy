@@ -78,17 +78,18 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             type: 'success',
                             title: 'Oops',
                             text: response.message,
-                            timer: 3000,
+                            timer: 2000,
                             html: true
+                        }, function () {
+                            window.location.href = location.href;
                         });
-                        window.location.href = location.href;
                     } else {
                         btn.removeClass("onused");
                         swal({
                             type: 'error',
                             title: 'Oops',
                             text: response.message,
-                            timer: 3000,
+                            timer: 2000,
                             html: true
                         });
                     }

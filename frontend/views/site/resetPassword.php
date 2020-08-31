@@ -32,6 +32,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
 <script>
     <?php $this->beginBlock('js') ?>
     $(document).ready(function(){
+        var params = getTrace();
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function () {
+                fpid(params);
+            });
+        } else {
+            setTimeout(function () {
+                fpid(params);
+            }, 500);
+        }
         $("#register_btn").click(function(){
             var password = $('input[name="password"][id="password"]').val().trim();
             var confirm_password = $('input[name="confirm_password"][id="confirm_password"]').val().trim();

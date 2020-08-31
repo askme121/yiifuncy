@@ -607,8 +607,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             text: response.message,
                             timer: 2000,
                             html: true
+                        }, function () {
+                            window.location.href = location.href;
                         });
-                        window.location.href = location.href;
                     } else {
                         btn.removeClass("onused");
                         swal({
@@ -661,8 +662,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             text: response.message,
                             timer: 2000,
                             html: true
+                        }, function () {
+                            window.location.href = location.href;
                         });
-                        window.location.href = location.href;
                     } else {
                         btn.removeClass("onused");
                         swal({

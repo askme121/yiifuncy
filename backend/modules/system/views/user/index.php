@@ -162,10 +162,10 @@ $this->registerJs($this->render('js/index.js'));
                         return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
                     },
                     'activate' => function ($url, $model, $key) {
-						if($model->status==0){
+						if($model->status == 0){
                             return '<li class="nav-myself-li">'.Html::a('启用', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</li>';
 						}else{
-                            return '<li class="nav-myself-li">'.Html::a('禁用', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-default-active"]).'</li>';
+                            return '<li class="nav-myself-li">'.Html::a('禁用', Url::to(['inactive','id'=>$model->id]), ['class' => "layui-default-inactive"]).'</li>';
 						}
                     },
 				]
