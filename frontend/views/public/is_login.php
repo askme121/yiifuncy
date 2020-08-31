@@ -148,7 +148,7 @@ use yii\helpers\Url;
                     <span class="secured-title">Your Opinion Matters!</span>
                 </p>
                 <p class="sorry-tip-content">
-                    We'd really appreciate it if you could leave us an honest review of the last order. Your opinion matters to us and they would help other shoppers make informed decisions.
+                    We'd really appreciate it if you could leave us an honest review of the last order. Your opinion matters to us and they would help other shoppers make informed decisions.Check the <a href="/faq?#failing" target="_blank" style="color: #f93">User Guide</a> for detail.
                 </p>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 review_product">
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">

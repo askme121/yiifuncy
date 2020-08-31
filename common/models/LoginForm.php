@@ -37,6 +37,9 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             $user = $this->getUser();
+            if ($user->status != user::STATUS_ACTIVE) {
+                return 10;
+            }
             $user->last_login_date = time();
             $user->last_login_ip = Yii::$app->getRequest()->getUserIP();
             if (!empty($user->last_login_ip) && $user->last_login_ip != '127.0.0.1') {

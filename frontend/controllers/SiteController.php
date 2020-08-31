@@ -209,7 +209,13 @@ class SiteController extends Controller
                         'message' => array_values($error),
                     ]);
                 } else {
-                    if ($model->login()) {
+                    $login_status = $model->login();
+                    if ($login_status == 10) {
+                        return json_encode([
+                            'code' => 2,
+                            'message' => 'The account has been suspended,because we detected that you have created multiple accounts.',
+                        ]);
+                    } else if ($login_status) {
                         return json_encode([
                             'code' => 1,
                             'message' => 'login successful',
