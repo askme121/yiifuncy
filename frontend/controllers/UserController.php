@@ -105,6 +105,13 @@ class UserController extends Controller
         $param = Yii::$app->request->post();
         $redirect_url = isset($param['redirect_url'])?$param['redirect_url']:'';
         if (isset($param['amazon_profile_link']) && trim($param['amazon_profile_link']) && isset($param['paypal']) && trim($param['paypal'])){
+            $pattern = '/^https:\/\/www\.amazon\.com\/gp\/profile\/amzn1\.account\.([0-9A-Z]{28})\?ref_=ya_d_l_profile$/';
+            if (!preg_match($pattern, trim($param['amazon_profile_link']))) {
+                return json_encode([
+                    'code' => 400,
+                    'message' => 'The Amazon Profile URL is invalid',
+                ]);
+            }
             $user = User::find()->andWhere(['or',['amazon_profile_url'=>trim($param['amazon_profile_link'])], ['paypal_account'=>trim($param['paypal'])]])->one();
             if ($user){
                 return json_encode([
@@ -164,6 +171,13 @@ class UserController extends Controller
         $user_id = Yii::$app->user->identity->getId();
         $param = Yii::$app->request->post();
         if (isset($param['amazon_profile_link']) && trim($param['amazon_profile_link'])){
+            $pattern = '/^https:\/\/www\.amazon\.com\/gp\/profile\/amzn1\.account\.([0-9A-Z]{28})\?ref_=ya_d_l_profile$/';
+            if (!preg_match($pattern, trim($param['amazon_profile_link']))) {
+                return json_encode([
+                    'code' => 400,
+                    'message' => 'The Amazon Profile URL is invalid',
+                ]);
+            }
             $user = User::find()->where(['amazon_profile_url'=>trim($param['amazon_profile_link'])])->one();
             if ($user){
                 return json_encode([
