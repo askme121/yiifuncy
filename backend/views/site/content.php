@@ -21,6 +21,10 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
         </ul>
         <div class="layui-tab-content clildFrame">
             <div class="layui-tab-item layui-show" style="margin-top: 15px">
+                <div style="margin-bottom: 20px; padding-left: 30px">
+                    <h5><i class="fa fa-clock-o"></i>系统时间：<span id="showTime"></span></h5>
+                </div>
+                <div class="clearfix"></div>
                 <div id="echarts_box1" style="width: 50%;height:50%;float: left">
 
                 </div>
@@ -31,6 +35,34 @@ LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+        function formatTimeZone(dt, offset)
+        {
+            var localTime = dt.getTime();
+            var localOffset = dt.getTimezoneOffset()*60000;
+            var utc = localTime + localOffset;
+            var wishTime= utc + (3600000 * offset);
+            return new Date(wishTime);
+        }
+        function p(s)
+        {
+            return s < 10 ? '0' + s : s;
+        }
+        function time()
+        {
+            var dt = new Date();
+            var mt = formatTimeZone(dt, -7)
+            var Y = mt.getFullYear();//获取年
+            var M = p(mt.getMonth() + 1);//获取月
+            var d = p(mt.getDate());//获取日
+            var h = p(mt.getHours());//获取时
+            var m = p(mt.getMinutes());//获取分
+            var s = p(mt.getSeconds());//获取秒
+            document.getElementById("showTime").innerHTML =  Y + "-" + M + "-" + d + " " + h + ":" + m + ":" + s;
+            setTimeout("time()",1000); //设定定时器，循环运行
+        }
+        time();
+    </script>
 <?php $this->beginBlock('map') ?>
     var myChart1 = echarts.init(document.getElementById('echarts_box1'));
     var myChart2 = echarts.init(document.getElementById('echarts_box2'));

@@ -127,5 +127,11 @@ return [
     'state' => '州/省',
     'city' => '城市',
     'event_name' => '按钮名称',
-    'event_type' => '事件'
+    'event_type' => '事件',
+    'ad_link' => '广告链接',
+    'ad_amount' => '广告费用',
+    'access_count' => '访问量',
+    'reg_count' => '注册量',
+    'order_count' => '下单量',
+    'trade_count' => '成交量',
 ];

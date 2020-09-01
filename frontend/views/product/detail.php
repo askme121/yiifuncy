@@ -458,6 +458,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         showHideRegisterPassword('#register-pass');
         var my_tag = Get_Cookie('my_tag');
         var my_sign = Get_Cookie('my_sign');
+        var my_first_activity = Get_Cookie('my_first_activity');
         $(document).ready(function(){
             var params = getTrace();
             params.product_id = $("#product_view_id").val();
@@ -474,6 +475,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     Set_Cookie('my_tag', tag, 4, '/', '', '');
                 }
                 params.tag = tag;
+                if (!my_first_activity) {
+                    Set_Cookie('my_first_activity', $("#activity_view_id").val(), 4, '/', '', '');
+                }
             } else if (my_tag) {
                 params.tag = my_tag;
             }
