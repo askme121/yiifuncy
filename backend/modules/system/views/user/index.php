@@ -108,6 +108,8 @@ $this->registerJs($this->render('js/index.js'));
 					'width' => '10%'
 				]
             ],
+            'tag',
+            'sign',
 			'created_ip',
 			'created_address',
             [

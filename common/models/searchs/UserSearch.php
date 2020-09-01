@@ -35,12 +35,9 @@ class UserSearch extends User
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
             'status' => $this->status,
-			'mobile' => $this->mobile,
-			'r_id' => $this->r_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+			'tag' => $this->tag,
+            'sign' => $this->sign,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
