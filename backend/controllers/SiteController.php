@@ -91,10 +91,9 @@ class SiteController extends Controller
         $rows1 = $query1->select(['ip', 'access_date', 'COUNT(*) as num'])
             ->from('t_trace')
             ->where(['site_id'=>$site_id, 'access_date'=>date("Y-m-d")])
-            //->andWhere(['<>', 'country_code', 'CN'])
+            ->andWhere(['<>', 'country_code', 'CN'])
             ->groupBy('ip')
             ->all();
-
         $x1 = [];
         $y1 = [];
         foreach ($rows1 as $value) {
@@ -105,7 +104,7 @@ class SiteController extends Controller
         $rows = $query2->select(['access_date', 'uuid', 'COUNT(*) as num'])
             ->from('t_trace')
             ->where(['site_id'=>$site_id])
-            //->andWhere(['<>', 'country_code', 'CN'])
+            ->andWhere(['<>', 'country_code', 'CN'])
             ->andWhere(['between', 'access_date', $start_date, $end_date])
             ->orderBy('access_date')
             ->groupBy('access_date, uuid')
@@ -126,10 +125,8 @@ class SiteController extends Controller
             $ptv['date'] = array_keys($pv);
             $ptv['user'] = array_column($pv, 'user');
             $ptv['num'] = array_column($pv, 'num');
-        }
-        foreach ($rows as $value) {
-            $x[] = $value['access_date'];
-            $y[] = $value['num'];
+        } else {
+            $ptv['date'] = $ptv['user'] = $ptv['num'] = [];
         }
         return $this->render('index', ["data"=>['pv'=>$ptv, 'x1'=>$x1, 'y1'=>$y1]]);
     }
