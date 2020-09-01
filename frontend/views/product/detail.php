@@ -456,15 +456,41 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php $this->beginBlock('js_block') ?>
         showHidePassword('#password');
         showHideRegisterPassword('#register-pass');
+        var my_tag = Get_Cookie('my_tag');
+        var my_sign = Get_Cookie('my_sign');
         $(document).ready(function(){
             var params = getTrace();
             params.product_id = $("#product_view_id").val();
             params.activity_id = $("#activity_view_id").val();
             if ($("#tag").val()){
-                params.tag = $("#tag").val();
+                var tag = $("#tag").val().trim();
+                if (my_tag) {
+                    if (my_tag != tag) {
+                        my_tag = tag;
+                        Set_Cookie('my_tag', tag, 4, '/', '', '');
+                    }
+                } else {
+                    my_tag = tag;
+                    Set_Cookie('my_tag', tag, 4, '/', '', '');
+                }
+                params.tag = tag;
+            } else if (my_tag) {
+                params.tag = my_tag;
             }
             if ($("#sign").val()){
-                params.sign = $("#sign").val();
+                var sign = $("#sign").val().trim();
+                if (my_sign) {
+                    if (my_sign != sign) {
+                        my_sign = sign;
+                        Set_Cookie('my_sign', sign, 4, '/', '', '');
+                    }
+                } else {
+                    my_sign = sign;
+                    Set_Cookie('my_sign', sign, 4, '/', '', '');
+                }
+                params.sign = sign;
+            } else if (my_sign) {
+                params.sign = my_sign;
             }
             if (window.requestIdleCallback) {
                 requestIdleCallback(function () {
@@ -596,7 +622,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     username: username,
                     password: password,
                     captcha: captcha,
-                    is_subscribed: is_subscribe
+                    is_subscribed: is_subscribe,
+                    tag: my_tag,
+                    sign: my_sign
                 },
                 success: function(response){
                     if (response.code == 1) {

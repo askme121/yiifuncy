@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use backend\models\Admin;
 use common\models\EmailTemplate;
 use wsl\ip2location\Ip2Location;
 use Yii;
@@ -18,6 +19,8 @@ class SignupForm extends Model
     public $captcha;
     public $is_subscribed;
     public $rememberMe = true;
+    public $tag;
+    public $sign;
 
     public function rules()
     {
@@ -33,7 +36,7 @@ class SignupForm extends Model
             ['first_name', 'string', 'min' => 2, 'max' => 255],
             ['last_name', 'string', 'min' => 2, 'max' => 255],
             ['captcha', 'captcha'],
-            [['is_subscribed', 'rememberMe'], 'safe']
+            [['is_subscribed', 'rememberMe', 'tag', 'sign'], 'safe']
         ];
     }
 
@@ -46,7 +49,24 @@ class SignupForm extends Model
         $user->firstname = $this->first_name;
         $user->lastname = $this->last_name;
         $user->r_id = 1;
+        $user->site_id = $site_id;
         $user->is_subscribed = $this->is_subscribed;
+        if (!empty($this->tag)){
+            $user->tag = $this->tag;
+            $flag_arr = explode("-", $this->tag);
+            $flag = end($flag_arr);
+            if ($flag == 'fb'){
+                $user->channel = 'facebook';
+            } else if ($flag == 'tw'){
+                $user->channel = 'twitter';
+            } else {
+                $user->channel = '';
+            }
+        }
+        if (!empty($this->sign)){
+            $user->sign = $this->sign;
+            $user->flow_id = Admin::findOne(['sign'=>$this->sign])->id??0;
+        }
         $user->created_ip = Yii::$app->getRequest()->getUserIP();
         if (!empty($user->created_ip) && $user->created_ip != '127.0.0.1') {
             $ipLocation = new Ip2Location();

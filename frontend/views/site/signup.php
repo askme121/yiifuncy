@@ -120,6 +120,14 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
     }
     $(document).ready(function(){
         var params = getTrace();
+        var my_tag = Get_Cookie('my_tag');
+        var my_sign = Get_Cookie('my_sign');
+        if (my_tag) {
+            params.tag = my_tag;
+        }
+        if (my_sign) {
+            params.sign = my_sign;
+        }
         if (window.requestIdleCallback) {
             requestIdleCallback(function () {
                 fpid(params);
@@ -186,7 +194,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     username: username,
                     password: password,
                     captcha: captcha,
-                    is_subscribed: is_subscribe
+                    is_subscribed: is_subscribe,
+                    tag: my_tag,
+                    sign: my_sign
                 },
                 success: function(response){
                     if (response.code == 1) {

@@ -38,9 +38,9 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password_hash', 'firstname', 'lastname'], 'required'],
             [['username', 'email'], 'unique'],
             [['username', 'email'], 'email'],
-            [['r_id', 'is_subscribed'], 'integer'],
+            [['r_id', 'is_subscribed', 'flow_id', 'site_id'], 'integer'],
             [['birth_date'], 'date'],
-            [['firstname', 'lastname'], 'string'],
+            [['firstname', 'lastname', 'channel', 'tag', 'sign'], 'string'],
             [['auth_key', 'verification_token', 'gender', 'country', 'marital'], 'safe'],
         ];
     }
@@ -64,6 +64,9 @@ class User extends ActiveRecord implements IdentityInterface
             'last_login_ip' => Yii::t('app', 'last_login_ip'),
             'last_login_address' => Yii::t('app', 'last_login_address'),
             'last_login_date' => Yii::t('app', 'last_login_date'),
+            'channel' => Yii::t('app', 'channel'),
+            'tag' => Yii::t('app', 'tag'),
+            'sign' => Yii::t('app', 'flag'),
         ];
     }
 
