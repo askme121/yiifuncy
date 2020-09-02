@@ -141,7 +141,7 @@ $this->registerJs($this->render('js/index.js'));
                         }
                     },
                     'activate' => function ($url, $model, $key) {
-                        if ($model->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
+                        if (Yii::$app->user->identity->role_id == 1 || $model->team_id == Yii::$app->user->identity->team_id) {
                             if($model->status == 2){
                                 return '<dd>'.Html::a('激活', Url::to(['active','id'=>$model->id]), ['class' => "layui-default-active"]).'</dd>';
                             }else{
