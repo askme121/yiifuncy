@@ -19,7 +19,7 @@ $fieldOptions1 = [
         <?= $form
             ->field($model, 'password', $fieldOptions1)
             ->label(false)
-            ->textInput(['class' => 'layui-input','placeholder' => $model->getAttributeLabel('password')]) ?>
+            ->textInput(['type'=>'password','class' => 'layui-input','placeholder' => $model->getAttributeLabel('password')]) ?>
         <div class="layui-form-item">
 			<?= Html::submitButton('保存', ['class' => 'layui-btn login_btn', 'name' => 'login-button']) ?>
         </div>
