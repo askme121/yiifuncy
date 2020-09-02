@@ -8,6 +8,8 @@ use yii\db\ActiveRecord;
 
 class Trace extends ActiveRecord
 {
+    public $my_first_activity;
+
     public static function tableName()
     {
         return '{{%trace}}';
@@ -27,7 +29,7 @@ class Trace extends ActiveRecord
             [['uuid', 'url', 'country_code', 'country_name', 'state_name', 'city_name', 'device', 'user_agent'], 'string'],
             [['is_new', 'first_page', 'product_id', 'activity_id'], 'integer'],
             [['browser', 'browser_version', 'browser_date', 'browser_lang', 'operate', 'operate_relase', 'domain', 'refer_url', 'first_referrer_url',
-            'first_referrer_domain', 'device_pixel_ratio', 'resolution', 'color_depth', 'channel', 'tag', 'sign'
+            'first_referrer_domain', 'device_pixel_ratio', 'resolution', 'color_depth', 'channel', 'tag', 'sign', 'my_first_activity'
             ], 'safe']
         ];
     }

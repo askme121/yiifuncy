@@ -6,6 +6,19 @@ layui.config({
         $ = layui.jquery;
     var element = layui.element;
 
+    // 添加分类
+    $(".layui-default-add").click(function(){
+        var index = layui.layer.open({
+            title : "添加广告",
+            type : 2,
+            area: ['600px', '450px'],
+            content : ["<?= yii\helpers\Url::to(['create']); ?>",'yes'],
+            end: function () {
+                location.reload();
+            }
+        });
+    });
+
     // 查看订单
     $("body").on("click",".layui-default-view",function(){
         var href = $(this).attr("href");

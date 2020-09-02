@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use backend\models\Admin;
+use common\models\AdLink;
 use common\models\EmailTemplate;
 use wsl\ip2location\Ip2Location;
 use Yii;
@@ -19,6 +20,7 @@ class SignupForm extends Model
     public $captcha;
     public $is_subscribed;
     public $rememberMe = true;
+    public $my_first_activity;
     public $tag;
     public $sign;
 
@@ -36,7 +38,7 @@ class SignupForm extends Model
             ['first_name', 'string', 'min' => 2, 'max' => 255],
             ['last_name', 'string', 'min' => 2, 'max' => 255],
             ['captcha', 'captcha'],
-            [['is_subscribed', 'rememberMe', 'tag', 'sign'], 'safe']
+            [['is_subscribed', 'rememberMe', 'tag', 'sign', 'my_first_activity'], 'safe']
         ];
     }
 
@@ -90,6 +92,14 @@ class SignupForm extends Model
         $email_title = $template->title;
         $params['user_name'] = Html::encode($this->first_name. ' '. $this->last_name);
         sendEmail($this->username, $email_content, $email_title, $params, 'register');
+        if ($this->my_first_activity && $this->tag && $this->sign) {
+            $ad = AdLink::find(['activity_id'=>$this->my_first_activity, 'tag'=>$this->tag, 'sign'=>$this->sign, 'site_id'=>$site_id])->one();
+            if ($ad) {
+                $ad->reg_count += 1;
+                $ad->save();
+                $user->ad_id = $ad->id;
+            }
+        }
         return $user->save() && Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
     }
 }

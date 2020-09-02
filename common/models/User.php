@@ -38,7 +38,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password_hash', 'firstname', 'lastname'], 'required'],
             [['username', 'email'], 'unique'],
             [['username', 'email'], 'email'],
-            [['r_id', 'is_subscribed', 'flow_id', 'site_id'], 'integer'],
+            [['r_id', 'is_subscribed', 'flow_id', 'site_id', 'ad_id'], 'integer'],
             [['birth_date'], 'date'],
             [['firstname', 'lastname', 'channel', 'tag', 'sign'], 'string'],
             [['auth_key', 'verification_token', 'gender', 'country', 'marital'], 'safe'],

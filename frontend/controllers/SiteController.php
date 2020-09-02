@@ -22,6 +22,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Activity;
+use common\models\AdLink;
 
 class SiteController extends Controller
 {
@@ -525,6 +526,13 @@ class SiteController extends Controller
                     }
                     if (!empty($model->sign)){
                         $model->flow_id = Admin::findOne(['sign'=>$model->sign])->id??0;
+                    }
+                    if ($model->my_first_activity && $model->tag && $model->sign) {
+                        $ad = AdLink::find(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
+                        if ($ad) {
+                            $ad->access_count += 1;
+                            $ad->save();
+                        }
                     }
                     $res = $model->save();
                     if ($res) {

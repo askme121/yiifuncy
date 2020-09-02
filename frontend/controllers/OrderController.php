@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Activity;
+use common\models\AdLink;
 use common\models\Coupon;
 use common\models\Product;
 use common\models\User;
@@ -361,6 +362,14 @@ class OrderController extends Controller
                 $model->product_name = $product->name;
                 $model->deals_ip = Yii::$app->getRequest()->getUserIP();
                 $model->site_id = Yii::$app->params['site_id'];
+                if ($model->my_first_activity && $model->tag && $model->sign) {
+                    $ad = AdLink::find(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
+                    if ($ad) {
+                        $ad->order_count += 1;
+                        $ad->save();
+                        $model->ad_id = $ad->id;
+                    }
+                }
                 if ($activity->type == 2){
                     $activity->qty = $activity->qty-1;
                     $activity->save();

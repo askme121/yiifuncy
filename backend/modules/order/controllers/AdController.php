@@ -43,6 +43,24 @@ class AdController extends Controller
         $model = new AdLink();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()){
+                $link = $model->link;
+                $param = parse_url($link);
+                $path_arr = explode("/", $param['path']);
+                $activity_id = end($path_arr);
+                $query_arr = explode("&", $param['query']);
+                $query = [];
+                foreach ($query_arr as $vo)
+                {
+                    $vo_arr = explode("=", $vo);
+                    $query[$vo_arr[0]] = $vo_arr[1];
+                }
+                $model->activity_id = $activity_id;
+                if (isset($query['tag'])) {
+                    $model->tag = $query['tag'];
+                }
+                if (isset($query['code'])) {
+                    $model->sign = $query['code'];
+                }
                 $model->role_id = Yii::$app->user->identity->role_id;
                 $model->team_id = Yii::$app->user->identity->team_id;
                 $model->user_id = Yii::$app->user->identity->id;
@@ -65,6 +83,21 @@ class AdController extends Controller
 
     public function actionUpdate($id)
     {
-
+        $model = AdLink::findOne($id);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()){
+                $res = $model->save();
+                if ($res !== false){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    $error = $model->firstErrors;
+                    return json_encode(['code'=>500, "msg"=>"操作失败", "data"=>$error]);
+                }
+            } else {
+                $error = $model->firstErrors;
+                return json_encode(['code'=>500, "msg"=>"验证失败", "data"=>$error]);
+            }
+        }
+        return $this->render('update', ['model' => $model,]);
     }
 }

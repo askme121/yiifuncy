@@ -10,6 +10,8 @@ use common\models\Product;
 
 class Order extends ActiveRecord
 {
+    public $my_first_activity;
+
     public static function tableName()
     {
         return '{{%order}}';
@@ -28,8 +30,9 @@ class Order extends ActiveRecord
             [['activity_id', 'product_id'], 'required'],
             [['order_id', 'amazon_order_id', 'amazon_url', 'user_phone', 'user_email', 'coupon_code', 'tag', 'sign'], 'string'],
             [['order_id'], 'unique'],
-            [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'is_review', 'flow_id', 'site_id'], 'integer'],
-            [['cashback_cost', 'coupon_cost', 'origin_cost'], 'number']
+            [['activity_id', 'product_id', 'user_id', 'order_type', 'status', 'is_review', 'flow_id', 'site_id', 'ad_id'], 'integer'],
+            [['cashback_cost', 'coupon_cost', 'origin_cost'], 'number'],
+            [['my_first_activity'], 'safe']
         ];
     }
 

@@ -74,13 +74,27 @@ $this->registerJs($this->render('js/index.js'));
             ],
             [
                 'attribute' => 'link',
-                'contentOptions' => ['style'=> 'text-align: center;width: 80px'],
-                'headerOptions' => ['style'=> 'text-align: center;width: 80px'],
+                'contentOptions' => ['style'=> 'text-align: left;width: 120px;white-space: inherit;overflow: hidden;'],
+                'headerOptions' => ['style'=> 'text-align: center;width: 120px'],
             ],
             [
                 'attribute' => 'channel',
                 'contentOptions' => ['style'=> 'text-align: center;width: 80px;'],
                 'headerOptions' => ['style'=> 'text-align: center;width: 80px'],
+                'value' => function($model){
+                    switch ($model->channel)
+                    {
+                        case 'fb':
+                            return 'facebook';
+                            break;
+                        case 'tw':
+                            return 'twitter';
+                            break;
+                        default:
+                            return Yii::t('app', 'unkown');
+                            break;
+                    }
+                }
             ],
             [
                 'attribute' => 'amount',
@@ -134,11 +148,7 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
                     'update' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        } else {
-                            return '';
-                        }
+                        return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
                     },
                 ]
             ],

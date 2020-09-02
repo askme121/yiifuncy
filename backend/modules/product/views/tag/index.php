@@ -75,6 +75,25 @@ $this->registerJs($this->render('js/index.js'));
                 'contentOptions' => ['style'=> 'text-align: center;']
             ],
             [
+                'attribute' => 'channel',
+                'headerOptions' => ['width'=>'10%','style'=> 'text-align: center;'],
+                'contentOptions' => ['style'=> 'text-align: center;'],
+                'value' => function($model){
+                    switch ($model->channel)
+                    {
+                        case 'fb':
+                            return 'facebook';
+                            break;
+                        case 'tw':
+                            return 'twitter';
+                            break;
+                        default:
+                            return Yii::t('app', 'unkown');
+                            break;
+                    }
+                }
+            ],
+            [
                 'attribute' => 'status',
                 'contentOptions' => ['style'=> 'text-align: center;'],
                 'headerOptions' => ['style'=> 'text-align: center;'],

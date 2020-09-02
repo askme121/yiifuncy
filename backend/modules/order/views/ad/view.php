@@ -11,7 +11,23 @@ LayuiAsset::register($this);
         'options' => ['class' => 'layui-table'],
         'attributes' => [
             'link',
-            'channel',
+            [
+                "attribute" => "channel",
+                "value" => function($model) {
+                    switch ($model->channel)
+                    {
+                        case 'fb':
+                            return 'facebook';
+                            break;
+                        case 'tw':
+                            return 'twitter';
+                            break;
+                        default:
+                            return Yii::t('app', 'unkown');
+                            break;
+                    }
+                },
+            ],
             'tag',
             'sign',
             'amount',

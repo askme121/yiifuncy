@@ -23,10 +23,11 @@ class AdLink extends ActiveRecord
     public function rules()
     {
         return [
+            [['link', 'channel'], 'required'],
             [['link', 'tag', 'sign', 'channel'], 'string'],
             [['link'], 'unique'],
             [['amount'], 'number'],
-            [['activity_id', 'access_count', 'reg_count', 'order_count', 'trade_count'], 'integer'],
+            [['activity_id', 'access_count', 'reg_count', 'order_count', 'trade_count', 'role_id', 'team_id', 'user_id', 'site_id'], 'integer'],
         ];
     }
 

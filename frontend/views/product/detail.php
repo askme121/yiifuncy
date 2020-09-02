@@ -476,6 +476,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 }
                 params.tag = tag;
                 if (!my_first_activity) {
+                    my_first_activity = $("#activity_view_id").val();
                     Set_Cookie('my_first_activity', $("#activity_view_id").val(), 4, '/', '', '');
                 }
             } else if (my_tag) {
@@ -495,6 +496,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 params.sign = sign;
             } else if (my_sign) {
                 params.sign = my_sign;
+            }
+            if (my_first_activity) {
+                params.my_first_activity = my_first_activity;
             }
             if (window.requestIdleCallback) {
                 requestIdleCallback(function () {
@@ -627,6 +631,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     password: password,
                     captcha: captcha,
                     is_subscribed: is_subscribe,
+                    my_first_activity: my_first_activity,
                     tag: my_tag,
                     sign: my_sign
                 },
@@ -881,8 +886,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 data: {
                     "activity_id": $('#activity_view_id').val(),
                     "product_id": $('#product_view_id').val(),
-                    "tag": $("#tag").val(),
-                    "sign": $("#sign").val()
+                    "my_first_activity": my_first_activity,
+                    "tag": my_tag,
+                    "sign": my_sign
                 },
                 dataType: "json",
                 success: function(response){

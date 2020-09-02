@@ -57,6 +57,9 @@ LayuiAsset::register($this);
                     return isset($data->last_login_date)?date("Y-m-d H:i:s",$data->last_login_date):"";
                 }
             ],
+            'created_ip',
+            'tag',
+            'sign'
         ],
 		'template' => '<tr><th width="90px;">{label}</th><td>{value}</td></tr>', 
     ]) ?>

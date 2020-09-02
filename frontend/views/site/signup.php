@@ -122,11 +122,15 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         var params = getTrace();
         var my_tag = Get_Cookie('my_tag');
         var my_sign = Get_Cookie('my_sign');
+        var my_first_activity = Get_Cookie('my_first_activity');
         if (my_tag) {
             params.tag = my_tag;
         }
         if (my_sign) {
             params.sign = my_sign;
+        }
+        if (my_first_activity) {
+            params.my_first_activity = my_first_activity;
         }
         if (window.requestIdleCallback) {
             requestIdleCallback(function () {
@@ -195,6 +199,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                     password: password,
                     captcha: captcha,
                     is_subscribed: is_subscribe,
+                    my_first_activity: my_first_activity,
                     tag: my_tag,
                     sign: my_sign
                 },
