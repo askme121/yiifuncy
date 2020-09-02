@@ -26,7 +26,7 @@ class AdLink extends ActiveRecord
             [['link', 'tag', 'sign', 'channel'], 'string'],
             [['link'], 'unique'],
             [['amount'], 'number'],
-            [['activity_id', 'access_count', 'reg_count', 'order_count', 'trade_count'], 'unique'],
+            [['activity_id', 'access_count', 'reg_count', 'order_count', 'trade_count'], 'integer'],
         ];
     }
 
@@ -42,6 +42,7 @@ class AdLink extends ActiveRecord
             'reg_count' => Yii::t('app', 'reg_count'),
             'order_count' => Yii::t('app', 'order_count'),
             'trade_count' => Yii::t('app', 'trade_count'),
+            'created_at' => Yii::t('app', 'publish_at'),
         ];
     }
 }

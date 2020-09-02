@@ -19,4 +19,28 @@ class AdLinkSearch extends AdLink
     {
         return Model::scenarios();
     }
+
+    public function search($params)
+    {
+        $site_id = \Yii::$app->session['default_site_id'];
+        $query = AdLink::find()
+            ->where(['site_id'=>$site_id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+        $this->load($params);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere(['like', 'link', $this->link])
+            ->andFilterWhere(['like', 'channel', $this->channel]);
+
+        return $dataProvider;
+    }
 }
