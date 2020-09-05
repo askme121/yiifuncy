@@ -24,7 +24,7 @@ use yii\helpers\Html;
                     <a href="/">
                         <img class="img-responsive logo lazy" data-src="<?= getImgUrl('images/logo-cover.png'); ?>" alt="">
                     </a>
-                    <p>CashBackClub is a new product testing platform that connects people with 100% cashback in exchange for providing their honest opinions
+                    <p>CashBackClub is a new product testing platform that connects people with up to 100% cashback in exchange for providing their honest opinions
                         and testimonials.</p>
                 </div>
             </div>
