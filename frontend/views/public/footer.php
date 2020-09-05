@@ -46,7 +46,7 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="copyright">
-            © 2020 CashBackClub &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute(['/site/terms', 'tabtarget'=>'privacy']);?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
+            © 2020 shenzhen geruide technology co.,ltd &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute('/site/terms');?>">Terms</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?= Url::toRoute(['/site/terms', 'tabtarget'=>'privacy']);?>">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="mailto:support@theclubofcashback.com">support@theclubofcashback.com</a>
         </div>
     </div>
     <div class="hidden-md hidden-lg">
@@ -61,7 +61,7 @@ use yii\helpers\Html;
                 <a href="<?= Url::toRoute('/site/terms');?>">Terms&amp;Privacy</a>
             </li>
         </ul>
-        <p class="copyright-txt">© 2020 CashBackClub All Rights Reserved.</p>
+        <p class="copyright-txt">© 2020 shenzhen geruide technology co.,ltd All Rights Reserved.</p>
     </div>
 </footer>
 <a id="back-top" href="">
