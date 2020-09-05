@@ -46,7 +46,7 @@ use common\models\Contact;
                 <div class="navbar-header">
                     <div id="logo" style="background: url(<?= getImgUrl('images/mylogo.png'); ?>) no-repeat center center; background-size: contain;">
                         <h1 class="logo-keyword">
-                            <a href="<?= Url::home()?>">Deals on Amazon</a>
+                            <a href="<?= Url::home()?>">CashBackClub</a>
                         </h1>
                     </div>
                 </div>
