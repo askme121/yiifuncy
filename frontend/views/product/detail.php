@@ -529,7 +529,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 cursor: 'pointer',
                 galleryActiveClass: 'active',
                 imageCrossfade: true,
-                preloading: 1,
+                //preloading: 1,
                 loadingIcon: '<?= getImgUrl('images/lazyload.gif'); ?>',
             });
             function touchCarousel() {
