@@ -26,7 +26,6 @@ class UserController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                    ['allow' => true, 'actions' => [], 'verbs' => ['GET']],
                     ['allow' => true, 'actions' => ['amazon-profile-link', 'change-password', 'profile', 'change-url', 'ajax-message'], 'verbs' => ['POST']],
                 ],
             ],
