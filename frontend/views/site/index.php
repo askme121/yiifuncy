@@ -143,13 +143,13 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                 </div>
             </div>
         </div>
+        <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)):  $i=0;?>
         <div class="deals-classify-section" style="margin-bottom: 20px;">
             <h3 class="deal-type-title">
                 <a href="<?= Url::toRoute('/product/coupon&cashback');?>">Coupon + Cashback Deals</a>
                 <a class="inline-view-all" href="<?= Url::toRoute('/product/coupon&cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
             <div>
-                <?php if (is_array($cashbackCouponProducts) && !empty($cashbackCouponProducts)):  $i=0;?>
                     <?php foreach ($cashbackCouponProducts as $product):  $i++;?>
                         <a href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>" class="new-deal-entry">
                             <div style="position: relative;">
@@ -204,16 +204,16 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                         </a>
                     <?php endforeach; ?>
-                <?php endif; ?>
             </div>
         </div>
+        <?php endif; ?>
+        <?php if (is_array($cashbackProducts) && !empty($cashbackProducts)):  $i=0;?>
         <div class="deals-classify-section">
             <h3 class="deal-type-title" style="margin-bottom: 10px;">
                 <a href="<?= Url::toRoute('/product/cashback');?>">Cashback Deals</a>
                 <a class="inline-view-all" href="<?= Url::toRoute('/product/cashback');?>" style="float: none; font-size: 16px;">View All</a>
             </h3>
             <div>
-                <?php if (is_array($cashbackProducts) && !empty($cashbackProducts)):  $i=0;?>
                     <?php foreach ($cashbackProducts as $product):  $i++;?>
                         <a class="freebies-entry" href="<?= Url::toRoute('/offer/'.$product['url_key'].'/'.$product['id']);?>">
                             <div style="position: relative;">
@@ -254,9 +254,9 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
                             </div>
                         </a>
                     <?php endforeach; ?>
-                <?php endif; ?>
             </div>
         </div>
+        <?php endif; ?>
     </section>
 
 <section id="page" class="container visible-sm visible-xs">
