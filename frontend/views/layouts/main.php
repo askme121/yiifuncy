@@ -17,6 +17,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?= Config::getConfig('ga_code', Yii::$app->params['site_id'])?>
+    <?= Config::getConfig('fb_code', Yii::$app->params['site_id'])?>
 </head>
 <body>
 <?php $this->beginBody() ?>
