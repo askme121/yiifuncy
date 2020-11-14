@@ -458,7 +458,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         showHideRegisterPassword('#register-pass');
         var my_tag = Get_Cookie('my_tag');
         var my_sign = Get_Cookie('my_sign');
-        var my_first_activity = Get_Cookie('my_first_activity');
+        var my_first_activity = $("#activity_view_id").val();
         $(document).ready(function(){
             var params = getTrace();
             params.product_id = $("#product_view_id").val();
