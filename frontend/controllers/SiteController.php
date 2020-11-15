@@ -528,7 +528,7 @@ class SiteController extends Controller
                         $model->flow_id = Admin::findOne(['sign'=>$model->sign])->id??0;
                     }
                     if ($model->my_first_activity && $model->tag && $model->sign) {
-                        $ad = AdLink::find(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
+                        $ad = AdLink::find()->where(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
                         if ($ad) {
                             $ad->access_count += 1;
                             $ad->save();
