@@ -93,7 +93,7 @@ class SignupForm extends Model
         $params['user_name'] = Html::encode($this->first_name. ' '. $this->last_name);
         sendEmail($this->username, $email_content, $email_title, $params, 'register');
         if ($this->my_first_activity && $this->tag && $this->sign) {
-            $ad = AdLink::find(['activity_id'=>$this->my_first_activity, 'tag'=>$this->tag, 'sign'=>$this->sign, 'site_id'=>$site_id])->one();
+            $ad = AdLink::find()->where(['activity_id'=>$this->my_first_activity, 'tag'=>$this->tag, 'sign'=>$this->sign, 'site_id'=>$site_id])->one();
             if ($ad) {
                 $ad->reg_count += 1;
                 $ad->save();

@@ -363,7 +363,7 @@ class OrderController extends Controller
                 $model->deals_ip = Yii::$app->getRequest()->getUserIP();
                 $model->site_id = Yii::$app->params['site_id'];
                 if ($model->my_first_activity && $model->tag && $model->sign) {
-                    $ad = AdLink::find(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
+                    $ad = AdLink::find()->where(['activity_id'=>$model->my_first_activity, 'tag'=>$model->tag, 'sign'=>$model->sign, 'site_id'=>$model->site_id])->one();
                     if ($ad) {
                         $ad->order_count += 1;
                         $ad->save();
