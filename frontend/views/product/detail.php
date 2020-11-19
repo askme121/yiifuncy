@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use common\models\AdLink;
 
 $this->title = $meta['title'];
 $this->registerMetaTag(array("name"=>"description","content"=>$meta['description']));
@@ -437,6 +438,53 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         </div>
     </div>
 </div>
+<?php
+$adv_list = AdLink::find()->select('activity_id')->column();
+?>
+<div class="modal <?php if (in_array($model['id'], $adv_list)) {?>first-eamil<?php }?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="modal-body" style="padding-left: 25px; padding-right: 25px; margin-top: 25px">
+                <p>
+                    Hi,<br>
+                </p>
+                <p>
+                    Welcome! :)
+                </p>
+                <p>
+                    We mainly focus on the Clothing & Accessories category and are looking for Product Testers who can test our bandanas & neck gaiters. We are an established manufacturer and have an entire line of textile products and are looking for testers who can help us with some product evaluations.<br>
+                </p>
+                <p>
+                    We are looking for product testers who can test these products & can and leave us an honest feedback online. Your honest feedback will help us improve the quality of the product and will help future customers make an informed purchase decision.<br>
+                </p>
+                <p>
+                    These are available on amazon.com. The products are sustainably sourced using premium materials and follow industry standards in the manufacturing process.<br>
+                </p>
+                <p>
+                    The process requires you to participate in the purchase and testing of the product. You will need to reside in the US and have an Amazon account to be eligible to participate.<br>
+                </p>
+                <p>
+                    The purchase and delivery of the product would be about 2-5 days, and the testing phase is about 1-3 days after receiving the product. Your time spent would be the time it takes to make the purchase, and the time it would take to review the product.<br>
+                </p>
+                <p>
+                    You will be required to make the purchase on Amazon, fill the Order ID on CashBackClub, and once the product is delivered get started with the evaluation process. You will get the refund payment once you share a screenshot of your submitted review on amazon.com.<br>
+                </p>
+                <p>
+                    Should you want to participate please follow the guidance to the next step.<br>
+                </p>
+                <p>
+                    Thanks for your time.
+                </p>
+                <p>
+                    CashBackClub
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php if (Yii::$app->user->isGuest) {
     $param = [
@@ -456,6 +504,7 @@ $this->registerMetaTag(array("name"=>"keywords","content"=>$meta['keyword']));
         <?php $this->beginBlock('js_block') ?>
         showHidePassword('#password');
         showHideRegisterPassword('#register-pass');
+        $('.first-eamil').modal('show');
         var my_tag = Get_Cookie('my_tag');
         var my_sign = Get_Cookie('my_sign');
         var my_first_activity = $("#activity_view_id").val();

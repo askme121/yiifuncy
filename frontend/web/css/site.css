@@ -3342,6 +3342,10 @@ span.septal-row {
         line-height: 26px;
         margin-top: 20px;
     }
+    .modal-body {
+        max-height: 540px;
+        overflow-y: auto;
+    }
 }
 
 @media (max-width:320px) {
