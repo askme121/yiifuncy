@@ -3,10 +3,12 @@
 namespace order\controllers;
 
 use common\models\Activity;
+use common\models\Contact;
 use common\models\EmailTemplate;
 use common\models\searchs\OrderSearch;
 use common\models\Order;
 use common\models\User;
+use yii\helpers\Html;
 use yii\web\Controller;
 use Yii;
 use yii\filters\VerbFilter;
@@ -151,5 +153,48 @@ class IndexController extends Controller
             $errors = $model->firstErrors;
             return json_encode(['code'=>400,"msg"=>reset($errors)]);
         }
+    }
+
+    public function actionEmail($id)
+    {
+        $site_id = Yii::$app->session['default_site_id'];
+        $template = EmailTemplate::find()->where(['site_id'=>$site_id, 'scene'=>'access'])->one();
+        if ($template) {
+            $title = $template->title;
+            $content = $template->content;
+        } else {
+            $title = '';
+            $content = '';
+        }
+        $model = Order::findOne($id);
+        $user = User::findOne($model->user_id);
+        $params['user_name'] = Html::encode($user->firstname. ' '. $user->lastname);
+        if (Yii::$app->request->post()) {
+            $param = Yii::$app->request->post();
+            $mail_title = $param['title']??'';
+            $mail_content = $param['content']??'';
+            $params['msg'] = $mail_content;
+            $mo = new Contact();
+            $mo->user_id = $model->user_id;
+            $mo->name = $params['user_name'];
+            $mo->email = $model->user_email;
+            $mo->order_id = $id;
+            $mo->site_id = $site_id;
+            $mo->type = 2;
+            $mo->ip = Yii::$app->getRequest()->getUserIP();
+            $msg_content = htmlspecialchars_decode($content);
+            if ($params){
+                foreach ($params as $k => $v)
+                {
+                    $msg_content = str_replace('{{'.$k.'}}', $v, $msg_content);
+                }
+            }
+            $mo->title = $mail_title;
+            $mo->content = $msg_content;
+            $mo->save();
+            sendEmail($model->user_email, $content, $mail_title, $params, 'access');
+            return $this->renderContent('<h5 style="text-align: center; margin-top: 15px">send successful</h5>');
+        }
+        return $this->render('email', ['model' => $model, 'title'=>$title]);
     }
 }

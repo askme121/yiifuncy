@@ -162,18 +162,17 @@ $this->registerJs($this->render('js/index.js'));
                 'template' => '<ul class="nav-myself-ul">
                              <li class="nav-myself-li">
                                  {view}
+                                 <dl class="nav-myself-dl">
+                                     {email}
+                                 </dl>
                              </li>
                           </ul>',
                 'buttons' => [
                     'view' => function ($url, $model, $key){
                         return Html::a('查看', Url::to(['view','id'=>$model->id]), ['class' => "layui-default-view"]);
                     },
-                    'update' => function ($url, $model, $key) {
-                        if ($model->status == 0) {
-                            return '<dd>'.Html::a('编辑', Url::to(['update','id'=>$model->id]), ['class' => "layui-default-update"]).'</dd>';
-                        } else {
-                            return '';
-                        }
+                    'email' => function ($url, $model, $key) {
+                        return '<dd>'.Html::a('回访', Url::to(['email','id'=>$model->id]), ['class' => "layui-default-email"]).'</dd>';
                     },
                     'delete' => function ($url, $model, $key) {
                         return Html::a('作废', Url::to(['delete','id'=>$model->id]), ['class' => "layui-default-delete"]);

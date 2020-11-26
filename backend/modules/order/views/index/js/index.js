@@ -49,14 +49,13 @@ layui.config({
         return false;
     });
 
-    //  修改订单
-    $("body").on("click",".layui-default-update",function(){
+    //  回访
+    $("body").on("click",".layui-default-email",function(){
         var href = $(this).attr("href");
-        console.log(href);
         var index = layui.layer.open({
-            title : "修改订单",
+            title : "回访邮件",
             type : 2,
-            area:['800px', '630px'],
+            area:['800px', '530px'],
             content :[href,"yes"],
             end: function () {
                 location.reload();
