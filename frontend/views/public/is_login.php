@@ -33,7 +33,7 @@ use yii\helpers\Url;
                         <span>STEP 2:</span>
                     </p>
                     <small style="display:block;margin-top: -15px; text-align: center; color: red">(Sold by <span id="coupon-sold-by"></span>)</small>
-                    <a id="coupon-purchase-link" href="javascript:void(0)" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
+                    <a id="coupon-purchase-link" href="javascript:void(0)" data-name="Buy on Amazon" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title">STEP 3:</p>
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
@@ -43,7 +43,7 @@ use yii\helpers\Url;
                                 <div class="form-group-error error" id="coupon-order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss text-center">
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="coupon-order-post">Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" data-name="Upload Order" id="coupon-order-post">Submit</a>
                             </div>
                         </form>
                     </div>
@@ -71,7 +71,7 @@ use yii\helpers\Url;
                         <span>STEP 1:</span>
                     </p>
                     <small style="display:block;margin-top: -15px; text-align: center; color: red">(Sold by <span id="sold-by"></span>)</small>
-                    <a id="purchase-link" href="javascript:void(0)" target="_blank" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
+                    <a id="purchase-link" href="javascript:void(0)" target="_blank" data-name="Buy on Amazon" class="go-amazon-btn amazon_link">Buy it on Amazon now!</a>
                     <div>
                         <p class="upOrder-step-title" style="margin-bottom: 10px;">STEP 2:</p>
                         <form class="upOrder-form" enctype="multipart/form-data" method="post" action="#">
@@ -81,7 +81,7 @@ use yii\helpers\Url;
                                 <div class="form-group-error error" id="order-id-tips"></div>
                             </div>
                             <div class="upOrder-form-btnss text-center">
-                                <a type="button" class="btn upOrder-form-btn jq-submit-order" id="order-post" >Submit</a>
+                                <a type="button" class="btn upOrder-form-btn jq-submit-order" data-name="Upload Order" id="order-post" >Submit</a>
                             </div>
                         </form>
                     </div>

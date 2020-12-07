@@ -558,7 +558,7 @@ $adv_list = AdLink::find()->select('activity_id')->column();
                     fpid(params);
                 }, 500);
             }
-            $('.cashback_deal,.no-thanks,.make-sure').click(function () {
+            $('.cashback_deal,.no-thanks,.make-sure,.amazon_link,#coupon-order-post,#order-post').click(function () {
                 params.event_type = 'click';
                 params.event_name = $(this).data('name');
                 setTimeout(function () {
